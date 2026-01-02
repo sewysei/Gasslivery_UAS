@@ -1,0 +1,45 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Class_Gasslivery
+{
+    public class Driver
+    {
+        private string id;
+        private string full_name;
+        private string password;
+        private DateTime date;
+        private string gender; // ENUM('male', 'female')
+        private string telp;
+        private double avg_rating;
+        private double balance;
+        private string status; // ENUM('active', 'inactive')
+
+        public Driver()
+        {
+            this.Id = "";
+            this.Full_name = "";
+            this.Password = "";
+            this.Date = DateTime.Now;
+            this.Gender = "";
+            this.Telp = "";
+            this.Avg_rating = 0;
+            this.Balance = 0;
+            this.Status = "";
+        }
+
+        public string Id { get => id; set => id = value; }
+        public string Full_name { get => full_name; set => full_name = value; }
+        public string Password { get => password; set => password = value; }
+        public DateTime Date { get => date; set => date = value; }
+        public string Gender { get => gender; set => gender = value; }
+        public string Telp { get => telp; set => telp = value; }
+        public double Avg_rating { get => avg_rating; set => avg_rating = value; }
+        public double Balance { get => balance; set => balance = value; }
+        public string Status { get => status; set => status = value; }
+    }
+}

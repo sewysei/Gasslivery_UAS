@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Class_Gasslivery
+{
+    public class Cancel
+    {
+        private string id;
+
+    }
+}

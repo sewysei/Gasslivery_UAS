@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35514.174
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI_Baru_UAS", "UI_Baru_UAS\UI_Baru_UAS.csproj", "{2E51A522-B999-480A-9DCB-A140BD113C30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Class_Gasslivery", "Class_Gasslivery\Class_Gasslivery.csproj", "{9D296C76-50F8-4D28-A9F3-D53724A4542B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2E51A522-B999-480A-9DCB-A140BD113C30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E51A522-B999-480A-9DCB-A140BD113C30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E51A522-B999-480A-9DCB-A140BD113C30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E51A522-B999-480A-9DCB-A140BD113C30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D296C76-50F8-4D28-A9F3-D53724A4542B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D296C76-50F8-4D28-A9F3-D53724A4542B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D296C76-50F8-4D28-A9F3-D53724A4542B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D296C76-50F8-4D28-A9F3-D53724A4542B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C4B2A335-D53D-4093-BD3B-3972F1D3C385}
+	EndGlobalSection
+EndGlobal

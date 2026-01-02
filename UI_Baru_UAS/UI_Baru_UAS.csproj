@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2E51A522-B999-480A-9DCB-A140BD113C30}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>UI_Baru_UAS</RootNamespace>
+    <AssemblyName>UI_Baru_UAS</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FormCancelTrip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCancelTrip.Designer.cs">
+      <DependentUpon>FormCancelTrip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDataKendaraan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDataKendaraan.Designer.cs">
+      <DependentUpon>FormDataKendaraan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDetailPesanan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDetailPesanan.Designer.cs">
+      <DependentUpon>FormDetailPesanan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormFood.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFood.Designer.cs">
+      <DependentUpon>FormFood.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormKelolaMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormKelolaMenu.Designer.cs">
+      <DependentUpon>FormKelolaMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormKirimNotifikasi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormKirimNotifikasi.Designer.cs">
+      <DependentUpon>FormKirimNotifikasi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormLaporanCancel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLaporanCancel.Designer.cs">
+      <DependentUpon>FormLaporanCancel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormLaporanReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLaporanReport.Designer.cs">
+      <DependentUpon>FormLaporanReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormLaporanTransaksi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLaporanTransaksi.Designer.cs">
+      <DependentUpon>FormLaporanTransaksi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMonitoringDriver.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMonitoringDriver.Designer.cs">
+      <DependentUpon>FormMonitoringDriver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMonitoringKendaraan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMonitoringKendaraan.Designer.cs">
+      <DependentUpon>FormMonitoringKendaraan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormNotifikasiDriver.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormNotifikasiDriver.Designer.cs">
+      <DependentUpon>FormNotifikasiDriver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPesananMasuk.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPesananMasuk.Designer.cs">
+      <DependentUpon>FormPesananMasuk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRating.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRating.Designer.cs">
+      <DependentUpon>FormRating.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormReportTrip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReportTrip.Designer.cs">
+      <DependentUpon>FormReportTrip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRide.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRide.Designer.cs">
+      <DependentUpon>FormRide.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRiwayatFood.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRiwayatFood.Designer.cs">
+      <DependentUpon>FormRiwayatFood.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRiwayatPenjualan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRiwayatPenjualan.Designer.cs">
+      <DependentUpon>FormRiwayatPenjualan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRiwayatRide.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRiwayatRide.Designer.cs">
+      <DependentUpon>FormRiwayatRide.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRiwayatTarikDana.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRiwayatTarikDana.Designer.cs">
+      <DependentUpon>FormRiwayatTarikDana.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRiwayatTopUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRiwayatTopUp.Designer.cs">
+      <DependentUpon>FormRiwayatTopUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTarikDanaDriver.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTarikDanaDriver.Designer.cs">
+      <DependentUpon>FormTarikDanaDriver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTerimaOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTerimaOrder.Designer.cs">
+      <DependentUpon>FormTerimaOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTopUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTopUp.Designer.cs">
+      <DependentUpon>FormTopUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTripDriverDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTripDriverDetail.Designer.cs">
+      <DependentUpon>FormTripDriverDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormUtama.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUtama.Designer.cs">
+      <DependentUpon>FormUtama.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormCancelTrip.resx">
+      <DependentUpon>FormCancelTrip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDataKendaraan.resx">
+      <DependentUpon>FormDataKendaraan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDetailPesanan.resx">
+      <DependentUpon>FormDetailPesanan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFood.resx">
+      <DependentUpon>FormFood.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormKelolaMenu.resx">
+      <DependentUpon>FormKelolaMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormKirimNotifikasi.resx">
+      <DependentUpon>FormKirimNotifikasi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLaporanCancel.resx">
+      <DependentUpon>FormLaporanCancel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLaporanReport.resx">
+      <DependentUpon>FormLaporanReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLaporanTransaksi.resx">
+      <DependentUpon>FormLaporanTransaksi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMonitoringDriver.resx">
+      <DependentUpon>FormMonitoringDriver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMonitoringKendaraan.resx">
+      <DependentUpon>FormMonitoringKendaraan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormNotifikasiDriver.resx">
+      <DependentUpon>FormNotifikasiDriver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPesananMasuk.resx">
+      <DependentUpon>FormPesananMasuk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRating.resx">
+      <DependentUpon>FormRating.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportTrip.resx">
+      <DependentUpon>FormReportTrip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRide.resx">
+      <DependentUpon>FormRide.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRiwayatFood.resx">
+      <DependentUpon>FormRiwayatFood.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRiwayatPenjualan.resx">
+      <DependentUpon>FormRiwayatPenjualan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRiwayatRide.resx">
+      <DependentUpon>FormRiwayatRide.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRiwayatTarikDana.resx">
+      <DependentUpon>FormRiwayatTarikDana.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRiwayatTopUp.resx">
+      <DependentUpon>FormRiwayatTopUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTarikDanaDriver.resx">
+      <DependentUpon>FormTarikDanaDriver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTerimaOrder.resx">
+      <DependentUpon>FormTerimaOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTopUp.resx">
+      <DependentUpon>FormTopUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTripDriverDetail.resx">
+      <DependentUpon>FormTripDriverDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUtama.resx">
+      <DependentUpon>FormUtama.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
