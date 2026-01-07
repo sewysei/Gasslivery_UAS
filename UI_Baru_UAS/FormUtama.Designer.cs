@@ -57,6 +57,7 @@
             this.kirimNotifikasiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.akunToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.voucherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.labelLoginSebagai = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
@@ -72,10 +73,11 @@
             this.driverToolStripMenuItem,
             this.tenanToolStripMenuItem,
             this.adminToolStripMenuItem,
-            this.akunToolStripMenuItem});
+            this.akunToolStripMenuItem,
+            this.voucherToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(800, 30);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -85,20 +87,20 @@
             this.pesanRideToolStripMenuItem,
             this.riwayatRideToolStripMenuItem});
             this.rideToolStripMenuItem.Name = "rideToolStripMenuItem";
-            this.rideToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
+            this.rideToolStripMenuItem.Size = new System.Drawing.Size(53, 26);
             this.rideToolStripMenuItem.Text = "Ride";
             // 
             // pesanRideToolStripMenuItem
             // 
             this.pesanRideToolStripMenuItem.Name = "pesanRideToolStripMenuItem";
-            this.pesanRideToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.pesanRideToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
             this.pesanRideToolStripMenuItem.Text = "Pesan Ride";
             this.pesanRideToolStripMenuItem.Click += new System.EventHandler(this.pesanRideToolStripMenuItem_Click);
             // 
             // riwayatRideToolStripMenuItem
             // 
             this.riwayatRideToolStripMenuItem.Name = "riwayatRideToolStripMenuItem";
-            this.riwayatRideToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.riwayatRideToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
             this.riwayatRideToolStripMenuItem.Text = "Riwayat Ride";
             this.riwayatRideToolStripMenuItem.Click += new System.EventHandler(this.riwayatRideToolStripMenuItem_Click);
             // 
@@ -108,20 +110,20 @@
             this.pesanFoodToolStripMenuItem,
             this.riwayatFoodToolStripMenuItem});
             this.foodToolStripMenuItem.Name = "foodToolStripMenuItem";
-            this.foodToolStripMenuItem.Size = new System.Drawing.Size(57, 24);
+            this.foodToolStripMenuItem.Size = new System.Drawing.Size(57, 26);
             this.foodToolStripMenuItem.Text = "Food";
             // 
             // pesanFoodToolStripMenuItem
             // 
             this.pesanFoodToolStripMenuItem.Name = "pesanFoodToolStripMenuItem";
-            this.pesanFoodToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.pesanFoodToolStripMenuItem.Size = new System.Drawing.Size(182, 26);
             this.pesanFoodToolStripMenuItem.Text = "Pesan Food";
             this.pesanFoodToolStripMenuItem.Click += new System.EventHandler(this.pesanFoodToolStripMenuItem_Click);
             // 
             // riwayatFoodToolStripMenuItem
             // 
             this.riwayatFoodToolStripMenuItem.Name = "riwayatFoodToolStripMenuItem";
-            this.riwayatFoodToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.riwayatFoodToolStripMenuItem.Size = new System.Drawing.Size(182, 26);
             this.riwayatFoodToolStripMenuItem.Text = "Riwayat Food";
             this.riwayatFoodToolStripMenuItem.Click += new System.EventHandler(this.riwayatFoodToolStripMenuItem_Click);
             // 
@@ -131,7 +133,7 @@
             this.topUpToolStripMenuItem,
             this.riwayatTopUpToolStripMenuItem});
             this.saldoToolStripMenuItem.Name = "saldoToolStripMenuItem";
-            this.saldoToolStripMenuItem.Size = new System.Drawing.Size(61, 24);
+            this.saldoToolStripMenuItem.Size = new System.Drawing.Size(61, 26);
             this.saldoToolStripMenuItem.Text = "Saldo";
             // 
             // topUpToolStripMenuItem
@@ -156,7 +158,7 @@
             this.tarikDanaToolStripMenuItem,
             this.riwayatTarikDanaToolStripMenuItem});
             this.driverToolStripMenuItem.Name = "driverToolStripMenuItem";
-            this.driverToolStripMenuItem.Size = new System.Drawing.Size(63, 24);
+            this.driverToolStripMenuItem.Size = new System.Drawing.Size(63, 26);
             this.driverToolStripMenuItem.Text = "Driver";
             // 
             // terimaOrderToolStripMenuItem
@@ -194,7 +196,7 @@
             this.pesananMasukToolStripMenuItem,
             this.riwayatPenjualanToolStripMenuItem});
             this.tenanToolStripMenuItem.Name = "tenanToolStripMenuItem";
-            this.tenanToolStripMenuItem.Size = new System.Drawing.Size(62, 24);
+            this.tenanToolStripMenuItem.Size = new System.Drawing.Size(62, 26);
             this.tenanToolStripMenuItem.Text = "Tenan";
             // 
             // kelolaMenuToolStripMenuItem
@@ -228,7 +230,7 @@
             this.monitoringKendaraanToolStripMenuItem,
             this.kirimNotifikasiToolStripMenuItem});
             this.adminToolStripMenuItem.Name = "adminToolStripMenuItem";
-            this.adminToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
+            this.adminToolStripMenuItem.Size = new System.Drawing.Size(67, 26);
             this.adminToolStripMenuItem.Text = "Admin";
             // 
             // laporanTransaksiToolStripMenuItem
@@ -278,15 +280,22 @@
             this.akunToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.logoutToolStripMenuItem});
             this.akunToolStripMenuItem.Name = "akunToolStripMenuItem";
-            this.akunToolStripMenuItem.Size = new System.Drawing.Size(56, 24);
+            this.akunToolStripMenuItem.Size = new System.Drawing.Size(56, 26);
             this.akunToolStripMenuItem.Text = "Akun";
             // 
             // logoutToolStripMenuItem
             // 
             this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(139, 26);
             this.logoutToolStripMenuItem.Text = "Logout";
             this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
+            // 
+            // voucherToolStripMenuItem
+            // 
+            this.voucherToolStripMenuItem.Name = "voucherToolStripMenuItem";
+            this.voucherToolStripMenuItem.Size = new System.Drawing.Size(76, 26);
+            this.voucherToolStripMenuItem.Text = "Voucher";
+            this.voucherToolStripMenuItem.Click += new System.EventHandler(this.voucherToolStripMenuItem_Click);
             // 
             // contextMenuStrip1
             // 
@@ -311,6 +320,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.labelLoginSebagai);
             this.Controls.Add(this.menuStrip1);
+            this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormUtama";
             this.Load += new System.EventHandler(this.FormUtama_Load);
@@ -353,6 +363,7 @@
         private System.Windows.Forms.ToolStripMenuItem kirimNotifikasiToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
         private System.Windows.Forms.Label labelLoginSebagai;
+        private System.Windows.Forms.ToolStripMenuItem voucherToolStripMenuItem;
     }
 }
 

@@ -83,10 +83,10 @@
             // 
             this.labelTotalTransaksi.AutoSize = true;
             this.labelTotalTransaksi.BackColor = System.Drawing.Color.Transparent;
-            this.labelTotalTransaksi.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.labelTotalTransaksi.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.labelTotalTransaksi.Location = new System.Drawing.Point(163, 356);
             this.labelTotalTransaksi.Name = "labelTotalTransaksi";
-            this.labelTotalTransaksi.Size = new System.Drawing.Size(48, 32);
+            this.labelTotalTransaksi.Size = new System.Drawing.Size(46, 22);
             this.labelTotalTransaksi.TabIndex = 66;
             this.labelTotalTransaksi.Text = "Rp0";
             // 
@@ -94,16 +94,16 @@
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label3.Location = new System.Drawing.Point(6, 356);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(151, 32);
+            this.label3.Size = new System.Drawing.Size(162, 22);
             this.label3.TabIndex = 65;
             this.label3.Text = "Total Transaksi :";
             // 
             // dateTimePickerSampai
             // 
-            this.dateTimePickerSampai.Location = new System.Drawing.Point(334, 54);
+            this.dateTimePickerSampai.Location = new System.Drawing.Point(330, 51);
             this.dateTimePickerSampai.Name = "dateTimePickerSampai";
             this.dateTimePickerSampai.Size = new System.Drawing.Size(200, 22);
             this.dateTimePickerSampai.TabIndex = 64;
@@ -112,16 +112,16 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label2.Location = new System.Drawing.Point(307, 47);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(21, 32);
+            this.label2.Size = new System.Drawing.Size(17, 22);
             this.label2.TabIndex = 63;
             this.label2.Text = "-";
             // 
             // dateTimePickerDari
             // 
-            this.dateTimePickerDari.Location = new System.Drawing.Point(101, 54);
+            this.dateTimePickerDari.Location = new System.Drawing.Point(101, 51);
             this.dateTimePickerDari.Name = "dateTimePickerDari";
             this.dateTimePickerDari.Size = new System.Drawing.Size(200, 22);
             this.dateTimePickerDari.TabIndex = 62;
@@ -130,10 +130,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label1.Location = new System.Drawing.Point(6, 47);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 32);
+            this.label1.Size = new System.Drawing.Size(91, 22);
             this.label1.TabIndex = 61;
             this.label1.Text = "Periode :";
             // 
@@ -161,29 +161,33 @@
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label4.Location = new System.Drawing.Point(6, 74);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(155, 32);
+            this.label4.Size = new System.Drawing.Size(169, 22);
             this.label4.TabIndex = 70;
             this.label4.Text = "Jenis Transaksi : ";
             // 
             // comboBoxJenisTransaksi
             // 
             this.comboBoxJenisTransaksi.FormattingEnabled = true;
-            this.comboBoxJenisTransaksi.Location = new System.Drawing.Point(167, 79);
+            this.comboBoxJenisTransaksi.Items.AddRange(new object[] {
+            "Gass-ride",
+            "Gass-kan"});
+            this.comboBoxJenisTransaksi.Location = new System.Drawing.Point(180, 76);
             this.comboBoxJenisTransaksi.Name = "comboBoxJenisTransaksi";
             this.comboBoxJenisTransaksi.Size = new System.Drawing.Size(121, 24);
             this.comboBoxJenisTransaksi.TabIndex = 71;
+            this.comboBoxJenisTransaksi.SelectedIndexChanged += new System.EventHandler(this.comboBoxJenisTransaksi_SelectedIndexChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label5.Location = new System.Drawing.Point(6, 388);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(170, 32);
+            this.label5.Size = new System.Drawing.Size(179, 22);
             this.label5.TabIndex = 72;
             this.label5.Text = "Jumlah Transaksi :";
             // 
@@ -191,10 +195,10 @@
             // 
             this.labelJumlahTransaksi.AutoSize = true;
             this.labelJumlahTransaksi.BackColor = System.Drawing.Color.Transparent;
-            this.labelJumlahTransaksi.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.labelJumlahTransaksi.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.labelJumlahTransaksi.Location = new System.Drawing.Point(182, 388);
             this.labelJumlahTransaksi.Name = "labelJumlahTransaksi";
-            this.labelJumlahTransaksi.Size = new System.Drawing.Size(25, 32);
+            this.labelJumlahTransaksi.Size = new System.Drawing.Size(21, 22);
             this.labelJumlahTransaksi.TabIndex = 73;
             this.labelJumlahTransaksi.Text = "0";
             // 
@@ -221,6 +225,7 @@
             this.Controls.Add(this.dataGridViewLaporanTransaksi);
             this.Name = "FormLaporanTransaksi";
             this.Text = "FormLaporanTransaksi";
+            this.Load += new System.EventHandler(this.FormLaporanTransaksi_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLaporanTransaksi)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

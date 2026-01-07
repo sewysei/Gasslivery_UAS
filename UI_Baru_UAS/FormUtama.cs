@@ -433,5 +433,21 @@ namespace UI_Baru_UAS
                 }
             }
         }
+
+        private void voucherToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms["FormVoucher"];
+            if (frm == null)
+            {
+                FormVoucher form = new FormVoucher();
+                form.MdiParent = this;
+                form.Show();
+            }
+            else
+            {
+                frm.Show();
+                frm.BringToFront();
+            }
+        }
     }
 }

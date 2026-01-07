@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -70,5 +71,25 @@ namespace Class_Gasslivery
         public int Additional_fee { get => additional_fee; set => additional_fee = value; }
         public int Discount_value { get => discount_value; set => discount_value = value; }
         public int Total_fee { get => total_fee; set => total_fee = value; }
+
+        public static List<Trip> BacaData(string kolom = "", string nilai = "")
+        {
+            List<Trip> listHasil = new List<Trip>();
+            string perintah;
+            perintah = $"SELECT * FROM trips ORDER BY date ASC;";
+            MySqlDataReader hasil = Koneksi.JalankanPerintahSelect(perintah);
+            int counter = 0;
+            while (hasil.Read())
+            {
+                counter++;
+                Trip tampung = new Trip();
+                tampung.Id = counter.ToString();
+                //tampung.Name = hasil.GetValue(1).ToString();
+                //tampung.Conditions = hasil.GetValue(2).ToString();
+                //tampung.Value = hasil.GetValue(3).ToString();
+                listHasil.Add(tampung);
+            }
+            return listHasil;
+        }
     }
 }

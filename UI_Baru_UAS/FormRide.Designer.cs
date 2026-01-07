@@ -58,6 +58,8 @@
             this.textBoxLatitudeJemput = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.textBoxLatitudeTujuan = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,6 +76,7 @@
             // 
             // textBoxTitikTujuan
             // 
+            this.textBoxTitikTujuan.Enabled = false;
             this.textBoxTitikTujuan.Location = new System.Drawing.Point(141, 136);
             this.textBoxTitikTujuan.Name = "textBoxTitikTujuan";
             this.textBoxTitikTujuan.Size = new System.Drawing.Size(325, 22);
@@ -318,6 +321,7 @@
             // 
             // textBoxLangitudeTujuan
             // 
+            this.textBoxLangitudeTujuan.Enabled = false;
             this.textBoxLangitudeTujuan.Location = new System.Drawing.Point(141, 164);
             this.textBoxLangitudeTujuan.Name = "textBoxLangitudeTujuan";
             this.textBoxLangitudeTujuan.Size = new System.Drawing.Size(325, 22);
@@ -354,10 +358,30 @@
             // 
             // textBoxLatitudeTujuan
             // 
+            this.textBoxLatitudeTujuan.Enabled = false;
             this.textBoxLatitudeTujuan.Location = new System.Drawing.Point(141, 194);
             this.textBoxLatitudeTujuan.Name = "textBoxLatitudeTujuan";
             this.textBoxLatitudeTujuan.Size = new System.Drawing.Size(325, 22);
             this.textBoxLatitudeTujuan.TabIndex = 40;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.Transparent;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label11.Location = new System.Drawing.Point(217, 302);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(84, 22);
+            this.label11.TabIndex = 41;
+            this.label11.Text = "Voucher";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(221, 338);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(237, 24);
+            this.comboBox1.TabIndex = 42;
             // 
             // FormRide
             // 
@@ -365,6 +389,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(484, 559);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.textBoxLatitudeTujuan);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.textBoxLatitudeJemput);
@@ -433,5 +459,7 @@
         private System.Windows.Forms.TextBox textBoxLatitudeJemput;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox textBoxLatitudeTujuan;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
