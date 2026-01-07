@@ -50,7 +50,7 @@
             // 
             this.buttonTutup.BackColor = System.Drawing.Color.Transparent;
             this.buttonTutup.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonTutup.Location = new System.Drawing.Point(765, 359);
+            this.buttonTutup.Location = new System.Drawing.Point(953, 547);
             this.buttonTutup.Name = "buttonTutup";
             this.buttonTutup.Size = new System.Drawing.Size(115, 35);
             this.buttonTutup.TabIndex = 69;
@@ -61,7 +61,7 @@
             // 
             this.buttonPrint.BackColor = System.Drawing.Color.Transparent;
             this.buttonPrint.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPrint.Location = new System.Drawing.Point(181, 423);
+            this.buttonPrint.Location = new System.Drawing.Point(188, 547);
             this.buttonPrint.Name = "buttonPrint";
             this.buttonPrint.Size = new System.Drawing.Size(163, 35);
             this.buttonPrint.TabIndex = 68;
@@ -72,7 +72,7 @@
             // 
             this.buttonLihatDetail.BackColor = System.Drawing.Color.Transparent;
             this.buttonLihatDetail.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonLihatDetail.Location = new System.Drawing.Point(12, 423);
+            this.buttonLihatDetail.Location = new System.Drawing.Point(19, 547);
             this.buttonLihatDetail.Name = "buttonLihatDetail";
             this.buttonLihatDetail.Size = new System.Drawing.Size(163, 35);
             this.buttonLihatDetail.TabIndex = 67;
@@ -84,7 +84,7 @@
             this.labelTotalTransaksi.AutoSize = true;
             this.labelTotalTransaksi.BackColor = System.Drawing.Color.Transparent;
             this.labelTotalTransaksi.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelTotalTransaksi.Location = new System.Drawing.Point(163, 356);
+            this.labelTotalTransaksi.Location = new System.Drawing.Point(170, 480);
             this.labelTotalTransaksi.Name = "labelTotalTransaksi";
             this.labelTotalTransaksi.Size = new System.Drawing.Size(46, 22);
             this.labelTotalTransaksi.TabIndex = 66;
@@ -95,7 +95,7 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label3.Location = new System.Drawing.Point(6, 356);
+            this.label3.Location = new System.Drawing.Point(13, 480);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(162, 22);
             this.label3.TabIndex = 65;
@@ -154,7 +154,7 @@
             this.dataGridViewLaporanTransaksi.Name = "dataGridViewLaporanTransaksi";
             this.dataGridViewLaporanTransaksi.RowHeadersWidth = 51;
             this.dataGridViewLaporanTransaksi.RowTemplate.Height = 24;
-            this.dataGridViewLaporanTransaksi.Size = new System.Drawing.Size(868, 244);
+            this.dataGridViewLaporanTransaksi.Size = new System.Drawing.Size(1056, 368);
             this.dataGridViewLaporanTransaksi.TabIndex = 59;
             // 
             // label4
@@ -185,7 +185,7 @@
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label5.Location = new System.Drawing.Point(6, 388);
+            this.label5.Location = new System.Drawing.Point(13, 512);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(179, 22);
             this.label5.TabIndex = 72;
@@ -196,7 +196,7 @@
             this.labelJumlahTransaksi.AutoSize = true;
             this.labelJumlahTransaksi.BackColor = System.Drawing.Color.Transparent;
             this.labelJumlahTransaksi.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelJumlahTransaksi.Location = new System.Drawing.Point(182, 388);
+            this.labelJumlahTransaksi.Location = new System.Drawing.Point(189, 512);
             this.labelJumlahTransaksi.Name = "labelJumlahTransaksi";
             this.labelJumlahTransaksi.Size = new System.Drawing.Size(21, 22);
             this.labelJumlahTransaksi.TabIndex = 73;
@@ -207,7 +207,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.ClientSize = new System.Drawing.Size(891, 469);
+            this.ClientSize = new System.Drawing.Size(1094, 599);
             this.Controls.Add(this.labelJumlahTransaksi);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.comboBoxJenisTransaksi);

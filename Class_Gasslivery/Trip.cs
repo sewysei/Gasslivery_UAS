@@ -72,18 +72,41 @@ namespace Class_Gasslivery
         public int Discount_value { get => discount_value; set => discount_value = value; }
         public int Total_fee { get => total_fee; set => total_fee = value; }
 
-        public static List<Trip> BacaData(string kolom = "", string nilai = "")
+        public static List<Trip> BacaData(string mulai = "", string akhir = "", string tabel = "")
         {
             List<Trip> listHasil = new List<Trip>();
             string perintah;
-            perintah = $"SELECT * FROM trips ORDER BY date ASC;";
+            if (tabel == "")
+            {
+                perintah = $"SELECT * FROM trips WHERE ORDER BY date ASC;";
+            }
+            else if (tabel == "trips")
+            {
+                perintah = $"SELECT c.username, d.full_name, v.name, t.pickup_point, " +
+                    $"t.destination_point, t.distance, t.fee, t.status, t.date, t.total_fee " +
+                    $"FROM trips t INNER JOIN consumers c ON c.id = t.consumer_id " +
+                    $"INNER JOIN drivers d ON t.driver_id = d.id " +
+                    $"INNER JOIN vouchers v ON v.id = t.voucher_id " +
+                    $"WHERE t.date BETWEEN '{mulai}' AND '{akhir}'";
+            }
+            else if (tabel == "orders")
+            {
+                perintah = $"SELECT t.name ,c.username, dr.full_name, v.name, t.address, " +
+                    $"d.destination_point, o.date, o.total_fee " +
+                    $"FROM orders o INNER JOIN consumers c ON c.id = o.consumer_id " +
+                    $"INNER JOIN deliveries d ON d.id = o.delivery_id " +
+                    $"INNER JOIN drivers dr ON dr.id = d.driver_id " +
+                    $"INNER JOIN tenants t ON t.id = o.tenant_id " +
+                    $"INNER JOIN vouchers v ON v.id = o.voucher_id " +
+                    $"WHERE o.date BETWEEN '{mulai}' AND '{akhir}'";
+            }
+
             MySqlDataReader hasil = Koneksi.JalankanPerintahSelect(perintah);
-            int counter = 0;
             while (hasil.Read())
             {
-                counter++;
                 Trip tampung = new Trip();
-                tampung.Id = counter.ToString();
+                tampung.Id = hasil.GetValue(0).ToString();
+                //tampung.Consumer = hasil.GetValue(1).ToString();
                 //tampung.Name = hasil.GetValue(1).ToString();
                 //tampung.Conditions = hasil.GetValue(2).ToString();
                 //tampung.Value = hasil.GetValue(3).ToString();
