@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -41,5 +42,30 @@ namespace Class_Gasslivery
         public double Avg_rating { get => avg_rating; set => avg_rating = value; }
         public double Balance { get => balance; set => balance = value; }
         public string Status { get => status; set => status = value; }
+
+        public static Driver CekLogin(string username, string password)
+        {
+            Driver userLogin = new Driver();
+            string perintah = $"SELECT * FROM drivers WHERE full_name = '{username}' AND password = '{password}'";
+            MySqlDataReader hasil = Koneksi.JalankanPerintahSelect(perintah);
+
+            if (hasil.Read())
+            {
+                userLogin.Id = hasil.GetValue(0).ToString();
+                userLogin.Full_name = hasil.GetValue(1).ToString();
+                userLogin.Password = hasil.GetValue(2).ToString();
+                userLogin.Date = DateTime.Parse(hasil.GetValue(3).ToString()).Date;
+                userLogin.Gender = hasil.GetValue(4).ToString();
+                userLogin.Telp = hasil.GetValue(5).ToString();
+                userLogin.Avg_rating = double.Parse(hasil.GetValue(6).ToString());
+                userLogin.Balance = double.Parse(hasil.GetValue(7).ToString());
+                userLogin.Status = hasil.GetValue(8).ToString();
+                return userLogin;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

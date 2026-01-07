@@ -50,6 +50,14 @@
             this.label6 = new System.Windows.Forms.Label();
             this.checkBoxDriverWanita = new System.Windows.Forms.CheckBox();
             this.checkBoxMotorBaru = new System.Windows.Forms.CheckBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBoxLangitudeJemput = new System.Windows.Forms.TextBox();
+            this.textBoxLangitudeTujuan = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.textBoxLatitudeJemput = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.textBoxLatitudeTujuan = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,7 +65,7 @@
             // 
             this.buttonPesanRide.BackColor = System.Drawing.Color.Transparent;
             this.buttonPesanRide.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPesanRide.Location = new System.Drawing.Point(18, 370);
+            this.buttonPesanRide.Location = new System.Drawing.Point(14, 490);
             this.buttonPesanRide.Name = "buttonPesanRide";
             this.buttonPesanRide.Size = new System.Drawing.Size(132, 35);
             this.buttonPesanRide.TabIndex = 20;
@@ -66,14 +74,14 @@
             // 
             // textBoxTitikTujuan
             // 
-            this.textBoxTitikTujuan.Location = new System.Drawing.Point(142, 84);
+            this.textBoxTitikTujuan.Location = new System.Drawing.Point(141, 136);
             this.textBoxTitikTujuan.Name = "textBoxTitikTujuan";
-            this.textBoxTitikTujuan.Size = new System.Drawing.Size(332, 22);
+            this.textBoxTitikTujuan.Size = new System.Drawing.Size(325, 22);
             this.textBoxTitikTujuan.TabIndex = 19;
             // 
             // textBoxTitikJemput
             // 
-            this.textBoxTitikJemput.Location = new System.Drawing.Point(149, 52);
+            this.textBoxTitikJemput.Location = new System.Drawing.Point(141, 45);
             this.textBoxTitikJemput.Name = "textBoxTitikJemput";
             this.textBoxTitikJemput.Size = new System.Drawing.Size(325, 22);
             this.textBoxTitikJemput.TabIndex = 18;
@@ -81,19 +89,19 @@
             // labelRole
             // 
             this.labelRole.AutoSize = true;
-            this.labelRole.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelRole.Location = new System.Drawing.Point(147, 319);
+            this.labelRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelRole.Location = new System.Drawing.Point(143, 439);
             this.labelRole.Name = "labelRole";
-            this.labelRole.Size = new System.Drawing.Size(0, 32);
+            this.labelRole.Size = new System.Drawing.Size(0, 22);
             this.labelRole.TabIndex = 17;
             // 
             // labelPassword
             // 
             this.labelPassword.AutoSize = true;
-            this.labelPassword.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPassword.Location = new System.Drawing.Point(12, 75);
+            this.labelPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPassword.Location = new System.Drawing.Point(12, 134);
             this.labelPassword.Name = "labelPassword";
-            this.labelPassword.Size = new System.Drawing.Size(124, 32);
+            this.labelPassword.Size = new System.Drawing.Size(129, 22);
             this.labelPassword.TabIndex = 16;
             this.labelPassword.Text = "Titik Tujuan :";
             // 
@@ -101,10 +109,10 @@
             // 
             this.labelUsername.AutoSize = true;
             this.labelUsername.BackColor = System.Drawing.Color.Transparent;
-            this.labelUsername.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.labelUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.labelUsername.Location = new System.Drawing.Point(12, 43);
             this.labelUsername.Name = "labelUsername";
-            this.labelUsername.Size = new System.Drawing.Size(131, 32);
+            this.labelUsername.Size = new System.Drawing.Size(131, 22);
             this.labelUsername.TabIndex = 15;
             this.labelUsername.Text = "Titik Jemput :";
             // 
@@ -124,7 +132,7 @@
             this.groupBox1.Controls.Add(this.radioButtonJadwalkan);
             this.groupBox1.Controls.Add(this.radioButtonSekarang);
             this.groupBox1.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(18, 113);
+            this.groupBox1.Location = new System.Drawing.Point(10, 233);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(456, 66);
             this.groupBox1.TabIndex = 21;
@@ -164,20 +172,20 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label1.Location = new System.Drawing.Point(12, 207);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label1.Location = new System.Drawing.Point(8, 327);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 32);
+            this.label1.Size = new System.Drawing.Size(0, 22);
             this.label1.TabIndex = 22;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label2.Location = new System.Drawing.Point(12, 271);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label2.Location = new System.Drawing.Point(8, 391);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(135, 32);
+            this.label2.Size = new System.Drawing.Size(141, 22);
             this.label2.TabIndex = 23;
             this.label2.Text = "Estimasi Biaya";
             // 
@@ -185,10 +193,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label3.Location = new System.Drawing.Point(12, 303);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label3.Location = new System.Drawing.Point(8, 423);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(69, 32);
+            this.label3.Size = new System.Drawing.Size(71, 22);
             this.label3.TabIndex = 24;
             this.label3.Text = "Jarak :";
             // 
@@ -196,10 +204,10 @@
             // 
             this.labelJarak.AutoSize = true;
             this.labelJarak.BackColor = System.Drawing.Color.Transparent;
-            this.labelJarak.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelJarak.Location = new System.Drawing.Point(87, 303);
+            this.labelJarak.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.labelJarak.Location = new System.Drawing.Point(83, 423);
             this.labelJarak.Name = "labelJarak";
-            this.labelJarak.Size = new System.Drawing.Size(21, 32);
+            this.labelJarak.Size = new System.Drawing.Size(17, 22);
             this.labelJarak.TabIndex = 25;
             this.labelJarak.Text = "-";
             // 
@@ -207,10 +215,10 @@
             // 
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label5.Location = new System.Drawing.Point(12, 335);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label5.Location = new System.Drawing.Point(8, 455);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(89, 32);
+            this.label5.Size = new System.Drawing.Size(90, 22);
             this.label5.TabIndex = 26;
             this.label5.Text = "Ongkos :";
             // 
@@ -218,20 +226,20 @@
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label4.Location = new System.Drawing.Point(107, 335);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label4.Location = new System.Drawing.Point(103, 455);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(0, 32);
+            this.label4.Size = new System.Drawing.Size(0, 22);
             this.label4.TabIndex = 27;
             // 
             // labelOngkos
             // 
             this.labelOngkos.AutoSize = true;
             this.labelOngkos.BackColor = System.Drawing.Color.Transparent;
-            this.labelOngkos.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelOngkos.Location = new System.Drawing.Point(107, 335);
+            this.labelOngkos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.labelOngkos.Location = new System.Drawing.Point(103, 455);
             this.labelOngkos.Name = "labelOngkos";
-            this.labelOngkos.Size = new System.Drawing.Size(48, 32);
+            this.labelOngkos.Size = new System.Drawing.Size(46, 22);
             this.labelOngkos.TabIndex = 28;
             this.labelOngkos.Text = "Rp0";
             // 
@@ -239,7 +247,7 @@
             // 
             this.buttonBatal.BackColor = System.Drawing.Color.Transparent;
             this.buttonBatal.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonBatal.Location = new System.Drawing.Point(344, 370);
+            this.buttonBatal.Location = new System.Drawing.Point(340, 490);
             this.buttonBatal.Name = "buttonBatal";
             this.buttonBatal.Size = new System.Drawing.Size(132, 35);
             this.buttonBatal.TabIndex = 29;
@@ -250,10 +258,10 @@
             // 
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label6.Location = new System.Drawing.Point(12, 182);
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label6.Location = new System.Drawing.Point(8, 302);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(82, 32);
+            this.label6.Size = new System.Drawing.Size(84, 22);
             this.label6.TabIndex = 30;
             this.label6.Text = "Prefensi";
             // 
@@ -261,7 +269,7 @@
             // 
             this.checkBoxDriverWanita.AutoSize = true;
             this.checkBoxDriverWanita.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxDriverWanita.Location = new System.Drawing.Point(18, 218);
+            this.checkBoxDriverWanita.Location = new System.Drawing.Point(14, 338);
             this.checkBoxDriverWanita.Name = "checkBoxDriverWanita";
             this.checkBoxDriverWanita.Size = new System.Drawing.Size(148, 24);
             this.checkBoxDriverWanita.TabIndex = 31;
@@ -272,19 +280,99 @@
             // 
             this.checkBoxMotorBaru.AutoSize = true;
             this.checkBoxMotorBaru.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxMotorBaru.Location = new System.Drawing.Point(18, 248);
+            this.checkBoxMotorBaru.Location = new System.Drawing.Point(14, 368);
             this.checkBoxMotorBaru.Name = "checkBoxMotorBaru";
             this.checkBoxMotorBaru.Size = new System.Drawing.Size(125, 24);
             this.checkBoxMotorBaru.TabIndex = 32;
             this.checkBoxMotorBaru.Text = "Motor Baru";
             this.checkBoxMotorBaru.UseVisualStyleBackColor = true;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label7.Location = new System.Drawing.Point(33, 75);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(110, 22);
+            this.label7.TabIndex = 33;
+            this.label7.Text = "Langitude :";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.Transparent;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label8.Location = new System.Drawing.Point(31, 161);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(110, 22);
+            this.label8.TabIndex = 34;
+            this.label8.Text = "Langitude :";
+            // 
+            // textBoxLangitudeJemput
+            // 
+            this.textBoxLangitudeJemput.Location = new System.Drawing.Point(141, 77);
+            this.textBoxLangitudeJemput.Name = "textBoxLangitudeJemput";
+            this.textBoxLangitudeJemput.Size = new System.Drawing.Size(325, 22);
+            this.textBoxLangitudeJemput.TabIndex = 35;
+            // 
+            // textBoxLangitudeTujuan
+            // 
+            this.textBoxLangitudeTujuan.Location = new System.Drawing.Point(141, 164);
+            this.textBoxLangitudeTujuan.Name = "textBoxLangitudeTujuan";
+            this.textBoxLangitudeTujuan.Size = new System.Drawing.Size(325, 22);
+            this.textBoxLangitudeTujuan.TabIndex = 36;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.Transparent;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label9.Location = new System.Drawing.Point(55, 102);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(88, 22);
+            this.label9.TabIndex = 37;
+            this.label9.Text = "Latitude:";
+            // 
+            // textBoxLatitudeJemput
+            // 
+            this.textBoxLatitudeJemput.Location = new System.Drawing.Point(141, 105);
+            this.textBoxLatitudeJemput.Name = "textBoxLatitudeJemput";
+            this.textBoxLatitudeJemput.Size = new System.Drawing.Size(325, 22);
+            this.textBoxLatitudeJemput.TabIndex = 38;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.Transparent;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label10.Location = new System.Drawing.Point(47, 192);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(88, 22);
+            this.label10.TabIndex = 39;
+            this.label10.Text = "Latitude:";
+            // 
+            // textBoxLatitudeTujuan
+            // 
+            this.textBoxLatitudeTujuan.Location = new System.Drawing.Point(141, 194);
+            this.textBoxLatitudeTujuan.Name = "textBoxLatitudeTujuan";
+            this.textBoxLatitudeTujuan.Size = new System.Drawing.Size(325, 22);
+            this.textBoxLatitudeTujuan.TabIndex = 40;
+            // 
             // FormRide
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.ClientSize = new System.Drawing.Size(488, 408);
+            this.ClientSize = new System.Drawing.Size(484, 559);
+            this.Controls.Add(this.textBoxLatitudeTujuan);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.textBoxLatitudeJemput);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.textBoxLangitudeTujuan);
+            this.Controls.Add(this.textBoxLangitudeJemput);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.checkBoxMotorBaru);
             this.Controls.Add(this.checkBoxDriverWanita);
             this.Controls.Add(this.label6);
@@ -337,5 +425,13 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox checkBoxDriverWanita;
         private System.Windows.Forms.CheckBox checkBoxMotorBaru;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox textBoxLangitudeJemput;
+        private System.Windows.Forms.TextBox textBoxLangitudeTujuan;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox textBoxLatitudeJemput;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox textBoxLatitudeTujuan;
     }
 }

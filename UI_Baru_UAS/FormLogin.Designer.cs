@@ -35,6 +35,7 @@
             this.labelPassword = new System.Windows.Forms.Label();
             this.labelUsername = new System.Windows.Forms.Label();
             this.lblGASLIVERY = new System.Windows.Forms.Label();
+            this.buttonBatal = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonLogin
@@ -47,6 +48,7 @@
             this.buttonLogin.TabIndex = 13;
             this.buttonLogin.Text = "Login";
             this.buttonLogin.UseVisualStyleBackColor = false;
+            this.buttonLogin.Click += new System.EventHandler(this.buttonLogin_Click);
             // 
             // textBoxPassword
             // 
@@ -65,19 +67,19 @@
             // labelRole
             // 
             this.labelRole.AutoSize = true;
-            this.labelRole.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelRole.Location = new System.Drawing.Point(9, 135);
             this.labelRole.Name = "labelRole";
-            this.labelRole.Size = new System.Drawing.Size(0, 32);
+            this.labelRole.Size = new System.Drawing.Size(0, 22);
             this.labelRole.TabIndex = 10;
             // 
             // labelPassword
             // 
             this.labelPassword.AutoSize = true;
-            this.labelPassword.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPassword.Location = new System.Drawing.Point(7, 90);
             this.labelPassword.Name = "labelPassword";
-            this.labelPassword.Size = new System.Drawing.Size(95, 32);
+            this.labelPassword.Size = new System.Drawing.Size(97, 22);
             this.labelPassword.TabIndex = 9;
             this.labelPassword.Text = "Password";
             // 
@@ -85,10 +87,10 @@
             // 
             this.labelUsername.AutoSize = true;
             this.labelUsername.BackColor = System.Drawing.Color.Transparent;
-            this.labelUsername.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.labelUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.labelUsername.Location = new System.Drawing.Point(7, 58);
             this.labelUsername.Name = "labelUsername";
-            this.labelUsername.Size = new System.Drawing.Size(100, 32);
+            this.labelUsername.Size = new System.Drawing.Size(100, 22);
             this.labelUsername.TabIndex = 8;
             this.labelUsername.Text = "Username";
             // 
@@ -102,12 +104,25 @@
             this.lblGASLIVERY.TabIndex = 7;
             this.lblGASLIVERY.Text = "GASS-LIVERY";
             // 
+            // buttonBatal
+            // 
+            this.buttonBatal.BackColor = System.Drawing.Color.Transparent;
+            this.buttonBatal.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonBatal.Location = new System.Drawing.Point(11, 133);
+            this.buttonBatal.Name = "buttonBatal";
+            this.buttonBatal.Size = new System.Drawing.Size(132, 35);
+            this.buttonBatal.TabIndex = 14;
+            this.buttonBatal.Text = "Batal";
+            this.buttonBatal.UseVisualStyleBackColor = false;
+            this.buttonBatal.Click += new System.EventHandler(this.buttonBatal_Click);
+            // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(307, 180);
+            this.Controls.Add(this.buttonBatal);
             this.Controls.Add(this.buttonLogin);
             this.Controls.Add(this.textBoxPassword);
             this.Controls.Add(this.textBoxUsername);
@@ -131,5 +146,6 @@
         private System.Windows.Forms.Label labelPassword;
         private System.Windows.Forms.Label labelUsername;
         private System.Windows.Forms.Label lblGASLIVERY;
+        private System.Windows.Forms.Button buttonBatal;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,5 +38,29 @@ namespace Class_Gasslivery
         public string Telp { get => telp; set => telp = value; }
         public int Balance { get => balance; set => balance = value; }
         public int Point { get => point; set => point = value; }
+
+        public static Consumer CekLogin(string username, string password)
+        {
+            Consumer userLogin = new Consumer();
+            string perintah = $"SELECT * FROM consumers WHERE username = '{username}' AND password = '{password}'";
+            MySqlDataReader hasil = Koneksi.JalankanPerintahSelect(perintah);
+
+            if (hasil.Read())
+            {
+                userLogin.Id = hasil.GetValue(0).ToString();
+                userLogin.Username = hasil.GetValue(1).ToString();
+                userLogin.Password = hasil.GetValue(2).ToString();
+                userLogin.Date = DateTime.Parse (hasil.GetValue(3).ToString()).Date;
+                userLogin.Gender = hasil.GetValue(4).ToString();
+                userLogin.Telp = hasil.GetValue(5).ToString();
+                userLogin.Balance = int.Parse(hasil.GetValue(6).ToString());
+                userLogin.Point = int.Parse(hasil.GetValue(7).ToString());
+                return userLogin;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }
