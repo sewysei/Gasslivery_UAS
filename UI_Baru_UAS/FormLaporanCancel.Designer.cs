@@ -30,7 +30,6 @@
         {
             this.buttonTutup = new System.Windows.Forms.Button();
             this.buttonPrint = new System.Windows.Forms.Button();
-            this.buttonLihatDetail = new System.Windows.Forms.Button();
             this.labelJumlahCancel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.dateTimePickerSampai = new System.Windows.Forms.DateTimePicker();
@@ -52,37 +51,27 @@
             this.buttonTutup.TabIndex = 84;
             this.buttonTutup.Text = "Tutup";
             this.buttonTutup.UseVisualStyleBackColor = false;
+            this.buttonTutup.Click += new System.EventHandler(this.buttonTutup_Click);
             // 
             // buttonPrint
             // 
             this.buttonPrint.BackColor = System.Drawing.Color.Transparent;
             this.buttonPrint.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPrint.Location = new System.Drawing.Point(181, 353);
+            this.buttonPrint.Location = new System.Drawing.Point(12, 353);
             this.buttonPrint.Name = "buttonPrint";
             this.buttonPrint.Size = new System.Drawing.Size(163, 35);
             this.buttonPrint.TabIndex = 83;
             this.buttonPrint.Text = "Print";
             this.buttonPrint.UseVisualStyleBackColor = false;
             // 
-            // buttonLihatDetail
-            // 
-            this.buttonLihatDetail.BackColor = System.Drawing.Color.Transparent;
-            this.buttonLihatDetail.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonLihatDetail.Location = new System.Drawing.Point(12, 353);
-            this.buttonLihatDetail.Name = "buttonLihatDetail";
-            this.buttonLihatDetail.Size = new System.Drawing.Size(163, 35);
-            this.buttonLihatDetail.TabIndex = 82;
-            this.buttonLihatDetail.Text = "Lihat Detail";
-            this.buttonLihatDetail.UseVisualStyleBackColor = false;
-            // 
             // labelJumlahCancel
             // 
             this.labelJumlahCancel.AutoSize = true;
             this.labelJumlahCancel.BackColor = System.Drawing.Color.Transparent;
-            this.labelJumlahCancel.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.labelJumlahCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.labelJumlahCancel.Location = new System.Drawing.Point(159, 318);
             this.labelJumlahCancel.Name = "labelJumlahCancel";
-            this.labelJumlahCancel.Size = new System.Drawing.Size(25, 32);
+            this.labelJumlahCancel.Size = new System.Drawing.Size(21, 22);
             this.labelJumlahCancel.TabIndex = 81;
             this.labelJumlahCancel.Text = "0";
             // 
@@ -90,10 +79,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label3.Location = new System.Drawing.Point(6, 318);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(147, 32);
+            this.label3.Size = new System.Drawing.Size(153, 22);
             this.label3.TabIndex = 80;
             this.label3.Text = "Jumlah Cancel :";
             // 
@@ -103,15 +92,16 @@
             this.dateTimePickerSampai.Name = "dateTimePickerSampai";
             this.dateTimePickerSampai.Size = new System.Drawing.Size(200, 22);
             this.dateTimePickerSampai.TabIndex = 79;
+            this.dateTimePickerSampai.ValueChanged += new System.EventHandler(this.dateTimePickerSampai_ValueChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label2.Location = new System.Drawing.Point(307, 36);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(21, 32);
+            this.label2.Size = new System.Drawing.Size(17, 22);
             this.label2.TabIndex = 78;
             this.label2.Text = "-";
             // 
@@ -121,15 +111,16 @@
             this.dateTimePickerDari.Name = "dateTimePickerDari";
             this.dateTimePickerDari.Size = new System.Drawing.Size(200, 22);
             this.dateTimePickerDari.TabIndex = 77;
+            this.dateTimePickerDari.ValueChanged += new System.EventHandler(this.dateTimePickerDari_ValueChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label1.Location = new System.Drawing.Point(6, 36);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 32);
+            this.label1.Size = new System.Drawing.Size(91, 22);
             this.label1.TabIndex = 76;
             this.label1.Text = "Periode :";
             // 
@@ -161,7 +152,6 @@
             this.ClientSize = new System.Drawing.Size(886, 400);
             this.Controls.Add(this.buttonTutup);
             this.Controls.Add(this.buttonPrint);
-            this.Controls.Add(this.buttonLihatDetail);
             this.Controls.Add(this.labelJumlahCancel);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dateTimePickerSampai);
@@ -172,6 +162,7 @@
             this.Controls.Add(this.dataGridViewLaporanCancel);
             this.Name = "FormLaporanCancel";
             this.Text = "FormLaporanCancel";
+            this.Load += new System.EventHandler(this.FormLaporanCancel_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLaporanCancel)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -181,7 +172,6 @@
         #endregion
         private System.Windows.Forms.Button buttonTutup;
         private System.Windows.Forms.Button buttonPrint;
-        private System.Windows.Forms.Button buttonLihatDetail;
         private System.Windows.Forms.Label labelJumlahCancel;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DateTimePicker dateTimePickerSampai;

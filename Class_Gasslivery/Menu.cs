@@ -31,5 +31,9 @@ namespace Class_Gasslivery
         public int Stock { get => stock; set => stock = value; }
         public string Halal { get => halal; set => halal = value; }
         public Tenant Tenant { get => tenant; set => tenant = value; }
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

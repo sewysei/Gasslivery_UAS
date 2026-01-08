@@ -28,7 +28,6 @@ namespace UI_Baru_UAS
                     dataGridViewLaporanTransaksi.DataSource = null;
                     dataGridViewLaporanTransaksi.Columns.Remove("btnDetail");
                 }
-                buttonLihatDetail.Visible = true;
                 string mulai = dateTimePickerDari.Value.ToString("yyyy-MM-dd");
                 string akhir = dateTimePickerSampai.Value.ToString("yyyy-MM-dd");
                 List<Order> listHasil = Order.BacaData(mulai,akhir);
@@ -39,11 +38,18 @@ namespace UI_Baru_UAS
                 dataGridViewLaporanTransaksi.Columns["Total_fee"].HeaderText = "Total Fee";
                 dataGridViewLaporanTransaksi.Columns["Delivery"].HeaderText = "Destination Point";
                 int totalFee = listHasil.Sum(order => order.Total_fee);
-                labelJumlahTransaksi.Text = $"Rp.{totalFee.ToString()}";
+                labelJumlahTransaksi.Text = $"Rp.{totalFee}";
                 labelTotalTransaksi.Text = listHasil.Count.ToString();
 
-                TambahButtonDetail();
-
+                if (!dataGridViewLaporanTransaksi.Columns.Contains("btnDetail"))
+                {
+                    DataGridViewButtonColumn detail = new DataGridViewButtonColumn();
+                    detail.Text = "Detail";
+                    detail.HeaderText = "Detail";
+                    detail.UseColumnTextForButtonValue = true;
+                    detail.Name = "btnDetail";
+                    dataGridViewLaporanTransaksi.Columns.Add(detail);
+                }
             }
             else if ((string)comboBoxJenisTransaksi.SelectedItem == "Gass-ride")
             {
@@ -52,7 +58,6 @@ namespace UI_Baru_UAS
                     dataGridViewLaporanTransaksi.DataSource = null;
                     dataGridViewLaporanTransaksi.Columns.Remove("btnDetail");
                 }
-                buttonLihatDetail.Visible = false;
                 string mulai = dateTimePickerDari.Value.Date.ToString("yyyy-MM-dd");
                 string akhir = dateTimePickerSampai.Value.Date.ToString("yyyy-MM-dd");
                 List<Trip> listHasil = Trip.BacaData(mulai,akhir);
@@ -67,10 +72,8 @@ namespace UI_Baru_UAS
                 dataGridViewLaporanTransaksi.Columns["Discount_value"].HeaderText = "Discount Value";
                 dataGridViewLaporanTransaksi.Columns["Total_fee"].HeaderText = "Total Fee";
                 int totalFee = listHasil.Sum(trip => trip.Total_fee);
-                labelJumlahTransaksi.Text = $"Rp.{totalFee.ToString()}";
+                labelJumlahTransaksi.Text = $"Rp.{totalFee}";
                 labelTotalTransaksi.Text = listHasil.Count.ToString();
-
-                TambahButtonDetail();
             }
         }
 
@@ -81,29 +84,12 @@ namespace UI_Baru_UAS
 
         private void dateTimePickerDari_ValueChanged(object sender, EventArgs e)
         {
-            //comboBoxJenisTransaksi_SelectedIndexChanged(this, e);
+            comboBoxJenisTransaksi_SelectedIndexChanged(this, e);
         }
 
         private void dateTimePickerSampai_ValueChanged(object sender, EventArgs e)
         {
-            //comboBoxJenisTransaksi_SelectedIndexChanged(this, e);
-        }
-
-        private void buttonLihatDetail_Click(object sender, EventArgs e)
-        {
-            //dataGridViewLaporanTransaksi.sele
-        }
-        private void TambahButtonDetail()
-        {
-            if (!dataGridViewLaporanTransaksi.Columns.Contains("btnDetail"))
-            {
-                DataGridViewButtonColumn detail = new DataGridViewButtonColumn();
-                detail.Text = "Detail";
-                detail.HeaderText = "Detail";
-                detail.UseColumnTextForButtonValue = true;
-                detail.Name = "btnDetail";
-                dataGridViewLaporanTransaksi.Columns.Add(detail);
-            }
+            comboBoxJenisTransaksi_SelectedIndexChanged(this, e);
         }
 
         private void dataGridViewLaporanTransaksi_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -111,16 +97,17 @@ namespace UI_Baru_UAS
             if (e.ColumnIndex == dataGridViewLaporanTransaksi.Columns["btnDetail"].Index)
             {
                 //Ambil isi datagrid pada baris yang diklik user
-                string id = dataGridViewLaporanTransaksi.CurrentRow.Cells["Id"].Value.ToString();
-                string date = dataGridViewLaporanTransaksi.CurrentRow.Cells["Date"].Value.ToString();
-                string status = dataGridViewLaporanTransaksi.CurrentRow.Cells["Date"].Value.ToString();
-                string consumer = dataGridViewLaporanTransaksi.CurrentRow.Cells["Date"].Value.ToString();
-                string address = dataGridViewLaporanTransaksi.CurrentRow.Cells["Date"].Value.ToString();
-
-                FormDetailPesanan frmUbah = new FormDetailPesanan();
-                frmUbah.Owner = this;
-                frmUbah.ShowDialog();
+                Order selectedOrder = (Order)dataGridViewLaporanTransaksi.CurrentRow.DataBoundItem;
+                FormDetailPesanan frmdetil = new FormDetailPesanan();
+                frmdetil.orderInfo = selectedOrder;
+                frmdetil.Owner = this;
+                frmdetil.ShowDialog();
             }
+        }
+
+        private void buttonTutup_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

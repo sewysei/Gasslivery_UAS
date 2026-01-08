@@ -322,6 +322,7 @@
             this.buttonTutup.TabIndex = 28;
             this.buttonTutup.Text = "Tutup";
             this.buttonTutup.UseVisualStyleBackColor = false;
+            this.buttonTutup.Click += new System.EventHandler(this.buttonTutup_Click);
             // 
             // FormDetailPesanan
             // 

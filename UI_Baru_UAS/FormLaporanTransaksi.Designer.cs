@@ -30,7 +30,6 @@
         {
             this.buttonTutup = new System.Windows.Forms.Button();
             this.buttonPrint = new System.Windows.Forms.Button();
-            this.buttonLihatDetail = new System.Windows.Forms.Button();
             this.labelTotalTransaksi = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.dateTimePickerSampai = new System.Windows.Forms.DateTimePicker();
@@ -56,29 +55,18 @@
             this.buttonTutup.TabIndex = 69;
             this.buttonTutup.Text = "Tutup";
             this.buttonTutup.UseVisualStyleBackColor = false;
+            this.buttonTutup.Click += new System.EventHandler(this.buttonTutup_Click);
             // 
             // buttonPrint
             // 
             this.buttonPrint.BackColor = System.Drawing.Color.Transparent;
             this.buttonPrint.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPrint.Location = new System.Drawing.Point(188, 547);
+            this.buttonPrint.Location = new System.Drawing.Point(17, 552);
             this.buttonPrint.Name = "buttonPrint";
             this.buttonPrint.Size = new System.Drawing.Size(163, 35);
             this.buttonPrint.TabIndex = 68;
             this.buttonPrint.Text = "Print";
             this.buttonPrint.UseVisualStyleBackColor = false;
-            // 
-            // buttonLihatDetail
-            // 
-            this.buttonLihatDetail.BackColor = System.Drawing.Color.Transparent;
-            this.buttonLihatDetail.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonLihatDetail.Location = new System.Drawing.Point(19, 547);
-            this.buttonLihatDetail.Name = "buttonLihatDetail";
-            this.buttonLihatDetail.Size = new System.Drawing.Size(163, 35);
-            this.buttonLihatDetail.TabIndex = 67;
-            this.buttonLihatDetail.Text = "Lihat Detail";
-            this.buttonLihatDetail.UseVisualStyleBackColor = false;
-            this.buttonLihatDetail.Click += new System.EventHandler(this.buttonLihatDetail_Click);
             // 
             // labelTotalTransaksi
             // 
@@ -218,7 +206,6 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.buttonTutup);
             this.Controls.Add(this.buttonPrint);
-            this.Controls.Add(this.buttonLihatDetail);
             this.Controls.Add(this.labelTotalTransaksi);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dateTimePickerSampai);
@@ -240,7 +227,6 @@
 
         private System.Windows.Forms.Button buttonTutup;
         private System.Windows.Forms.Button buttonPrint;
-        private System.Windows.Forms.Button buttonLihatDetail;
         private System.Windows.Forms.Label labelTotalTransaksi;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DateTimePicker dateTimePickerSampai;

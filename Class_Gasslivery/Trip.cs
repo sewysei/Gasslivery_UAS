@@ -96,7 +96,8 @@ namespace Class_Gasslivery
             $"FROM trips t INNER JOIN consumers c ON c.id = t.consumer_id " +
             $"INNER JOIN drivers d ON t.driver_id = d.id " +
             $"INNER JOIN vouchers v ON v.id = t.voucher_id " +
-            $"WHERE t.date BETWEEN '{mulai}' AND '{akhir}'";
+            $"WHERE t.date BETWEEN '{mulai}' AND '{akhir}' " +
+            $"ORDER BY t.date ASC";
             MySqlDataReader hasil = Koneksi.JalankanPerintahSelect(perintah);
             while (hasil.Read())
             {
@@ -132,6 +133,10 @@ namespace Class_Gasslivery
                 listHasil.Add(tampung);
             }
             return listHasil;
+        }
+        public override string ToString()
+        {
+            return Driver.Full_name;
         }
     }
 }

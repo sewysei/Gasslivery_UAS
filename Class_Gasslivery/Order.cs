@@ -61,13 +61,14 @@ namespace Class_Gasslivery
             List<Order> listHasil = new List<Order>();
             string perintah;
 
-            perintah = $"SELECT o.*, c.username, dr.full_name, v.name, t.name, d.destination_point " +
+            perintah = $"SELECT o.*, c.username, dr.full_name, v.name, t.name, d.destination_point, d.fee " +
                 $"FROM orders o INNER JOIN consumers c ON c.id = o.consumer_id " +
                 $"INNER JOIN deliveries d ON d.id = o.delivery_id " +
                 $"INNER JOIN drivers dr ON dr.id = d.driver_id " +
                 $"INNER JOIN tenants t ON t.id = o.tenant_id " +
                 $"INNER JOIN vouchers v ON v.id = o.voucher_id " +
-                $"WHERE o.date BETWEEN '{mulai}' AND '{akhir}'";
+                $"WHERE o.date BETWEEN '{mulai}' AND '{akhir}' " +
+                $"ORDER BY o.date ASC";
 
             MySqlDataReader hasil = Koneksi.JalankanPerintahSelect(perintah);
             while (hasil.Read())
@@ -93,6 +94,7 @@ namespace Class_Gasslivery
                 voucher.Name = hasil.GetValue(14).ToString();
                 tenant.Name = hasil.GetValue(15).ToString();
                 delivery.Destination_point = hasil.GetValue(16).ToString();
+                delivery.Fee = int.Parse(hasil.GetValue(17).ToString());
                 tampung.Consumer = consumer;
                 tampung.Delivery = delivery;
                 tampung.Tenant = tenant;
@@ -100,6 +102,11 @@ namespace Class_Gasslivery
                 listHasil.Add(tampung);
             }
             return listHasil;
+        }
+
+        public override string ToString()
+        {
+            return Id;
         }
     }
 }
