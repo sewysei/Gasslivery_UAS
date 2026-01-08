@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Class_Gasslivery;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,15 @@ namespace UI_Baru_UAS
 {
     public partial class FormDetailPesanan : Form
     {
+        public Order ordedInfo;
         public FormDetailPesanan()
         {
             InitializeComponent();
+        }
+
+        private void FormDetailPesanan_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

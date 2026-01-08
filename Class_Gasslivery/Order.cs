@@ -1,7 +1,11 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using Mysqlx.Crud;
+using Org.BouncyCastle.Crypto;
+using System;
 using System.Collections.Generic;
 using System.Drawing.Printing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,6 +14,7 @@ namespace Class_Gasslivery
     public class Order
     {
         private string id;
+        private Consumer consumer;
         private Delivery delivery;
         private Tenant tenant;
         private Voucher voucher;
@@ -24,6 +29,7 @@ namespace Class_Gasslivery
         public Order()
         {
             this.Id = "";
+            this.Consumer = new Consumer();
             this.Delivery = new Delivery();
             this.Tenant = new Tenant();
             this.Voucher = new Voucher();
@@ -37,6 +43,8 @@ namespace Class_Gasslivery
         }
 
         public string Id { get => id; set => id = value; }
+
+        public Consumer Consumer { get => consumer; set => consumer = value; }
         public Delivery Delivery { get => delivery; set => delivery = value; }
         public Tenant Tenant { get => tenant; set => tenant = value; }
         public Voucher Voucher { get => voucher; set => voucher = value; }
@@ -47,5 +55,51 @@ namespace Class_Gasslivery
         public int Tip { get => tip; set => tip = value; }
         public int Discount_value { get => discount_value; set => discount_value = value; }
         public int Total_fee { get => total_fee; set => total_fee = value; }
+
+        public static List<Order> BacaData(string mulai = "", string akhir = "")
+        {
+            List<Order> listHasil = new List<Order>();
+            string perintah;
+
+            perintah = $"SELECT o.*, c.username, dr.full_name, v.name, t.name, d.destination_point " +
+                $"FROM orders o INNER JOIN consumers c ON c.id = o.consumer_id " +
+                $"INNER JOIN deliveries d ON d.id = o.delivery_id " +
+                $"INNER JOIN drivers dr ON dr.id = d.driver_id " +
+                $"INNER JOIN tenants t ON t.id = o.tenant_id " +
+                $"INNER JOIN vouchers v ON v.id = o.voucher_id " +
+                $"WHERE o.date BETWEEN '{mulai}' AND '{akhir}'";
+
+            MySqlDataReader hasil = Koneksi.JalankanPerintahSelect(perintah);
+            while (hasil.Read())
+            {
+                Order tampung = new Order();
+                Delivery delivery = new Delivery();
+                Consumer consumer = new Consumer();
+                Tenant tenant = new Tenant();
+                Voucher voucher = new Voucher();
+                tampung.Id = hasil.GetValue(0).ToString();
+                delivery.Id = hasil.GetValue(1).ToString();
+                tenant.Id = hasil.GetValue(2).ToString();
+                voucher.Id = hasil.GetValue(3).ToString();
+                tampung.Date = DateTime.Parse(hasil.GetValue(4).ToString()).Date;
+                tampung.Status = hasil.GetValue(5).ToString();
+                tampung.Food_rating = int.Parse(hasil.GetValue(6).ToString());
+                tampung.Driver_rating = int.Parse(hasil.GetValue(7).ToString());
+                tampung.Tip = int.Parse(hasil.GetValue(8).ToString());
+                tampung.Discount_value = int.Parse(hasil.GetValue(9).ToString());
+                tampung.Total_fee = int.Parse(hasil.GetValue(10).ToString());
+                consumer.Id = hasil.GetValue(11).ToString();
+                consumer.Username = hasil.GetValue(12).ToString();
+                voucher.Name = hasil.GetValue(14).ToString();
+                tenant.Name = hasil.GetValue(15).ToString();
+                delivery.Destination_point = hasil.GetValue(16).ToString();
+                tampung.Consumer = consumer;
+                tampung.Delivery = delivery;
+                tampung.Tenant = tenant;
+                tampung.Voucher = voucher;
+                listHasil.Add(tampung);
+            }
+            return listHasil;
+        }
     }
 }

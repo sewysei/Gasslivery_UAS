@@ -78,13 +78,14 @@
             this.buttonLihatDetail.TabIndex = 67;
             this.buttonLihatDetail.Text = "Lihat Detail";
             this.buttonLihatDetail.UseVisualStyleBackColor = false;
+            this.buttonLihatDetail.Click += new System.EventHandler(this.buttonLihatDetail_Click);
             // 
             // labelTotalTransaksi
             // 
             this.labelTotalTransaksi.AutoSize = true;
             this.labelTotalTransaksi.BackColor = System.Drawing.Color.Transparent;
             this.labelTotalTransaksi.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelTotalTransaksi.Location = new System.Drawing.Point(170, 480);
+            this.labelTotalTransaksi.Location = new System.Drawing.Point(184, 480);
             this.labelTotalTransaksi.Name = "labelTotalTransaksi";
             this.labelTotalTransaksi.Size = new System.Drawing.Size(46, 22);
             this.labelTotalTransaksi.TabIndex = 66;
@@ -107,6 +108,7 @@
             this.dateTimePickerSampai.Name = "dateTimePickerSampai";
             this.dateTimePickerSampai.Size = new System.Drawing.Size(200, 22);
             this.dateTimePickerSampai.TabIndex = 64;
+            this.dateTimePickerSampai.ValueChanged += new System.EventHandler(this.dateTimePickerSampai_ValueChanged);
             // 
             // label2
             // 
@@ -125,6 +127,7 @@
             this.dateTimePickerDari.Name = "dateTimePickerDari";
             this.dateTimePickerDari.Size = new System.Drawing.Size(200, 22);
             this.dateTimePickerDari.TabIndex = 62;
+            this.dateTimePickerDari.ValueChanged += new System.EventHandler(this.dateTimePickerDari_ValueChanged);
             // 
             // label1
             // 
@@ -156,6 +159,7 @@
             this.dataGridViewLaporanTransaksi.RowTemplate.Height = 24;
             this.dataGridViewLaporanTransaksi.Size = new System.Drawing.Size(1056, 368);
             this.dataGridViewLaporanTransaksi.TabIndex = 59;
+            this.dataGridViewLaporanTransaksi.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewLaporanTransaksi_CellContentClick);
             // 
             // label4
             // 
@@ -196,7 +200,7 @@
             this.labelJumlahTransaksi.AutoSize = true;
             this.labelJumlahTransaksi.BackColor = System.Drawing.Color.Transparent;
             this.labelJumlahTransaksi.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelJumlahTransaksi.Location = new System.Drawing.Point(189, 512);
+            this.labelJumlahTransaksi.Location = new System.Drawing.Point(198, 512);
             this.labelJumlahTransaksi.Name = "labelJumlahTransaksi";
             this.labelJumlahTransaksi.Size = new System.Drawing.Size(21, 22);
             this.labelJumlahTransaksi.TabIndex = 73;

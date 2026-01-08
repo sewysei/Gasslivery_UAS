@@ -35,5 +35,10 @@ namespace Class_Gasslivery
         public string Latitude_dest { get => latitude_dest; set => latitude_dest = value; }
         public string Destination_point { get => destination_point; set => destination_point = value; }
         public DateTime Date { get => date; set => date = value; }
+
+        public override string ToString()
+        {
+            return Destination_point;
+        }
     }
 }

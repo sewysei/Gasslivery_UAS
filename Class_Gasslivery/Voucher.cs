@@ -46,5 +46,9 @@ namespace Class_Gasslivery
             }
             return listHasil;
         }
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

@@ -67,5 +67,10 @@ namespace Class_Gasslivery
                 return null;
             }
         }
+
+        public override string ToString()
+        {
+            return Full_name;
+        }
     }
 }

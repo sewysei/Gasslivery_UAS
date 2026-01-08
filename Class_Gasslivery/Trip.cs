@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Class_Gasslivery
 {
@@ -52,6 +54,20 @@ namespace Class_Gasslivery
             this.Total_fee = 0;
         }
 
+        public Trip(Consumer consumer, Driver driver, Voucher voucher, string pickup, string destination, double distance, string fee, string status, DateTime date, int total)
+        {
+            this.Consumer = consumer;
+            this.Driver = driver;
+            this.Voucher = voucher;
+            this.Pickup_point = pickup;
+            this.Destination_point = destination;
+            this.Distance = distance;
+            this.Fee = fee;
+            this.Status = status;
+            this.Date = date;
+            this.Total_fee = total;
+        }
+
         public string Id { get => id; set => id = value; }
         public Consumer Consumer { get => consumer; set => consumer = value; }
         public Driver Driver { get => driver; set => driver = value; }
@@ -72,44 +88,47 @@ namespace Class_Gasslivery
         public int Discount_value { get => discount_value; set => discount_value = value; }
         public int Total_fee { get => total_fee; set => total_fee = value; }
 
-        public static List<Trip> BacaData(string mulai = "", string akhir = "", string tabel = "")
+        public static List<Trip> BacaData(string mulai, string akhir)
         {
             List<Trip> listHasil = new List<Trip>();
             string perintah;
-            if (tabel == "")
-            {
-                perintah = $"SELECT * FROM trips WHERE ORDER BY date ASC;";
-            }
-            else if (tabel == "trips")
-            {
-                perintah = $"SELECT c.username, d.full_name, v.name, t.pickup_point, " +
-                    $"t.destination_point, t.distance, t.fee, t.status, t.date, t.total_fee " +
-                    $"FROM trips t INNER JOIN consumers c ON c.id = t.consumer_id " +
-                    $"INNER JOIN drivers d ON t.driver_id = d.id " +
-                    $"INNER JOIN vouchers v ON v.id = t.voucher_id " +
-                    $"WHERE t.date BETWEEN '{mulai}' AND '{akhir}'";
-            }
-            else if (tabel == "orders")
-            {
-                perintah = $"SELECT t.name ,c.username, dr.full_name, v.name, t.address, " +
-                    $"d.destination_point, o.date, o.total_fee " +
-                    $"FROM orders o INNER JOIN consumers c ON c.id = o.consumer_id " +
-                    $"INNER JOIN deliveries d ON d.id = o.delivery_id " +
-                    $"INNER JOIN drivers dr ON dr.id = d.driver_id " +
-                    $"INNER JOIN tenants t ON t.id = o.tenant_id " +
-                    $"INNER JOIN vouchers v ON v.id = o.voucher_id " +
-                    $"WHERE o.date BETWEEN '{mulai}' AND '{akhir}'";
-            }
-
+            perintah = $"SELECT t.*, c.username, d.full_name, v.name " +
+            $"FROM trips t INNER JOIN consumers c ON c.id = t.consumer_id " +
+            $"INNER JOIN drivers d ON t.driver_id = d.id " +
+            $"INNER JOIN vouchers v ON v.id = t.voucher_id " +
+            $"WHERE t.date BETWEEN '{mulai}' AND '{akhir}'";
             MySqlDataReader hasil = Koneksi.JalankanPerintahSelect(perintah);
             while (hasil.Read())
             {
                 Trip tampung = new Trip();
+                Consumer consumer = new Consumer();
+                Driver driver = new Driver();
+                Voucher voucher = new Voucher();
                 tampung.Id = hasil.GetValue(0).ToString();
-                //tampung.Consumer = hasil.GetValue(1).ToString();
-                //tampung.Name = hasil.GetValue(1).ToString();
-                //tampung.Conditions = hasil.GetValue(2).ToString();
-                //tampung.Value = hasil.GetValue(3).ToString();
+                consumer.Id = hasil.GetValue(1).ToString();
+                driver.Id = hasil.GetValue(2).ToString();
+                voucher.Id = hasil.GetValue(3).ToString();
+                tampung.Longitude_pickup = hasil.GetValue(4).ToString();
+                tampung.Latitude_pickup = hasil.GetValue(5).ToString();
+                tampung.Pickup_point = hasil.GetValue(6).ToString();
+                tampung.Longitude_dest = hasil.GetValue(7).ToString();
+                tampung.Latitude_dest = hasil.GetValue(8).ToString();
+                tampung.Destination_point = hasil.GetValue(9).ToString();
+                tampung.Distance = double.Parse(hasil.GetValue(10).ToString());
+                tampung.Pickup_time = hasil.GetValue(11).ToString();
+                tampung.Fee = hasil.GetValue(12).ToString();
+                tampung.Rating = int.Parse(hasil.GetValue(13).ToString());
+                tampung.Status = hasil.GetValue(14).ToString();
+                tampung.Date = DateTime.Parse(hasil.GetValue(15).ToString()).Date;
+                tampung.Additional_fee = int.Parse(hasil.GetValue(16).ToString());
+                tampung.Discount_value = int.Parse(hasil.GetValue(17).ToString());
+                tampung.Total_fee = int.Parse(hasil.GetValue(18).ToString());
+                consumer.Username = hasil.GetValue(19).ToString();
+                driver.Full_name = hasil.GetValue(20).ToString();
+                voucher.Name = hasil.GetValue(21).ToString();
+                tampung.Consumer = consumer;
+                tampung.Driver = driver;
+                tampung.Voucher = voucher;
                 listHasil.Add(tampung);
             }
             return listHasil;
