@@ -1,6 +1,8 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -137,6 +139,30 @@ namespace Class_Gasslivery
         public override string ToString()
         {
             return Driver.Full_name;
+        }
+
+        public static void CetakLaporan(string mulai, string akhir)
+        {
+            List<Trip> listCetak = BacaData(mulai, akhir);
+            string namaFile = DateTime.Now.ToString("yyyy-MM-dd") + "_laporan_transaksi_Gass-ride";
+            StreamWriter fileCetak = new StreamWriter(namaFile);
+            //HEADER LAPORAN:
+            fileCetak.WriteLine($"Laporan Transaksi Gass-Ride periode {mulai} sampai {akhir}");
+            fileCetak.WriteLine("dicetak pada tanggal " + DateTime.Now.ToString("dd-MM-yyyy HH:mm"));
+            fileCetak.WriteLine("");
+            //ISI LAPORAN:
+            for (int i = 0; i < listCetak.Count; i++)
+            {
+                fileCetak.WriteLine(listCetak[i].Id + "     " + listCetak[i].Consumer.Username + "     " + listCetak[i].Driver.Full_name + "     " + listCetak[i].Pickup_point + "     " + listCetak[i].Destination_point + "     " + listCetak[i].Total_fee + "     " + listCetak[i].Date.ToString("yyyy-MM-dd"));
+            }
+            //FOOTER LAPORAN:
+            fileCetak.WriteLine("");
+            fileCetak.WriteLine("end of document");
+            fileCetak.Close();
+
+            Font tipeFont = new Font("Courier New", 8);
+            Printing p = new Printing(tipeFont, namaFile, 30, 30, 30, 30);
+            p.KirimKePrinter();
         }
     }
 }

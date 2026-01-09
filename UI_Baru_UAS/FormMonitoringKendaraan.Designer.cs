@@ -44,10 +44,10 @@
             // 
             this.labelTotalKendaraan.AutoSize = true;
             this.labelTotalKendaraan.BackColor = System.Drawing.Color.Transparent;
-            this.labelTotalKendaraan.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelTotalKendaraan.Location = new System.Drawing.Point(181, 345);
+            this.labelTotalKendaraan.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.labelTotalKendaraan.Location = new System.Drawing.Point(181, 372);
             this.labelTotalKendaraan.Name = "labelTotalKendaraan";
-            this.labelTotalKendaraan.Size = new System.Drawing.Size(25, 32);
+            this.labelTotalKendaraan.Size = new System.Drawing.Size(21, 22);
             this.labelTotalKendaraan.TabIndex = 69;
             this.labelTotalKendaraan.Text = "0";
             // 
@@ -55,16 +55,16 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label2.Location = new System.Drawing.Point(12, 345);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label2.Location = new System.Drawing.Point(12, 372);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(163, 32);
+            this.label2.Size = new System.Drawing.Size(171, 22);
             this.label2.TabIndex = 64;
             this.label2.Text = "Total Kendaraan :";
             // 
             // textBoxCari
             // 
-            this.textBoxCari.Location = new System.Drawing.Point(217, 41);
+            this.textBoxCari.Location = new System.Drawing.Point(233, 52);
             this.textBoxCari.Name = "textBoxCari";
             this.textBoxCari.Size = new System.Drawing.Size(167, 22);
             this.textBoxCari.TabIndex = 63;
@@ -73,10 +73,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label1.Location = new System.Drawing.Point(11, 32);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label1.Location = new System.Drawing.Point(12, 50);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(200, 32);
+            this.label1.Size = new System.Drawing.Size(215, 22);
             this.label1.TabIndex = 62;
             this.label1.Text = "Cari Jenis Kendaraan :";
             // 
@@ -84,7 +84,7 @@
             // 
             this.buttonPrint.BackColor = System.Drawing.Color.Transparent;
             this.buttonPrint.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPrint.Location = new System.Drawing.Point(181, 377);
+            this.buttonPrint.Location = new System.Drawing.Point(181, 404);
             this.buttonPrint.Name = "buttonPrint";
             this.buttonPrint.Size = new System.Drawing.Size(163, 35);
             this.buttonPrint.TabIndex = 61;
@@ -95,7 +95,7 @@
             // 
             this.buttonLihatDetail.BackColor = System.Drawing.Color.Transparent;
             this.buttonLihatDetail.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonLihatDetail.Location = new System.Drawing.Point(12, 377);
+            this.buttonLihatDetail.Location = new System.Drawing.Point(12, 404);
             this.buttonLihatDetail.Name = "buttonLihatDetail";
             this.buttonLihatDetail.Size = new System.Drawing.Size(163, 35);
             this.buttonLihatDetail.TabIndex = 60;
@@ -106,17 +106,18 @@
             // 
             this.buttonTutup.BackColor = System.Drawing.Color.Transparent;
             this.buttonTutup.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonTutup.Location = new System.Drawing.Point(666, 349);
+            this.buttonTutup.Location = new System.Drawing.Point(666, 376);
             this.buttonTutup.Name = "buttonTutup";
             this.buttonTutup.Size = new System.Drawing.Size(115, 35);
             this.buttonTutup.TabIndex = 59;
             this.buttonTutup.Text = "Tutup";
             this.buttonTutup.UseVisualStyleBackColor = false;
+            this.buttonTutup.Click += new System.EventHandler(this.buttonTutup_Click);
             // 
             // dataGridViewMonitoringKendaraan
             // 
             this.dataGridViewMonitoringKendaraan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewMonitoringKendaraan.Location = new System.Drawing.Point(12, 69);
+            this.dataGridViewMonitoringKendaraan.Location = new System.Drawing.Point(12, 96);
             this.dataGridViewMonitoringKendaraan.Name = "dataGridViewMonitoringKendaraan";
             this.dataGridViewMonitoringKendaraan.RowHeadersWidth = 51;
             this.dataGridViewMonitoringKendaraan.RowTemplate.Height = 24;
@@ -138,7 +139,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.ClientSize = new System.Drawing.Size(792, 418);
+            this.ClientSize = new System.Drawing.Size(811, 457);
             this.Controls.Add(this.labelTotalKendaraan);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBoxCari);

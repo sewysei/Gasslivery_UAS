@@ -108,6 +108,7 @@
     <Compile Include="Notification.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrderDetail.cs" />
+    <Compile Include="Printing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Report.cs" />
     <Compile Include="Tenant.cs" />

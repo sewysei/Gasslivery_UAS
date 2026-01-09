@@ -63,6 +63,7 @@
             this.buttonPrint.TabIndex = 83;
             this.buttonPrint.Text = "Print";
             this.buttonPrint.UseVisualStyleBackColor = false;
+            this.buttonPrint.Click += new System.EventHandler(this.buttonPrint_Click);
             // 
             // labelJumlahCancel
             // 

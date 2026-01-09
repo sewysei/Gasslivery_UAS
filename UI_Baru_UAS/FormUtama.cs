@@ -322,7 +322,7 @@ namespace UI_Baru_UAS
             Form frm = Application.OpenForms["FormLaporanReport"];
             if (frm == null)
             {
-                FormLaporanReport form = new FormLaporanReport();
+                FormLaporanReport form = new FormLaporanReport(this);
                 form.MdiParent = this;
                 form.Show();
             }

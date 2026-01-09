@@ -68,6 +68,36 @@ namespace Class_Gasslivery
             }
         }
 
+        public static List<Driver> BacaData(string kolom = "", string nilai = "")
+        {
+            List<Driver> listHasil = new List<Driver>();
+            string perintah;
+            if (kolom == "")
+            {
+                perintah = $"SELECT * FROM drivers";
+            }
+            else
+            {
+                perintah = $"SELECT * FROM drivers "+
+                    $"WHERE {kolom} LIKE '%{nilai}%'";
+            }
+            MySqlDataReader hasil = Koneksi.JalankanPerintahSelect(perintah);
+            while (hasil.Read())
+            {
+                Driver tampung = new Driver();
+                tampung.Id = hasil.GetValue(0).ToString();
+                tampung.Full_name = hasil.GetValue(1).ToString();
+                tampung.Password = hasil.GetValue(2).ToString();
+                tampung.Date = DateTime.Parse(hasil.GetValue(3).ToString());
+                tampung.Gender = hasil.GetValue(4).ToString();
+                tampung.Telp = hasil.GetValue(5).ToString();
+                tampung.Avg_rating = double.Parse(hasil.GetValue(7).ToString());
+                tampung.Status = hasil.GetValue(8).ToString();
+                listHasil.Add(tampung);
+            }
+            return listHasil;
+        }
+
         public override string ToString()
         {
             return Full_name;

@@ -3,7 +3,9 @@ using Mysqlx.Crud;
 using Org.BouncyCastle.Crypto;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Drawing.Printing;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -91,6 +93,7 @@ namespace Class_Gasslivery
                 tampung.Total_fee = int.Parse(hasil.GetValue(10).ToString());
                 consumer.Id = hasil.GetValue(11).ToString();
                 consumer.Username = hasil.GetValue(12).ToString();
+                delivery.Driver.Full_name = hasil.GetValue(13).ToString();
                 voucher.Name = hasil.GetValue(14).ToString();
                 tenant.Name = hasil.GetValue(15).ToString();
                 delivery.Destination_point = hasil.GetValue(16).ToString();
@@ -107,6 +110,30 @@ namespace Class_Gasslivery
         public override string ToString()
         {
             return Id;
+        }
+
+        public static void CetakLaporan(string mulai, string akhir)
+        {
+            List<Order> listCetak = BacaData(mulai, akhir);
+            string namaFile = DateTime.Now.ToString("yyyy-MM-dd") + "_laporan_transaksi_Gass-kan";
+            StreamWriter fileCetak = new StreamWriter(namaFile);
+            //HEADER LAPORAN:
+            fileCetak.WriteLine($"Laporan Transaksi Gass-kan periode {mulai} sampai {akhir}");
+            fileCetak.WriteLine("dicetak pada tanggal " + DateTime.Now.ToString("dd-MM-yyyy HH:mm"));
+            fileCetak.WriteLine("");
+            //ISI LAPORAN:
+            for (int i = 0; i < listCetak.Count; i++)
+            {
+                fileCetak.WriteLine(listCetak[i].Id + "     " + listCetak[i].Consumer.Username + "     " + listCetak[i].Tenant.Name + "     " + listCetak[i].Delivery.Driver.Full_name + "     " + listCetak[i].Total_fee + "     " + listCetak[i].Date.ToString("yyyy-MM-dd"));
+            }
+            //FOOTER LAPORAN:
+            fileCetak.WriteLine("");
+            fileCetak.WriteLine("end of document");
+            fileCetak.Close();
+
+            Font tipeFont = new Font("Courier New", 8);
+            Printing p = new Printing(tipeFont, namaFile, 30, 30, 30, 30);
+            p.KirimKePrinter();
         }
     }
 }

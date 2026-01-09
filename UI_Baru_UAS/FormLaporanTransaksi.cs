@@ -109,5 +109,21 @@ namespace UI_Baru_UAS
         {
             this.Close();
         }
+
+        private void buttonPrint_Click(object sender, EventArgs e)
+        {
+            if ((string)comboBoxJenisTransaksi.SelectedItem == "Gass-kan")
+            {
+                string mulai = dateTimePickerDari.Value.Date.ToString("yyyy-MM-dd");
+                string akhir = dateTimePickerSampai.Value.Date.ToString("yyyy-MM-dd");
+                Order.CetakLaporan(mulai, akhir);
+            }
+            else if ((string)comboBoxJenisTransaksi.SelectedItem == "Gass-ride")
+            {
+                string mulai = dateTimePickerDari.Value.Date.ToString("yyyy-MM-dd");
+                string akhir = dateTimePickerSampai.Value.Date.ToString("yyyy-MM-dd");
+                Trip.CetakLaporan(mulai, akhir);
+            }
+        }
     }
 }

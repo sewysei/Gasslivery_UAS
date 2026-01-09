@@ -16,5 +16,10 @@ namespace UI_Baru_UAS
         {
             InitializeComponent();
         }
+
+        private void buttonTutup_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

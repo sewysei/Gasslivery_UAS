@@ -51,7 +51,7 @@
             // 
             this.lblGASLIVERY.AutoSize = true;
             this.lblGASLIVERY.Font = new System.Drawing.Font("Yu Gothic UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGASLIVERY.Location = new System.Drawing.Point(308, 9);
+            this.lblGASLIVERY.Location = new System.Drawing.Point(287, 9);
             this.lblGASLIVERY.Name = "lblGASLIVERY";
             this.lblGASLIVERY.Size = new System.Drawing.Size(221, 38);
             this.lblGASLIVERY.TabIndex = 9;

@@ -38,9 +38,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxCari = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.labelOnline = new System.Windows.Forms.Label();
+            this.labelActive = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.labelOffline = new System.Windows.Forms.Label();
+            this.labelInactive = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.labelTotalDriver = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -68,6 +68,7 @@
             this.buttonTutup.TabIndex = 42;
             this.buttonTutup.Text = "Tutup";
             this.buttonTutup.UseVisualStyleBackColor = false;
+            this.buttonTutup.Click += new System.EventHandler(this.buttonTutup_Click);
             // 
             // dataGridViewMonitoringDriver
             // 
@@ -82,7 +83,10 @@
             // comboBoxStatus
             // 
             this.comboBoxStatus.FormattingEnabled = true;
-            this.comboBoxStatus.Location = new System.Drawing.Point(89, 48);
+            this.comboBoxStatus.Items.AddRange(new object[] {
+            "Aktif",
+            "Tidak Aktif"});
+            this.comboBoxStatus.Location = new System.Drawing.Point(89, 40);
             this.comboBoxStatus.Name = "comboBoxStatus";
             this.comboBoxStatus.Size = new System.Drawing.Size(136, 24);
             this.comboBoxStatus.TabIndex = 39;
@@ -91,10 +95,10 @@
             // 
             this.labelUsername.AutoSize = true;
             this.labelUsername.BackColor = System.Drawing.Color.Transparent;
-            this.labelUsername.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.labelUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.labelUsername.Location = new System.Drawing.Point(6, 40);
             this.labelUsername.Name = "labelUsername";
-            this.labelUsername.Size = new System.Drawing.Size(77, 32);
+            this.labelUsername.Size = new System.Drawing.Size(79, 22);
             this.labelUsername.TabIndex = 38;
             this.labelUsername.Text = "Status :";
             // 
@@ -102,7 +106,7 @@
             // 
             this.lblGASLIVERY.AutoSize = true;
             this.lblGASLIVERY.Font = new System.Drawing.Font("Yu Gothic UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGASLIVERY.Location = new System.Drawing.Point(277, 9);
+            this.lblGASLIVERY.Location = new System.Drawing.Point(275, 4);
             this.lblGASLIVERY.Name = "lblGASLIVERY";
             this.lblGASLIVERY.Size = new System.Drawing.Size(244, 38);
             this.lblGASLIVERY.TabIndex = 37;
@@ -123,16 +127,16 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label1.Location = new System.Drawing.Point(231, 43);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 32);
+            this.label1.Size = new System.Drawing.Size(59, 22);
             this.label1.TabIndex = 46;
             this.label1.Text = "Cari :";
             // 
             // textBoxCari
             // 
-            this.textBoxCari.Location = new System.Drawing.Point(294, 52);
+            this.textBoxCari.Location = new System.Drawing.Point(294, 42);
             this.textBoxCari.Name = "textBoxCari";
             this.textBoxCari.Size = new System.Drawing.Size(167, 22);
             this.textBoxCari.TabIndex = 47;
@@ -141,65 +145,65 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label2.Location = new System.Drawing.Point(12, 354);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(124, 32);
+            this.label2.Size = new System.Drawing.Size(128, 22);
             this.label2.TabIndex = 48;
             this.label2.Text = "Total Driver :";
             // 
-            // labelOnline
+            // labelActive
             // 
-            this.labelOnline.AutoSize = true;
-            this.labelOnline.BackColor = System.Drawing.Color.Transparent;
-            this.labelOnline.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelOnline.Location = new System.Drawing.Point(259, 354);
-            this.labelOnline.Name = "labelOnline";
-            this.labelOnline.Size = new System.Drawing.Size(25, 32);
-            this.labelOnline.TabIndex = 49;
-            this.labelOnline.Text = "0";
+            this.labelActive.AutoSize = true;
+            this.labelActive.BackColor = System.Drawing.Color.Transparent;
+            this.labelActive.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.labelActive.Location = new System.Drawing.Point(241, 354);
+            this.labelActive.Name = "labelActive";
+            this.labelActive.Size = new System.Drawing.Size(21, 22);
+            this.labelActive.TabIndex = 49;
+            this.labelActive.Text = "0";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label4.Location = new System.Drawing.Point(173, 354);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(80, 32);
+            this.label4.Size = new System.Drawing.Size(62, 22);
             this.label4.TabIndex = 50;
-            this.label4.Text = "Online :";
+            this.label4.Text = "Aktif :";
             // 
-            // labelOffline
+            // labelInactive
             // 
-            this.labelOffline.AutoSize = true;
-            this.labelOffline.BackColor = System.Drawing.Color.Transparent;
-            this.labelOffline.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelOffline.Location = new System.Drawing.Point(377, 354);
-            this.labelOffline.Name = "labelOffline";
-            this.labelOffline.Size = new System.Drawing.Size(25, 32);
-            this.labelOffline.TabIndex = 51;
-            this.labelOffline.Text = "0";
+            this.labelInactive.AutoSize = true;
+            this.labelInactive.BackColor = System.Drawing.Color.Transparent;
+            this.labelInactive.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.labelInactive.Location = new System.Drawing.Point(402, 354);
+            this.labelInactive.Name = "labelInactive";
+            this.labelInactive.Size = new System.Drawing.Size(21, 22);
+            this.labelInactive.TabIndex = 51;
+            this.labelInactive.Text = "0";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label6.Location = new System.Drawing.Point(290, 354);
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label6.Location = new System.Drawing.Point(278, 354);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(81, 32);
+            this.label6.Size = new System.Drawing.Size(118, 22);
             this.label6.TabIndex = 52;
-            this.label6.Text = "Offline :";
+            this.label6.Text = "Tidak Aktif :";
             // 
             // labelTotalDriver
             // 
             this.labelTotalDriver.AutoSize = true;
             this.labelTotalDriver.BackColor = System.Drawing.Color.Transparent;
-            this.labelTotalDriver.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.labelTotalDriver.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.labelTotalDriver.Location = new System.Drawing.Point(142, 354);
             this.labelTotalDriver.Name = "labelTotalDriver";
-            this.labelTotalDriver.Size = new System.Drawing.Size(25, 32);
+            this.labelTotalDriver.Size = new System.Drawing.Size(21, 22);
             this.labelTotalDriver.TabIndex = 53;
             this.labelTotalDriver.Text = "0";
             // 
@@ -207,10 +211,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label3.Location = new System.Drawing.Point(278, 351);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label3.Location = new System.Drawing.Point(268, 354);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(19, 32);
+            this.label3.Size = new System.Drawing.Size(16, 22);
             this.label3.TabIndex = 54;
             this.label3.Text = "|";
             // 
@@ -223,9 +227,9 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.labelTotalDriver);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.labelOffline);
+            this.Controls.Add(this.labelInactive);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.labelOnline);
+            this.Controls.Add(this.labelActive);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBoxCari);
             this.Controls.Add(this.label1);
@@ -238,6 +242,7 @@
             this.Controls.Add(this.lblGASLIVERY);
             this.Name = "FormMonitoringDriver";
             this.Text = "FormMonitoringDriver";
+            this.Load += new System.EventHandler(this.FormMonitoringDriver_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMonitoringDriver)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -256,9 +261,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxCari;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label labelOnline;
+        private System.Windows.Forms.Label labelActive;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label labelOffline;
+        private System.Windows.Forms.Label labelInactive;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label labelTotalDriver;
         private System.Windows.Forms.Label label3;
