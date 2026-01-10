@@ -33,7 +33,6 @@
             this.textBoxCari = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonPrint = new System.Windows.Forms.Button();
-            this.buttonLihatDetail = new System.Windows.Forms.Button();
             this.buttonTutup = new System.Windows.Forms.Button();
             this.dataGridViewMonitoringKendaraan = new System.Windows.Forms.DataGridView();
             this.lblGASLIVERY = new System.Windows.Forms.Label();
@@ -68,6 +67,7 @@
             this.textBoxCari.Name = "textBoxCari";
             this.textBoxCari.Size = new System.Drawing.Size(167, 22);
             this.textBoxCari.TabIndex = 63;
+            this.textBoxCari.TextChanged += new System.EventHandler(this.textBoxCari_TextChanged);
             // 
             // label1
             // 
@@ -76,31 +76,21 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label1.Location = new System.Drawing.Point(12, 50);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(215, 22);
+            this.label1.Size = new System.Drawing.Size(203, 22);
             this.label1.TabIndex = 62;
-            this.label1.Text = "Cari Jenis Kendaraan :";
+            this.label1.Text = "Cari Plat Kendaraan :";
             // 
             // buttonPrint
             // 
             this.buttonPrint.BackColor = System.Drawing.Color.Transparent;
             this.buttonPrint.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPrint.Location = new System.Drawing.Point(181, 404);
+            this.buttonPrint.Location = new System.Drawing.Point(12, 397);
             this.buttonPrint.Name = "buttonPrint";
             this.buttonPrint.Size = new System.Drawing.Size(163, 35);
             this.buttonPrint.TabIndex = 61;
             this.buttonPrint.Text = "Print";
             this.buttonPrint.UseVisualStyleBackColor = false;
-            // 
-            // buttonLihatDetail
-            // 
-            this.buttonLihatDetail.BackColor = System.Drawing.Color.Transparent;
-            this.buttonLihatDetail.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonLihatDetail.Location = new System.Drawing.Point(12, 404);
-            this.buttonLihatDetail.Name = "buttonLihatDetail";
-            this.buttonLihatDetail.Size = new System.Drawing.Size(163, 35);
-            this.buttonLihatDetail.TabIndex = 60;
-            this.buttonLihatDetail.Text = "Lihat Detail";
-            this.buttonLihatDetail.UseVisualStyleBackColor = false;
+            this.buttonPrint.Click += new System.EventHandler(this.buttonPrint_Click);
             // 
             // buttonTutup
             // 
@@ -145,12 +135,12 @@
             this.Controls.Add(this.textBoxCari);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonPrint);
-            this.Controls.Add(this.buttonLihatDetail);
             this.Controls.Add(this.buttonTutup);
             this.Controls.Add(this.dataGridViewMonitoringKendaraan);
             this.Controls.Add(this.lblGASLIVERY);
             this.Name = "FormMonitoringKendaraan";
             this.Text = "FormMonitoringKendaraan";
+            this.Load += new System.EventHandler(this.FormMonitoringKendaraan_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMonitoringKendaraan)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -163,7 +153,6 @@
         private System.Windows.Forms.TextBox textBoxCari;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonPrint;
-        private System.Windows.Forms.Button buttonLihatDetail;
         private System.Windows.Forms.Button buttonTutup;
         private System.Windows.Forms.DataGridView dataGridViewMonitoringKendaraan;
         private System.Windows.Forms.Label lblGASLIVERY;

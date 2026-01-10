@@ -234,6 +234,12 @@
     <Compile Include="FormRiwayatTopUp.Designer.cs">
       <DependentUpon>FormRiwayatTopUp.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormTambahMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTambahMenu.Designer.cs">
+      <DependentUpon>FormTambahMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormTarikDanaDriver.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -340,6 +346,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormRiwayatTopUp.resx">
       <DependentUpon>FormRiwayatTopUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTambahMenu.resx">
+      <DependentUpon>FormTambahMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormTarikDanaDriver.resx">
       <DependentUpon>FormTarikDanaDriver.cs</DependentUpon>

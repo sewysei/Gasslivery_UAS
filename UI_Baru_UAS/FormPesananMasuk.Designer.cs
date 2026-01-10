@@ -74,7 +74,7 @@
             // comboBoxStatus
             // 
             this.comboBoxStatus.FormattingEnabled = true;
-            this.comboBoxStatus.Location = new System.Drawing.Point(89, 52);
+            this.comboBoxStatus.Location = new System.Drawing.Point(91, 46);
             this.comboBoxStatus.Name = "comboBoxStatus";
             this.comboBoxStatus.Size = new System.Drawing.Size(141, 24);
             this.comboBoxStatus.TabIndex = 30;
@@ -83,10 +83,10 @@
             // 
             this.labelUsername.AutoSize = true;
             this.labelUsername.BackColor = System.Drawing.Color.Transparent;
-            this.labelUsername.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.labelUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.labelUsername.Location = new System.Drawing.Point(6, 44);
             this.labelUsername.Name = "labelUsername";
-            this.labelUsername.Size = new System.Drawing.Size(77, 32);
+            this.labelUsername.Size = new System.Drawing.Size(79, 22);
             this.labelUsername.TabIndex = 29;
             this.labelUsername.Text = "Status :";
             // 
@@ -138,6 +138,7 @@
             this.Controls.Add(this.lblGASLIVERY);
             this.Name = "FormPesananMasuk";
             this.Text = "FormPesananMasuk";
+            this.Load += new System.EventHandler(this.FormPesananMasuk_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPesananMasuk)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

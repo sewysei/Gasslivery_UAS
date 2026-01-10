@@ -26,16 +26,35 @@ namespace UI_Baru_UAS
         private void FormMonitoringDriver_Load(object sender, EventArgs e)
         {
             string status = comboBoxStatus.Text;
-            string nilai = textBoxCari.Text;
+            string kolom = "status";
+            List<Driver> listAll = Driver.BacaData();
             if(status == "Aktif")
             {
-                string kolom = "status";
+                string nilai = "active";
                 List<Driver> listHasil = Driver.BacaData(kolom,nilai);
+                dataGridViewMonitoringDriver.DataSource = listHasil;
+                dataGridViewMonitoringDriver.Columns["Full_name"].HeaderText = "Full Name";
+                dataGridViewMonitoringDriver.Columns["Avg_rating"].HeaderText = "Avg Rating";
+                labelTotalDriver.Text = listAll.Count.ToString();
+                labelActive.Text = listHasil.Count.ToString();
+                labelInactive.Text = (listAll.Count - listHasil.Count).ToString();
             }
             else if (status == "Tidak Aktif")
-            {
-
+            { 
+                string nilai = "inactive";
+                List<Driver> listHasil = Driver.BacaData(kolom, nilai);
+                dataGridViewMonitoringDriver.DataSource = listHasil;
+                dataGridViewMonitoringDriver.Columns["Full_name"].HeaderText = "Full Name";
+                dataGridViewMonitoringDriver.Columns["Avg_rating"].HeaderText = "Avg Rating";
+                labelTotalDriver.Text = listAll.Count.ToString();
+                labelInactive.Text = listHasil.Count.ToString();
+                labelActive.Text = (listAll.Count - listHasil.Count).ToString();
             }
+        }
+
+        private void comboBoxStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FormMonitoringDriver_Load(this, e);
         }
     }
 }

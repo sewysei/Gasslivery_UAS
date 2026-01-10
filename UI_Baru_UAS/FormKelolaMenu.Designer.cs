@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.buttonTutup = new System.Windows.Forms.Button();
-            this.buttonHapus = new System.Windows.Forms.Button();
-            this.buttonUbah = new System.Windows.Forms.Button();
             this.buttonTambah = new System.Windows.Forms.Button();
             this.lblGASLIVERY = new System.Windows.Forms.Label();
             this.dataGridViewKelolaMenu = new System.Windows.Forms.DataGridView();
@@ -47,28 +45,7 @@
             this.buttonTutup.TabIndex = 32;
             this.buttonTutup.Text = "Tutup";
             this.buttonTutup.UseVisualStyleBackColor = false;
-            // 
-            // buttonHapus
-            // 
-            this.buttonHapus.BackColor = System.Drawing.Color.Transparent;
-            this.buttonHapus.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonHapus.Location = new System.Drawing.Point(254, 357);
-            this.buttonHapus.Name = "buttonHapus";
-            this.buttonHapus.Size = new System.Drawing.Size(115, 35);
-            this.buttonHapus.TabIndex = 31;
-            this.buttonHapus.Text = "Hapus";
-            this.buttonHapus.UseVisualStyleBackColor = false;
-            // 
-            // buttonUbah
-            // 
-            this.buttonUbah.BackColor = System.Drawing.Color.Transparent;
-            this.buttonUbah.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonUbah.Location = new System.Drawing.Point(133, 357);
-            this.buttonUbah.Name = "buttonUbah";
-            this.buttonUbah.Size = new System.Drawing.Size(115, 35);
-            this.buttonUbah.TabIndex = 30;
-            this.buttonUbah.Text = "Ubah";
-            this.buttonUbah.UseVisualStyleBackColor = false;
+            this.buttonTutup.Click += new System.EventHandler(this.buttonTutup_Click);
             // 
             // buttonTambah
             // 
@@ -80,6 +57,7 @@
             this.buttonTambah.TabIndex = 29;
             this.buttonTambah.Text = "Tambah";
             this.buttonTambah.UseVisualStyleBackColor = false;
+            this.buttonTambah.Click += new System.EventHandler(this.buttonTambah_Click);
             // 
             // lblGASLIVERY
             // 
@@ -100,21 +78,21 @@
             this.dataGridViewKelolaMenu.RowTemplate.Height = 24;
             this.dataGridViewKelolaMenu.Size = new System.Drawing.Size(776, 301);
             this.dataGridViewKelolaMenu.TabIndex = 27;
+            this.dataGridViewKelolaMenu.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewKelolaMenu_CellContentClick);
             // 
             // FormKelolaMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.ClientSize = new System.Drawing.Size(800, 398);
+            this.ClientSize = new System.Drawing.Size(801, 401);
             this.Controls.Add(this.buttonTutup);
-            this.Controls.Add(this.buttonHapus);
-            this.Controls.Add(this.buttonUbah);
             this.Controls.Add(this.buttonTambah);
             this.Controls.Add(this.lblGASLIVERY);
             this.Controls.Add(this.dataGridViewKelolaMenu);
             this.Name = "FormKelolaMenu";
             this.Text = "FormKelolaMenu";
+            this.Load += new System.EventHandler(this.FormKelolaMenu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewKelolaMenu)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -124,8 +102,6 @@
         #endregion
 
         private System.Windows.Forms.Button buttonTutup;
-        private System.Windows.Forms.Button buttonHapus;
-        private System.Windows.Forms.Button buttonUbah;
         private System.Windows.Forms.Button buttonTambah;
         private System.Windows.Forms.Label lblGASLIVERY;
         private System.Windows.Forms.DataGridView dataGridViewKelolaMenu;

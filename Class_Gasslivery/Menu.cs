@@ -1,8 +1,11 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using Mysqlx.Crud;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Class_Gasslivery
 {
@@ -31,9 +34,43 @@ namespace Class_Gasslivery
         public int Stock { get => stock; set => stock = value; }
         public string Halal { get => halal; set => halal = value; }
         public Tenant Tenant { get => tenant; set => tenant = value; }
+
+        public static List<Menu> BacaData(Tenant tenant)
+        {
+            List<Menu> listHasil = new List<Menu>();
+            string perintah;
+            perintah = $"SELECT * FROM menus WHERE tenant_id = '{tenant.Id}'";
+
+            MySqlDataReader hasil = Koneksi.JalankanPerintahSelect(perintah);
+            while (hasil.Read())
+            {
+                Menu tampung = new Menu();
+                tampung.Id = hasil.GetValue(0).ToString();
+                tampung.Name = hasil.GetString(1);
+                tampung.Price = hasil.GetInt32(2);
+                tampung.Stock = hasil.GetInt32(3);
+                tampung.Halal = hasil.GetString(4);
+                tampung.Tenant = tenant;
+                listHasil.Add(tampung);
+            }
+            return listHasil;
+        }
+
         public override string ToString()
         {
             return Name;
+        }
+
+        public static void TambahMenu(Menu menu)
+        {
+            string perintah = $"INSERT INTO menus (`name`, `price`, `stock`, `halal`, `tenant_id`) " +
+                $"VALUES ('{menu.Name}', '{menu.Price}', '{menu.Stock}', '{menu.Halal}', '{menu.Tenant.Id}');";
+            Koneksi.JalankanPerintahDML(perintah);
+        }
+        public static void HapusMenu(Menu menu)
+        {
+            string perintah = $"DELETE FROM menus WHERE(`id` = '{menu.Id}')";
+            Koneksi.JalankanPerintahDML(perintah);
         }
     }
 }

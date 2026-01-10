@@ -242,7 +242,7 @@ namespace UI_Baru_UAS
             Form frm = Application.OpenForms["FormKelolaMenu"];
             if (frm == null)
             {
-                FormKelolaMenu form = new FormKelolaMenu();
+                FormKelolaMenu form = new FormKelolaMenu(this);
                 form.MdiParent = this;
                 form.Show();
             }

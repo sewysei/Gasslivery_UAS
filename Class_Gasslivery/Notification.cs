@@ -25,5 +25,11 @@ namespace Class_Gasslivery
         public string Message { get => message; set => message = value; }
         public DateTime Date { get => date; set => date = value; }
         public Driver Driver { get => driver; set => driver = value; }
+
+        public static void TambahNotifikasi(Notification notif)
+        {
+            string perintah = $"INSERT INTO notifications (`message`, `date`, `driver_id`) VALUES ('{notif.Message}', '{notif.Date}', '{notif.Driver.Id}');";
+            Koneksi.JalankanPerintahDML(perintah);
+        }
     }
 }

@@ -28,15 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.buttonLihatDetail = new System.Windows.Forms.Button();
             this.buttonTutup = new System.Windows.Forms.Button();
             this.dataGridViewMonitoringDriver = new System.Windows.Forms.DataGridView();
             this.comboBoxStatus = new System.Windows.Forms.ComboBox();
             this.labelUsername = new System.Windows.Forms.Label();
             this.lblGASLIVERY = new System.Windows.Forms.Label();
             this.buttonPrint = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBoxCari = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.labelActive = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -46,17 +43,6 @@
             this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMonitoringDriver)).BeginInit();
             this.SuspendLayout();
-            // 
-            // buttonLihatDetail
-            // 
-            this.buttonLihatDetail.BackColor = System.Drawing.Color.Transparent;
-            this.buttonLihatDetail.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonLihatDetail.Location = new System.Drawing.Point(12, 386);
-            this.buttonLihatDetail.Name = "buttonLihatDetail";
-            this.buttonLihatDetail.Size = new System.Drawing.Size(163, 35);
-            this.buttonLihatDetail.TabIndex = 44;
-            this.buttonLihatDetail.Text = "Lihat Detail";
-            this.buttonLihatDetail.UseVisualStyleBackColor = false;
             // 
             // buttonTutup
             // 
@@ -90,6 +76,7 @@
             this.comboBoxStatus.Name = "comboBoxStatus";
             this.comboBoxStatus.Size = new System.Drawing.Size(136, 24);
             this.comboBoxStatus.TabIndex = 39;
+            this.comboBoxStatus.SelectedIndexChanged += new System.EventHandler(this.comboBoxStatus_SelectedIndexChanged);
             // 
             // labelUsername
             // 
@@ -116,30 +103,12 @@
             // 
             this.buttonPrint.BackColor = System.Drawing.Color.Transparent;
             this.buttonPrint.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPrint.Location = new System.Drawing.Point(181, 386);
+            this.buttonPrint.Location = new System.Drawing.Point(12, 380);
             this.buttonPrint.Name = "buttonPrint";
             this.buttonPrint.Size = new System.Drawing.Size(163, 35);
             this.buttonPrint.TabIndex = 45;
             this.buttonPrint.Text = "Print";
             this.buttonPrint.UseVisualStyleBackColor = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label1.Location = new System.Drawing.Point(231, 43);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 22);
-            this.label1.TabIndex = 46;
-            this.label1.Text = "Cari :";
-            // 
-            // textBoxCari
-            // 
-            this.textBoxCari.Location = new System.Drawing.Point(294, 42);
-            this.textBoxCari.Name = "textBoxCari";
-            this.textBoxCari.Size = new System.Drawing.Size(167, 22);
-            this.textBoxCari.TabIndex = 47;
             // 
             // label2
             // 
@@ -231,10 +200,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.labelActive);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBoxCari);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonPrint);
-            this.Controls.Add(this.buttonLihatDetail);
             this.Controls.Add(this.buttonTutup);
             this.Controls.Add(this.dataGridViewMonitoringDriver);
             this.Controls.Add(this.comboBoxStatus);
@@ -250,16 +216,12 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button buttonLihatDetail;
         private System.Windows.Forms.Button buttonTutup;
         private System.Windows.Forms.DataGridView dataGridViewMonitoringDriver;
         private System.Windows.Forms.ComboBox comboBoxStatus;
         private System.Windows.Forms.Label labelUsername;
         private System.Windows.Forms.Label lblGASLIVERY;
         private System.Windows.Forms.Button buttonPrint;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBoxCari;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label labelActive;
         private System.Windows.Forms.Label label4;

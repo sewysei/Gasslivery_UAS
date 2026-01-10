@@ -27,7 +27,6 @@ namespace UI_Baru_UAS
 
         private void FormLaporanReport_Load(object sender, EventArgs e)
         {
-
             if (dataGridViewLaporanReport.Columns.Contains("btnCheck"))
             {
                 dataGridViewLaporanReport.Columns.Remove("btnCheck");

@@ -79,7 +79,7 @@ namespace Class_Gasslivery
             else
             {
                 perintah = $"SELECT * FROM drivers "+
-                    $"WHERE {kolom} LIKE '%{nilai}%'";
+                    $"WHERE {kolom} = '{nilai}'";
             }
             MySqlDataReader hasil = Koneksi.JalankanPerintahSelect(perintah);
             while (hasil.Read())
@@ -91,7 +91,8 @@ namespace Class_Gasslivery
                 tampung.Date = DateTime.Parse(hasil.GetValue(3).ToString());
                 tampung.Gender = hasil.GetValue(4).ToString();
                 tampung.Telp = hasil.GetValue(5).ToString();
-                tampung.Avg_rating = double.Parse(hasil.GetValue(7).ToString());
+                tampung.Avg_rating = double.Parse(hasil.GetValue(6).ToString());
+                tampung.Balance = double.Parse(hasil.GetValue(7).ToString());
                 tampung.Status = hasil.GetValue(8).ToString();
                 listHasil.Add(tampung);
             }
