@@ -22,7 +22,7 @@ namespace Class_Gasslivery
         private Tenant tenant;
         private Voucher voucher;
         private DateTime date;
-        private string status; // ENUM('pending', 'processing', 'delivered')
+        private string status; // ENUM('pending', 'processing', 'delivered', 'cancelled')
         private int food_rating;
         private int driver_rating;
         private int tip;
@@ -70,7 +70,7 @@ namespace Class_Gasslivery
                     $"INNER JOIN deliveries d ON d.id = o.delivery_id " +
                     $"INNER JOIN drivers dr ON dr.id = d.driver_id " +
                     $"INNER JOIN tenants t ON t.id = o.tenant_id " +
-                    $"INNER JOIN vouchers v ON v.id = o.voucher_id " +
+                    $"LEFT JOIN vouchers v ON v.id = o.voucher_id " +
                     $"WHERE o.date BETWEEN '{mulai}' AND '{akhir}' " +
                     $"ORDER BY o.date ASC";
             }
@@ -81,8 +81,19 @@ namespace Class_Gasslivery
                    $"INNER JOIN deliveries d ON d.id = o.delivery_id " +
                    $"INNER JOIN drivers dr ON dr.id = d.driver_id " +
                    $"INNER JOIN tenants t ON t.id = o.tenant_id " +
-                   $"INNER JOIN vouchers v ON v.id = o.voucher_id " +
+                   $"LEFT JOIN vouchers v ON v.id = o.voucher_id " +
                    $"WHERE o.status = '{nilai}' AND o.tenant_id = '{id}' " +
+                   $"ORDER BY o.date ASC";
+            }
+            else if (kolom == "date")
+            {
+                perintah = $"SELECT o.*, c.username, dr.full_name, v.name, t.name, d.destination_point, d.fee " +
+                   $"FROM orders o INNER JOIN consumers c ON c.id = o.consumer_id " +
+                   $"INNER JOIN deliveries d ON d.id = o.delivery_id " +
+                   $"INNER JOIN drivers dr ON dr.id = d.driver_id " +
+                   $"INNER JOIN tenants t ON t.id = o.tenant_id " +
+                   $"LEFT JOIN vouchers v ON v.id = o.voucher_id " +
+                   $"WHERE o.date BETWEEN '{mulai}' AND '{akhir}' AND o.tenant_id = {id} AND o.status = delivered " +
                    $"ORDER BY o.date ASC";
             }
 
@@ -155,10 +166,6 @@ namespace Class_Gasslivery
             string perintah = $"UPDATE orders SET status = '{order.Status}' ";
             Koneksi.JalankanPerintahDML(perintah);
         }
-        public static void TolakOrder(Order order)
-        {
-            string perintah = $"DELETE FROM orders WHERE(`id` = '{order.Id}')";
-            Koneksi.JalankanPerintahDML(perintah);
-        }
+
     }
 }

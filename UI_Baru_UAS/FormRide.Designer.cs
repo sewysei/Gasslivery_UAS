@@ -420,6 +420,7 @@
             this.Controls.Add(this.lblGASLIVERY);
             this.Name = "FormRide";
             this.Text = "FormRide";
+            this.Load += new System.EventHandler(this.FormRide_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

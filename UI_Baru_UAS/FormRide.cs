@@ -16,5 +16,10 @@ namespace UI_Baru_UAS
         {
             InitializeComponent();
         }
+
+        private void FormRide_Load(object sender, EventArgs e)
+        {
+                
+        }
     }
 }

@@ -103,6 +103,7 @@
     <Compile Include="Consumer.cs" />
     <Compile Include="Delivery.cs" />
     <Compile Include="Driver.cs" />
+    <Compile Include="HitungJarak.cs" />
     <Compile Include="Koneksi.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="Notification.cs" />

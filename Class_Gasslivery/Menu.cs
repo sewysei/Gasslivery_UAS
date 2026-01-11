@@ -3,6 +3,7 @@ using Mysqlx.Crud;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -35,11 +36,19 @@ namespace Class_Gasslivery
         public string Halal { get => halal; set => halal = value; }
         public Tenant Tenant { get => tenant; set => tenant = value; }
 
-        public static List<Menu> BacaData(Tenant tenant)
+        public static List<Menu> BacaData(Tenant tenant, string nilai = "")
         {
             List<Menu> listHasil = new List<Menu>();
-            string perintah;
-            perintah = $"SELECT * FROM menus WHERE tenant_id = '{tenant.Id}'";
+            string perintah = "";
+            if (nilai == "")
+            {
+                perintah = $"SELECT * FROM menus WHERE tenant_id = '{tenant.Id}'";
+            }
+            else if (nilai != "")
+            {
+                perintah = $"SELECT * FROM menus WHERE tenant_id = '{tenant.Id}' " +
+                    $"WHERE halal = '{nilai}' ";
+            }
 
             MySqlDataReader hasil = Koneksi.JalankanPerintahSelect(perintah);
             while (hasil.Read())

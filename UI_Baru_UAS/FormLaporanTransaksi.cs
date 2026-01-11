@@ -76,6 +76,7 @@ namespace UI_Baru_UAS
                 int totalFee = listHasil.Sum(trip => trip.Total_fee);
                 labelJumlahTransaksi.Text = $"Rp.{totalFee}";
                 labelTotalTransaksi.Text = listHasil.Count.ToString();
+
             }
         }
 

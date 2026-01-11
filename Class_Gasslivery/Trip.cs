@@ -97,7 +97,7 @@ namespace Class_Gasslivery
             perintah = $"SELECT t.*, c.username, d.full_name, v.name " +
             $"FROM trips t INNER JOIN consumers c ON c.id = t.consumer_id " +
             $"INNER JOIN drivers d ON t.driver_id = d.id " +
-            $"INNER JOIN vouchers v ON v.id = t.voucher_id " +
+            $"LEFT JOIN vouchers v ON v.id = t.voucher_id " +
             $"WHERE t.date BETWEEN '{mulai}' AND '{akhir}' " +
             $"ORDER BY t.date ASC";
             MySqlDataReader hasil = Koneksi.JalankanPerintahSelect(perintah);

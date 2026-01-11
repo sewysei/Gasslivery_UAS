@@ -67,5 +67,27 @@ namespace Class_Gasslivery
         {
             return Name;
         }
+
+        public static List<Tenant> BacaData()
+        {
+            List<Tenant> listHasil = new List<Tenant>();
+            string perintah = "SELECT * FROM tenants";
+
+            MySqlDataReader hasil = Koneksi.JalankanPerintahSelect(perintah);
+            while (hasil.Read())
+            {
+                Tenant tampung = new Tenant();
+                tampung.Id = hasil.GetValue(0).ToString();
+                tampung.Username = hasil.GetValue(1).ToString();
+                tampung.Password = hasil.GetValue(2).ToString();
+                tampung.Name = hasil.GetValue(3).ToString();
+                tampung.Address = hasil.GetValue(4).ToString();
+                tampung.Longitude = hasil.GetValue(5).ToString();
+                tampung.Latitude = hasil.GetValue(6).ToString();
+                tampung.Avg_rating = double.Parse(hasil.GetValue(7).ToString());
+                listHasil.Add(tampung);
+            }
+            return listHasil;
+        }
     }
 }

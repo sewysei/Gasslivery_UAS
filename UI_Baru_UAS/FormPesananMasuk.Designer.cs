@@ -29,12 +29,10 @@
         private void InitializeComponent()
         {
             this.buttonTutup = new System.Windows.Forms.Button();
-            this.buttonTerima = new System.Windows.Forms.Button();
             this.dataGridViewPesananMasuk = new System.Windows.Forms.DataGridView();
             this.comboBoxStatus = new System.Windows.Forms.ComboBox();
             this.labelUsername = new System.Windows.Forms.Label();
             this.lblGASLIVERY = new System.Windows.Forms.Label();
-            this.buttonTolak = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPesananMasuk)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,17 +47,6 @@
             this.buttonTutup.Text = "Tutup";
             this.buttonTutup.UseVisualStyleBackColor = false;
             this.buttonTutup.Click += new System.EventHandler(this.buttonTutup_Click);
-            // 
-            // buttonTerima
-            // 
-            this.buttonTerima.BackColor = System.Drawing.Color.Transparent;
-            this.buttonTerima.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonTerima.Location = new System.Drawing.Point(12, 361);
-            this.buttonTerima.Name = "buttonTerima";
-            this.buttonTerima.Size = new System.Drawing.Size(114, 35);
-            this.buttonTerima.TabIndex = 32;
-            this.buttonTerima.Text = "Terima";
-            this.buttonTerima.UseVisualStyleBackColor = false;
             // 
             // dataGridViewPesananMasuk
             // 
@@ -79,7 +66,8 @@
             this.comboBoxStatus.Items.AddRange(new object[] {
             "pending",
             "processing",
-            "delivered"});
+            "delivered",
+            "cancelled"});
             this.comboBoxStatus.Location = new System.Drawing.Point(91, 46);
             this.comboBoxStatus.Name = "comboBoxStatus";
             this.comboBoxStatus.Size = new System.Drawing.Size(141, 24);
@@ -107,26 +95,13 @@
             this.lblGASLIVERY.TabIndex = 28;
             this.lblGASLIVERY.Text = "Pesanan Masuk";
             // 
-            // buttonTolak
-            // 
-            this.buttonTolak.BackColor = System.Drawing.Color.Transparent;
-            this.buttonTolak.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonTolak.Location = new System.Drawing.Point(132, 361);
-            this.buttonTolak.Name = "buttonTolak";
-            this.buttonTolak.Size = new System.Drawing.Size(114, 35);
-            this.buttonTolak.TabIndex = 35;
-            this.buttonTolak.Text = "Tolak";
-            this.buttonTolak.UseVisualStyleBackColor = false;
-            // 
             // FormPesananMasuk
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(791, 409);
-            this.Controls.Add(this.buttonTolak);
             this.Controls.Add(this.buttonTutup);
-            this.Controls.Add(this.buttonTerima);
             this.Controls.Add(this.dataGridViewPesananMasuk);
             this.Controls.Add(this.comboBoxStatus);
             this.Controls.Add(this.labelUsername);
@@ -143,11 +118,9 @@
         #endregion
 
         private System.Windows.Forms.Button buttonTutup;
-        private System.Windows.Forms.Button buttonTerima;
         private System.Windows.Forms.DataGridView dataGridViewPesananMasuk;
         private System.Windows.Forms.ComboBox comboBoxStatus;
         private System.Windows.Forms.Label labelUsername;
         private System.Windows.Forms.Label lblGASLIVERY;
-        private System.Windows.Forms.Button buttonTolak;
     }
 }

@@ -52,16 +52,19 @@
             // 
             this.labelUsername.AutoSize = true;
             this.labelUsername.BackColor = System.Drawing.Color.Transparent;
-            this.labelUsername.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.labelUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.labelUsername.Location = new System.Drawing.Point(13, 47);
             this.labelUsername.Name = "labelUsername";
-            this.labelUsername.Size = new System.Drawing.Size(125, 32);
+            this.labelUsername.Size = new System.Drawing.Size(132, 22);
             this.labelUsername.TabIndex = 16;
             this.labelUsername.Text = "Jenis Order : ";
             // 
             // comboBoxJenisOrder
             // 
             this.comboBoxJenisOrder.FormattingEnabled = true;
+            this.comboBoxJenisOrder.Items.AddRange(new object[] {
+            "Gass-ride",
+            "Gass-kan"});
             this.comboBoxJenisOrder.Location = new System.Drawing.Point(144, 55);
             this.comboBoxJenisOrder.Name = "comboBoxJenisOrder";
             this.comboBoxJenisOrder.Size = new System.Drawing.Size(141, 24);
@@ -125,6 +128,7 @@
             this.Controls.Add(this.lblGASLIVERY);
             this.Name = "FormTerimaOrder";
             this.Text = "FormTerimaOrder";
+            this.Load += new System.EventHandler(this.FormTerimaOrder_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDaftarOrder)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

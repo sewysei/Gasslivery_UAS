@@ -65,7 +65,6 @@ namespace UI_Baru_UAS
 
         private void dataGridViewPesananMasuk_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0) return;
 
             Order selectedOrder = (Order)dataGridViewPesananMasuk.Rows[e.RowIndex].DataBoundItem;
 
@@ -89,8 +88,12 @@ namespace UI_Baru_UAS
                 }
                 else
                 {
-                    Order.TolakOrder(selectedOrder);
-                    MessageBox.Show("Pesanan ditolak");
+                    selectedOrder.Status = "cancelled";
+                    DialogResult result =  MessageBox.Show("Pesanan dicancel","Cancel",MessageBoxButtons.OKCancel);
+                    if(result == DialogResult.OK)
+                    {
+                        Order.GantiStatus(selectedOrder);
+                    }
                 }
             }
         }

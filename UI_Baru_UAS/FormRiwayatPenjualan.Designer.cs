@@ -36,10 +36,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblGASLIVERY = new System.Windows.Forms.Label();
             this.dataGridViewRiwayatPenjualan = new System.Windows.Forms.DataGridView();
-            this.buttonLihatDetail = new System.Windows.Forms.Button();
             this.buttonPrint = new System.Windows.Forms.Button();
             this.buttonTutup = new System.Windows.Forms.Button();
-            this.buttonTampilkan = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRiwayatPenjualan)).BeginInit();
             this.SuspendLayout();
             // 
@@ -122,23 +120,13 @@
             this.dataGridViewRiwayatPenjualan.RowTemplate.Height = 24;
             this.dataGridViewRiwayatPenjualan.Size = new System.Drawing.Size(868, 241);
             this.dataGridViewRiwayatPenjualan.TabIndex = 45;
-            // 
-            // buttonLihatDetail
-            // 
-            this.buttonLihatDetail.BackColor = System.Drawing.Color.Transparent;
-            this.buttonLihatDetail.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonLihatDetail.Location = new System.Drawing.Point(344, 362);
-            this.buttonLihatDetail.Name = "buttonLihatDetail";
-            this.buttonLihatDetail.Size = new System.Drawing.Size(163, 35);
-            this.buttonLihatDetail.TabIndex = 56;
-            this.buttonLihatDetail.Text = "Lihat Detail";
-            this.buttonLihatDetail.UseVisualStyleBackColor = false;
+            this.dataGridViewRiwayatPenjualan.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewRiwayatPenjualan_CellContentClick);
             // 
             // buttonPrint
             // 
             this.buttonPrint.BackColor = System.Drawing.Color.Transparent;
             this.buttonPrint.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPrint.Location = new System.Drawing.Point(175, 362);
+            this.buttonPrint.Location = new System.Drawing.Point(6, 362);
             this.buttonPrint.Name = "buttonPrint";
             this.buttonPrint.Size = new System.Drawing.Size(163, 35);
             this.buttonPrint.TabIndex = 57;
@@ -157,27 +145,14 @@
             this.buttonTutup.UseVisualStyleBackColor = false;
             this.buttonTutup.Click += new System.EventHandler(this.buttonTutup_Click);
             // 
-            // buttonTampilkan
-            // 
-            this.buttonTampilkan.BackColor = System.Drawing.Color.Transparent;
-            this.buttonTampilkan.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonTampilkan.Location = new System.Drawing.Point(6, 362);
-            this.buttonTampilkan.Name = "buttonTampilkan";
-            this.buttonTampilkan.Size = new System.Drawing.Size(163, 35);
-            this.buttonTampilkan.TabIndex = 59;
-            this.buttonTampilkan.Text = "Tampilkan";
-            this.buttonTampilkan.UseVisualStyleBackColor = false;
-            // 
             // FormRiwayatPenjualan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(880, 406);
-            this.Controls.Add(this.buttonTampilkan);
             this.Controls.Add(this.buttonTutup);
             this.Controls.Add(this.buttonPrint);
-            this.Controls.Add(this.buttonLihatDetail);
             this.Controls.Add(this.labelTotalPenjualanPeriodeIni);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dateTimePickerSampai);
@@ -205,9 +180,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblGASLIVERY;
         private System.Windows.Forms.DataGridView dataGridViewRiwayatPenjualan;
-        private System.Windows.Forms.Button buttonLihatDetail;
         private System.Windows.Forms.Button buttonPrint;
         private System.Windows.Forms.Button buttonTutup;
-        private System.Windows.Forms.Button buttonTampilkan;
     }
 }

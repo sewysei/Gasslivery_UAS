@@ -13,6 +13,7 @@ namespace UI_Baru_UAS
 {
     public partial class FormRiwayatPenjualan : Form
     {
+        FormUtama frm;
         public FormRiwayatPenjualan()
         {
             InitializeComponent();
@@ -25,9 +26,23 @@ namespace UI_Baru_UAS
 
         private void FormRiwayatPenjualan_Load(object sender, EventArgs e)
         {
+            frm = (FormUtama)this.MdiParent;
             string mulai = dateTimePickerDari.Value.ToString("yyyy-MM-dd");
             string akhir = dateTimePickerSampai.Value.ToString("yyyy-MM-dd");
-            //Order.BacaData
+            List<Order>listHasil =  Order.BacaData("date", "", frm.tenantLogin.Id, mulai, akhir);
+            dataGridViewRiwayatPenjualan.DataSource = listHasil;
+            dataGridViewRiwayatPenjualan.Columns["Id"].Visible = false;
+            if (!dataGridViewRiwayatPenjualan.Columns.Contains("btnDetail"))
+            {
+                DataGridViewButtonColumn detail = new DataGridViewButtonColumn();
+                detail.Text = "Detail";
+                detail.HeaderText = "Detail";
+                detail.UseColumnTextForButtonValue = true;
+                detail.Name = "btnDetail";
+                dataGridViewRiwayatPenjualan.Columns.Add(detail);
+            }
+            int totalFee = listHasil.Sum(order => order.Total_fee);
+            labelTotalPenjualanPeriodeIni.Text = $"Rp.{totalFee}";
         }
 
         private void dateTimePickerDari_ValueChanged(object sender, EventArgs e)
@@ -38,6 +53,18 @@ namespace UI_Baru_UAS
         private void dateTimePickerSampai_ValueChanged(object sender, EventArgs e)
         {
             FormRiwayatPenjualan_Load(this, e);
+        }
+
+        private void dataGridViewRiwayatPenjualan_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Order selectedOrder = (Order)dataGridViewRiwayatPenjualan.Rows[e.RowIndex].DataBoundItem;
+            if (dataGridViewRiwayatPenjualan.Columns[e.ColumnIndex].Name == "btnDetail")
+            {
+                FormDetailPesanan frm = new FormDetailPesanan();
+                frm.orderInfo = selectedOrder;
+                frm.Owner = this;
+                frm.ShowDialog();
+            }
         }
     }
 }
