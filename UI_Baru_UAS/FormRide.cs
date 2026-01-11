@@ -21,8 +21,6 @@ namespace UI_Baru_UAS
             frmUtama = frm;
         }
 
-        public Consumer consumerLogin;
-
         private void HitungJarakDanOngkos()
         {
             if (
@@ -86,7 +84,7 @@ namespace UI_Baru_UAS
      status, date)
     VALUES
     (
-        {consumerLogin.Id},
+        {frmUtama.consumerLogin.Id},
         '{textBoxTitikJemput.Text.Replace("'", "")}',
         '{textBoxTitikTujuan.Text.Replace("'", "")}',
         '{textBoxLatitudeJemput.Text}',
@@ -118,11 +116,6 @@ namespace UI_Baru_UAS
             checkBoxDriverWanita.CheckedChanged += (s, ev) => HitungJarakDanOngkos();
             checkBoxMotorBaru.CheckedChanged += (s, ev) => HitungJarakDanOngkos();
             dateTimePickerJadwalkan.ValueChanged += (s, ev) => HitungJarakDanOngkos();
-        }
-
-        private void FormRide_Load(object sender, EventArgs e)
-        {
-                
         }
     }
 }
