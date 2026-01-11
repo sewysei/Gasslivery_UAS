@@ -82,7 +82,7 @@ namespace UI_Baru_UAS
             Form frm = Application.OpenForms["FormRide"];
             if (frm == null)
             {
-                FormRide form = new FormRide();
+                FormRide form = new FormRide(this);
                 form.MdiParent = this;
                 form.Show();
             }
