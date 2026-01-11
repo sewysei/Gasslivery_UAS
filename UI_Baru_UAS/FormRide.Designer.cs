@@ -73,10 +73,10 @@
             this.buttonPesanRide.TabIndex = 20;
             this.buttonPesanRide.Text = "Pesan Ride";
             this.buttonPesanRide.UseVisualStyleBackColor = false;
+            this.buttonPesanRide.Click += new System.EventHandler(this.buttonPesanRide_Click);
             // 
             // textBoxTitikTujuan
             // 
-            this.textBoxTitikTujuan.Enabled = false;
             this.textBoxTitikTujuan.Location = new System.Drawing.Point(141, 136);
             this.textBoxTitikTujuan.Name = "textBoxTitikTujuan";
             this.textBoxTitikTujuan.Size = new System.Drawing.Size(325, 22);
@@ -321,7 +321,6 @@
             // 
             // textBoxLangitudeTujuan
             // 
-            this.textBoxLangitudeTujuan.Enabled = false;
             this.textBoxLangitudeTujuan.Location = new System.Drawing.Point(141, 164);
             this.textBoxLangitudeTujuan.Name = "textBoxLangitudeTujuan";
             this.textBoxLangitudeTujuan.Size = new System.Drawing.Size(325, 22);
@@ -358,7 +357,6 @@
             // 
             // textBoxLatitudeTujuan
             // 
-            this.textBoxLatitudeTujuan.Enabled = false;
             this.textBoxLatitudeTujuan.Location = new System.Drawing.Point(141, 194);
             this.textBoxLatitudeTujuan.Name = "textBoxLatitudeTujuan";
             this.textBoxLatitudeTujuan.Size = new System.Drawing.Size(325, 22);
@@ -420,6 +418,7 @@
             this.Controls.Add(this.lblGASLIVERY);
             this.Name = "FormRide";
             this.Text = "FormRide";
+            this.Load += new System.EventHandler(this.FormRide_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
