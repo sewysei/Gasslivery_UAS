@@ -177,6 +177,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FormTambahMenu";
             this.Text = "FormTambahMenu";
+            this.Load += new System.EventHandler(this.FormTambahMenu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHarga)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownStok)).EndInit();
             this.ResumeLayout(false);

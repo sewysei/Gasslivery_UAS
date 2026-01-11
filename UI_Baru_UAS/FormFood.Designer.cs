@@ -137,6 +137,7 @@
             this.dataGridViewDaftarMenu.Size = new System.Drawing.Size(454, 172);
             this.dataGridViewDaftarMenu.TabIndex = 22;
             this.dataGridViewDaftarMenu.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewDaftarMenu_CellContentClick);
+            this.dataGridViewDaftarMenu.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewDaftarMenu_CellFormatting);
             // 
             // label1
             // 

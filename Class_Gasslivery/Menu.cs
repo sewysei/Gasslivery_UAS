@@ -42,12 +42,12 @@ namespace Class_Gasslivery
             string perintah = "";
             if (nilai == "")
             {
-                perintah = $"SELECT * FROM menus WHERE tenant_id = '{tenant.Id}'";
+                perintah = $"SELECT * FROM menus WHERE tenant_id = '{tenant.Id}' ";
             }
             else if (nilai != "")
             {
-                perintah = $"SELECT * FROM menus WHERE tenant_id = '{tenant.Id}' " +
-                    $"WHERE halal = '{nilai}' ";
+                perintah = $"SELECT * FROM menus WHERE tenant_id = '{tenant.Id}' AND " +
+                    $"halal = '{nilai}' ";
             }
 
             MySqlDataReader hasil = Koneksi.JalankanPerintahSelect(perintah);

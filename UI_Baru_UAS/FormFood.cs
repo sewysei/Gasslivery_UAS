@@ -31,7 +31,7 @@ namespace UI_Baru_UAS
                 halal = "no";
             }
             List<Tenant> listHasil = Tenant.BacaData();
-            comboBoxPilihTenan.DataSource = listHasil;
+            comboBoxPilihTenan.DataSource = listHasil; // masih error saat pencet di kerefresh
             comboBoxPilihTenan.DisplayMember = "Name";
             Tenant selectedTenant = (Tenant)comboBoxPilihTenan.SelectedItem;
             List<Class_Gasslivery.Menu> listMenu = Class_Gasslivery.Menu.BacaData(selectedTenant, halal);
@@ -48,6 +48,7 @@ namespace UI_Baru_UAS
             {
                 rate = 750;
             }
+
             int hitungOngkir = (int)(jarak * rate);
             labelOngkosAntar.Text = $"{hitungOngkir}";
 
@@ -61,6 +62,41 @@ namespace UI_Baru_UAS
                 dataGridViewDaftarMenu.Columns.Add(pesan);
             }
 
+            if(keranjang.Count > 0)
+            {
+                dataGridViewKeranjang.DataSource = keranjang;
+
+                if (!dataGridViewDaftarMenu.Columns.Contains("btnTambah"))
+                {
+                    DataGridViewButtonColumn tambah = new DataGridViewButtonColumn();
+                    tambah.Text = "+";
+                    tambah.HeaderText = "Tambah";
+                    tambah.UseColumnTextForButtonValue = true;
+                    tambah.Name = "btnTambah";
+                    dataGridViewDaftarMenu.Columns.Add(tambah);
+                }
+
+                if (!dataGridViewDaftarMenu.Columns.Contains("btnKurang"))
+                {
+                    DataGridViewButtonColumn kurang = new DataGridViewButtonColumn();
+                    kurang.Text = "-";
+                    kurang.HeaderText = "Kurang";
+                    kurang.UseColumnTextForButtonValue = true;
+                    kurang.Name = "btnKurang";
+                    dataGridViewDaftarMenu.Columns.Add(kurang);
+                }
+
+                if (!dataGridViewDaftarMenu.Columns.Contains("btnHapus"))
+                {
+                    DataGridViewButtonColumn hapus = new DataGridViewButtonColumn();
+                    hapus.Text = "Hapus";
+                    hapus.HeaderText = "Hapus";
+                    hapus.UseColumnTextForButtonValue = true;
+                    hapus.Name = "btnHapus";
+                    dataGridViewDaftarMenu.Columns.Add(hapus);
+                }
+
+            }
         }
 
         private void comboBoxPilihTenan_SelectedIndexChanged(object sender, EventArgs e)
@@ -89,23 +125,84 @@ namespace UI_Baru_UAS
             {
                 //Ambil isi datagrid pada baris yang diklik user
                 Class_Gasslivery.Menu selectedMenu = (Class_Gasslivery.Menu)dataGridViewDaftarMenu.CurrentRow.DataBoundItem;
-                OrderDetail keranjang = new OrderDetail();
-                keranjang.Menu = selectedMenu;
-                keranjang.Amount = 1;
-                
+                OrderDetail newOrder = new OrderDetail();
+                newOrder.Menu = selectedMenu;
+                newOrder.Amount = 1;
+                keranjang.Add(newOrder);
             }
         }
 
         private void dataGridViewKeranjang_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == dataGridViewKeranjang.Columns["btnDetail"].Index)
+            if (e.ColumnIndex == dataGridViewKeranjang.Columns["btnTambah"].Index)
             {
-                //Ambil isi datagrid pada baris yang diklik user
-                //Order selectedOrder = (Order)dataGridViewKeranjang.CurrentRow.DataBoundItem;
-                //FormDetailPesanan frmdetil = new FormDetailPesanan();
-                //frmdetil.orderInfo = selectedOrder;
-                //frmdetil.Owner = this;
-                //frmdetil.ShowDialog();
+                OrderDetail selectedOrderDetail = (OrderDetail)dataGridViewDaftarMenu.CurrentRow.DataBoundItem;
+                if(selectedOrderDetail.Menu.Stock > selectedOrderDetail.Amount)
+                {
+                    selectedOrderDetail.Amount += 1;
+                }
+                else
+                {
+                    MessageBox.Show("Stok tidak mencukupi");
+                }
+                FormFood_Load(this, e);
+            }
+
+            if (e.ColumnIndex == dataGridViewKeranjang.Columns["btnKurang"].Index)
+            {
+                OrderDetail selectedOrderDetail = (OrderDetail)dataGridViewDaftarMenu.CurrentRow.DataBoundItem;
+                if (selectedOrderDetail.Amount > 1)
+                {
+                    selectedOrderDetail.Amount -= 1;
+                }
+                else if(selectedOrderDetail.Amount == 1)
+                {
+                    DialogResult result= MessageBox.Show("Yakin menghapus menu ?", "Hapus Menu", MessageBoxButtons.OKCancel);
+                    if(result == DialogResult.OK)
+                    {
+                        keranjang.Remove(selectedOrderDetail);
+                    }
+                }
+                FormFood_Load(this, e);
+            }
+
+            if (e.ColumnIndex == dataGridViewKeranjang.Columns["btnHapus"].Index)
+            {
+                OrderDetail selectedOrderDetail = (OrderDetail)dataGridViewDaftarMenu.CurrentRow.DataBoundItem;
+                DialogResult result = MessageBox.Show("Yakin menghapus menu ?", "Hapus Menu", MessageBoxButtons.OKCancel);
+                if (result == DialogResult.OK)
+                {
+                    keranjang.Remove(selectedOrderDetail);
+                }
+                FormFood_Load(this, e);
+            }
+        }
+
+        private void dataGridViewDaftarMenu_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == dataGridViewDaftarMenu.Columns["btnPesan"].Index)
+            {
+                Class_Gasslivery.Menu menu =
+                   (Class_Gasslivery.Menu)dataGridViewDaftarMenu.Rows[e.RowIndex].DataBoundItem;
+
+                bool sudahAda = keranjang.Any(k => k.Menu.Id == menu.Id);
+
+                DataGridViewButtonCell btn =
+                    (DataGridViewButtonCell)dataGridViewDaftarMenu.Rows[e.RowIndex].Cells[e.ColumnIndex];
+
+                if (sudahAda)
+                {
+                    btn.Value = "";           // tombol kosong
+                    btn.ReadOnly = true;      // tidak bisa diklik
+                    btn.FlatStyle = FlatStyle.Flat;
+                }
+                else
+                {
+                    btn.Value = "Pesan";
+                    btn.ReadOnly = false;
+                }
+
+                e.FormattingApplied = true;
             }
         }
     }

@@ -47,5 +47,10 @@ namespace UI_Baru_UAS
         {
             this.Close();
         }
+
+        private void FormTambahMenu_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
