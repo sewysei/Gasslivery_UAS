@@ -33,12 +33,10 @@ namespace Class_Gasslivery
             string perintah;
             perintah = $"SELECT * FROM vouchers ORDER BY CAST(value AS UNSIGNED) ASC;";
             MySqlDataReader hasil = Koneksi.JalankanPerintahSelect(perintah);
-            int counter = 0;
             while (hasil.Read())
             {
-                counter++;
                 Voucher tampung = new Voucher();
-                tampung.Id = counter.ToString();
+                tampung.Id = hasil.GetValue(0).ToString();
                 tampung.Name = hasil.GetValue(1).ToString();
                 tampung.Conditions = hasil.GetValue(2).ToString();
                 tampung.Value = hasil.GetValue(3).ToString();

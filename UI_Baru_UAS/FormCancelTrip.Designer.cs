@@ -121,6 +121,7 @@
             this.buttonKonfirmasiCancel.TabIndex = 22;
             this.buttonKonfirmasiCancel.Text = "Konfirmasi Cancel";
             this.buttonKonfirmasiCancel.UseVisualStyleBackColor = false;
+            this.buttonKonfirmasiCancel.Click += new System.EventHandler(this.buttonKonfirmasiCancel_Click);
             // 
             // buttonBatal
             // 
@@ -132,6 +133,7 @@
             this.buttonBatal.TabIndex = 41;
             this.buttonBatal.Text = "Batal";
             this.buttonBatal.UseVisualStyleBackColor = false;
+            this.buttonBatal.Click += new System.EventHandler(this.buttonBatal_Click);
             // 
             // FormCancelTrip
             // 

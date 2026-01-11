@@ -76,5 +76,13 @@ namespace Class_Gasslivery
             Koneksi.JalankanPerintahDML(perintah);
             Koneksi.JalankanPerintahDML(perintah2);
         }
+
+        public static void TambahReport(Report report)
+        {
+            string messages = report.Messages.Replace("'", "''");
+            string perintah = $@"INSERT INTO reports (trip_id, admin_id, messages, status, date) 
+                VALUES ({report.Trip.Id}, NULL, '{messages}', 'open', NOW())";
+            Koneksi.JalankanPerintahDML(perintah);
+        }
     }
 }

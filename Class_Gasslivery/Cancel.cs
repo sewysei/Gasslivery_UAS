@@ -78,5 +78,18 @@ namespace Class_Gasslivery
             Printing p = new Printing(tipeFont, namaFile, 30, 30, 30, 30);
             p.KirimKePrinter();
         }
+
+        public static void TambahCancel(Cancel cancel)
+        {
+            string reason = cancel.Reason.Replace("'", "''");
+            string perintah = $@"INSERT INTO cancels (trip_id, reason, date) 
+                VALUES ({cancel.Trip.Id}, '{reason}', NOW())";
+            Koneksi.JalankanPerintahDML(perintah);
+            
+            // Update status trip menjadi canceled
+            Trip trip = cancel.Trip;
+            trip.Status = "canceled";
+            Trip.UpdateStatus(trip);
+        }
     }
 }

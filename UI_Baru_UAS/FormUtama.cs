@@ -42,7 +42,13 @@ namespace UI_Baru_UAS
 
                 if (userLogin.Role == "consumer")
                 {
-                    consumerLogin = Consumer.CekLogin(userLogin.Username, userLogin.Password);
+                    // Gunakan ID dari users untuk mencari consumer (one-to-one relationship)
+                    consumerLogin = Consumer.CekLoginById(userLogin.Id);
+                    // Fallback: jika tidak ditemukan dengan ID, coba dengan username
+                    if (consumerLogin == null)
+                    {
+                        consumerLogin = Consumer.CekLogin(userLogin.Username, userLogin.Password);
+                    }
                     driverToolStripMenuItem.Visible = false;
                     tenanToolStripMenuItem.Visible = false;
                     adminToolStripMenuItem.Visible = false;
@@ -98,7 +104,7 @@ namespace UI_Baru_UAS
             Form frm = Application.OpenForms["FormRiwayatRide"];
             if (frm == null)
             {
-                FormRiwayatRide form = new FormRiwayatRide();
+                FormRiwayatRide form = new FormRiwayatRide(this);
                 form.MdiParent = this;
                 form.Show();
             }
@@ -194,7 +200,7 @@ namespace UI_Baru_UAS
             Form frm = Application.OpenForms["FormRiwayatRide"];
             if (frm == null)
             {
-                FormRiwayatRide form = new FormRiwayatRide();
+                FormRiwayatRide form = new FormRiwayatRide(this);
                 form.MdiParent = this;
                 form.Show();
             }
@@ -399,7 +405,13 @@ namespace UI_Baru_UAS
 
                 if (userLogin.Role == "consumer")
                 {
-                    consumerLogin = Consumer.CekLogin(userLogin.Username, userLogin.Password);
+                    // Gunakan ID dari users untuk mencari consumer (one-to-one relationship)
+                    consumerLogin = Consumer.CekLoginById(userLogin.Id);
+                    // Fallback: jika tidak ditemukan dengan ID, coba dengan username
+                    if (consumerLogin == null)
+                    {
+                        consumerLogin = Consumer.CekLogin(userLogin.Username, userLogin.Password);
+                    }
                     driverToolStripMenuItem.Visible = false;
                     tenanToolStripMenuItem.Visible = false;
                     adminToolStripMenuItem.Visible = false;

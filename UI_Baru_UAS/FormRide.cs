@@ -1,13 +1,7 @@
 ﻿using Class_Gasslivery;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace UI_Baru_UAS
@@ -23,99 +17,310 @@ namespace UI_Baru_UAS
 
         private void HitungJarakDanOngkos()
         {
-            if (
-                textBoxLatitudeJemput.Text == "" ||
-                textBoxLangitudeJemput.Text == "" ||
-                textBoxLatitudeTujuan.Text == "" ||
-                textBoxLangitudeTujuan.Text == ""
-            ) return;
+            if (!IsKoordinatValid())
+            {
+                ResetEstimasi();
+                return;
+            }
 
-            double latPickup = double.Parse(textBoxLatitudeJemput.Text, CultureInfo.InvariantCulture);
-            double lonPickup = double.Parse(textBoxLangitudeJemput.Text, CultureInfo.InvariantCulture);
-            double latDest = double.Parse(textBoxLatitudeTujuan.Text, CultureInfo.InvariantCulture);
-            double lonDest = double.Parse(textBoxLangitudeTujuan.Text, CultureInfo.InvariantCulture);
+            try
+            {
+                double latPickup = double.Parse(textBoxLatitudeJemput.Text.Trim(), CultureInfo.InvariantCulture);
+                double lonPickup = double.Parse(textBoxLangitudeJemput.Text.Trim(), CultureInfo.InvariantCulture);
+                double latDest = double.Parse(textBoxLatitudeTujuan.Text.Trim(), CultureInfo.InvariantCulture);
+                double lonDest = double.Parse(textBoxLangitudeTujuan.Text.Trim(), CultureInfo.InvariantCulture);
 
-            double jarak = GeoHelper.HitungJarak(latPickup, lonPickup, latDest, lonDest);
+                double jarak = GeoHelper.HitungJarak(latPickup, lonPickup, latDest, lonDest);
 
-            labelJarak.Text = jarak.ToString("0.00") + " KM";
-            HitungOngkos(jarak);
+                if (jarak > 0)
+                {
+                    labelJarak.Text = jarak.ToString("0.00") + " KM";
+                    HitungOngkos(jarak);
+                }
+                else
+                {
+                    ResetEstimasi();
+                }
+            }
+            catch
+            {
+                ResetEstimasi();
+            }
         }
 
         private void HitungOngkos(double jarak)
         {
-            DateTime waktu = radioButtonSekarang.Checked
-                ? DateTime.Now
-                : dateTimePickerJadwalkan.Value;
+            if (jarak <= 0)
+            {
+                labelOngkos.Text = "Rp0";
+                return;
+            }
 
-            int total = RideCalculator.HitungTotal(
-                jarak,
-                waktu,
-                checkBoxDriverWanita.Checked,
-                checkBoxMotorBaru.Checked
-            );
+            try
+            {
+                DateTime waktu = radioButtonSekarang.Checked ? DateTime.Now : dateTimePickerJadwalkan.Value;
+                int tarifPerKm = RideCalculator.GetHargaPerKm(waktu);
+                int baseFee = (int)(jarak * tarifPerKm);
+                int tambahan = HitungTambahan();
+                int total = baseFee + tambahan - HitungDiskonVoucher();
+                
+                labelOngkos.Text = "Rp " + Math.Max(0, total).ToString("N0");
+            }
+            catch
+            {
+                labelOngkos.Text = "Rp0";
+            }
+        }
 
-            labelOngkos.Text = "Rp " + total.ToString("N0");
+        private bool IsKoordinatValid()
+        {
+            return !string.IsNullOrWhiteSpace(textBoxLatitudeJemput.Text) &&
+                   !string.IsNullOrWhiteSpace(textBoxLangitudeJemput.Text) &&
+                   !string.IsNullOrWhiteSpace(textBoxLatitudeTujuan.Text) &&
+                   !string.IsNullOrWhiteSpace(textBoxLangitudeTujuan.Text);
+        }
+
+        private void ResetEstimasi()
+        {
+            labelJarak.Text = "-";
+            labelOngkos.Text = "Rp0";
+        }
+
+        private int HitungTambahan()
+        {
+            int tambahan = 0;
+            if (checkBoxDriverWanita.Checked) tambahan += 1500;
+            if (checkBoxMotorBaru.Checked) tambahan += 5000;
+            return tambahan;
+        }
+
+        private int HitungDiskonVoucher()
+        {
+            if (comboBox1?.SelectedItem is Voucher voucher && !string.IsNullOrEmpty(voucher.Value))
+            {
+                return int.Parse(voucher.Value);
+            }
+            return 0;
         }
 
         private void buttonPesanRide_Click(object sender, EventArgs e)
         {
-            double jarak = Convert.ToDouble(labelJarak.Text.Replace(" KM", ""));
+            if (!ValidasiInput())
+                return;
+
+            if (!ValidasiJarak())
+                return;
+
+            if (!ValidasiWaktuJemput())
+                return;
+
+            if (!ValidasiConsumerLogin())
+                return;
+
+            if (!ValidasiDriverWanita())
+                return;
+
+            try
+            {
+                Trip trip = BuatTrip();
+                Trip.TambahTrip(trip);
+                MessageBox.Show("Pesanan ride berhasil dibuat", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Terjadi kesalahan saat membuat pesanan: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private bool ValidasiInput()
+        {
+            if (string.IsNullOrWhiteSpace(textBoxTitikJemput.Text) ||
+                string.IsNullOrWhiteSpace(textBoxTitikTujuan.Text) ||
+                !IsKoordinatValid())
+            {
+                MessageBox.Show("Mohon lengkapi semua field yang diperlukan!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
+        }
+
+        private bool ValidasiJarak()
+        {
+            if (labelJarak.Text == "-" || string.IsNullOrEmpty(labelJarak.Text))
+            {
+                MessageBox.Show("Mohon pastikan koordinat sudah benar untuk menghitung jarak!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
+        }
+
+        private bool ValidasiWaktuJemput()
+        {
+            if (!radioButtonSekarang.Checked)
+            {
+                DateTime waktu = dateTimePickerJadwalkan.Value;
+                TimeSpan selisih = waktu - DateTime.Now;
+
+                if (selisih.TotalHours > 24)
+                {
+                    MessageBox.Show("Waktu jemput maksimal 24 jam dari sekarang!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+
+                if (selisih.TotalHours < 0)
+                {
+                    MessageBox.Show("Waktu jemput tidak boleh di masa lalu!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private bool ValidasiConsumerLogin()
+        {
+            if (frmUtama.consumerLogin == null)
+            {
+                MessageBox.Show("Anda harus login sebagai consumer untuk membuat pesanan ride!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
+        }
+
+        private bool ValidasiDriverWanita()
+        {
+            if (checkBoxDriverWanita.Checked &&
+                (frmUtama.consumerLogin?.Gender?.ToLower() != "female"))
+            {
+                MessageBox.Show("Hanya konsumen wanita yang dapat meminta driver wanita!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
+        }
+
+        private Trip BuatTrip()
+        {
+            double jarak = Convert.ToDouble(labelJarak.Text.Replace(" KM", "").Replace(" ", ""));
             DateTime waktu = radioButtonSekarang.Checked ? DateTime.Now : dateTimePickerJadwalkan.Value;
+            int tarifPerKm = RideCalculator.GetHargaPerKm(waktu);
+            int baseFee = (int)(jarak * tarifPerKm);
+            int tambahan = HitungTambahan();
+            int discountValue = HitungDiskonVoucher();
+            int total = Math.Max(0, baseFee + tambahan - discountValue);
 
-            int tarif = RideCalculator.GetHargaPerKm(waktu);
-            int tambahan = 0;
+            Voucher voucher = comboBox1.SelectedItem as Voucher;
 
-            if (checkBoxDriverWanita.Checked) tambahan += 1500;
-            if (checkBoxMotorBaru.Checked) tambahan += 5000;
+            Trip trip = new Trip
+            {
+                Consumer = frmUtama.consumerLogin,
+                Pickup_point = textBoxTitikJemput.Text,
+                Destination_point = textBoxTitikTujuan.Text,
+                Latitude_pickup = textBoxLatitudeJemput.Text,
+                Longitude_pickup = textBoxLangitudeJemput.Text,
+                Latitude_dest = textBoxLatitudeTujuan.Text,
+                Longitude_dest = textBoxLangitudeTujuan.Text,
+                Distance = jarak,
+                Pickup_time = waktu.ToString("yyyy-MM-dd HH:mm:ss"),
+                Fee = tarifPerKm.ToString(),
+                Rating = 0,
+                Additional_fee = tambahan,
+                Discount_value = discountValue,
+                Total_fee = total,
+                Status = "pending",
+                Voucher = voucher
+            };
 
-            int total = RideCalculator.HitungTotal(
-                jarak, waktu,
-                checkBoxDriverWanita.Checked,
-                checkBoxMotorBaru.Checked
-            );
-
-            string sql = $@"
-    INSERT INTO trips
-    (consumer_id, pickup_point, destination_point,
-     latitude_pickup, longitude_pickup,
-     latitude_dest, longitude_dest,
-     distance, pickup_time,
-     fee, additional_fee, total_fee,
-     status, date)
-    VALUES
-    (
-        {frmUtama.consumerLogin.Id},
-        '{textBoxTitikJemput.Text.Replace("'", "")}',
-        '{textBoxTitikTujuan.Text.Replace("'", "")}',
-        '{textBoxLatitudeJemput.Text}',
-        '{textBoxLangitudeJemput.Text}',
-        '{textBoxLatitudeTujuan.Text}',
-        '{textBoxLangitudeTujuan.Text}',
-        {jarak},
-        '{waktu:yyyy-MM-dd HH:mm:ss}',
-        {tarif},
-        {tambahan},
-        {total},
-        'ongoing',
-        NOW()
-    )";
-
-            Koneksi.JalankanPerintahDML(sql);
-
-            MessageBox.Show("Pesanan ride berhasil dibuat");
-            this.Close();
+            return trip;
         }
 
         private void FormRide_Load(object sender, EventArgs e)
+        {
+            InisialisasiDateTimePicker();
+            LoadVoucher();
+            AttachEventHandlers();
+            SetDriverWanitaVisibility();
+            HitungOngkosJikaDataAda();
+        }
+
+        private void InisialisasiDateTimePicker()
+        {
+            dateTimePickerJadwalkan.MinDate = DateTime.Now;
+            dateTimePickerJadwalkan.MaxDate = DateTime.Now.AddHours(24);
+            dateTimePickerJadwalkan.Value = DateTime.Now.AddHours(1);
+            dateTimePickerJadwalkan.Enabled = false;
+        }
+
+        private void LoadVoucher()
+        {
+            comboBox1.Items.Clear();
+            comboBox1.Items.Add("Tidak menggunakan voucher");
+            
+            foreach (Voucher v in Voucher.BacaData())
+            {
+                comboBox1.Items.Add(v);
+            }
+            
+            comboBox1.SelectedIndex = 0;
+        }
+
+        private void AttachEventHandlers()
         {
             textBoxLatitudeJemput.TextChanged += (s, ev) => HitungJarakDanOngkos();
             textBoxLangitudeJemput.TextChanged += (s, ev) => HitungJarakDanOngkos();
             textBoxLatitudeTujuan.TextChanged += (s, ev) => HitungJarakDanOngkos();
             textBoxLangitudeTujuan.TextChanged += (s, ev) => HitungJarakDanOngkos();
-
             checkBoxDriverWanita.CheckedChanged += (s, ev) => HitungJarakDanOngkos();
             checkBoxMotorBaru.CheckedChanged += (s, ev) => HitungJarakDanOngkos();
             dateTimePickerJadwalkan.ValueChanged += (s, ev) => HitungJarakDanOngkos();
+            comboBox1.SelectedIndexChanged += (s, ev) => HitungJarakDanOngkos();
+            radioButtonSekarang.CheckedChanged += RadioButtonSekarang_CheckedChanged;
+            radioButtonJadwalkan.CheckedChanged += RadioButtonJadwalkan_CheckedChanged;
+            buttonBatal.Click += ButtonBatal_Click;
+        }
+
+        private void SetDriverWanitaVisibility()
+        {
+            bool isFemale = frmUtama.consumerLogin?.Gender?.ToLower() == "female";
+            
+            if (!isFemale)
+            {
+                checkBoxDriverWanita.Enabled = false;
+                checkBoxDriverWanita.Text = "Driver Wanita (Hanya untuk konsumen wanita)";
+            }
+        }
+
+        private void HitungOngkosJikaDataAda()
+        {
+            this.BeginInvoke(new Action(() =>
+            {
+                if (IsKoordinatValid())
+                {
+                    HitungJarakDanOngkos();
+                }
+            }));
+        }
+
+        private void RadioButtonSekarang_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonSekarang.Checked)
+            {
+                dateTimePickerJadwalkan.Enabled = false;
+                HitungJarakDanOngkos();
+            }
+        }
+
+        private void RadioButtonJadwalkan_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonJadwalkan.Checked)
+            {
+                dateTimePickerJadwalkan.Enabled = true;
+                HitungJarakDanOngkos();
+            }
+        }
+
+        private void ButtonBatal_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

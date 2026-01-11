@@ -41,26 +41,31 @@ namespace Class_Gasslivery
 
         public static Consumer CekLogin(string username, string password)
         {
-            Consumer userLogin = new Consumer();
-            string perintah = $"SELECT * FROM consumers WHERE username = '{username}' AND password = '{password}'";
+            string perintah = $"SELECT * FROM consumers WHERE username = '{username}'";
             MySqlDataReader hasil = Koneksi.JalankanPerintahSelect(perintah);
+            return hasil.Read() ? BacaDataDariReader(hasil) : null;
+        }
 
-            if (hasil.Read())
+        public static Consumer CekLoginById(string userId)
+        {
+            string perintah = $"SELECT * FROM consumers WHERE id = '{userId}'";
+            MySqlDataReader hasil = Koneksi.JalankanPerintahSelect(perintah);
+            return hasil.Read() ? BacaDataDariReader(hasil) : null;
+        }
+
+        private static Consumer BacaDataDariReader(MySqlDataReader hasil)
+        {
+            return new Consumer
             {
-                userLogin.Id = hasil.GetValue(0).ToString();
-                userLogin.Username = hasil.GetValue(1).ToString();
-                userLogin.Password = hasil.GetValue(2).ToString();
-                userLogin.Date = DateTime.Parse (hasil.GetValue(3).ToString()).Date;
-                userLogin.Gender = hasil.GetValue(4).ToString();
-                userLogin.Telp = hasil.GetValue(5).ToString();
-                userLogin.Balance = int.Parse(hasil.GetValue(6).ToString());
-                userLogin.Point = int.Parse(hasil.GetValue(7).ToString());
-                return userLogin;
-            }
-            else
-            {
-                return null;
-            }
+                Id = hasil.GetValue(0).ToString(),
+                Username = hasil.GetValue(1).ToString(),
+                Password = hasil.GetValue(2).ToString(),
+                Date = DateTime.Parse(hasil.GetValue(3).ToString()).Date,
+                Gender = hasil.GetValue(4).ToString(),
+                Telp = hasil.GetValue(5).ToString(),
+                Balance = int.Parse(hasil.GetValue(6).ToString()),
+                Point = int.Parse(hasil.GetValue(7).ToString())
+            };
         }
 
         public override string ToString()

@@ -163,6 +163,7 @@
             this.buttonKirim.TabIndex = 26;
             this.buttonKirim.Text = "Kirim";
             this.buttonKirim.UseVisualStyleBackColor = false;
+            this.buttonKirim.Click += new System.EventHandler(this.buttonKirim_Click);
             // 
             // buttonBatal
             // 
@@ -174,6 +175,7 @@
             this.buttonBatal.TabIndex = 30;
             this.buttonBatal.Text = "Batal";
             this.buttonBatal.UseVisualStyleBackColor = false;
+            this.buttonBatal.Click += new System.EventHandler(this.buttonBatal_Click);
             // 
             // FormRating
             // 

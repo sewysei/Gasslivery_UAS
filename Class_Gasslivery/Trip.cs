@@ -164,5 +164,110 @@ namespace Class_Gasslivery
             Printing p = new Printing(tipeFont, namaFile, 30, 30, 30, 30);
             p.KirimKePrinter();
         }
+
+        public static void TambahTrip(Trip trip)
+        {
+            string voucherId = GetVoucherId(trip.Voucher);
+            string pickupPoint = EscapeSqlString(trip.Pickup_point);
+            string destinationPoint = EscapeSqlString(trip.Destination_point);
+
+            string perintah = $@"INSERT INTO trips 
+                (consumer_id, driver_id, voucher_id, 
+                 longitude_pickup, latitude_pickup, pickup_point, 
+                 longitude_dest, latitude_dest, destination_point, 
+                 distance, pickup_time, fee, rating, status, date, 
+                 additional_fee, discount_value, total_fee) 
+                VALUES 
+                ({trip.Consumer.Id}, NULL, {voucherId}, 
+                 '{trip.Longitude_pickup}', '{trip.Latitude_pickup}', '{pickupPoint}', 
+                 '{trip.Longitude_dest}', '{trip.Latitude_dest}', '{destinationPoint}', 
+                 {trip.Distance}, '{trip.Pickup_time}', '{trip.Fee}', {trip.Rating}, 
+                 '{trip.Status}', NOW(), {trip.Additional_fee}, 
+                 {trip.Discount_value}, {trip.Total_fee})";
+
+            Koneksi.JalankanPerintahDML(perintah);
+        }
+
+        private static string GetVoucherId(Voucher voucher)
+        {
+            return voucher != null && !string.IsNullOrEmpty(voucher.Id) && voucher.Id != "0" 
+                ? voucher.Id 
+                : "NULL";
+        }
+
+        private static string EscapeSqlString(string value)
+        {
+            return value?.Replace("'", "''") ?? "";
+        }
+
+        public static List<Trip> BacaDataByConsumer(string consumerId, string mulai, string akhir)
+        {
+            List<Trip> listHasil = new List<Trip>();
+            string perintah = $@"SELECT t.*, c.username, d.full_name, v.name 
+                FROM trips t 
+                INNER JOIN consumers c ON c.id = t.consumer_id 
+                LEFT JOIN drivers d ON t.driver_id = d.id 
+                LEFT JOIN vouchers v ON v.id = t.voucher_id 
+                WHERE t.consumer_id = {consumerId} 
+                AND t.date BETWEEN '{mulai}' AND '{akhir}' 
+                ORDER BY t.date DESC";
+
+            MySqlDataReader hasil = Koneksi.JalankanPerintahSelect(perintah);
+            while (hasil.Read())
+            {
+                Trip tampung = new Trip();
+                Consumer consumer = new Consumer();
+                Driver driver = new Driver();
+                Voucher voucher = new Voucher();
+
+                tampung.Id = hasil.GetValue(0).ToString();
+                consumer.Id = hasil.GetValue(1).ToString();
+                if (!hasil.IsDBNull(2)) driver.Id = hasil.GetValue(2).ToString();
+                if (!hasil.IsDBNull(3)) voucher.Id = hasil.GetValue(3).ToString();
+                tampung.Longitude_pickup = hasil.GetValue(4).ToString();
+                tampung.Latitude_pickup = hasil.GetValue(5).ToString();
+                tampung.Pickup_point = hasil.GetValue(6).ToString();
+                tampung.Longitude_dest = hasil.GetValue(7).ToString();
+                tampung.Latitude_dest = hasil.GetValue(8).ToString();
+                tampung.Destination_point = hasil.GetValue(9).ToString();
+                tampung.Distance = double.Parse(hasil.GetValue(10).ToString());
+                tampung.Pickup_time = hasil.GetValue(11).ToString();
+                tampung.Fee = hasil.GetValue(12).ToString();
+                tampung.Rating = int.Parse(hasil.GetValue(13).ToString());
+                tampung.Status = hasil.GetValue(14).ToString();
+                tampung.Date = DateTime.Parse(hasil.GetValue(15).ToString());
+                tampung.Additional_fee = int.Parse(hasil.GetValue(16).ToString());
+                tampung.Discount_value = int.Parse(hasil.GetValue(17).ToString());
+                tampung.Total_fee = int.Parse(hasil.GetValue(18).ToString());
+                
+                consumer.Username = hasil.GetValue(19).ToString();
+                if (!hasil.IsDBNull(20)) driver.Full_name = hasil.GetValue(20).ToString();
+                if (!hasil.IsDBNull(21)) voucher.Name = hasil.GetValue(21).ToString();
+                
+                tampung.Consumer = consumer;
+                tampung.Driver = driver;
+                tampung.Voucher = voucher;
+                listHasil.Add(tampung);
+            }
+            return listHasil;
+        }
+
+        public static void UpdateRating(Trip trip)
+        {
+            string perintah = $"UPDATE trips SET rating = {trip.Rating} WHERE id = {trip.Id}";
+            Koneksi.JalankanPerintahDML(perintah);
+            
+            // Update rating driver jika trip sudah completed dan ada driver
+            if (trip.Status == "completed" && trip.Driver != null && !string.IsNullOrEmpty(trip.Driver.Id))
+            {
+                Driver.UpdateRating(trip.Driver.Id, trip.Rating);
+            }
+        }
+
+        public static void UpdateStatus(Trip trip)
+        {
+            string perintah = $"UPDATE trips SET status = '{trip.Status}' WHERE id = {trip.Id}";
+            Koneksi.JalankanPerintahDML(perintah);
+        }
     }
 }

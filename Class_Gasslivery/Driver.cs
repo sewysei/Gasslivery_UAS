@@ -103,5 +103,23 @@ namespace Class_Gasslivery
         {
             return Full_name;
         }
+
+        public static void UpdateRating(string driverId, int newRating)
+        {
+            // Hitung rata-rata rating baru berdasarkan semua trip driver
+            string perintahHitung = $@"SELECT AVG(rating) FROM trips 
+                WHERE driver_id = {driverId} AND rating > 0";
+            MySqlDataReader hasil = Koneksi.JalankanPerintahSelect(perintahHitung);
+            
+            double avgRating = 0;
+            if (hasil.Read() && !hasil.IsDBNull(0))
+            {
+                avgRating = double.Parse(hasil.GetValue(0).ToString());
+            }
+
+            string perintah = $@"UPDATE drivers SET avg_rating = {avgRating} 
+                WHERE id = {driverId}";
+            Koneksi.JalankanPerintahDML(perintah);
+        }
     }
 }

@@ -51,6 +51,7 @@
             this.buttonBatal.TabIndex = 50;
             this.buttonBatal.Text = "Batal";
             this.buttonBatal.UseVisualStyleBackColor = false;
+            this.buttonBatal.Click += new System.EventHandler(this.buttonBatal_Click);
             // 
             // buttonKonfirmasiCancel
             // 
@@ -62,6 +63,7 @@
             this.buttonKonfirmasiCancel.TabIndex = 49;
             this.buttonKonfirmasiCancel.Text = "Konfirmasi Laporan\r\n";
             this.buttonKonfirmasiCancel.UseVisualStyleBackColor = false;
+            this.buttonKonfirmasiCancel.Click += new System.EventHandler(this.buttonKonfirmasiCancel_Click);
             // 
             // textBoxPassword
             // 
