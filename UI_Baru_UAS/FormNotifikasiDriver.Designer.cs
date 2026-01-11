@@ -89,6 +89,7 @@
             this.Controls.Add(this.lblGASLIVERY);
             this.Name = "FormNotifikasiDriver";
             this.Text = "FormNotifikasiDriver";
+            this.Load += new System.EventHandler(this.FormNotifikasiDriver_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewNotifikasiDriver)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

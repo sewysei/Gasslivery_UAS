@@ -54,7 +54,7 @@ namespace Class_Gasslivery
                 tampung.Plate = hasil.GetString(2);
                 tampung.Buy_date = hasil.GetDateTime(3).Date;
                 Driver driver = new Driver();
-                driver.Id = hasil.GetString(4);
+                driver.Id = hasil.GetValue(4).ToString();
                 driver.Full_name = hasil.GetString(5);
                 tampung.Driver = driver;
                 listHasil.Add(tampung);

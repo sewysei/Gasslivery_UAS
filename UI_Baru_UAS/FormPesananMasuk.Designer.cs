@@ -35,7 +35,6 @@
             this.labelUsername = new System.Windows.Forms.Label();
             this.lblGASLIVERY = new System.Windows.Forms.Label();
             this.buttonTolak = new System.Windows.Forms.Button();
-            this.buttonLihatDetail = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPesananMasuk)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,6 +48,7 @@
             this.buttonTutup.TabIndex = 34;
             this.buttonTutup.Text = "Tutup";
             this.buttonTutup.UseVisualStyleBackColor = false;
+            this.buttonTutup.Click += new System.EventHandler(this.buttonTutup_Click);
             // 
             // buttonTerima
             // 
@@ -70,14 +70,21 @@
             this.dataGridViewPesananMasuk.RowTemplate.Height = 24;
             this.dataGridViewPesananMasuk.Size = new System.Drawing.Size(769, 273);
             this.dataGridViewPesananMasuk.TabIndex = 31;
+            this.dataGridViewPesananMasuk.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPesananMasuk_CellContentClick);
+            this.dataGridViewPesananMasuk.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewPesananMasuk_CellFormatting);
             // 
             // comboBoxStatus
             // 
             this.comboBoxStatus.FormattingEnabled = true;
+            this.comboBoxStatus.Items.AddRange(new object[] {
+            "pending",
+            "processing",
+            "delivered"});
             this.comboBoxStatus.Location = new System.Drawing.Point(91, 46);
             this.comboBoxStatus.Name = "comboBoxStatus";
             this.comboBoxStatus.Size = new System.Drawing.Size(141, 24);
             this.comboBoxStatus.TabIndex = 30;
+            this.comboBoxStatus.SelectedIndexChanged += new System.EventHandler(this.comboBoxStatus_SelectedIndexChanged);
             // 
             // labelUsername
             // 
@@ -111,24 +118,12 @@
             this.buttonTolak.Text = "Tolak";
             this.buttonTolak.UseVisualStyleBackColor = false;
             // 
-            // buttonLihatDetail
-            // 
-            this.buttonLihatDetail.BackColor = System.Drawing.Color.Transparent;
-            this.buttonLihatDetail.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonLihatDetail.Location = new System.Drawing.Point(252, 361);
-            this.buttonLihatDetail.Name = "buttonLihatDetail";
-            this.buttonLihatDetail.Size = new System.Drawing.Size(163, 35);
-            this.buttonLihatDetail.TabIndex = 36;
-            this.buttonLihatDetail.Text = "Lihat Detail";
-            this.buttonLihatDetail.UseVisualStyleBackColor = false;
-            // 
             // FormPesananMasuk
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(791, 409);
-            this.Controls.Add(this.buttonLihatDetail);
             this.Controls.Add(this.buttonTolak);
             this.Controls.Add(this.buttonTutup);
             this.Controls.Add(this.buttonTerima);
@@ -154,6 +149,5 @@
         private System.Windows.Forms.Label labelUsername;
         private System.Windows.Forms.Label lblGASLIVERY;
         private System.Windows.Forms.Button buttonTolak;
-        private System.Windows.Forms.Button buttonLihatDetail;
     }
 }

@@ -23,6 +23,7 @@ namespace UI_Baru_UAS
         {
             List<OrderDetail> listHasil = OrderDetail.BacaData(orderInfo.Id);
             dataGridViewDetailPesanan.DataSource = listHasil;
+            dataGridViewDetailPesanan.Columns["Order"].Visible = false;
             int totalPesanan = listHasil.Sum(od => od.Amount);
             labelIDPesanan.Text = orderInfo.Id;
             labelTanggal.Text = orderInfo.Date.ToString("yyyy-MM-dd");

@@ -31,6 +31,7 @@ namespace UI_Baru_UAS
             dataGridViewMonitoringKendaraan.DataSource = listHasil;
             dataGridViewMonitoringKendaraan.Columns["Avg_rating"].HeaderText = "Avg Rating";
             labelTotalKendaraan.Text = listAll.Count.ToString();
+            dataGridViewMonitoringKendaraan.Columns["Id"].Visible = false;
         }
 
         private void textBoxCari_TextChanged(object sender, EventArgs e)

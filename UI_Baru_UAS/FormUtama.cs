@@ -258,7 +258,7 @@ namespace UI_Baru_UAS
             Form frm = Application.OpenForms["FormRiwayatFood"];
             if (frm == null)
             {
-                FormPesananMasuk form = new FormPesananMasuk();
+                FormPesananMasuk form = new FormPesananMasuk(this);
                 form.MdiParent = this;
                 form.Show();
             }

@@ -50,6 +50,7 @@ namespace UI_Baru_UAS
                 labelInactive.Text = listHasil.Count.ToString();
                 labelActive.Text = (listAll.Count - listHasil.Count).ToString();
             }
+            dataGridViewMonitoringDriver.Columns["Id"].Visible = false;
         }
 
         private void comboBoxStatus_SelectedIndexChanged(object sender, EventArgs e)

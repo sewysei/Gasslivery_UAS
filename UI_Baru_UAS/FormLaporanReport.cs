@@ -35,6 +35,7 @@ namespace UI_Baru_UAS
             string akhir = dateTimePickerSampai.Value.Date.ToString("yyyy-MM-dd");
             List<Report> listHasil = Report.BacaData(mulai, akhir);
             dataGridViewLaporanReport.DataSource = listHasil;
+            dataGridViewLaporanReport.Columns["Id"].Visible = false;
 
             if (!dataGridViewLaporanReport.Columns.Contains("btnCheck"))
             {

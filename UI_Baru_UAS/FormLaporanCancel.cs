@@ -31,6 +31,7 @@ namespace UI_Baru_UAS
             string akhir = dateTimePickerSampai.Value.ToString("yyyy-MM-dd");
             List<Cancel> listHasil = Cancel.BacaData(mulai, akhir);
             dataGridViewLaporanCancel.DataSource = listHasil;
+            dataGridViewLaporanCancel.Columns["Id"].Visible = false;
             labelJumlahCancel.Text = listHasil.Count.ToString();
         }
 

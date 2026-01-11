@@ -30,13 +30,14 @@ namespace UI_Baru_UAS
                 }
                 string mulai = dateTimePickerDari.Value.ToString("yyyy-MM-dd");
                 string akhir = dateTimePickerSampai.Value.ToString("yyyy-MM-dd");
-                List<Order> listHasil = Order.BacaData(mulai,akhir);
+                List<Order> listHasil = Order.BacaData("","","",mulai,akhir);
                 dataGridViewLaporanTransaksi.DataSource = listHasil;
                 dataGridViewLaporanTransaksi.Columns["Food_rating"].HeaderText = "Food Rating";
                 dataGridViewLaporanTransaksi.Columns["Driver_rating"].HeaderText = "Driver Rating";
                 dataGridViewLaporanTransaksi.Columns["Discount_value"].HeaderText = "Discount Value";
                 dataGridViewLaporanTransaksi.Columns["Total_fee"].HeaderText = "Total Fee";
                 dataGridViewLaporanTransaksi.Columns["Delivery"].HeaderText = "Destination Point";
+                dataGridViewLaporanTransaksi.Columns["Id"].Visible = false;
                 int totalFee = listHasil.Sum(order => order.Total_fee);
                 labelJumlahTransaksi.Text = $"Rp.{totalFee}";
                 labelTotalTransaksi.Text = listHasil.Count.ToString();
@@ -71,6 +72,7 @@ namespace UI_Baru_UAS
                 dataGridViewLaporanTransaksi.Columns["Additional_fee"].HeaderText = "Additional Fee";
                 dataGridViewLaporanTransaksi.Columns["Discount_value"].HeaderText = "Discount Value";
                 dataGridViewLaporanTransaksi.Columns["Total_fee"].HeaderText = "Total Fee";
+                dataGridViewLaporanTransaksi.Columns["Id"].Visible = false;
                 int totalFee = listHasil.Sum(trip => trip.Total_fee);
                 labelJumlahTransaksi.Text = $"Rp.{totalFee}";
                 labelTotalTransaksi.Text = listHasil.Count.ToString();

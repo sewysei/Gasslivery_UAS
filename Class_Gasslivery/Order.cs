@@ -10,6 +10,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Class_Gasslivery
 {
@@ -58,19 +59,32 @@ namespace Class_Gasslivery
         public int Discount_value { get => discount_value; set => discount_value = value; }
         public int Total_fee { get => total_fee; set => total_fee = value; }
 
-        public static List<Order> BacaData(string mulai = "", string akhir = "")
+        public static List<Order> BacaData(string kolom = "", string nilai = "", string id = "", string mulai = "", string akhir = "")
         {
             List<Order> listHasil = new List<Order>();
-            string perintah;
-
-            perintah = $"SELECT o.*, c.username, dr.full_name, v.name, t.name, d.destination_point, d.fee " +
-                $"FROM orders o INNER JOIN consumers c ON c.id = o.consumer_id " +
-                $"INNER JOIN deliveries d ON d.id = o.delivery_id " +
-                $"INNER JOIN drivers dr ON dr.id = d.driver_id " +
-                $"INNER JOIN tenants t ON t.id = o.tenant_id " +
-                $"INNER JOIN vouchers v ON v.id = o.voucher_id " +
-                $"WHERE o.date BETWEEN '{mulai}' AND '{akhir}' " +
-                $"ORDER BY o.date ASC";
+            string perintah = "";
+            if(kolom == "")
+            {
+                perintah = $"SELECT o.*, c.username, dr.full_name, v.name, t.name, d.destination_point, d.fee " +
+                    $"FROM orders o INNER JOIN consumers c ON c.id = o.consumer_id " +
+                    $"INNER JOIN deliveries d ON d.id = o.delivery_id " +
+                    $"INNER JOIN drivers dr ON dr.id = d.driver_id " +
+                    $"INNER JOIN tenants t ON t.id = o.tenant_id " +
+                    $"INNER JOIN vouchers v ON v.id = o.voucher_id " +
+                    $"WHERE o.date BETWEEN '{mulai}' AND '{akhir}' " +
+                    $"ORDER BY o.date ASC";
+            }
+            else if(kolom == "status")
+            {
+                perintah = $"SELECT o.*, c.username, dr.full_name, v.name, t.name, d.destination_point, d.fee " +
+                   $"FROM orders o INNER JOIN consumers c ON c.id = o.consumer_id " +
+                   $"INNER JOIN deliveries d ON d.id = o.delivery_id " +
+                   $"INNER JOIN drivers dr ON dr.id = d.driver_id " +
+                   $"INNER JOIN tenants t ON t.id = o.tenant_id " +
+                   $"INNER JOIN vouchers v ON v.id = o.voucher_id " +
+                   $"WHERE o.status = '{nilai}' AND o.tenant_id = '{id}' " +
+                   $"ORDER BY o.date ASC";
+            }
 
             MySqlDataReader hasil = Koneksi.JalankanPerintahSelect(perintah);
             while (hasil.Read())
@@ -134,6 +148,17 @@ namespace Class_Gasslivery
             Font tipeFont = new Font("Courier New", 8);
             Printing p = new Printing(tipeFont, namaFile, 30, 30, 30, 30);
             p.KirimKePrinter();
+        }
+
+        public static void GantiStatus(Order order)
+        {
+            string perintah = $"UPDATE orders SET status = '{order.Status}' ";
+            Koneksi.JalankanPerintahDML(perintah);
+        }
+        public static void TolakOrder(Order order)
+        {
+            string perintah = $"DELETE FROM orders WHERE(`id` = '{order.Id}')";
+            Koneksi.JalankanPerintahDML(perintah);
         }
     }
 }

@@ -47,7 +47,7 @@ namespace UI_Baru_UAS
                 string message = textBox1.Text;
                 notification.Driver = selectedDriver;
                 notification.Message = message;
-                notification.Date = DateTime.Now.Date;
+                notification.Date = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd"));
                 Notification.TambahNotifikasi(notification);
             }
             else if (radioButtonSemuaDriver.Checked)
@@ -60,7 +60,7 @@ namespace UI_Baru_UAS
                     string message = textBox1.Text;
                     notification.Driver = selectedDriver;
                     notification.Message = message;
-                    notification.Date = DateTime.Now.Date;
+                    notification.Date = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd"));
                     Notification.TambahNotifikasi(notification);
                 }
             }

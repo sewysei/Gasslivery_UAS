@@ -34,7 +34,7 @@ namespace UI_Baru_UAS
                 hapus.Name = "btnHapus";
                 dataGridViewKelolaMenu.Columns.Add(hapus);
             }
-
+            dataGridViewKelolaMenu.Columns["Id"].Visible = false;
         }
 
         private void buttonTutup_Click(object sender, EventArgs e)
