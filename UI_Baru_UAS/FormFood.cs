@@ -8,12 +8,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace UI_Baru_UAS
 {
     public partial class FormFood : Form
     {
-        List<OrderDetail> keranjang = new List<OrderDetail>();
+        Tenant selectedTenant;
+        BindingList<OrderDetail> keranjang = new BindingList<OrderDetail>();
+        BindingList<Tenant> listTenant;
+
         public FormFood()
         {
             InitializeComponent();
@@ -21,45 +25,22 @@ namespace UI_Baru_UAS
 
         private void FormFood_Load(object sender, EventArgs e)
         {
-            string halal = "";
-            if (checkBoxMenuHalal.Checked)
-            {
-                halal = "yes";
-            }
-            else if (!checkBoxMenuHalal.Checked)
-            {
-                halal = "no";
-            }
-            List<Tenant> listHasil = Tenant.BacaData();
-            comboBoxPilihTenan.DataSource = listHasil; // masih error saat pencet di kerefresh
+            listTenant = new BindingList<Tenant>(Tenant.BacaData());
+
+            comboBoxPilihTenan.DataSource = listTenant;
             comboBoxPilihTenan.DisplayMember = "Name";
-            Tenant selectedTenant = (Tenant)comboBoxPilihTenan.SelectedItem;
-            List<Class_Gasslivery.Menu> listMenu = Class_Gasslivery.Menu.BacaData(selectedTenant, halal);
-            dataGridViewDaftarMenu.DataSource = listMenu;
-            double longitude = (double)numericUpDownLongitude.Value;
-            double latitude = (double)numericUpDownLatitude.Value;
-            double jarak = HitungJarak.HitungJarakKm(double.Parse(selectedTenant.Latitude), double.Parse(selectedTenant.Longitude), latitude, longitude);
-            int rate;
-            if ((DateTime.Now.Hour >= 11 && DateTime.Now.Hour <= 13) || (DateTime.Now.Hour >= 17 && DateTime.Now.Hour <= 19))
-            {
-                rate = 1500;
-            }
-            else
-            {
-                rate = 750;
-            }
 
-            int hitungOngkir = (int)(jarak * rate);
-            labelOngkosAntar.Text = $"{hitungOngkir}";
+            dataGridViewKeranjang.DataSource = keranjang;
 
-            if (!dataGridViewDaftarMenu.Columns.Contains("btnPesan"))
+            if (dataGridViewDaftarMenu.Columns["btnPesan"] == null)
             {
-                DataGridViewButtonColumn pesan = new DataGridViewButtonColumn();
-                pesan.Text = "Pesan";
-                pesan.HeaderText = "Pesan";
-                pesan.UseColumnTextForButtonValue = true;
-                pesan.Name = "btnPesan";
-                dataGridViewDaftarMenu.Columns.Add(pesan);
+                dataGridViewDaftarMenu.Columns.Add(new DataGridViewButtonColumn
+                {
+                    Name = "btnPesan",
+                    HeaderText = "Pesan",
+                    Text = "Pesan",
+                    UseColumnTextForButtonValue = true
+                });
             }
 
             if(keranjang.Count > 0)
@@ -97,11 +78,63 @@ namespace UI_Baru_UAS
                 }
 
             }
+            
+            RefreshMenuOngkir();
+        }
+
+        private void RefreshMenuOngkir()
+        {
+            if (comboBoxPilihTenan.SelectedItem == null) return;
+
+            string halal = "";
+            if (checkBoxMenuHalal.Checked)
+            {
+                halal = "yes";
+            }
+            else if (!checkBoxMenuHalal.Checked)
+            {
+                halal = "";
+            }
+
+            selectedTenant = (Tenant)comboBoxPilihTenan.SelectedItem;
+
+            List<Class_Gasslivery.Menu> listMenu = Class_Gasslivery.Menu.BacaData(selectedTenant, halal);
+            dataGridViewDaftarMenu.DataSource = listMenu;
+
+            double longitude = (double)numericUpDownLongitude.Value;
+            double latitude = (double)numericUpDownLatitude.Value;
+
+            double jarak = HitungJarak.HitungJarakKm(double.Parse(selectedTenant.Latitude), double.Parse(selectedTenant.Longitude), latitude, longitude);
+            int rate;
+
+            if ((DateTime.Now.Hour >= 11 && DateTime.Now.Hour <= 13) || (DateTime.Now.Hour >= 17 && DateTime.Now.Hour <= 19))
+            {
+                rate = 1500;
+            }
+            else
+            {
+                rate = 750;
+            }
+
+            int hitungOngkir = (int)(jarak * rate);
+            labelOngkosAntar.Text = $"{hitungOngkir}";
+
+            dataGridViewDaftarMenu.DataSource = listMenu;
+            if (dataGridViewDaftarMenu.Columns["btnPesan"] == null)
+            {
+                dataGridViewDaftarMenu.Columns.Add(new DataGridViewButtonColumn
+                {
+                    Name = "btnPesan",
+                    HeaderText = "Pesan",
+                    Text = "Pesan",
+                    UseColumnTextForButtonValue = true
+                });
+            }
         }
 
         private void comboBoxPilihTenan_SelectedIndexChanged(object sender, EventArgs e)
         {
-            FormFood_Load(this, e);
+            RefreshMenuOngkir();
         }
 
         private void buttonPesanFood_Click(object sender, EventArgs e)
@@ -116,27 +149,42 @@ namespace UI_Baru_UAS
 
         private void checkBoxMenuHalal_CheckedChanged(object sender, EventArgs e)
         {
-            FormFood_Load(this, e);
+            RefreshMenuOngkir();
         }
 
         private void dataGridViewDaftarMenu_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0) return;
+
             if (e.ColumnIndex == dataGridViewDaftarMenu.Columns["btnPesan"].Index)
             {
                 //Ambil isi datagrid pada baris yang diklik user
-                Class_Gasslivery.Menu selectedMenu = (Class_Gasslivery.Menu)dataGridViewDaftarMenu.CurrentRow.DataBoundItem;
+                Class_Gasslivery.Menu selectedMenu = (Class_Gasslivery.Menu)dataGridViewDaftarMenu.Rows[e.RowIndex].DataBoundItem;
+
+                if (keranjang.Any(k => k.Menu.Id == selectedMenu.Id))
+                    return;
+
+                // Cek stok
+                if (selectedMenu.Stock <= 0)
+                {
+                    MessageBox.Show("Stok habis");
+                    return;
+                }
                 OrderDetail newOrder = new OrderDetail();
                 newOrder.Menu = selectedMenu;
                 newOrder.Amount = 1;
                 keranjang.Add(newOrder);
+                dataGridViewDaftarMenu.Refresh();
             }
         }
 
         private void dataGridViewKeranjang_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0) return;
+            OrderDetail selectedOrderDetail = (OrderDetail)dataGridViewKeranjang.Rows[e.RowIndex].DataBoundItem;
+
             if (e.ColumnIndex == dataGridViewKeranjang.Columns["btnTambah"].Index)
             {
-                OrderDetail selectedOrderDetail = (OrderDetail)dataGridViewDaftarMenu.CurrentRow.DataBoundItem;
                 if(selectedOrderDetail.Menu.Stock > selectedOrderDetail.Amount)
                 {
                     selectedOrderDetail.Amount += 1;
@@ -145,12 +193,9 @@ namespace UI_Baru_UAS
                 {
                     MessageBox.Show("Stok tidak mencukupi");
                 }
-                FormFood_Load(this, e);
             }
-
-            if (e.ColumnIndex == dataGridViewKeranjang.Columns["btnKurang"].Index)
+            else if (e.ColumnIndex == dataGridViewKeranjang.Columns["btnKurang"].Index)
             {
-                OrderDetail selectedOrderDetail = (OrderDetail)dataGridViewDaftarMenu.CurrentRow.DataBoundItem;
                 if (selectedOrderDetail.Amount > 1)
                 {
                     selectedOrderDetail.Amount -= 1;
@@ -163,19 +208,18 @@ namespace UI_Baru_UAS
                         keranjang.Remove(selectedOrderDetail);
                     }
                 }
-                FormFood_Load(this, e);
             }
-
-            if (e.ColumnIndex == dataGridViewKeranjang.Columns["btnHapus"].Index)
+            else if (e.ColumnIndex == dataGridViewKeranjang.Columns["btnHapus"].Index)
             {
-                OrderDetail selectedOrderDetail = (OrderDetail)dataGridViewDaftarMenu.CurrentRow.DataBoundItem;
                 DialogResult result = MessageBox.Show("Yakin menghapus menu ?", "Hapus Menu", MessageBoxButtons.OKCancel);
                 if (result == DialogResult.OK)
                 {
                     keranjang.Remove(selectedOrderDetail);
                 }
-                FormFood_Load(this, e);
             }
+
+            dataGridViewKeranjang.Refresh();
+            dataGridViewDaftarMenu.Refresh();
         }
 
         private void dataGridViewDaftarMenu_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
