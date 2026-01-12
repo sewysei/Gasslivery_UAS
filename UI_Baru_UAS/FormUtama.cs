@@ -121,6 +121,7 @@ namespace UI_Baru_UAS
             if (frm == null)
             {
                 FormFood form = new FormFood();
+                form.consumerLogin = consumerLogin;
                 form.MdiParent = this;
                 form.Show();
             }

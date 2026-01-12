@@ -167,5 +167,14 @@ namespace Class_Gasslivery
             Koneksi.JalankanPerintahDML(perintah);
         }
 
+        public static void BuatOrderan(Order order)
+        {
+            string perintah = $"INSERT INTO orders " +
+                $"(`tenant_id`, `voucher_id`, `date`, `status`, `tip`, `discount_value`, `total_fee`, `consumer_id`) " +
+                $"VALUES('{order.Tenant.Id}', '{order.voucher.Id}', '{order.Date}', '{order.Status}', '{order.Tip}', " +
+                $"'{order.Discount_value}', '{order.Total_fee}', '{order.Consumer.Id}')";
+
+            Koneksi.JalankanPerintahDML(perintah);
+        }
     }
 }
