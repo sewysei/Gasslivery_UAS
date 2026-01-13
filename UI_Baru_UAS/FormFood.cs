@@ -37,6 +37,7 @@ namespace UI_Baru_UAS
             noVoucher.Id = null;
             noVoucher.Name = "Tidak menggunakan voucher";
             noVoucher.Conditions = "0";
+            noVoucher.Value = "0";
             comboBoxVoucher.Items.Add(noVoucher);
 
             foreach (Voucher v in Voucher.BacaData())
@@ -214,15 +215,16 @@ namespace UI_Baru_UAS
             if (selectedVoucher.Name == "Tidak menggunakan Voucher")
             {
                 pesananBaru.Voucher = null;
+                pesananBaru.Discount_value = 0;
             }
             else
             {
                 pesananBaru.Voucher = selectedVoucher;
+                pesananBaru.Discount_value = int.Parse(selectedVoucher.Value);
             }
             pesananBaru.Date = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd"));
             pesananBaru.Status = "pending";
             pesananBaru.Tip = 0;
-            pesananBaru.Discount_value = int.Parse(selectedVoucher.Value);
             pesananBaru.Total_fee = totalBayar - pesananBaru.Discount_value;
             if (pesananBaru.Total_fee < consumerLogin.Balance)
             {
@@ -231,6 +233,16 @@ namespace UI_Baru_UAS
                     $"Total Transaksi: Rp. {pesananBaru.Total_fee} ", "Saldo Tidak Mencukupi");
             }
             pesananBaru.Consumer = consumerLogin;
+            int idOrderBaru = Order.BuatOrderan(pesananBaru);
+            if(idOrderBaru != 0)
+            {
+                foreach(OrderDetail od in keranjang)
+                {
+                    OrderDetail.BuatOrderDetail(od,idOrderBaru);
+                }
+                MessageBox.Show("Pesanan Berhasil dibuat, tunggu konfirmasi tenant.", "Berhasil");
+            }
+
         }
 
         private void buttonBatal_Click(object sender, EventArgs e)
@@ -245,10 +257,12 @@ namespace UI_Baru_UAS
 
         private void dataGridViewDaftarMenu_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0) return;
             if (e.ColumnIndex == dataGridViewDaftarMenu.Columns["btnPesan"].Index)
             {
                 //Ambil isi datagrid pada baris yang diklik user
                 Class_Gasslivery.Menu selectedMenu = (Class_Gasslivery.Menu)dataGridViewDaftarMenu.CurrentRow.DataBoundItem;
+                if ((Class_Gasslivery.Menu)selectedMenu == null) return;
                 bool isOrdered = false;
                 
                 if (keranjang.Count > 0) {

@@ -50,5 +50,12 @@ namespace Class_Gasslivery
             MySqlDataReader drHasil = cmd.ExecuteReader();
             return drHasil;
         }
+
+        public static int GetLastInsertId(string perintah)
+        {
+            Koneksi k = new Koneksi();
+            MySqlCommand cmd = new MySqlCommand(perintah, k.MyKon);
+            return Convert.ToInt32(cmd.ExecuteScalar());
+        }
     }
 }

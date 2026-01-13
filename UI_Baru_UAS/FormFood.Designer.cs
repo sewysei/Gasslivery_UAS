@@ -345,16 +345,16 @@
             // comboBoxVoucher
             // 
             this.comboBoxVoucher.FormattingEnabled = true;
-            this.comboBoxVoucher.Location = new System.Drawing.Point(929, 317);
+            this.comboBoxVoucher.Location = new System.Drawing.Point(919, 319);
             this.comboBoxVoucher.Name = "comboBoxVoucher";
-            this.comboBoxVoucher.Size = new System.Drawing.Size(144, 24);
+            this.comboBoxVoucher.Size = new System.Drawing.Size(154, 24);
             this.comboBoxVoucher.TabIndex = 50;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(788, 315);
+            this.label10.Location = new System.Drawing.Point(767, 319);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(135, 22);
             this.label10.TabIndex = 51;
