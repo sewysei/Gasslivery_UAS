@@ -32,22 +32,11 @@ namespace UI_Baru_UAS
 
         private void FormFood_Load(object sender, EventArgs e)
         {
-            comboBoxVoucher.Items.Clear();
-            Voucher noVoucher = new Voucher();
-            noVoucher.Id = null;
-            noVoucher.Name = "Tidak menggunakan voucher";
-            noVoucher.Conditions = "0";
-            noVoucher.Value = "0";
-            comboBoxVoucher.Items.Add(noVoucher);
-
-            foreach (Voucher v in Voucher.BacaData())
-            {
-                comboBoxVoucher.Items.Add(v);
-            }
-
-            comboBoxVoucher.SelectedIndex = 0;
-            comboBoxVoucher.DisplayMember = "Name";     
-            selectedVoucher = (Voucher)comboBoxVoucher.SelectedItem;
+            comboBoxVocer.Items.Clear();
+            List<Voucher> vocer = new List<Voucher>(Voucher.BacaData());
+            comboBoxVocer.DataSource = vocer;
+            comboBoxVocer.DisplayMember = "Name";     
+            selectedVoucher = comboBoxVocer.SelectedItem as Voucher;
 
             string halal = "";
             if(checkBoxMenuHalal.Checked)
@@ -212,35 +201,45 @@ namespace UI_Baru_UAS
             }
             Order pesananBaru = new Order();
             pesananBaru.Tenant = selectedTenant;
-            if (selectedVoucher.Name == "Tidak menggunakan Voucher")
-            {
-                pesananBaru.Voucher = null;
-                pesananBaru.Discount_value = 0;
-            }
-            else
-            {
-                pesananBaru.Voucher = selectedVoucher;
-                pesananBaru.Discount_value = int.Parse(selectedVoucher.Value);
-            }
-            pesananBaru.Date = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd"));
+            pesananBaru.Voucher = selectedVoucher;
+            pesananBaru.Discount_value = int.Parse(selectedVoucher.Value);
             pesananBaru.Status = "pending";
             pesananBaru.Tip = 0;
             pesananBaru.Total_fee = totalBayar - pesananBaru.Discount_value;
-            if (pesananBaru.Total_fee < consumerLogin.Balance)
+            if (pesananBaru.Total_fee > consumerLogin.Balance)
             {
                 MessageBox.Show("Saldo Gass-mon Anda tidak mencukupi, mohon topup terlebih dahulu \n " +
                     $"Saldo Anda: Rp. {consumerLogin.Balance} \n " +
                     $"Total Transaksi: Rp. {pesananBaru.Total_fee} ", "Saldo Tidak Mencukupi");
             }
-            pesananBaru.Consumer = consumerLogin;
-            int idOrderBaru = Order.BuatOrderan(pesananBaru);
-            if(idOrderBaru != 0)
+            else
             {
-                foreach(OrderDetail od in keranjang)
+                DialogResult dialog = MessageBox.Show("Konfirmasi pembayaran \n " +
+                    $"Saldo Anda: Rp. {consumerLogin.Balance} \n " +
+                    $"Total Transaksi: Rp. {pesananBaru.Total_fee} ", "Konfirmasi", MessageBoxButtons.OKCancel);
+
+                if(dialog == DialogResult.OK)
                 {
-                    OrderDetail.BuatOrderDetail(od,idOrderBaru);
+
+                    pesananBaru.Consumer = consumerLogin;
+                    int idOrderBaru = Order.BuatOrderan(pesananBaru);
+                    if(idOrderBaru != 0)
+                    {
+                        int total = 0;
+                        foreach(OrderDetail od in keranjang)
+                        {
+                            total += od.Total_price;
+                            OrderDetail.BuatOrderDetail(od,idOrderBaru);
+                        }
+                        consumerLogin.Balance -= total;
+                        Consumer.UpdateBalance(consumerLogin);
+                        MessageBox.Show("Pesanan Berhasil dibuat, tunggu konfirmasi tenant.", "Berhasil");
+                    }
                 }
-                MessageBox.Show("Pesanan Berhasil dibuat, tunggu konfirmasi tenant.", "Berhasil");
+                else
+                {
+                    MessageBox.Show("Pesanan tidak jadi dibuat ", "Cancel Pesanan");
+                }
             }
 
         }

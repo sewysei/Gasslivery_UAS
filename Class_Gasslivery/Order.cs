@@ -70,7 +70,7 @@ namespace Class_Gasslivery
                     $"INNER JOIN deliveries d ON d.id = o.delivery_id " +
                     $"INNER JOIN drivers dr ON dr.id = d.driver_id " +
                     $"INNER JOIN tenants t ON t.id = o.tenant_id " +
-                    $"LEFT JOIN vouchers v ON v.id = o.voucher_id " +
+                    $"INNER JOIN vouchers v ON v.id = o.voucher_id " +
                     $"WHERE o.date BETWEEN '{mulai}' AND '{akhir}' " +
                     $"ORDER BY o.date ASC";
             }
@@ -78,10 +78,10 @@ namespace Class_Gasslivery
             {
                 perintah = $"SELECT o.*, c.username, dr.full_name, v.name, t.name, d.destination_point, d.fee " +
                    $"FROM orders o INNER JOIN consumers c ON c.id = o.consumer_id " +
-                   $"INNER JOIN deliveries d ON d.id = o.delivery_id " +
-                   $"INNER JOIN drivers dr ON dr.id = d.driver_id " +
+                   $"LEFT JOIN deliveries d ON d.id = o.delivery_id " +
+                   $"LEFT JOIN drivers dr ON dr.id = d.driver_id " +
                    $"INNER JOIN tenants t ON t.id = o.tenant_id " +
-                   $"LEFT JOIN vouchers v ON v.id = o.voucher_id " +
+                   $"INNER JOIN vouchers v ON v.id = o.voucher_id " +
                    $"WHERE o.status = '{nilai}' AND o.tenant_id = '{id}' " +
                    $"ORDER BY o.date ASC";
             }
@@ -92,8 +92,8 @@ namespace Class_Gasslivery
                    $"INNER JOIN deliveries d ON d.id = o.delivery_id " +
                    $"INNER JOIN drivers dr ON dr.id = d.driver_id " +
                    $"INNER JOIN tenants t ON t.id = o.tenant_id " +
-                   $"LEFT JOIN vouchers v ON v.id = o.voucher_id " +
-                   $"WHERE o.date BETWEEN '{mulai}' AND '{akhir}' AND o.tenant_id = {id} AND o.status = delivered " +
+                   $"INNER JOIN vouchers v ON v.id = o.voucher_id " +
+                   $"WHERE o.date BETWEEN '{mulai}' AND '{akhir}' AND o.tenant_id = '{id}' AND o.status = 'delivered' " +
                    $"ORDER BY o.date ASC";
             }
 
@@ -111,18 +111,18 @@ namespace Class_Gasslivery
                 voucher.Id = hasil.GetValue(3).ToString();
                 tampung.Date = DateTime.Parse(hasil.GetValue(4).ToString()).Date;
                 tampung.Status = hasil.GetValue(5).ToString();
-                tampung.Food_rating = int.Parse(hasil.GetValue(6).ToString());
-                tampung.Driver_rating = int.Parse(hasil.GetValue(7).ToString());
-                tampung.Tip = int.Parse(hasil.GetValue(8).ToString());
-                tampung.Discount_value = int.Parse(hasil.GetValue(9).ToString());
-                tampung.Total_fee = int.Parse(hasil.GetValue(10).ToString());
+                tampung.Food_rating = hasil.GetInt32(6);
+                tampung.Driver_rating = hasil.GetInt32(7);
+                tampung.Tip = hasil.GetInt32(8);
+                tampung.Discount_value = hasil.GetInt32(9);
+                tampung.Total_fee = hasil.GetInt32(10);
                 consumer.Id = hasil.GetValue(11).ToString();
                 consumer.Username = hasil.GetValue(12).ToString();
                 delivery.Driver.Full_name = hasil.GetValue(13).ToString();
                 voucher.Name = hasil.GetValue(14).ToString();
                 tenant.Name = hasil.GetValue(15).ToString();
                 delivery.Destination_point = hasil.GetValue(16).ToString();
-                delivery.Fee = int.Parse(hasil.GetValue(17).ToString());
+                delivery.Fee = hasil.GetInt32(17);
                 tampung.Consumer = consumer;
                 tampung.Delivery = delivery;
                 tampung.Tenant = tenant;
@@ -169,12 +169,24 @@ namespace Class_Gasslivery
 
         public static int BuatOrderan(Order order)
         {
-            string perintah = $"INSERT INTO orders " +
-                $"(`tenant_id`, `voucher_id`, `date`, `status`, `tip`, `discount_value`, `total_fee`, `consumer_id`) " +
-                $"VALUES('{order.Tenant.Id}', '{order.voucher.Id}', '{order.Date}', '{order.Status}', '{order.Tip}', " +
-                $"'{order.Discount_value}', '{order.Total_fee}', '{order.Consumer.Id}'); " +
-                $"SELECT LAST_INSERT_ID();";
-
+            string perintah = "";
+            if(order == null)
+            {
+               perintah = $"INSERT INTO orders " +
+                   $"(`tenant_id`, `date`, `status`, `tip`, `discount_value`, `total_fee`, `consumer_id`) " +
+                   $"VALUES('{order.Tenant.Id}', NOW(), '{order.Status}', '{order.Tip}', " +
+                   $"'{order.Discount_value}', '{order.Total_fee}', '{order.Consumer.Id}'); " +
+                   $"SELECT LAST_INSERT_ID();";
+            }
+            else
+            {
+               perintah = $"INSERT INTO orders " +
+                    $"(`tenant_id`, `voucher_id`, `date`, `status`, `tip`, `discount_value`, `total_fee`, `consumer_id`) " +
+                    $"VALUES('{order.Tenant.Id}', '{order.voucher.Id}', NOW(), '{order.Status}', '{order.Tip}', " +
+                    $"'{order.Discount_value}', '{order.Total_fee}', '{order.Consumer.Id}'); " +
+                    $"SELECT LAST_INSERT_ID();";
+            }
+                
             int idBaru = Koneksi.GetLastInsertId(perintah);
 
             return idBaru;

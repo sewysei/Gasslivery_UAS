@@ -90,16 +90,28 @@ namespace Class_Gasslivery
         public int Discount_value { get => discount_value; set => discount_value = value; }
         public int Total_fee { get => total_fee; set => total_fee = value; }
 
-        public static List<Trip> BacaData(string mulai, string akhir)
+        public static List<Trip> BacaData(string mulai = "", string akhir = "")
         {
             List<Trip> listHasil = new List<Trip>();
             string perintah;
-            perintah = $"SELECT t.*, c.username, d.full_name, v.name " +
-            $"FROM trips t INNER JOIN consumers c ON c.id = t.consumer_id " +
-            $"INNER JOIN drivers d ON t.driver_id = d.id " +
-            $"LEFT JOIN vouchers v ON v.id = t.voucher_id " +
-            $"WHERE t.date BETWEEN '{mulai}' AND '{akhir}' " +
-            $"ORDER BY t.date ASC";
+            if(mulai == "")
+            {
+                perintah = $"SELECT t.*, c.username, d.full_name, v.name " +
+                    $"FROM trips t INNER JOIN consumers c ON c.id = t.consumer_id " +
+                    $"INNER JOIN drivers d ON t.driver_id = d.id " +
+                    $"LEFT JOIN vouchers v ON v.id = t.voucher_id " +
+                    $"WHERE t.status = 'pending' " +
+                    $"ORDER BY t.date ASC";
+            }
+            else
+            {
+                perintah = $"SELECT t.*, c.username, d.full_name, v.name " +
+                    $"FROM trips t INNER JOIN consumers c ON c.id = t.consumer_id " +
+                    $"INNER JOIN drivers d ON t.driver_id = d.id " +
+                    $"LEFT JOIN vouchers v ON v.id = t.voucher_id " +
+                    $"WHERE t.date BETWEEN '{mulai}' AND '{akhir}' " +
+                    $"ORDER BY t.date ASC";
+            }
             MySqlDataReader hasil = Koneksi.JalankanPerintahSelect(perintah);
             while (hasil.Read())
             {

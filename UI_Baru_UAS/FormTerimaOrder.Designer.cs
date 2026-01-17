@@ -69,6 +69,7 @@
             this.comboBoxJenisOrder.Name = "comboBoxJenisOrder";
             this.comboBoxJenisOrder.Size = new System.Drawing.Size(141, 24);
             this.comboBoxJenisOrder.TabIndex = 17;
+            this.comboBoxJenisOrder.SelectedIndexChanged += new System.EventHandler(this.comboBoxJenisOrder_SelectedIndexChanged);
             // 
             // dataGridViewDaftarOrder
             // 
@@ -79,6 +80,7 @@
             this.dataGridViewDaftarOrder.RowTemplate.Height = 24;
             this.dataGridViewDaftarOrder.Size = new System.Drawing.Size(769, 273);
             this.dataGridViewDaftarOrder.TabIndex = 18;
+            this.dataGridViewDaftarOrder.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewDaftarOrder_CellContentClick);
             // 
             // buttonTerimaOrder
             // 
@@ -112,6 +114,7 @@
             this.buttonTutup.TabIndex = 27;
             this.buttonTutup.Text = "Tutup";
             this.buttonTutup.UseVisualStyleBackColor = false;
+            this.buttonTutup.Click += new System.EventHandler(this.buttonTutup_Click);
             // 
             // FormTerimaOrder
             // 

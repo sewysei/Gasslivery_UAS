@@ -53,8 +53,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.numericUpDownLongitude = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownLatitude = new System.Windows.Forms.NumericUpDown();
-            this.comboBoxVoucher = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.comboBoxVocer = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDaftarMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewKeranjang)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownLongitude)).BeginInit();
@@ -342,14 +342,6 @@
             this.numericUpDownLatitude.TabIndex = 49;
             this.numericUpDownLatitude.ValueChanged += new System.EventHandler(this.numericUpDownLatitude_ValueChanged);
             // 
-            // comboBoxVoucher
-            // 
-            this.comboBoxVoucher.FormattingEnabled = true;
-            this.comboBoxVoucher.Location = new System.Drawing.Point(919, 319);
-            this.comboBoxVoucher.Name = "comboBoxVoucher";
-            this.comboBoxVoucher.Size = new System.Drawing.Size(154, 24);
-            this.comboBoxVoucher.TabIndex = 50;
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -360,14 +352,22 @@
             this.label10.TabIndex = 51;
             this.label10.Text = "Pilih Voucher:";
             // 
+            // comboBoxVocer
+            // 
+            this.comboBoxVocer.FormattingEnabled = true;
+            this.comboBoxVocer.Location = new System.Drawing.Point(908, 319);
+            this.comboBoxVocer.Name = "comboBoxVocer";
+            this.comboBoxVocer.Size = new System.Drawing.Size(165, 24);
+            this.comboBoxVocer.TabIndex = 52;
+            // 
             // FormFood
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(1099, 541);
+            this.Controls.Add(this.comboBoxVocer);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.comboBoxVoucher);
             this.Controls.Add(this.numericUpDownLatitude);
             this.Controls.Add(this.numericUpDownLongitude);
             this.Controls.Add(this.label8);
@@ -432,7 +432,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.NumericUpDown numericUpDownLongitude;
         private System.Windows.Forms.NumericUpDown numericUpDownLatitude;
-        private System.Windows.Forms.ComboBox comboBoxVoucher;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox comboBoxVocer;
     }
 }
