@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Schema;
 
 namespace Class_Gasslivery
 {
@@ -17,6 +18,7 @@ namespace Class_Gasslivery
         private string longitude;
         private string latitude;
         private double avg_rating;
+        private int total_rating;
 
         public Tenant()
         {
@@ -38,6 +40,7 @@ namespace Class_Gasslivery
         public string Longitude { get => longitude; set => longitude = value; }
         public string Latitude { get => latitude; set => latitude = value; }
         public double Avg_rating { get => avg_rating; set => avg_rating = value; }
+        public int Total_rating { get => total_rating; set => total_rating = value; }
 
         public static Tenant CekLogin(string username, string password)
         {
@@ -55,6 +58,7 @@ namespace Class_Gasslivery
                 userLogin.Longitude = hasil.GetValue(5).ToString();
                 userLogin.Latitude = hasil.GetValue(6).ToString();
                 userLogin.Avg_rating = double.Parse(hasil.GetValue(7).ToString());
+                userLogin.Total_rating = int.Parse(hasil.GetValue(8).ToString());
                 return userLogin;
             }
             else
@@ -85,6 +89,7 @@ namespace Class_Gasslivery
                 tampung.Longitude = hasil.GetValue(5).ToString();
                 tampung.Latitude = hasil.GetValue(6).ToString();
                 tampung.Avg_rating = double.Parse(hasil.GetValue(7).ToString());
+                tampung.Total_rating = int.Parse(hasil.GetValue(8).ToString());
                 listHasil.Add(tampung);
             }
             return listHasil;

@@ -25,7 +25,6 @@ namespace Class_Gasslivery
         private string status; // ENUM('pending', 'processing', 'delivered', 'cancelled')
         private int food_rating;
         private int driver_rating;
-        private int tip;
         private int discount_value;
         private int total_fee;
 
@@ -40,7 +39,6 @@ namespace Class_Gasslivery
             this.Status = "";
             this.Food_rating = 0;
             this.Driver_rating = 0;
-            this.Tip = 0;
             this.Discount_value = 0;
             this.Total_fee = 0;
         }
@@ -55,7 +53,6 @@ namespace Class_Gasslivery
         public string Status { get => status; set => status = value; }
         public int Food_rating { get => food_rating; set => food_rating = value; }
         public int Driver_rating { get => driver_rating; set => driver_rating = value; }
-        public int Tip { get => tip; set => tip = value; }
         public int Discount_value { get => discount_value; set => discount_value = value; }
         public int Total_fee { get => total_fee; set => total_fee = value; }
 
@@ -96,8 +93,19 @@ namespace Class_Gasslivery
                    $"WHERE o.date BETWEEN '{mulai}' AND '{akhir}' AND o.tenant_id = '{id}' AND o.status = 'delivered' " +
                    $"ORDER BY o.date ASC";
             }
+            else if (kolom == "consumer")
+            {
+                perintah = $"SELECT o.*, c.username, dr.full_name, v.name, t.name, d.destination_point, d.fee " +
+                    $"FROM orders o INNER JOIN consumers c ON c.id = o.consumer_id " +
+                    $"LEFT JOIN deliveries d ON d.id = o.delivery_id " +
+                    $"LEFT JOIN drivers dr ON dr.id = d.driver_id " +
+                    $"INNER JOIN tenants t ON t.id = o.tenant_id " +
+                    $"INNER JOIN vouchers v ON v.id = o.voucher_id " +
+                    $"WHERE o.date BETWEEN '{mulai}' AND '{akhir}' AND o.consumer_id = {id} " +
+                    $"ORDER BY o.date ASC;";
+            }
 
-            MySqlDataReader hasil = Koneksi.JalankanPerintahSelect(perintah);
+                MySqlDataReader hasil = Koneksi.JalankanPerintahSelect(perintah);
             while (hasil.Read())
             {
                 Order tampung = new Order();
@@ -111,18 +119,17 @@ namespace Class_Gasslivery
                 voucher.Id = hasil.GetValue(3).ToString();
                 tampung.Date = DateTime.Parse(hasil.GetValue(4).ToString()).Date;
                 tampung.Status = hasil.GetValue(5).ToString();
-                tampung.Food_rating = hasil.GetInt32(6);
-                tampung.Driver_rating = hasil.GetInt32(7);
-                tampung.Tip = hasil.GetInt32(8);
-                tampung.Discount_value = hasil.GetInt32(9);
-                tampung.Total_fee = hasil.GetInt32(10);
-                consumer.Id = hasil.GetValue(11).ToString();
-                consumer.Username = hasil.GetValue(12).ToString();
-                delivery.Driver.Full_name = hasil.GetValue(13).ToString();
-                voucher.Name = hasil.GetValue(14).ToString();
-                tenant.Name = hasil.GetValue(15).ToString();
-                delivery.Destination_point = hasil.GetValue(16).ToString();
-                delivery.Fee = hasil.GetInt32(17);
+                tampung.Food_rating = int.Parse(hasil.GetValue(6).ToString());
+                tampung.Driver_rating = int.Parse(hasil.GetValue(7).ToString());
+                tampung.Discount_value = int.Parse(hasil.GetValue(8).ToString());
+                tampung.Total_fee = int.Parse(hasil.GetValue(9).ToString());
+                consumer.Id = hasil.GetValue(10).ToString();
+                consumer.Username = hasil.GetValue(11).ToString();
+                delivery.Driver.Full_name = hasil.GetValue(12).ToString();
+                voucher.Name = hasil.GetValue(13).ToString();
+                tenant.Name = hasil.GetValue(14).ToString();
+                delivery.Destination_point = hasil.GetValue(15).ToString();
+                delivery.Fee = int.Parse(hasil.GetValue(16).ToString());
                 tampung.Consumer = consumer;
                 tampung.Delivery = delivery;
                 tampung.Tenant = tenant;
@@ -170,22 +177,12 @@ namespace Class_Gasslivery
         public static int BuatOrderan(Order order)
         {
             string perintah = "";
-            if(order == null)
-            {
-               perintah = $"INSERT INTO orders " +
-                   $"(`tenant_id`, `date`, `status`, `tip`, `discount_value`, `total_fee`, `consumer_id`) " +
-                   $"VALUES('{order.Tenant.Id}', NOW(), '{order.Status}', '{order.Tip}', " +
-                   $"'{order.Discount_value}', '{order.Total_fee}', '{order.Consumer.Id}'); " +
-                   $"SELECT LAST_INSERT_ID();";
-            }
-            else
-            {
-               perintah = $"INSERT INTO orders " +
-                    $"(`tenant_id`, `voucher_id`, `date`, `status`, `tip`, `discount_value`, `total_fee`, `consumer_id`) " +
-                    $"VALUES('{order.Tenant.Id}', '{order.voucher.Id}', NOW(), '{order.Status}', '{order.Tip}', " +
-                    $"'{order.Discount_value}', '{order.Total_fee}', '{order.Consumer.Id}'); " +
-                    $"SELECT LAST_INSERT_ID();";
-            }
+
+            perintah = $"INSERT INTO orders " +
+                     $"(`delivery_id`, `tenant_id`, `voucher_id`, `date`, `status`, `food_rating`,  `driver_rating`,  `discount_value`, `total_fee`, `consumer_id`) " +
+                     $"VALUES( '1', '{order.Tenant.Id}', '{order.voucher.Id}', NOW(), '{order.Status}', '0', '0', " +
+                     $"'{order.Discount_value}', '{order.Total_fee}', '{order.Consumer.Id}'); " +
+                     $"SELECT LAST_INSERT_ID();";
                 
             int idBaru = Koneksi.GetLastInsertId(perintah);
 

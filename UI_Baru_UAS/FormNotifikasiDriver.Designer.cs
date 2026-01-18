@@ -65,6 +65,7 @@
             this.buttonRefresh.TabIndex = 27;
             this.buttonRefresh.Text = "Refresh";
             this.buttonRefresh.UseVisualStyleBackColor = false;
+            this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
             // 
             // buttonTutup
             // 
@@ -76,6 +77,7 @@
             this.buttonTutup.TabIndex = 31;
             this.buttonTutup.Text = "Tutup";
             this.buttonTutup.UseVisualStyleBackColor = false;
+            this.buttonTutup.Click += new System.EventHandler(this.buttonTutup_Click);
             // 
             // FormNotifikasiDriver
             // 

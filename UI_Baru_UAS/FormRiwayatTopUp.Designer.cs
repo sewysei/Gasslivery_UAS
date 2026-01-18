@@ -116,7 +116,7 @@
             this.labelTotalTopUpPeriodeIni.AutoSize = true;
             this.labelTotalTopUpPeriodeIni.BackColor = System.Drawing.Color.Transparent;
             this.labelTotalTopUpPeriodeIni.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelTotalTopUpPeriodeIni.Location = new System.Drawing.Point(240, 325);
+            this.labelTotalTopUpPeriodeIni.Location = new System.Drawing.Point(252, 325);
             this.labelTotalTopUpPeriodeIni.Name = "labelTotalTopUpPeriodeIni";
             this.labelTotalTopUpPeriodeIni.Size = new System.Drawing.Size(46, 22);
             this.labelTotalTopUpPeriodeIni.TabIndex = 44;

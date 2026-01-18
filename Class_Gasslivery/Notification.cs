@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,8 +29,35 @@ namespace Class_Gasslivery
 
         public static void TambahNotifikasi(Notification notif)
         {
-            string perintah = $"INSERT INTO notifications (`message`, `date`, `driver_id`) VALUES ('{notif.Message}', '{notif.Date}', '{notif.Driver.Id}');";
+            string perintah = $"INSERT INTO notifications (`message`, `date`, `driver_id`) VALUES ('{notif.Message}', NOW(), '{notif.Driver.Id}');";
             Koneksi.JalankanPerintahDML(perintah);
+        }
+
+        public static List<Notification> BacaData(string id = "")
+        {
+            List<Notification> listHasil = new List<Notification>();
+            string perintah = "";
+
+            perintah = $"SELECT n.*, d.id, d.full_name " +
+                $"FROM notifications n INNER JOIN drivers d ON d.id = n.driver_id " +
+                $"WHERE n.driver_id = {id} " +
+                $"ORDER BY n.date DESC ";
+
+
+            MySqlDataReader hasil = Koneksi.JalankanPerintahSelect(perintah);
+            while (hasil.Read())
+            {
+                Notification tampung = new Notification();
+                Driver driver = new Driver();
+                tampung.Id = hasil.GetValue(0).ToString();
+                tampung.Message = hasil.GetValue(1).ToString();
+                tampung.Date = DateTime.Parse(hasil.GetValue(2).ToString()).Date;
+                driver.Id = hasil.GetValue(3).ToString();
+                driver.Full_name = hasil.GetValue(4).ToString();
+                tampung.Driver = driver;
+                listHasil.Add(tampung);
+            }
+            return listHasil;
         }
     }
 }

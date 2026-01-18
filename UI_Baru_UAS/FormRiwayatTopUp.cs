@@ -22,13 +22,21 @@ namespace UI_Baru_UAS
         private void FormRiwayatTopUp_Load(object sender, EventArgs e)
         {
             frm = (FormUtama)this.MdiParent;
-            string mulai = dateTimePickerDari.Value.ToString("yyyy-MM-dd");
-            string sampai = dateTimePickerSampai.Value.ToString("yyyy-MM-dd");
-            List<TopUp> topap  =  TopUp.BacaData(mulai, sampai, frm.consumerLogin.Id);
-            dataGridViewRiwayatTopUp.DataSource = topap;
-            labelTotalTopUpPeriodeIni.Text = topap.Count.ToString();
+            RefreshData();
+
         }
 
+        private void RefreshData()
+        {
+            string mulai = dateTimePickerDari.Value.ToString("yyyy-MM-dd");
+            string sampai = dateTimePickerSampai.Value.ToString("yyyy-MM-dd");
+            List<TopUp> topap = TopUp.BacaData(mulai, sampai, frm.consumerLogin.Id);
+            dataGridViewRiwayatTopUp.DataSource = topap;
+            int totaltopap = topap.Sum(t => t.Amount);
+            labelTotalTopUpPeriodeIni.Text = $"Rp. {totaltopap}";
+            dataGridViewRiwayatTopUp.Columns["Id"].Visible = false;
+        }
+        
         private void buttonTutup_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -36,12 +44,13 @@ namespace UI_Baru_UAS
 
         private void dateTimePickerDari_ValueChanged(object sender, EventArgs e)
         {
-            FormRiwayatTopUp_Load(this, e);
+            RefreshData();
         }
 
         private void dateTimePickerSampai_ValueChanged(object sender, EventArgs e)
         {
-            FormRiwayatTopUp_Load(this, e);
+            RefreshData();
+
         }
     }
 }

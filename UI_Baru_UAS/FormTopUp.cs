@@ -23,6 +23,7 @@ namespace UI_Baru_UAS
         {
             frm = (FormUtama)this.MdiParent;
             labelSaldoSaatIni.Text = $"Rp. {frm.consumerLogin.Balance}";
+            textBoxNominal.Text = "";
         }
 
         private void buttonBatal_Click(object sender, EventArgs e)
@@ -41,6 +42,7 @@ namespace UI_Baru_UAS
             TopUp.TambahSaldo(topap);
             MessageBox.Show($"Berhasil Topup sebesar Rp. {nominal}\n" +
                 $"Silahkan lakukan transaksi", "Berhasil Topup");
+            FormTopUp_Load(this, e);
         }
     }
 }

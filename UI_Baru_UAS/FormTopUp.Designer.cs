@@ -82,7 +82,7 @@
             // 
             // textBoxNominal
             // 
-            this.textBoxNominal.Location = new System.Drawing.Point(182, 111);
+            this.textBoxNominal.Location = new System.Drawing.Point(197, 103);
             this.textBoxNominal.Name = "textBoxNominal";
             this.textBoxNominal.Size = new System.Drawing.Size(179, 22);
             this.textBoxNominal.TabIndex = 41;
@@ -114,7 +114,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.ClientSize = new System.Drawing.Size(382, 218);
+            this.ClientSize = new System.Drawing.Size(406, 242);
             this.Controls.Add(this.buttonBatal);
             this.Controls.Add(this.buttonToUp);
             this.Controls.Add(this.textBoxNominal);

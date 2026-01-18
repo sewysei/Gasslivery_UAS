@@ -16,7 +16,7 @@ namespace UI_Baru_UAS
 {
     public partial class FormFood : Form
     {
-        public Consumer consumerLogin;
+        FormUtama frm;
         Voucher selectedVoucher;
         Tenant selectedTenant;
         BindingList<OrderDetail> keranjang = new BindingList<OrderDetail>();
@@ -32,6 +32,7 @@ namespace UI_Baru_UAS
 
         private void FormFood_Load(object sender, EventArgs e)
         {
+            frm = (FormUtama)this.MdiParent;
             comboBoxVocer.Items.Clear();
             List<Voucher> vocer = new List<Voucher>(Voucher.BacaData());
             comboBoxVocer.DataSource = vocer;
@@ -202,26 +203,28 @@ namespace UI_Baru_UAS
             Order pesananBaru = new Order();
             pesananBaru.Tenant = selectedTenant;
             pesananBaru.Voucher = selectedVoucher;
+            pesananBaru.Delivery.Id = "1";
+            pesananBaru.Food_rating = 0;
+            pesananBaru.Driver_rating = 0;
             pesananBaru.Discount_value = int.Parse(selectedVoucher.Value);
             pesananBaru.Status = "pending";
-            pesananBaru.Tip = 0;
             pesananBaru.Total_fee = totalBayar - pesananBaru.Discount_value;
-            if (pesananBaru.Total_fee > consumerLogin.Balance)
+            if (pesananBaru.Total_fee > frm.consumerLogin.Balance)
             {
                 MessageBox.Show("Saldo Gass-mon Anda tidak mencukupi, mohon topup terlebih dahulu \n " +
-                    $"Saldo Anda: Rp. {consumerLogin.Balance} \n " +
+                    $"Saldo Anda: Rp. {frm.consumerLogin.Balance} \n " +
                     $"Total Transaksi: Rp. {pesananBaru.Total_fee} ", "Saldo Tidak Mencukupi");
             }
             else
             {
                 DialogResult dialog = MessageBox.Show("Konfirmasi pembayaran \n " +
-                    $"Saldo Anda: Rp. {consumerLogin.Balance} \n " +
+                    $"Saldo Anda: Rp. {frm.consumerLogin.Balance} \n " +
                     $"Total Transaksi: Rp. {pesananBaru.Total_fee} ", "Konfirmasi", MessageBoxButtons.OKCancel);
 
                 if(dialog == DialogResult.OK)
                 {
 
-                    pesananBaru.Consumer = consumerLogin;
+                    pesananBaru.Consumer = frm.consumerLogin;
                     int idOrderBaru = Order.BuatOrderan(pesananBaru);
                     if(idOrderBaru != 0)
                     {
@@ -231,8 +234,8 @@ namespace UI_Baru_UAS
                             total += od.Total_price;
                             OrderDetail.BuatOrderDetail(od,idOrderBaru);
                         }
-                        consumerLogin.Balance -= total;
-                        Consumer.UpdateBalance(consumerLogin);
+                        frm.consumerLogin.Balance -= total;
+                        Consumer.UpdateBalance(frm.consumerLogin);
                         MessageBox.Show("Pesanan Berhasil dibuat, tunggu konfirmasi tenant.", "Berhasil");
                     }
                 }
@@ -291,7 +294,43 @@ namespace UI_Baru_UAS
                 totalBayar = totalMakanan + ongkir;
                 labelTotalMakanan.Text = $"Rp. {totalMakanan}";
                 labelTotalBayar.Text = $"Rp. {totalBayar}";
-                RefreshDGV();
+                dataGridViewKeranjang.Refresh();
+                if (keranjang.Count > 0)
+                {
+                    dataGridViewKeranjang.DataSource = keranjang;
+                    dataGridViewKeranjang.Columns["Order"].Visible = false;
+                    dataGridViewKeranjang.Refresh();
+                    if (!dataGridViewKeranjang.Columns.Contains("btnTambah"))
+                    {
+                        DataGridViewButtonColumn tambah = new DataGridViewButtonColumn();
+                        tambah.Text = "+";
+                        tambah.HeaderText = "Tambah";
+                        tambah.UseColumnTextForButtonValue = true;
+                        tambah.Name = "btnTambah";
+                        dataGridViewKeranjang.Columns.Add(tambah);
+                    }
+
+                    if (!dataGridViewKeranjang.Columns.Contains("btnKurang"))
+                    {
+                        DataGridViewButtonColumn kurang = new DataGridViewButtonColumn();
+                        kurang.Text = "-";
+                        kurang.HeaderText = "Kurang";
+                        kurang.UseColumnTextForButtonValue = true;
+                        kurang.Name = "btnKurang";
+                        dataGridViewKeranjang.Columns.Add(kurang);
+                    }
+
+                    if (!dataGridViewKeranjang.Columns.Contains("btnHapus"))
+                    {
+                        DataGridViewButtonColumn hapus = new DataGridViewButtonColumn();
+                        hapus.Text = "Hapus";
+                        hapus.HeaderText = "Hapus";
+                        hapus.UseColumnTextForButtonValue = true;
+                        hapus.Name = "btnHapus";
+                        dataGridViewKeranjang.Columns.Add(hapus);
+                    }
+
+                }
             }
 
         }
@@ -324,6 +363,7 @@ namespace UI_Baru_UAS
                 totalBayar = totalMakanan + ongkir;
                 labelTotalMakanan.Text = $"Rp. {totalMakanan}";
                 labelTotalBayar.Text = $"Rp. {totalBayar}";
+                dataGridViewKeranjang.Refresh();
             }
             else if (e.ColumnIndex == dataGridViewKeranjang.Columns["btnKurang"].Index)
             {
@@ -353,6 +393,8 @@ namespace UI_Baru_UAS
                 totalBayar = totalMakanan + ongkir;
                 labelTotalMakanan.Text = $"Rp. {totalMakanan}";
                 labelTotalBayar.Text = $"Rp. {totalBayar}";
+                dataGridViewKeranjang.Refresh();
+
             }
             else if(e.ColumnIndex == dataGridViewKeranjang.Columns["btnHapus"].Index)
             {
@@ -373,6 +415,8 @@ namespace UI_Baru_UAS
                 totalBayar = totalMakanan + ongkir;
                 labelTotalMakanan.Text = $"Rp. {totalMakanan}";
                 labelTotalBayar.Text = $"Rp. {totalBayar}";
+                dataGridViewKeranjang.Refresh();
+
             }
         }
 

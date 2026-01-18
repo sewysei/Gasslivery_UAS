@@ -44,10 +44,10 @@ namespace Class_Gasslivery
                 TopUp tampung = new TopUp();
                 Consumer consumer = new Consumer();
                 tampung.Id = hasil.GetValue(0).ToString();
-                tampung.Amount = hasil.GetInt32(1);
-                tampung.Date = hasil.GetDateTime(2);
+                tampung.Amount = int.Parse(hasil.GetValue(1).ToString());
+                tampung.Date = DateTime.Parse(hasil.GetValue(2).ToString()).Date;
                 consumer.Id = hasil.GetValue(3).ToString();
-                consumer.Username = hasil.GetString(4);
+                consumer.Username = hasil.GetValue(4).ToString();
                 tampung.Consumer = consumer;
                 listHasil.Add(tampung);
             }

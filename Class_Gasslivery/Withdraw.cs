@@ -42,10 +42,10 @@ namespace Class_Gasslivery
                 Withdraw tampung = new Withdraw();
                 Driver driver = new Driver();
                 tampung.Id = hasil.GetValue(0).ToString();
-                tampung.Amount = hasil.GetInt32(1);
-                tampung.Date = hasil.GetDateTime(2);
+                tampung.Amount = int.Parse(hasil.GetValue(1).ToString());
+                tampung.Date = DateTime.Parse(hasil.GetValue(2).ToString()).Date;
                 driver.Id = hasil.GetValue(3).ToString();
-                driver.Full_name = hasil.GetString(4);
+                driver.Full_name = hasil.GetValue(4).ToString();
                 tampung.Driver = driver;
                 listHasil.Add(tampung);
             }
