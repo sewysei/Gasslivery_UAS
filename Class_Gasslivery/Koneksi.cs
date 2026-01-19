@@ -17,7 +17,7 @@ namespace Class_Gasslivery
         public Koneksi()
         {
             MyKon = new MySqlConnection();
-            myKon.ConnectionString = "Server=localhost;Database=db_gasslivery;Uid=root;Pwd=";
+            myKon.ConnectionString = "Server=192.168.137.1;Database=db_gasslivery;Uid=amri;Pwd=123";
             Connect();
         }
 
