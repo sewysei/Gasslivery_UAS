@@ -38,7 +38,6 @@ namespace UI_Baru_UAS
             comboBoxVocer.DataSource = vocer;
             comboBoxVocer.DisplayMember = "Name";     
             selectedVoucher = comboBoxVocer.SelectedItem as Voucher;
-
             string halal = "";
             if(checkBoxMenuHalal.Checked)
             {
@@ -201,14 +200,22 @@ namespace UI_Baru_UAS
                 return;
             }
             Order pesananBaru = new Order();
+            Delivery delivery = new Delivery();
+            delivery.Driver.Id = "1";
+            delivery.Fee = ongkir;
+            delivery.Destination_point = textBoxTitikAntar.Text;
+            delivery.Longitude_dest = numericUpDownLongitude.Value.ToString();
+            delivery.Latitude_dest = numericUpDownLatitude.Value.ToString();
+            int deliveryId = Delivery.BuatDelivery(delivery);
+            pesananBaru.Delivery.Id = deliveryId.ToString();
             pesananBaru.Tenant = selectedTenant;
             pesananBaru.Voucher = selectedVoucher;
-            pesananBaru.Delivery.Id = "1";
+            pesananBaru.Status = "pending";
             pesananBaru.Food_rating = 0;
             pesananBaru.Driver_rating = 0;
             pesananBaru.Discount_value = int.Parse(selectedVoucher.Value);
-            pesananBaru.Status = "pending";
             pesananBaru.Total_fee = totalBayar - pesananBaru.Discount_value;
+
             if (pesananBaru.Total_fee > frm.consumerLogin.Balance)
             {
                 MessageBox.Show("Saldo Gass-mon Anda tidak mencukupi, mohon topup terlebih dahulu \n " +
@@ -217,8 +224,8 @@ namespace UI_Baru_UAS
             }
             else
             {
-                DialogResult dialog = MessageBox.Show("Konfirmasi pembayaran \n " +
-                    $"Saldo Anda: Rp. {frm.consumerLogin.Balance} \n " +
+                DialogResult dialog = MessageBox.Show("Konfirmasi pembayaran \n" +
+                    $"Saldo Anda: Rp. {frm.consumerLogin.Balance} \n" +
                     $"Total Transaksi: Rp. {pesananBaru.Total_fee} ", "Konfirmasi", MessageBoxButtons.OKCancel);
 
                 if(dialog == DialogResult.OK)
@@ -293,7 +300,7 @@ namespace UI_Baru_UAS
                 totalMakanan = keranjang.Sum(x => x.Total_price);
                 totalBayar = totalMakanan + ongkir;
                 labelTotalMakanan.Text = $"Rp. {totalMakanan}";
-                labelTotalBayar.Text = $"Rp. {totalBayar}";
+                labelTotalBayar.Text = $"Rp. {totalBayar - int.Parse(selectedVoucher.Value)}";
                 dataGridViewKeranjang.Refresh();
                 if (keranjang.Count > 0)
                 {
@@ -362,7 +369,7 @@ namespace UI_Baru_UAS
 
                 totalBayar = totalMakanan + ongkir;
                 labelTotalMakanan.Text = $"Rp. {totalMakanan}";
-                labelTotalBayar.Text = $"Rp. {totalBayar}";
+                labelTotalBayar.Text = $"Rp. {totalBayar - int.Parse(selectedVoucher.Value)}";
                 dataGridViewKeranjang.Refresh();
             }
             else if (e.ColumnIndex == dataGridViewKeranjang.Columns["btnKurang"].Index)
@@ -392,7 +399,7 @@ namespace UI_Baru_UAS
 
                 totalBayar = totalMakanan + ongkir;
                 labelTotalMakanan.Text = $"Rp. {totalMakanan}";
-                labelTotalBayar.Text = $"Rp. {totalBayar}";
+                labelTotalBayar.Text = $"Rp. {totalBayar - int.Parse(selectedVoucher.Value)}";
                 dataGridViewKeranjang.Refresh();
 
             }
@@ -414,7 +421,7 @@ namespace UI_Baru_UAS
 
                 totalBayar = totalMakanan + ongkir;
                 labelTotalMakanan.Text = $"Rp. {totalMakanan}";
-                labelTotalBayar.Text = $"Rp. {totalBayar}";
+                labelTotalBayar.Text = $"Rp. {totalBayar - int.Parse(selectedVoucher.Value)}";
                 dataGridViewKeranjang.Refresh();
 
             }
@@ -448,7 +455,7 @@ namespace UI_Baru_UAS
                 ongkir = hitungOngkir;
                 totalBayar = ongkir + totalMakanan;
                 labelOngkosAntar.Text = $"Rp. {ongkir}";
-                labelTotalBayar.Text = $"Rp. {totalBayar}";
+                labelTotalBayar.Text = $"Rp. {totalBayar - int.Parse(selectedVoucher.Value)}";
             }
         }
 
@@ -475,9 +482,25 @@ namespace UI_Baru_UAS
                 ongkir = hitungOngkir;
                 totalBayar = ongkir + totalMakanan;
                 labelOngkosAntar.Text = $"Rp. {ongkir}";
-                labelTotalBayar.Text = $"Rp. {totalBayar}";
+                labelTotalBayar.Text = $"Rp. {totalBayar - int.Parse(selectedVoucher.Value)}";
             }
 
+        }
+
+        private void comboBoxVocer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedVoucher = comboBoxVocer.SelectedItem as Voucher;
+            labelMinimal.Text = $"Rp. {selectedVoucher.Conditions}";
+            labelDiskon.Text = $"Rp. {selectedVoucher.Value}";
+            if (totalBayar >= int.Parse(selectedVoucher.Conditions))
+            {
+                labelTotalBayar.Text = $"Rp. {totalBayar - int.Parse(selectedVoucher.Value)}";
+            }
+            else
+            {
+                MessageBox.Show("Voucher tidak memenuhi syarat", "Tidak memenuhi Syarat");
+                comboBoxVocer.SelectedIndex = 0;
+            }
         }
     }
 }

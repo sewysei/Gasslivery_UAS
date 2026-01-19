@@ -13,16 +13,16 @@ namespace UI_Baru_UAS
 {
     public partial class FormKelolaMenu : Form
     {
-        public FormUtama frmUtama;
-        public FormKelolaMenu(FormUtama frm)
+        public FormUtama frm;
+        public FormKelolaMenu()
         {
             InitializeComponent();
-            frmUtama = frm;
         }
 
         private void FormKelolaMenu_Load(object sender, EventArgs e)
         {
-            List<Class_Gasslivery.Menu> listMenu = Class_Gasslivery.Menu.BacaData(frmUtama.tenantLogin);
+            frm = (FormUtama)this.MdiParent;
+            List<Class_Gasslivery.Menu> listMenu = Class_Gasslivery.Menu.BacaData(frm.tenantLogin);
             dataGridViewKelolaMenu.DataSource = listMenu;
 
             if (!dataGridViewKelolaMenu.Columns.Contains("btnHapus"))
@@ -44,7 +44,8 @@ namespace UI_Baru_UAS
 
         private void buttonTambah_Click(object sender, EventArgs e)
         {
-            FormTambahMenu frmtambah = new FormTambahMenu(frmUtama);
+            FormTambahMenu frmtambah = new FormTambahMenu();
+            frmtambah.tenanLogin = frm.tenantLogin;
             frmtambah.Owner = this;
             frmtambah.ShowDialog();
             FormKelolaMenu_Load(this, e);

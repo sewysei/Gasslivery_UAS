@@ -27,8 +27,8 @@ namespace UI_Baru_UAS
         private void FormLaporanCancel_Load(object sender, EventArgs e)
         {
             frm = (FormUtama)this.MdiParent;
-            string mulai = dateTimePickerDari.Value.ToString("yyyy-MM-dd");
-            string akhir = dateTimePickerSampai.Value.ToString("yyyy-MM-dd");
+            string mulai = dateTimePickerDari.Value.ToString("yyyy-MM-dd 00:00:00");
+            string akhir = dateTimePickerSampai.Value.ToString("yyyy-MM-dd 23:59:59");
             List<Cancel> listHasil = Cancel.BacaData(mulai, akhir);
             dataGridViewLaporanCancel.DataSource = listHasil;
             dataGridViewLaporanCancel.Columns["Id"].Visible = false;
@@ -47,8 +47,8 @@ namespace UI_Baru_UAS
 
         private void buttonPrint_Click(object sender, EventArgs e)
         {
-            string mulai = dateTimePickerDari.Value.ToString("yyyy-MM-dd");
-            string akhir = dateTimePickerSampai.Value.ToString("yyyy-MM-dd");
+            string mulai = dateTimePickerDari.Value.ToString("yyyy-MM-dd 00:00:00");
+            string akhir = dateTimePickerSampai.Value.ToString("yyyy-MM-dd 23:59:59");
             Cancel.CetakLaporan(mulai,akhir);
         }
     }

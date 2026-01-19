@@ -22,8 +22,8 @@ namespace UI_Baru_UAS
         private void FormRiwayatFood_Load(object sender, EventArgs e)
         {
             frm = (FormUtama)this.MdiParent;
-            string mulai = dateTimePickerDari.Value.ToString("yyyy-MM-dd");
-            string sampai = dateTimePickerSampai.Value.ToString("yyyy-MM-dd");
+            string mulai = dateTimePickerDari.Value.ToString("yyyy-MM-dd 00:00:00");
+            string sampai = dateTimePickerSampai.Value.ToString("yyyy-MM-dd 23:59:59");
 
             List<Order>listHasil = Order.BacaData("consumer", "", frm.consumerLogin.Id, mulai, sampai);
             dataGridViewRiwayatFood.DataSource = listHasil;

@@ -27,8 +27,8 @@ namespace UI_Baru_UAS
         private void FormRiwayatPenjualan_Load(object sender, EventArgs e)
         {
             frm = (FormUtama)this.MdiParent;
-            string mulai = dateTimePickerDari.Value.ToString("yyyy-MM-dd");
-            string akhir = dateTimePickerSampai.Value.ToString("yyyy-MM-dd");
+            string mulai = dateTimePickerDari.Value.ToString("yyyy-MM-dd 00:00:00");
+            string akhir = dateTimePickerSampai.Value.ToString("yyyy-MM-dd 23:59:59");
             List<Order>listHasil =  Order.BacaData("date", "", frm.tenantLogin.Id, mulai, akhir);
             dataGridViewRiwayatPenjualan.DataSource = listHasil;
             dataGridViewRiwayatPenjualan.Columns["Id"].Visible = false;

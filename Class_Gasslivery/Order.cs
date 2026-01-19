@@ -75,8 +75,8 @@ namespace Class_Gasslivery
             {
                 perintah = $"SELECT o.*, c.username, dr.full_name, v.name, t.name, d.destination_point, d.fee " +
                    $"FROM orders o INNER JOIN consumers c ON c.id = o.consumer_id " +
-                   $"LEFT JOIN deliveries d ON d.id = o.delivery_id " +
-                   $"LEFT JOIN drivers dr ON dr.id = d.driver_id " +
+                   $"INNER JOIN deliveries d ON d.id = o.delivery_id " +
+                   $"INNER JOIN drivers dr ON dr.id = d.driver_id " +
                    $"INNER JOIN tenants t ON t.id = o.tenant_id " +
                    $"INNER JOIN vouchers v ON v.id = o.voucher_id " +
                    $"WHERE o.status = '{nilai}' AND o.tenant_id = '{id}' " +
@@ -97,15 +97,26 @@ namespace Class_Gasslivery
             {
                 perintah = $"SELECT o.*, c.username, dr.full_name, v.name, t.name, d.destination_point, d.fee " +
                     $"FROM orders o INNER JOIN consumers c ON c.id = o.consumer_id " +
-                    $"LEFT JOIN deliveries d ON d.id = o.delivery_id " +
-                    $"LEFT JOIN drivers dr ON dr.id = d.driver_id " +
+                    $"INNER JOIN deliveries d ON d.id = o.delivery_id " +
+                    $"INNER JOIN drivers dr ON dr.id = d.driver_id " +
                     $"INNER JOIN tenants t ON t.id = o.tenant_id " +
                     $"INNER JOIN vouchers v ON v.id = o.voucher_id " +
                     $"WHERE o.date BETWEEN '{mulai}' AND '{akhir}' AND o.consumer_id = {id} " +
                     $"ORDER BY o.date ASC;";
             }
+            else if (kolom == "driver")
+            {
+                perintah = $"SELECT o.*, c.username, dr.full_name, v.name, t.name, d.destination_point, d.fee " +
+                   $"FROM orders o INNER JOIN consumers c ON c.id = o.consumer_id " +
+                   $"INNER JOIN deliveries d ON d.id = o.delivery_id " +
+                   $"INNER JOIN drivers dr ON dr.id = d.driver_id " +
+                   $"INNER JOIN tenants t ON t.id = o.tenant_id " +
+                   $"INNER JOIN vouchers v ON v.id = o.voucher_id " +
+                   $"WHERE o.status = 'pending' " +
+                   $"ORDER BY o.date DESC;";
+            }
 
-                MySqlDataReader hasil = Koneksi.JalankanPerintahSelect(perintah);
+            MySqlDataReader hasil = Koneksi.JalankanPerintahSelect(perintah);
             while (hasil.Read())
             {
                 Order tampung = new Order();

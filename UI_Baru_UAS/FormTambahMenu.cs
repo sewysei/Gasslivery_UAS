@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Class_Gasslivery;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,11 +13,10 @@ namespace UI_Baru_UAS
 {
     public partial class FormTambahMenu : Form
     {
-        FormUtama frm;
-        public FormTambahMenu(FormUtama formUtama)
+        public Tenant tenanLogin;
+        public FormTambahMenu()
         {
             InitializeComponent();
-            frm = formUtama;
         }
 
         private void buttonTambah_Click(object sender, EventArgs e)
@@ -34,7 +34,7 @@ namespace UI_Baru_UAS
             menu.Price = price;
             menu.Stock = stok;
             menu.Halal = halal;
-            menu.Tenant = frm.tenantLogin;
+            menu.Tenant = tenanLogin;
             Class_Gasslivery.Menu.TambahMenu(menu);
             MessageBox.Show($"{name} berhasil ditambahkan!");
             textBoxNama.Text = "";

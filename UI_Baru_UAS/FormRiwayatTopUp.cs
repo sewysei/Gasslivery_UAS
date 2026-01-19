@@ -28,8 +28,8 @@ namespace UI_Baru_UAS
 
         private void RefreshData()
         {
-            string mulai = dateTimePickerDari.Value.ToString("yyyy-MM-dd");
-            string sampai = dateTimePickerSampai.Value.ToString("yyyy-MM-dd");
+            string mulai = dateTimePickerDari.Value.ToString("yyyy-MM-dd 00:00:00");
+            string sampai = dateTimePickerSampai.Value.ToString("yyyy-MM-dd 23:59:59");
             List<TopUp> topap = TopUp.BacaData(mulai, sampai, frm.consumerLogin.Id);
             dataGridViewRiwayatTopUp.DataSource = topap;
             int totaltopap = topap.Sum(t => t.Amount);

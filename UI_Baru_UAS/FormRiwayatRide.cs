@@ -49,8 +49,8 @@ namespace UI_Baru_UAS
 
             try
             {
-                string mulai = dateTimePickerDari.Value.Date.ToString("yyyy-MM-dd");
-                string akhir = dateTimePickerSampai.Value.Date.AddDays(1).ToString("yyyy-MM-dd");
+                string mulai = dateTimePickerDari.Value.Date.ToString("yyyy-MM-dd 00:00:00");
+                string akhir = dateTimePickerSampai.Value.Date.AddDays(1).ToString("yyyy-MM-dd 23:59:59");
 
                 List<Trip> listTrip = Trip.BacaDataByConsumer(frmUtama.consumerLogin.Id, mulai, akhir);
                 
