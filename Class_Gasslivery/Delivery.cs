@@ -47,7 +47,7 @@ namespace Class_Gasslivery
 
             perintah = $"INSERT INTO deliveries " +
                 $"(`driver_id`, `fee`, `longitude_dest`, `latitude_dest`, `destination_point`, `date`) " +
-                $"VALUES ('1', '{delivery.Fee}', '{delivery.Longitude_dest}', '{delivery.Latitude_dest}', '{delivery.Destination_point}', NOW()) " +
+                $"VALUES ('1', '{delivery.Fee}', '{delivery.Longitude_dest}', '{delivery.Latitude_dest}', '{delivery.Destination_point}', NOW()); " +
                 $"SELECT LAST_INSERT_ID();";
 
             int idBaru = Koneksi.GetLastInsertId(perintah);
