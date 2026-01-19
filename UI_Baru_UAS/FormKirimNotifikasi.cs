@@ -47,8 +47,8 @@ namespace UI_Baru_UAS
                 string message = textBox1.Text;
                 notification.Driver = selectedDriver;
                 notification.Message = message;
-                notification.Date = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd"));
                 Notification.TambahNotifikasi(notification);
+                MessageBox.Show($"Notifikasi berhasil dikirim ke {selectedDriver.Full_name}", "Berhasil mengirim Notifikasi!");
             }
             else if (radioButtonSemuaDriver.Checked)
             {
@@ -60,9 +60,9 @@ namespace UI_Baru_UAS
                     string message = textBox1.Text;
                     notification.Driver = selectedDriver;
                     notification.Message = message;
-                    notification.Date = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd"));
                     Notification.TambahNotifikasi(notification);
                 }
+                MessageBox.Show($"Notifikasi berhasil dikirim ke semua driver! ", "Berhasil mengirim Notifikasi!");
             }
             textBox1.Text = "";
             comboBox1.SelectedIndex = 0;

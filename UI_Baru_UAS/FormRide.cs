@@ -30,7 +30,7 @@ namespace UI_Baru_UAS
                 double latDest = double.Parse(textBoxLatitudeTujuan.Text.Trim(), CultureInfo.InvariantCulture);
                 double lonDest = double.Parse(textBoxLangitudeTujuan.Text.Trim(), CultureInfo.InvariantCulture);
 
-                double jarak = GeoHelper.HitungJarak(latPickup, lonPickup, latDest, lonDest);
+                double jarak = HitungJarak.HitungJarakKm(latPickup, lonPickup, latDest, lonDest);
 
                 if (jarak > 0)
                 {

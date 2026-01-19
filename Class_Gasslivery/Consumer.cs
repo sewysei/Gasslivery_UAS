@@ -68,6 +68,12 @@ namespace Class_Gasslivery
             };
         }
 
+        public static void UpdateBalance(Consumer consumer)
+        {
+            string perintah = $"UPDATE consumers SET balance = '{consumer.Balance}' ";
+            Koneksi.JalankanPerintahDML(perintah);
+        }
+
         public override string ToString()
         {
             return Username;

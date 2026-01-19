@@ -55,10 +55,10 @@ namespace Class_Gasslivery
             {
                 Menu tampung = new Menu();
                 tampung.Id = hasil.GetValue(0).ToString();
-                tampung.Name = hasil.GetString(1);
-                tampung.Price = hasil.GetInt32(2);
-                tampung.Stock = hasil.GetInt32(3);
-                tampung.Halal = hasil.GetString(4);
+                tampung.Name = hasil.GetValue(1).ToString();
+                tampung.Price = int.Parse(hasil.GetValue(2).ToString());
+                tampung.Stock = int.Parse(hasil.GetValue(3).ToString());
+                tampung.Halal = hasil.GetValue(4).ToString();
                 tampung.Tenant = tenant;
                 listHasil.Add(tampung);
             }

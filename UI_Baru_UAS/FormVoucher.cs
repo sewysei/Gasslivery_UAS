@@ -32,5 +32,10 @@ namespace UI_Baru_UAS
             dataGridViewVoucher.DataSource = listHasil;
 
         }
+
+        private void buttonTutup_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

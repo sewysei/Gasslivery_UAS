@@ -38,6 +38,8 @@ namespace UI_Baru_UAS
                 labelTotalDriver.Text = listAll.Count.ToString();
                 labelActive.Text = listHasil.Count.ToString();
                 labelInactive.Text = (listAll.Count - listHasil.Count).ToString();
+                dataGridViewMonitoringDriver.Columns["Id"].Visible = false;
+
             }
             else if (status == "Tidak Aktif")
             { 
@@ -49,8 +51,8 @@ namespace UI_Baru_UAS
                 labelTotalDriver.Text = listAll.Count.ToString();
                 labelInactive.Text = listHasil.Count.ToString();
                 labelActive.Text = (listAll.Count - listHasil.Count).ToString();
+                dataGridViewMonitoringDriver.Columns["Id"].Visible = false;
             }
-            dataGridViewMonitoringDriver.Columns["Id"].Visible = false;
         }
 
         private void comboBoxStatus_SelectedIndexChanged(object sender, EventArgs e)

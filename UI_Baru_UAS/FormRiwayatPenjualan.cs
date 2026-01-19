@@ -57,9 +57,9 @@ namespace UI_Baru_UAS
 
         private void dataGridViewRiwayatPenjualan_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            Order selectedOrder = (Order)dataGridViewRiwayatPenjualan.Rows[e.RowIndex].DataBoundItem;
             if (dataGridViewRiwayatPenjualan.Columns[e.ColumnIndex].Name == "btnDetail")
             {
+                Order selectedOrder = (Order)dataGridViewRiwayatPenjualan.Rows[e.RowIndex].DataBoundItem;
                 FormDetailPesanan frm = new FormDetailPesanan();
                 frm.orderInfo = selectedOrder;
                 frm.Owner = this;

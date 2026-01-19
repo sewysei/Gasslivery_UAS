@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Class_Gasslivery
 {
@@ -50,12 +51,12 @@ namespace Class_Gasslivery
             {
                 Vehicle tampung = new Vehicle();
                 tampung.Id = hasil.GetValue(0).ToString();
-                tampung.Name = hasil.GetString(1).ToString();
-                tampung.Plate = hasil.GetString(2);
-                tampung.Buy_date = hasil.GetDateTime(3).Date;
+                tampung.Name = hasil.GetValue(1).ToString();
+                tampung.Plate = hasil.GetValue(2).ToString();
+                tampung.Buy_date = DateTime.Parse(hasil.GetValue(3).ToString()).Date;
                 Driver driver = new Driver();
                 driver.Id = hasil.GetValue(4).ToString();
-                driver.Full_name = hasil.GetString(5);
+                driver.Full_name = hasil.GetValue(5).ToString();
                 tampung.Driver = driver;
                 listHasil.Add(tampung);
             }

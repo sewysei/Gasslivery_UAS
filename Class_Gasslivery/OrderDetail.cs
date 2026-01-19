@@ -56,5 +56,13 @@ namespace Class_Gasslivery
             }
             return listHasil;
         }
+
+        public static void BuatOrderDetail(OrderDetail orderDetail, int id)
+        {
+            string perintah = $"INSERT INTO order_details (`menu_id`, `order_id`, `total_price`, `amount`) " +
+                $"VALUES ('{orderDetail.Menu.Id}', '{id}', '{orderDetail.Total_price}', '{orderDetail.Amount}'); ";
+
+            Koneksi.JalankanPerintahDML(perintah);
+        }
     }
 }

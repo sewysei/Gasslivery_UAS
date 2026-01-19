@@ -24,8 +24,9 @@ namespace UI_Baru_UAS
         {
             string status = comboBoxStatus.Text; 
             List<Order> listHasil = Order.BacaData("status",status,frmUtama.tenantLogin.Id);
+
             dataGridViewPesananMasuk.DataSource = listHasil;
-            dataGridViewPesananMasuk.Columns["Id"].Visible = false;
+            dataGridViewPesananMasuk.Columns["Id"].Visible = false; 
 
             if (!dataGridViewPesananMasuk.Columns.Contains("btnDetail"))
             {

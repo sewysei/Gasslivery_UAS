@@ -197,10 +197,10 @@ namespace UI_Baru_UAS
 
         private void riwayatTripToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form frm = Application.OpenForms["FormRiwayatRide"];
+            Form frm = Application.OpenForms["FormTerimaOrder"];
             if (frm == null)
             {
-                FormRiwayatRide form = new FormRiwayatRide(this);
+                FormTerimaOrder form = new FormTerimaOrder();
                 form.MdiParent = this;
                 form.Show();
             }
@@ -452,6 +452,22 @@ namespace UI_Baru_UAS
             if (frm == null)
             {
                 FormVoucher form = new FormVoucher();
+                form.MdiParent = this;
+                form.Show();
+            }
+            else
+            {
+                frm.Show();
+                frm.BringToFront();
+            }
+        }
+
+        private void notifikasiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms["FormNotifikasiDriver"];
+            if (frm == null)
+            {
+                FormNotifikasiDriver form = new FormNotifikasiDriver();
                 form.MdiParent = this;
                 form.Show();
             }

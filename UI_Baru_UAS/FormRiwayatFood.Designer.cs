@@ -47,15 +47,16 @@
             this.dateTimePickerSampai.Name = "dateTimePickerSampai";
             this.dateTimePickerSampai.Size = new System.Drawing.Size(200, 22);
             this.dateTimePickerSampai.TabIndex = 39;
+            this.dateTimePickerSampai.ValueChanged += new System.EventHandler(this.dateTimePickerSampai_ValueChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label2.Location = new System.Drawing.Point(310, 39);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(21, 32);
+            this.label2.Size = new System.Drawing.Size(17, 22);
             this.label2.TabIndex = 38;
             this.label2.Text = "-";
             // 
@@ -65,15 +66,16 @@
             this.dateTimePickerDari.Name = "dateTimePickerDari";
             this.dateTimePickerDari.Size = new System.Drawing.Size(200, 22);
             this.dateTimePickerDari.TabIndex = 37;
+            this.dateTimePickerDari.ValueChanged += new System.EventHandler(this.dateTimePickerDari_ValueChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label1.Location = new System.Drawing.Point(9, 39);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 32);
+            this.label1.Size = new System.Drawing.Size(91, 22);
             this.label1.TabIndex = 36;
             this.label1.Text = "Periode :";
             // 
@@ -107,6 +109,7 @@
             this.buttonTutup.TabIndex = 63;
             this.buttonTutup.Text = "Tutup";
             this.buttonTutup.UseVisualStyleBackColor = false;
+            this.buttonTutup.Click += new System.EventHandler(this.buttonTutup_Click);
             // 
             // button2
             // 
@@ -146,7 +149,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.ClientSize = new System.Drawing.Size(891, 428);
+            this.ClientSize = new System.Drawing.Size(891, 436);
             this.Controls.Add(this.buttonRating);
             this.Controls.Add(this.buttonTutup);
             this.Controls.Add(this.button2);
@@ -159,6 +162,7 @@
             this.Controls.Add(this.dataGridViewRiwayatFood);
             this.Name = "FormRiwayatFood";
             this.Text = "FormRiwayatFood";
+            this.Load += new System.EventHandler(this.FormRiwayatFood_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRiwayatFood)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

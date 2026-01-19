@@ -60,6 +60,7 @@
             this.voucherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.labelLoginSebagai = new System.Windows.Forms.Label();
+            this.notifikasiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -93,14 +94,14 @@
             // pesanRideToolStripMenuItem
             // 
             this.pesanRideToolStripMenuItem.Name = "pesanRideToolStripMenuItem";
-            this.pesanRideToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.pesanRideToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
             this.pesanRideToolStripMenuItem.Text = "Pesan Ride";
             this.pesanRideToolStripMenuItem.Click += new System.EventHandler(this.pesanRideToolStripMenuItem_Click);
             // 
             // riwayatRideToolStripMenuItem
             // 
             this.riwayatRideToolStripMenuItem.Name = "riwayatRideToolStripMenuItem";
-            this.riwayatRideToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.riwayatRideToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
             this.riwayatRideToolStripMenuItem.Text = "Riwayat Ride";
             this.riwayatRideToolStripMenuItem.Click += new System.EventHandler(this.riwayatRideToolStripMenuItem_Click);
             // 
@@ -156,7 +157,8 @@
             this.terimaOrderToolStripMenuItem,
             this.riwayatTripToolStripMenuItem,
             this.tarikDanaToolStripMenuItem,
-            this.riwayatTarikDanaToolStripMenuItem});
+            this.riwayatTarikDanaToolStripMenuItem,
+            this.notifikasiToolStripMenuItem});
             this.driverToolStripMenuItem.Name = "driverToolStripMenuItem";
             this.driverToolStripMenuItem.Size = new System.Drawing.Size(63, 24);
             this.driverToolStripMenuItem.Text = "Driver";
@@ -312,6 +314,13 @@
             this.labelLoginSebagai.TabIndex = 2;
             this.labelLoginSebagai.Text = "Login Sebagai";
             // 
+            // notifikasiToolStripMenuItem
+            // 
+            this.notifikasiToolStripMenuItem.Name = "notifikasiToolStripMenuItem";
+            this.notifikasiToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.notifikasiToolStripMenuItem.Text = "Notifikasi";
+            this.notifikasiToolStripMenuItem.Click += new System.EventHandler(this.notifikasiToolStripMenuItem_Click);
+            // 
             // FormUtama
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -364,6 +373,7 @@
         private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
         private System.Windows.Forms.Label labelLoginSebagai;
         private System.Windows.Forms.ToolStripMenuItem voucherToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem notifikasiToolStripMenuItem;
     }
 }
 

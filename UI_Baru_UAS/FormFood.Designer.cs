@@ -53,6 +53,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.numericUpDownLongitude = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownLatitude = new System.Windows.Forms.NumericUpDown();
+            this.label10 = new System.Windows.Forms.Label();
+            this.comboBoxVocer = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDaftarMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewKeranjang)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownLongitude)).BeginInit();
@@ -63,9 +65,9 @@
             // 
             this.buttonPesanFood.BackColor = System.Drawing.Color.Transparent;
             this.buttonPesanFood.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPesanFood.Location = new System.Drawing.Point(19, 453);
+            this.buttonPesanFood.Location = new System.Drawing.Point(19, 459);
             this.buttonPesanFood.Name = "buttonPesanFood";
-            this.buttonPesanFood.Size = new System.Drawing.Size(454, 48);
+            this.buttonPesanFood.Size = new System.Drawing.Size(488, 48);
             this.buttonPesanFood.TabIndex = 20;
             this.buttonPesanFood.Text = "Pesan Food";
             this.buttonPesanFood.UseVisualStyleBackColor = false;
@@ -75,7 +77,7 @@
             // 
             this.textBoxPassword.Location = new System.Drawing.Point(132, 336);
             this.textBoxPassword.Name = "textBoxPassword";
-            this.textBoxPassword.Size = new System.Drawing.Size(341, 22);
+            this.textBoxPassword.Size = new System.Drawing.Size(375, 22);
             this.textBoxPassword.TabIndex = 19;
             // 
             // labelRole
@@ -112,7 +114,7 @@
             // 
             this.lblGASLIVERY.AutoSize = true;
             this.lblGASLIVERY.Font = new System.Drawing.Font("Yu Gothic UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGASLIVERY.Location = new System.Drawing.Point(412, 9);
+            this.lblGASLIVERY.Location = new System.Drawing.Point(503, 9);
             this.lblGASLIVERY.Name = "lblGASLIVERY";
             this.lblGASLIVERY.Size = new System.Drawing.Size(162, 38);
             this.lblGASLIVERY.TabIndex = 14;
@@ -123,7 +125,7 @@
             this.comboBoxPilihTenan.FormattingEnabled = true;
             this.comboBoxPilihTenan.Location = new System.Drawing.Point(136, 55);
             this.comboBoxPilihTenan.Name = "comboBoxPilihTenan";
-            this.comboBoxPilihTenan.Size = new System.Drawing.Size(337, 24);
+            this.comboBoxPilihTenan.Size = new System.Drawing.Size(371, 24);
             this.comboBoxPilihTenan.TabIndex = 21;
             this.comboBoxPilihTenan.SelectedIndexChanged += new System.EventHandler(this.comboBoxPilihTenan_SelectedIndexChanged);
             // 
@@ -134,10 +136,9 @@
             this.dataGridViewDaftarMenu.Name = "dataGridViewDaftarMenu";
             this.dataGridViewDaftarMenu.RowHeadersWidth = 51;
             this.dataGridViewDaftarMenu.RowTemplate.Height = 24;
-            this.dataGridViewDaftarMenu.Size = new System.Drawing.Size(454, 172);
+            this.dataGridViewDaftarMenu.Size = new System.Drawing.Size(488, 172);
             this.dataGridViewDaftarMenu.TabIndex = 22;
             this.dataGridViewDaftarMenu.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewDaftarMenu_CellContentClick);
-            this.dataGridViewDaftarMenu.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewDaftarMenu_CellFormatting);
             // 
             // label1
             // 
@@ -165,7 +166,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(507, 315);
+            this.label2.Location = new System.Drawing.Point(568, 319);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(147, 22);
             this.label2.TabIndex = 33;
@@ -175,7 +176,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(507, 347);
+            this.label3.Location = new System.Drawing.Point(568, 351);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(144, 22);
             this.label3.TabIndex = 34;
@@ -185,7 +186,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(507, 379);
+            this.label4.Location = new System.Drawing.Point(568, 383);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(158, 22);
             this.label4.TabIndex = 35;
@@ -195,7 +196,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(507, 411);
+            this.label5.Location = new System.Drawing.Point(568, 415);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(126, 22);
             this.label5.TabIndex = 36;
@@ -205,39 +206,39 @@
             // 
             this.labelOngkosAntar.AutoSize = true;
             this.labelOngkosAntar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelOngkosAntar.Location = new System.Drawing.Point(654, 347);
+            this.labelOngkosAntar.Location = new System.Drawing.Point(715, 351);
             this.labelOngkosAntar.Name = "labelOngkosAntar";
-            this.labelOngkosAntar.Size = new System.Drawing.Size(46, 22);
+            this.labelOngkosAntar.Size = new System.Drawing.Size(52, 22);
             this.labelOngkosAntar.TabIndex = 37;
-            this.labelOngkosAntar.Text = "Rp0";
+            this.labelOngkosAntar.Text = "Rp 0";
             // 
             // labelTotalMakanan
             // 
             this.labelTotalMakanan.AutoSize = true;
             this.labelTotalMakanan.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalMakanan.Location = new System.Drawing.Point(663, 379);
+            this.labelTotalMakanan.Location = new System.Drawing.Point(724, 383);
             this.labelTotalMakanan.Name = "labelTotalMakanan";
-            this.labelTotalMakanan.Size = new System.Drawing.Size(46, 22);
+            this.labelTotalMakanan.Size = new System.Drawing.Size(52, 22);
             this.labelTotalMakanan.TabIndex = 38;
-            this.labelTotalMakanan.Text = "Rp0";
+            this.labelTotalMakanan.Text = "Rp 0";
             // 
             // labelTotalBayar
             // 
             this.labelTotalBayar.AutoSize = true;
             this.labelTotalBayar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalBayar.Location = new System.Drawing.Point(633, 411);
+            this.labelTotalBayar.Location = new System.Drawing.Point(694, 415);
             this.labelTotalBayar.Name = "labelTotalBayar";
-            this.labelTotalBayar.Size = new System.Drawing.Size(46, 22);
+            this.labelTotalBayar.Size = new System.Drawing.Size(52, 22);
             this.labelTotalBayar.TabIndex = 39;
-            this.labelTotalBayar.Text = "Rp0";
+            this.labelTotalBayar.Text = "Rp 0";
             // 
             // buttonBatal
             // 
             this.buttonBatal.BackColor = System.Drawing.Color.Transparent;
             this.buttonBatal.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonBatal.Location = new System.Drawing.Point(511, 453);
+            this.buttonBatal.Location = new System.Drawing.Point(572, 459);
             this.buttonBatal.Name = "buttonBatal";
-            this.buttonBatal.Size = new System.Drawing.Size(454, 48);
+            this.buttonBatal.Size = new System.Drawing.Size(501, 48);
             this.buttonBatal.TabIndex = 40;
             this.buttonBatal.Text = "Batal";
             this.buttonBatal.UseVisualStyleBackColor = false;
@@ -267,7 +268,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(700, 83);
+            this.label8.Location = new System.Drawing.Point(767, 83);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(101, 22);
             this.label8.TabIndex = 47;
@@ -276,11 +277,11 @@
             // dataGridViewKeranjang
             // 
             this.dataGridViewKeranjang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewKeranjang.Location = new System.Drawing.Point(511, 118);
+            this.dataGridViewKeranjang.Location = new System.Drawing.Point(572, 118);
             this.dataGridViewKeranjang.Name = "dataGridViewKeranjang";
             this.dataGridViewKeranjang.RowHeadersWidth = 51;
             this.dataGridViewKeranjang.RowTemplate.Height = 24;
-            this.dataGridViewKeranjang.Size = new System.Drawing.Size(454, 172);
+            this.dataGridViewKeranjang.Size = new System.Drawing.Size(501, 172);
             this.dataGridViewKeranjang.TabIndex = 46;
             this.dataGridViewKeranjang.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewKeranjang_CellContentClick);
             // 
@@ -295,11 +296,12 @@
             // 
             // numericUpDownLongitude
             // 
+            this.numericUpDownLongitude.DecimalPlaces = 1;
             this.numericUpDownLongitude.Increment = new decimal(new int[] {
             1,
             0,
             0,
-            393216});
+            65536});
             this.numericUpDownLongitude.Location = new System.Drawing.Point(132, 373);
             this.numericUpDownLongitude.Maximum = new decimal(new int[] {
             180,
@@ -312,16 +314,18 @@
             0,
             -2147483648});
             this.numericUpDownLongitude.Name = "numericUpDownLongitude";
-            this.numericUpDownLongitude.Size = new System.Drawing.Size(341, 22);
+            this.numericUpDownLongitude.Size = new System.Drawing.Size(375, 22);
             this.numericUpDownLongitude.TabIndex = 48;
+            this.numericUpDownLongitude.ValueChanged += new System.EventHandler(this.numericUpDownLongitude_ValueChanged);
             // 
             // numericUpDownLatitude
             // 
+            this.numericUpDownLatitude.DecimalPlaces = 1;
             this.numericUpDownLatitude.Increment = new decimal(new int[] {
             1,
             0,
             0,
-            393216});
+            65536});
             this.numericUpDownLatitude.Location = new System.Drawing.Point(132, 406);
             this.numericUpDownLatitude.Maximum = new decimal(new int[] {
             90,
@@ -334,15 +338,36 @@
             0,
             -2147483648});
             this.numericUpDownLatitude.Name = "numericUpDownLatitude";
-            this.numericUpDownLatitude.Size = new System.Drawing.Size(341, 22);
+            this.numericUpDownLatitude.Size = new System.Drawing.Size(375, 22);
             this.numericUpDownLatitude.TabIndex = 49;
+            this.numericUpDownLatitude.ValueChanged += new System.EventHandler(this.numericUpDownLatitude_ValueChanged);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(767, 319);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(135, 22);
+            this.label10.TabIndex = 51;
+            this.label10.Text = "Pilih Voucher:";
+            // 
+            // comboBoxVocer
+            // 
+            this.comboBoxVocer.FormattingEnabled = true;
+            this.comboBoxVocer.Location = new System.Drawing.Point(908, 319);
+            this.comboBoxVocer.Name = "comboBoxVocer";
+            this.comboBoxVocer.Size = new System.Drawing.Size(165, 24);
+            this.comboBoxVocer.TabIndex = 52;
             // 
             // FormFood
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.ClientSize = new System.Drawing.Size(981, 515);
+            this.ClientSize = new System.Drawing.Size(1099, 541);
+            this.Controls.Add(this.comboBoxVocer);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.numericUpDownLatitude);
             this.Controls.Add(this.numericUpDownLongitude);
             this.Controls.Add(this.label8);
@@ -407,5 +432,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.NumericUpDown numericUpDownLongitude;
         private System.Windows.Forms.NumericUpDown numericUpDownLatitude;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox comboBoxVocer;
     }
 }

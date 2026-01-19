@@ -37,5 +37,10 @@ namespace UI_Baru_UAS
         {
             Application.Exit();
         }
+
+        private void FormLogin_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

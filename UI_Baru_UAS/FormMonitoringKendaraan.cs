@@ -29,7 +29,7 @@ namespace UI_Baru_UAS
             List<Vehicle> listHasil = Vehicle.BacaData(nilai);
             List<Vehicle> listAll = Vehicle.BacaData();
             dataGridViewMonitoringKendaraan.DataSource = listHasil;
-            dataGridViewMonitoringKendaraan.Columns["Avg_rating"].HeaderText = "Avg Rating";
+            dataGridViewMonitoringKendaraan.Columns["Buy_date"].HeaderText = "Buy Date";
             labelTotalKendaraan.Text = listAll.Count.ToString();
             dataGridViewMonitoringKendaraan.Columns["Id"].Visible = false;
         }

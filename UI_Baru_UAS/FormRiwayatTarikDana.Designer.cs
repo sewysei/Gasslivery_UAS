@@ -52,6 +52,7 @@
             this.buttonTutup.TabIndex = 95;
             this.buttonTutup.Text = "Tutup";
             this.buttonTutup.UseVisualStyleBackColor = false;
+            this.buttonTutup.Click += new System.EventHandler(this.buttonTutup_Click);
             // 
             // buttonPrint
             // 
@@ -79,10 +80,10 @@
             // 
             this.labelTotalPenarikanPeriodeIni.AutoSize = true;
             this.labelTotalPenarikanPeriodeIni.BackColor = System.Drawing.Color.Transparent;
-            this.labelTotalPenarikanPeriodeIni.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.labelTotalPenarikanPeriodeIni.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.labelTotalPenarikanPeriodeIni.Location = new System.Drawing.Point(265, 334);
             this.labelTotalPenarikanPeriodeIni.Name = "labelTotalPenarikanPeriodeIni";
-            this.labelTotalPenarikanPeriodeIni.Size = new System.Drawing.Size(25, 32);
+            this.labelTotalPenarikanPeriodeIni.Size = new System.Drawing.Size(21, 22);
             this.labelTotalPenarikanPeriodeIni.TabIndex = 92;
             this.labelTotalPenarikanPeriodeIni.Text = "0";
             // 
@@ -90,10 +91,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label3.Location = new System.Drawing.Point(6, 334);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(253, 32);
+            this.label3.Size = new System.Drawing.Size(266, 22);
             this.label3.TabIndex = 91;
             this.label3.Text = "Total Penarikan Periode Ini :";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -104,15 +105,16 @@
             this.dateTimePickerSampai.Name = "dateTimePickerSampai";
             this.dateTimePickerSampai.Size = new System.Drawing.Size(200, 22);
             this.dateTimePickerSampai.TabIndex = 90;
+            this.dateTimePickerSampai.ValueChanged += new System.EventHandler(this.dateTimePickerSampai_ValueChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label2.Location = new System.Drawing.Point(307, 52);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(21, 32);
+            this.label2.Size = new System.Drawing.Size(17, 22);
             this.label2.TabIndex = 89;
             this.label2.Text = "-";
             // 
@@ -122,15 +124,16 @@
             this.dateTimePickerDari.Name = "dateTimePickerDari";
             this.dateTimePickerDari.Size = new System.Drawing.Size(200, 22);
             this.dateTimePickerDari.TabIndex = 88;
+            this.dateTimePickerDari.ValueChanged += new System.EventHandler(this.dateTimePickerDari_ValueChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label1.Location = new System.Drawing.Point(6, 52);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 32);
+            this.label1.Size = new System.Drawing.Size(91, 22);
             this.label1.TabIndex = 87;
             this.label1.Text = "Periode :";
             // 
@@ -173,6 +176,7 @@
             this.Controls.Add(this.dataGridViewRiwayatPenarikanDana);
             this.Name = "FormRiwayatTarikDana";
             this.Text = "FormRiwayatTarikDana";
+            this.Load += new System.EventHandler(this.FormRiwayatTarikDana_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRiwayatPenarikanDana)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

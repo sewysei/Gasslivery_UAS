@@ -48,15 +48,16 @@
             this.dateTimePickerSampai.Name = "dateTimePickerSampai";
             this.dateTimePickerSampai.Size = new System.Drawing.Size(200, 22);
             this.dateTimePickerSampai.TabIndex = 39;
+            this.dateTimePickerSampai.ValueChanged += new System.EventHandler(this.dateTimePickerSampai_ValueChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label2.Location = new System.Drawing.Point(304, 46);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(21, 32);
+            this.label2.Size = new System.Drawing.Size(17, 22);
             this.label2.TabIndex = 38;
             this.label2.Text = "-";
             // 
@@ -66,15 +67,16 @@
             this.dateTimePickerDari.Name = "dateTimePickerDari";
             this.dateTimePickerDari.Size = new System.Drawing.Size(200, 22);
             this.dateTimePickerDari.TabIndex = 37;
+            this.dateTimePickerDari.ValueChanged += new System.EventHandler(this.dateTimePickerDari_ValueChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label1.Location = new System.Drawing.Point(3, 46);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 32);
+            this.label1.Size = new System.Drawing.Size(91, 22);
             this.label1.TabIndex = 36;
             this.label1.Text = "Periode :";
             // 
@@ -102,10 +104,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label3.Location = new System.Drawing.Point(3, 325);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(231, 32);
+            this.label3.Size = new System.Drawing.Size(242, 22);
             this.label3.TabIndex = 43;
             this.label3.Text = "Total Top Up Periode ini :";
             // 
@@ -113,10 +115,10 @@
             // 
             this.labelTotalTopUpPeriodeIni.AutoSize = true;
             this.labelTotalTopUpPeriodeIni.BackColor = System.Drawing.Color.Transparent;
-            this.labelTotalTopUpPeriodeIni.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelTotalTopUpPeriodeIni.Location = new System.Drawing.Point(240, 325);
+            this.labelTotalTopUpPeriodeIni.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.labelTotalTopUpPeriodeIni.Location = new System.Drawing.Point(252, 325);
             this.labelTotalTopUpPeriodeIni.Name = "labelTotalTopUpPeriodeIni";
-            this.labelTotalTopUpPeriodeIni.Size = new System.Drawing.Size(48, 32);
+            this.labelTotalTopUpPeriodeIni.Size = new System.Drawing.Size(46, 22);
             this.labelTotalTopUpPeriodeIni.TabIndex = 44;
             this.labelTotalTopUpPeriodeIni.Text = "Rp0";
             // 
@@ -152,6 +154,7 @@
             this.buttonTutup.TabIndex = 60;
             this.buttonTutup.Text = "Tutup";
             this.buttonTutup.UseVisualStyleBackColor = false;
+            this.buttonTutup.Click += new System.EventHandler(this.buttonTutup_Click);
             // 
             // FormRiwayatTopUp
             // 
@@ -172,6 +175,7 @@
             this.Controls.Add(this.dataGridViewRiwayatTopUp);
             this.Name = "FormRiwayatTopUp";
             this.Text = "FormRiwayatTopUp";
+            this.Load += new System.EventHandler(this.FormRiwayatTopUp_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRiwayatTopUp)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
