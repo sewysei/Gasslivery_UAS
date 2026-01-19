@@ -204,6 +204,12 @@
     <Compile Include="FormRide.Designer.cs">
       <DependentUpon>FormRide.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormRiwayatDriver.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRiwayatDriver.Designer.cs">
+      <DependentUpon>FormRiwayatDriver.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormRiwayatFood.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -331,6 +337,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormRide.resx">
       <DependentUpon>FormRide.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRiwayatDriver.resx">
+      <DependentUpon>FormRiwayatDriver.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormRiwayatFood.resx">
       <DependentUpon>FormRiwayatFood.cs</DependentUpon>

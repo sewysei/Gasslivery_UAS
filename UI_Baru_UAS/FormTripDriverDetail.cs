@@ -37,7 +37,46 @@ namespace UI_Baru_UAS
                 labelNomor.Text = orderInfo.Consumer.Telp;
                 labelJemput.Text = orderInfo.Tenant.Address;
                 labelTujuan.Text = orderInfo.Delivery.Destination_point;
-                labelOngkos.Text = orderInfo.Total_fee.ToString();
+                labelOngkos.Text = orderInfo.Delivery.Fee.ToString();
+                if(orderInfo.Status == "pending")
+                {
+                    buttonSelesai.Enabled = false;
+                }
+                else if (orderInfo.Status == "processing" )
+                {
+                    buttonTerima.Enabled = false;
+                }
+                else if (orderInfo.Status == "cancelled" || orderInfo.Status == "delivered")
+                {
+                    buttonTerima.Enabled = false;
+                    buttonSelesai.Enabled = false;
+                }
+
+            }
+            else if (tripInfo != null)
+            {
+                labelIDTrip.Text = tripInfo.Id;
+                labelJenis.Text = "Gass-ride";
+                labelStatus.Text = tripInfo.Status;
+                labelTanggal.Text = tripInfo.Date.ToString("yyyy-MM-dd");
+                labelNama.Text = tripInfo.Consumer.Username;
+                labelNomor.Text = tripInfo.Consumer.Telp;
+                labelJemput.Text = tripInfo.Pickup_point.ToString();
+                labelTujuan.Text = tripInfo.Destination_point.ToString();
+                labelOngkos.Text = tripInfo.Fee.ToString();
+                if (tripInfo.Status == "pending")
+                {
+                    buttonSelesai.Enabled = false;
+                }
+                else if (tripInfo.Status == "ongoing")
+                {
+                    buttonTerima.Enabled = false;
+                }
+                else if (tripInfo.Status == "canceled" || tripInfo.Status == "completed")
+                {
+                    buttonTerima.Enabled = false;
+                    buttonSelesai.Enabled = false;
+                }
             }
         }
 
@@ -48,12 +87,17 @@ namespace UI_Baru_UAS
                 orderInfo.Status = "processing";
                 Order.GantiStatus(orderInfo);
             }
-
+            this.Close();
         }
 
         private void buttonSelesai_Click(object sender, EventArgs e)
         {
-
+            if (orderInfo != null)
+            {
+                orderInfo.Status = "delivered";
+                Order.GantiStatus(orderInfo);
+            }
+            this.Close();
         }
     }
 }
