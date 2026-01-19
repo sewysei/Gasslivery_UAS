@@ -28,8 +28,8 @@ namespace UI_Baru_UAS
                     dataGridViewLaporanTransaksi.DataSource = null;
                     dataGridViewLaporanTransaksi.Columns.Remove("btnDetail");
                 }
-                string mulai = dateTimePickerDari.Value.ToString("yyyy-MM-dd");
-                string akhir = dateTimePickerSampai.Value.ToString("yyyy-MM-dd");
+                string mulai = dateTimePickerDari.Value.ToString("yyyy-MM-dd 00:00:00");
+                string akhir = dateTimePickerSampai.Value.ToString("yyyy-MM-dd 23:59:59");
                 List<Order> listHasil = Order.BacaData("","","",mulai,akhir);
                 dataGridViewLaporanTransaksi.DataSource = listHasil;
                 dataGridViewLaporanTransaksi.Columns["Food_rating"].HeaderText = "Food Rating";
@@ -59,8 +59,8 @@ namespace UI_Baru_UAS
                     dataGridViewLaporanTransaksi.DataSource = null;
                     dataGridViewLaporanTransaksi.Columns.Remove("btnDetail");
                 }
-                string mulai = dateTimePickerDari.Value.Date.ToString("yyyy-MM-dd");
-                string akhir = dateTimePickerSampai.Value.Date.ToString("yyyy-MM-dd");
+                string mulai = dateTimePickerDari.Value.Date.ToString("yyyy-MM-dd 00:00:00");
+                string akhir = dateTimePickerSampai.Value.Date.ToString("yyyy-MM-dd 23:59:59");
                 List<Trip> listHasil = Trip.BacaData(mulai,akhir);
                 dataGridViewLaporanTransaksi.DataSource = listHasil;
                 dataGridViewLaporanTransaksi.Columns["Longitude_pickup"].HeaderText = "Longitude Pickup";
@@ -117,14 +117,14 @@ namespace UI_Baru_UAS
         {
             if ((string)comboBoxJenisTransaksi.SelectedItem == "Gass-kan")
             {
-                string mulai = dateTimePickerDari.Value.Date.ToString("yyyy-MM-dd");
-                string akhir = dateTimePickerSampai.Value.Date.ToString("yyyy-MM-dd");
+                string mulai = dateTimePickerDari.Value.Date.ToString("yyyy-MM-dd 00:00:00");
+                string akhir = dateTimePickerSampai.Value.Date.ToString("yyyy-MM-dd 23:59:59");
                 Order.CetakLaporan(mulai, akhir);
             }
             else if ((string)comboBoxJenisTransaksi.SelectedItem == "Gass-ride")
             {
-                string mulai = dateTimePickerDari.Value.Date.ToString("yyyy-MM-dd");
-                string akhir = dateTimePickerSampai.Value.Date.ToString("yyyy-MM-dd");
+                string mulai = dateTimePickerDari.Value.Date.ToString("yyyy-MM-dd 00:00:00");
+                string akhir = dateTimePickerSampai.Value.Date.ToString("yyyy-MM-dd 23:59:59");
                 Trip.CetakLaporan(mulai, akhir);
             }
         }

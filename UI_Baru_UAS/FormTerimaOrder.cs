@@ -35,7 +35,7 @@ namespace UI_Baru_UAS
             }
             else if (jenis == "Gass-kan")
             {
-                dataGridViewDaftarOrder.DataSource = Order.BacaData();
+                dataGridViewDaftarOrder.DataSource = Order.BacaData("driver", "");
                 dataGridViewDaftarOrder.Columns["Food_rating"].HeaderText = "Food Rating";
                 dataGridViewDaftarOrder.Columns["Driver_rating"].HeaderText = "Driver Rating";
                 dataGridViewDaftarOrder.Columns["Discount_value"].HeaderText = "Discount Value";

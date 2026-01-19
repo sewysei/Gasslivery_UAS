@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.buttonPesanFood = new System.Windows.Forms.Button();
-            this.textBoxPassword = new System.Windows.Forms.TextBox();
+            this.textBoxTitikAntar = new System.Windows.Forms.TextBox();
             this.labelRole = new System.Windows.Forms.Label();
             this.labelPassword = new System.Windows.Forms.Label();
             this.labelUsername = new System.Windows.Forms.Label();
@@ -55,6 +55,10 @@
             this.numericUpDownLatitude = new System.Windows.Forms.NumericUpDown();
             this.label10 = new System.Windows.Forms.Label();
             this.comboBoxVocer = new System.Windows.Forms.ComboBox();
+            this.labelMinimal = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.labelDiskon = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDaftarMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewKeranjang)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownLongitude)).BeginInit();
@@ -73,12 +77,12 @@
             this.buttonPesanFood.UseVisualStyleBackColor = false;
             this.buttonPesanFood.Click += new System.EventHandler(this.buttonPesanFood_Click);
             // 
-            // textBoxPassword
+            // textBoxTitikAntar
             // 
-            this.textBoxPassword.Location = new System.Drawing.Point(132, 336);
-            this.textBoxPassword.Name = "textBoxPassword";
-            this.textBoxPassword.Size = new System.Drawing.Size(375, 22);
-            this.textBoxPassword.TabIndex = 19;
+            this.textBoxTitikAntar.Location = new System.Drawing.Point(132, 336);
+            this.textBoxTitikAntar.Name = "textBoxTitikAntar";
+            this.textBoxTitikAntar.Size = new System.Drawing.Size(375, 22);
+            this.textBoxTitikAntar.TabIndex = 19;
             // 
             // labelRole
             // 
@@ -268,7 +272,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(767, 83);
+            this.label8.Location = new System.Drawing.Point(859, 83);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(101, 22);
             this.label8.TabIndex = 47;
@@ -281,7 +285,7 @@
             this.dataGridViewKeranjang.Name = "dataGridViewKeranjang";
             this.dataGridViewKeranjang.RowHeadersWidth = 51;
             this.dataGridViewKeranjang.RowTemplate.Height = 24;
-            this.dataGridViewKeranjang.Size = new System.Drawing.Size(501, 172);
+            this.dataGridViewKeranjang.Size = new System.Drawing.Size(635, 172);
             this.dataGridViewKeranjang.TabIndex = 46;
             this.dataGridViewKeranjang.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewKeranjang_CellContentClick);
             // 
@@ -346,7 +350,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(767, 319);
+            this.label10.Location = new System.Drawing.Point(887, 319);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(135, 22);
             this.label10.TabIndex = 51;
@@ -355,17 +359,62 @@
             // comboBoxVocer
             // 
             this.comboBoxVocer.FormattingEnabled = true;
-            this.comboBoxVocer.Location = new System.Drawing.Point(908, 319);
+            this.comboBoxVocer.Location = new System.Drawing.Point(1028, 317);
             this.comboBoxVocer.Name = "comboBoxVocer";
-            this.comboBoxVocer.Size = new System.Drawing.Size(165, 24);
+            this.comboBoxVocer.Size = new System.Drawing.Size(179, 24);
             this.comboBoxVocer.TabIndex = 52;
+            this.comboBoxVocer.SelectedIndexChanged += new System.EventHandler(this.comboBoxVocer_SelectedIndexChanged);
+            // 
+            // labelMinimal
+            // 
+            this.labelMinimal.AutoSize = true;
+            this.labelMinimal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMinimal.Location = new System.Drawing.Point(1028, 351);
+            this.labelMinimal.Name = "labelMinimal";
+            this.labelMinimal.Size = new System.Drawing.Size(52, 22);
+            this.labelMinimal.TabIndex = 54;
+            this.labelMinimal.Text = "Rp 0";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(939, 351);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(83, 22);
+            this.label12.TabIndex = 53;
+            this.label12.Text = "Minimal:";
+            // 
+            // labelDiskon
+            // 
+            this.labelDiskon.AutoSize = true;
+            this.labelDiskon.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDiskon.Location = new System.Drawing.Point(1028, 383);
+            this.labelDiskon.Name = "labelDiskon";
+            this.labelDiskon.Size = new System.Drawing.Size(52, 22);
+            this.labelDiskon.TabIndex = 56;
+            this.labelDiskon.Text = "Rp 0";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(945, 383);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(77, 22);
+            this.label13.TabIndex = 55;
+            this.label13.Text = "Diskon:";
             // 
             // FormFood
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.ClientSize = new System.Drawing.Size(1099, 541);
+            this.ClientSize = new System.Drawing.Size(1219, 527);
+            this.Controls.Add(this.labelDiskon);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.labelMinimal);
+            this.Controls.Add(this.label12);
             this.Controls.Add(this.comboBoxVocer);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.numericUpDownLatitude);
@@ -388,7 +437,7 @@
             this.Controls.Add(this.dataGridViewDaftarMenu);
             this.Controls.Add(this.comboBoxPilihTenan);
             this.Controls.Add(this.buttonPesanFood);
-            this.Controls.Add(this.textBoxPassword);
+            this.Controls.Add(this.textBoxTitikAntar);
             this.Controls.Add(this.labelRole);
             this.Controls.Add(this.labelPassword);
             this.Controls.Add(this.labelUsername);
@@ -408,7 +457,7 @@
         #endregion
 
         private System.Windows.Forms.Button buttonPesanFood;
-        private System.Windows.Forms.TextBox textBoxPassword;
+        private System.Windows.Forms.TextBox textBoxTitikAntar;
         private System.Windows.Forms.Label labelRole;
         private System.Windows.Forms.Label labelPassword;
         private System.Windows.Forms.Label labelUsername;
@@ -434,5 +483,9 @@
         private System.Windows.Forms.NumericUpDown numericUpDownLatitude;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox comboBoxVocer;
+        private System.Windows.Forms.Label labelMinimal;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label labelDiskon;
+        private System.Windows.Forms.Label label13;
     }
 }

@@ -31,8 +31,8 @@ namespace UI_Baru_UAS
             {
                 dataGridViewLaporanReport.Columns.Remove("btnCheck");
             }
-            string mulai = dateTimePickerDari.Value.Date.ToString("yyyy-MM-dd");
-            string akhir = dateTimePickerSampai.Value.Date.ToString("yyyy-MM-dd");
+            string mulai = dateTimePickerDari.Value.Date.ToString("yyyy-MM-dd 00:00:00");
+            string akhir = dateTimePickerSampai.Value.Date.ToString("yyyy-MM-dd 23:59:59");
             List<Report> listHasil = Report.BacaData(mulai, akhir);
             dataGridViewLaporanReport.DataSource = listHasil;
             dataGridViewLaporanReport.Columns["Id"].Visible = false;

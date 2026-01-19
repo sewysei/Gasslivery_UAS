@@ -45,7 +45,7 @@ namespace UI_Baru_UAS
         {
             if (orderInfo != null)
             {
-                orderInfo.Status = "pending";
+                orderInfo.Status = "processing";
                 Order.GantiStatus(orderInfo);
             }
 
