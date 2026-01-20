@@ -32,8 +32,6 @@
             this.labelUsername = new System.Windows.Forms.Label();
             this.comboBoxJenisOrder = new System.Windows.Forms.ComboBox();
             this.dataGridViewDaftarOrder = new System.Windows.Forms.DataGridView();
-            this.buttonTerimaOrder = new System.Windows.Forms.Button();
-            this.buttonLihatDetail = new System.Windows.Forms.Button();
             this.buttonTutup = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDaftarOrder)).BeginInit();
             this.SuspendLayout();
@@ -82,28 +80,6 @@
             this.dataGridViewDaftarOrder.TabIndex = 18;
             this.dataGridViewDaftarOrder.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewDaftarOrder_CellContentClick);
             // 
-            // buttonTerimaOrder
-            // 
-            this.buttonTerimaOrder.BackColor = System.Drawing.Color.Transparent;
-            this.buttonTerimaOrder.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonTerimaOrder.Location = new System.Drawing.Point(19, 364);
-            this.buttonTerimaOrder.Name = "buttonTerimaOrder";
-            this.buttonTerimaOrder.Size = new System.Drawing.Size(186, 35);
-            this.buttonTerimaOrder.TabIndex = 21;
-            this.buttonTerimaOrder.Text = "Terima Order";
-            this.buttonTerimaOrder.UseVisualStyleBackColor = false;
-            // 
-            // buttonLihatDetail
-            // 
-            this.buttonLihatDetail.BackColor = System.Drawing.Color.Transparent;
-            this.buttonLihatDetail.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonLihatDetail.Location = new System.Drawing.Point(211, 364);
-            this.buttonLihatDetail.Name = "buttonLihatDetail";
-            this.buttonLihatDetail.Size = new System.Drawing.Size(167, 35);
-            this.buttonLihatDetail.TabIndex = 22;
-            this.buttonLihatDetail.Text = "Lihat Detail";
-            this.buttonLihatDetail.UseVisualStyleBackColor = false;
-            // 
             // buttonTutup
             // 
             this.buttonTutup.BackColor = System.Drawing.Color.Transparent;
@@ -123,8 +99,6 @@
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(800, 412);
             this.Controls.Add(this.buttonTutup);
-            this.Controls.Add(this.buttonLihatDetail);
-            this.Controls.Add(this.buttonTerimaOrder);
             this.Controls.Add(this.dataGridViewDaftarOrder);
             this.Controls.Add(this.comboBoxJenisOrder);
             this.Controls.Add(this.labelUsername);
@@ -144,8 +118,6 @@
         private System.Windows.Forms.Label labelUsername;
         private System.Windows.Forms.ComboBox comboBoxJenisOrder;
         private System.Windows.Forms.DataGridView dataGridViewDaftarOrder;
-        private System.Windows.Forms.Button buttonTerimaOrder;
-        private System.Windows.Forms.Button buttonLihatDetail;
         private System.Windows.Forms.Button buttonTutup;
     }
 }

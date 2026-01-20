@@ -242,7 +242,7 @@
             this.buttonBatal.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonBatal.Location = new System.Drawing.Point(572, 459);
             this.buttonBatal.Name = "buttonBatal";
-            this.buttonBatal.Size = new System.Drawing.Size(501, 48);
+            this.buttonBatal.Size = new System.Drawing.Size(635, 48);
             this.buttonBatal.TabIndex = 40;
             this.buttonBatal.Text = "Batal";
             this.buttonBatal.UseVisualStyleBackColor = false;

@@ -62,7 +62,7 @@ namespace Class_Gasslivery
             string perintah = "";
             if(kolom == "")
             {
-                perintah = $"SELECT o.*, c.username, dr.full_name, v.name, t.name, d.destination_point, d.fee " +
+                perintah = $"SELECT o.*, c.username, c.telp, dr.full_name, v.name, t.name, t.address, d.destination_point, d.fee " +
                     $"FROM orders o INNER JOIN consumers c ON c.id = o.consumer_id " +
                     $"INNER JOIN deliveries d ON d.id = o.delivery_id " +
                     $"INNER JOIN drivers dr ON dr.id = d.driver_id " +
@@ -73,7 +73,7 @@ namespace Class_Gasslivery
             }
             else if(kolom == "status")
             {
-                perintah = $"SELECT o.*, c.username, dr.full_name, v.name, t.name, d.destination_point, d.fee " +
+                perintah = $"SELECT o.*, c.username, c.telp, dr.full_name, v.name, t.name, t.address, d.destination_point, d.fee " +
                    $"FROM orders o INNER JOIN consumers c ON c.id = o.consumer_id " +
                    $"INNER JOIN deliveries d ON d.id = o.delivery_id " +
                    $"INNER JOIN drivers dr ON dr.id = d.driver_id " +
@@ -84,7 +84,7 @@ namespace Class_Gasslivery
             }
             else if (kolom == "date")
             {
-                perintah = $"SELECT o.*, c.username, dr.full_name, v.name, t.name, d.destination_point, d.fee " +
+                perintah = $"SELECT o.*, c.username, c.telp, dr.full_name, v.name, t.name, t.address, d.destination_point, d.fee " +
                    $"FROM orders o INNER JOIN consumers c ON c.id = o.consumer_id " +
                    $"INNER JOIN deliveries d ON d.id = o.delivery_id " +
                    $"INNER JOIN drivers dr ON dr.id = d.driver_id " +
@@ -95,7 +95,7 @@ namespace Class_Gasslivery
             }
             else if (kolom == "consumer")
             {
-                perintah = $"SELECT o.*, c.username, dr.full_name, v.name, t.name, d.destination_point, d.fee " +
+                perintah = $"SELECT o.*, c.username, c.telp, dr.full_name, v.name, t.name, t.address, d.destination_point, d.fee " +
                     $"FROM orders o INNER JOIN consumers c ON c.id = o.consumer_id " +
                     $"INNER JOIN deliveries d ON d.id = o.delivery_id " +
                     $"INNER JOIN drivers dr ON dr.id = d.driver_id " +
@@ -106,13 +106,24 @@ namespace Class_Gasslivery
             }
             else if (kolom == "driver")
             {
-                perintah = $"SELECT o.*, c.username, dr.full_name, v.name, t.name, d.destination_point, d.fee " +
+                perintah = $"SELECT o.*, c.username, c.telp, dr.full_name, v.name, t.name, t.address, d.destination_point, d.fee " +
                    $"FROM orders o INNER JOIN consumers c ON c.id = o.consumer_id " +
                    $"INNER JOIN deliveries d ON d.id = o.delivery_id " +
                    $"INNER JOIN drivers dr ON dr.id = d.driver_id " +
                    $"INNER JOIN tenants t ON t.id = o.tenant_id " +
                    $"INNER JOIN vouchers v ON v.id = o.voucher_id " +
-                   $"WHERE o.status = 'pending' " +
+                   $"WHERE o.status = 'pending' "+
+                   $"ORDER BY o.date DESC;";
+            }
+            else if (kolom == "riwayat")
+            {
+                perintah = $"SELECT o.*, c.username, c.telp, dr.full_name, v.name, t.name, t.address, d.destination_point, d.fee " +
+                   $"FROM orders o INNER JOIN consumers c ON c.id = o.consumer_id " +
+                   $"INNER JOIN deliveries d ON d.id = o.delivery_id " +
+                   $"INNER JOIN drivers dr ON dr.id = d.driver_id " +
+                   $"INNER JOIN tenants t ON t.id = o.tenant_id " +
+                   $"INNER JOIN vouchers v ON v.id = o.voucher_id " +
+                   $"WHERE d.driver_id = '{id}' " +
                    $"ORDER BY o.date DESC;";
             }
 
@@ -136,11 +147,13 @@ namespace Class_Gasslivery
                 tampung.Total_fee = int.Parse(hasil.GetValue(9).ToString());
                 consumer.Id = hasil.GetValue(10).ToString();
                 consumer.Username = hasil.GetValue(11).ToString();
-                delivery.Driver.Full_name = hasil.GetValue(12).ToString();
-                voucher.Name = hasil.GetValue(13).ToString();
-                tenant.Name = hasil.GetValue(14).ToString();
-                delivery.Destination_point = hasil.GetValue(15).ToString();
-                delivery.Fee = int.Parse(hasil.GetValue(16).ToString());
+                consumer.Telp = hasil.GetValue(12).ToString();
+                delivery.Driver.Full_name = hasil.GetValue(13).ToString();
+                voucher.Name = hasil.GetValue(14).ToString();
+                tenant.Name = hasil.GetValue(15).ToString();
+                tenant.Address = hasil.GetValue(16).ToString();
+                delivery.Destination_point = hasil.GetValue(17).ToString();
+                delivery.Fee = int.Parse(hasil.GetValue(18).ToString());
                 tampung.Consumer = consumer;
                 tampung.Delivery = delivery;
                 tampung.Tenant = tenant;
