@@ -334,8 +334,8 @@ namespace Class_Gasslivery
                     string driverId = hasil.GetValue(0).ToString();
                     int totalFee = int.Parse(hasil.GetValue(1).ToString());
                     
-                    double driverFee = totalFee * 0.20;
-                    Driver.TambahBalance(driverId, driverFee);
+                    int driverFee = (int)(totalFee * 0.20);
+                    Driver.UpdateSaldo(driverFee, driverId);
                 }
             }
         }

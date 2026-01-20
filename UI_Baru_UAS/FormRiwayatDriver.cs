@@ -73,7 +73,6 @@ namespace UI_Baru_UAS
                     detail.Name = "btnDetail";
                     dataGridViewDaftarOrder.Columns.Add(detail);
                 }
-            }
 
                 dataGridViewDaftarOrder.DataSource = Trip.BacaData("riwayat", "", frm.driverLogin.Id);
                 if (dataGridViewDaftarOrder.Columns["Consumer"] != null)

@@ -19,7 +19,7 @@ namespace UI_Baru_UAS
             InitializeComponent();
         }
 
-        private void FormTarikDanaDriver_Load(object sender, EventArgs e)
+        private void FormTarikDanaDriver_Load(object sender, EventArgs eFormTarikDanaDriver_Load
         {
             frm = (FormUtama)this.MdiParent;
             labelSaldoSaatIni.Text = ((int)frm.driverLogin.Balance).ToString();
@@ -42,6 +42,7 @@ namespace UI_Baru_UAS
             int nominal = (int)numericUpDownWithdraw.Value;
             withdraw.Amount = nominal;
             withdraw.Driver = frm.driverLogin;
+            frm.driverLogin.Balance -= nominal; 
             if(nominal == 0)
             {
                 MessageBox.Show("Minimal penarikan Rp.10.000", "Minimal Penarikan");
@@ -56,10 +57,11 @@ namespace UI_Baru_UAS
             else
             {
                 Withdraw.TarikSaldo(withdraw);
+                Driver.UpdateSaldo(nominal * -1, frm.driverLogin.Id);
                 MessageBox.Show("Berhasil melakukan penarikan saldo!", "Berhasil menarik saldo");
             }
 
-
+            FormTarikDanaDriver_Load(this, e);
         }
     }
 }
