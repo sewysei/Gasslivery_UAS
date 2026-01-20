@@ -129,5 +129,14 @@ namespace Class_Gasslivery
             Koneksi.JalankanPerintahDML(perintah);
 
         }
+
+        public static void UpdateSaldo(int balance, string id)
+        {
+            string perintah = $"UPDATE drivers SET balance = balance + {balance} " +
+                $"WHERE id = {id}";
+
+            Koneksi.JalankanPerintahDML(perintah);
+
+        }
     }
 }

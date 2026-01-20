@@ -35,50 +35,65 @@ namespace UI_Baru_UAS
             frm = (FormUtama)this.MdiParent;
 
             jenis = comboBoxJenisOrder.Text;
-            
-            if(jenis == "Gass-kan")
+
+            if (dataGridViewDaftarOrder.Columns.Contains("btnDetail"))
+            {
+                dataGridViewDaftarOrder.Columns.Remove("btnDetail");
+            }
+
+            if (jenis == "Gass-kan")
             {
                 dataGridViewDaftarOrder.DataSource = Order.BacaData("riwayat", "", frm.driverLogin.Id);
-                dataGridViewDaftarOrder.Columns["Food_rating"].HeaderText = "Food Rating";
-                dataGridViewDaftarOrder.Columns["Driver_rating"].HeaderText = "Driver Rating";
                 dataGridViewDaftarOrder.Columns["Discount_value"].HeaderText = "Discount Value";
                 dataGridViewDaftarOrder.Columns["Total_fee"].HeaderText = "Total Fee";
                 dataGridViewDaftarOrder.Columns["Delivery"].HeaderText = "Destination Point";
                 dataGridViewDaftarOrder.Columns["Id"].Visible = false;
+                dataGridViewDaftarOrder.Columns["Food_rating"].Visible = false;
+                dataGridViewDaftarOrder.Columns["Driver_rating"].Visible = false;
+                if (!dataGridViewDaftarOrder.Columns.Contains("btnDetail"))
+                {
+                    DataGridViewButtonColumn detail = new DataGridViewButtonColumn();
+                    detail.Text = "Detail";
+                    detail.HeaderText = "Detail";
+                    detail.UseColumnTextForButtonValue = true;
+                    detail.Name = "btnDetail";
+                    dataGridViewDaftarOrder.Columns.Add(detail);
+                }
             }
             else if(jenis == "Gass-ride")
             {
                 dataGridViewDaftarOrder.DataSource = Trip.BacaData();
+                if (!dataGridViewDaftarOrder.Columns.Contains("btnDetail"))
+                {
+                    DataGridViewButtonColumn detail = new DataGridViewButtonColumn();
+                    detail.Text = "Detail";
+                    detail.HeaderText = "Detail";
+                    detail.UseColumnTextForButtonValue = true;
+                    detail.Name = "btnDetail";
+                    dataGridViewDaftarOrder.Columns.Add(detail);
+                }
             }
 
-            if (!dataGridViewDaftarOrder.Columns.Contains("btnDetail"))
-            {
-                DataGridViewButtonColumn detail = new DataGridViewButtonColumn();
-                detail.Text = "Detail";
-                detail.HeaderText = "Detail";
-                detail.UseColumnTextForButtonValue = true;
-                detail.Name = "btnDetail";
-                dataGridViewDaftarOrder.Columns.Add(detail);
-            }
         }
 
         private void dataGridViewDaftarOrder_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridViewDaftarOrder.Columns[e.ColumnIndex].Name == "btnDetail")
             {
-                FormTripDriverDetail frm = new FormTripDriverDetail();
+                FormTripDriverDetail frmDetil = new FormTripDriverDetail();
                 if (jenis == "Gass-ride")
                 {
                     Trip selectedTrip = (Trip)dataGridViewDaftarOrder.CurrentRow.DataBoundItem;
-                    frm.tripInfo = selectedTrip;
+                    frmDetil.tripInfo = selectedTrip;
                 }
                 else if (jenis == "Gass-kan")
                 {
                     Order selectedOrder = (Order)dataGridViewDaftarOrder.CurrentRow.DataBoundItem;
-                    frm.orderInfo = selectedOrder;
+                    frmDetil.driver = frm.driverLogin;
+                    frmDetil.orderInfo = selectedOrder;
                 }
-                frm.Owner = this;
-                frm.ShowDialog();
+                frmDetil.Owner = this;
+                frmDetil.ShowDialog();
                 FormRiwayatDriver_Load(this, e);
             }
         }

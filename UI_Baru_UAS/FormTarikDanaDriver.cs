@@ -24,6 +24,11 @@ namespace UI_Baru_UAS
             frm = (FormUtama)this.MdiParent;
             labelSaldoSaatIni.Text = ((int)frm.driverLogin.Balance).ToString();
             numericUpDownWithdraw.Maximum = (decimal)frm.driverLogin.Balance;
+            if (DateTime.Now.DayOfWeek != DayOfWeek.Sunday)
+            {
+                buttonTarikDana.Enabled = false;
+                MessageBox.Show("Hanya bisa tarik dana di hari Minggu!");
+            }
         }
 
         private void buttonBatal_Click(object sender, EventArgs e)

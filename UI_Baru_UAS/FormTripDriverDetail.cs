@@ -13,6 +13,7 @@ namespace UI_Baru_UAS
 {
     public partial class FormTripDriverDetail : Form
     {
+        public Driver driver;
         public Order orderInfo;
         public Trip tripInfo;
         public FormTripDriverDetail()
@@ -38,11 +39,11 @@ namespace UI_Baru_UAS
                 labelJemput.Text = orderInfo.Tenant.Address;
                 labelTujuan.Text = orderInfo.Delivery.Destination_point;
                 labelOngkos.Text = orderInfo.Delivery.Fee.ToString();
-                if(orderInfo.Status == "pending")
+                if(orderInfo.Status == "processing")
                 {
                     buttonSelesai.Enabled = false;
                 }
-                else if (orderInfo.Status == "processing" )
+                else if (orderInfo.Status == "delivering" )
                 {
                     buttonTerima.Enabled = false;
                 }
@@ -84,7 +85,8 @@ namespace UI_Baru_UAS
         {
             if (orderInfo != null)
             {
-                orderInfo.Status = "processing";
+                orderInfo.Status = "delivering";
+                Delivery.GantiDriver(driver.Id, orderInfo.Delivery.Id);
                 Order.GantiStatus(orderInfo);
             }
             this.Close();
@@ -95,6 +97,8 @@ namespace UI_Baru_UAS
             if (orderInfo != null)
             {
                 orderInfo.Status = "delivered";
+                int honor = (int)(orderInfo.Total_fee * 0.2);
+                Driver.UpdateSaldo(honor, driver.Id);
                 Order.GantiStatus(orderInfo);
             }
             this.Close();

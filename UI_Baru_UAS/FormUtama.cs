@@ -224,10 +224,10 @@ namespace UI_Baru_UAS
 
         private void riwayatTripToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form frm = Application.OpenForms["FormTerimaOrder"];
+            Form frm = Application.OpenForms["FormRiwayatDriver"];
             if (frm == null)
             {
-                FormTerimaOrder form = new FormTerimaOrder();
+                FormRiwayatDriver form = new FormRiwayatDriver();
                 form.MdiParent = this;
                 form.Show();
             }

@@ -112,7 +112,7 @@ namespace Class_Gasslivery
                    $"INNER JOIN drivers dr ON dr.id = d.driver_id " +
                    $"INNER JOIN tenants t ON t.id = o.tenant_id " +
                    $"INNER JOIN vouchers v ON v.id = o.voucher_id " +
-                   $"WHERE o.status = 'pending' "+
+                   $"WHERE o.status = 'processing' "+
                    $"ORDER BY o.date DESC;";
             }
             else if (kolom == "riwayat")
@@ -194,7 +194,7 @@ namespace Class_Gasslivery
 
         public static void GantiStatus(Order order)
         {
-            string perintah = $"UPDATE orders SET status = '{order.Status}' ";
+            string perintah = $"UPDATE orders SET status = '{order.Status}' WHERE id = {order.Id} ";
             Koneksi.JalankanPerintahDML(perintah);
         }
 
@@ -204,7 +204,7 @@ namespace Class_Gasslivery
 
             perintah = $"INSERT INTO orders " +
                      $"(`delivery_id`, `tenant_id`, `voucher_id`, `date`, `status`, `food_rating`,  `driver_rating`,  `discount_value`, `total_fee`, `consumer_id`) " +
-                     $"VALUES( '1', '{order.Tenant.Id}', '{order.voucher.Id}', NOW(), '{order.Status}', '0', '0', " +
+                     $"VALUES( '{order.Delivery.Id}', '{order.Tenant.Id}', '{order.voucher.Id}', NOW(), '{order.Status}', '0', '0', " +
                      $"'{order.Discount_value}', '{order.Total_fee}', '{order.Consumer.Id}'); " +
                      $"SELECT LAST_INSERT_ID();";
                 

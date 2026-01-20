@@ -13,6 +13,7 @@ namespace UI_Baru_UAS
 {
     public partial class FormTerimaOrder : Form
     {
+        FormUtama frm;
         string jenis;
         public FormTerimaOrder()
         {
@@ -21,6 +22,7 @@ namespace UI_Baru_UAS
 
         private void FormTerimaOrder_Load(object sender, EventArgs e)
         {
+            frm = (FormUtama)this.MdiParent;
             comboBoxJenisOrder.SelectedIndex = 0;
             jenis = comboBoxJenisOrder.Text;
             dataGridViewDaftarOrder.Refresh();
@@ -71,12 +73,12 @@ namespace UI_Baru_UAS
             else if (jenis == "Gass-kan")
             {
                 dataGridViewDaftarOrder.DataSource = Order.BacaData("driver");
-                dataGridViewDaftarOrder.Columns["Food_rating"].HeaderText = "Food Rating";
-                dataGridViewDaftarOrder.Columns["Driver_rating"].HeaderText = "Driver Rating";
                 dataGridViewDaftarOrder.Columns["Discount_value"].HeaderText = "Discount Value";
                 dataGridViewDaftarOrder.Columns["Total_fee"].HeaderText = "Total Fee";
                 dataGridViewDaftarOrder.Columns["Delivery"].HeaderText = "Destination Point";
                 dataGridViewDaftarOrder.Columns["Id"].Visible = false;
+                dataGridViewDaftarOrder.Columns["Food_rating"].Visible = false;
+                dataGridViewDaftarOrder.Columns["Driver_rating"].Visible = false;
             }
 
             if (!dataGridViewDaftarOrder.Columns.Contains("btnDetail"))
@@ -100,19 +102,20 @@ namespace UI_Baru_UAS
         {
             if (dataGridViewDaftarOrder.Columns[e.ColumnIndex].Name == "btnDetail")
             {
-                FormTripDriverDetail frm = new FormTripDriverDetail();
+                FormTripDriverDetail formDetil = new FormTripDriverDetail();
                 if(jenis == "Gass-ride")
                 {
                     Trip selectedTrip = (Trip)dataGridViewDaftarOrder.CurrentRow.DataBoundItem;
-                    frm.tripInfo = selectedTrip;
+                    formDetil.tripInfo = selectedTrip;
                 }
                 else if (jenis == "Gass-kan")
                 {
                     Order selectedOrder = (Order)dataGridViewDaftarOrder.CurrentRow.DataBoundItem;
-                    frm.orderInfo = selectedOrder;
+                    formDetil.driver = frm.driverLogin;
+                    formDetil.orderInfo = selectedOrder;
                 }
-                frm.Owner = this;
-                frm.ShowDialog();
+                formDetil.Owner = this;
+                formDetil.ShowDialog();
                 FormTerimaOrder_Load(this, e);
             }
         }
