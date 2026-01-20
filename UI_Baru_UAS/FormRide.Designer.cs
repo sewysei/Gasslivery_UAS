@@ -52,8 +52,8 @@
             this.checkBoxMotorBaru = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBoxLangitudeJemput = new System.Windows.Forms.TextBox();
-            this.textBoxLangitudeTujuan = new System.Windows.Forms.TextBox();
+            this.textBoxLongitudeJemput = new System.Windows.Forms.TextBox();
+            this.textBoxLongitudeTujuan = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.textBoxLatitudeJemput = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -67,7 +67,7 @@
             // 
             this.buttonPesanRide.BackColor = System.Drawing.Color.Transparent;
             this.buttonPesanRide.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPesanRide.Location = new System.Drawing.Point(14, 490);
+            this.buttonPesanRide.Location = new System.Drawing.Point(14, 502);
             this.buttonPesanRide.Name = "buttonPesanRide";
             this.buttonPesanRide.Size = new System.Drawing.Size(132, 35);
             this.buttonPesanRide.TabIndex = 20;
@@ -93,7 +93,7 @@
             // 
             this.labelRole.AutoSize = true;
             this.labelRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelRole.Location = new System.Drawing.Point(143, 439);
+            this.labelRole.Location = new System.Drawing.Point(143, 451);
             this.labelRole.Name = "labelRole";
             this.labelRole.Size = new System.Drawing.Size(0, 22);
             this.labelRole.TabIndex = 17;
@@ -148,6 +148,7 @@
             this.dateTimePickerJadwalkan.Name = "dateTimePickerJadwalkan";
             this.dateTimePickerJadwalkan.Size = new System.Drawing.Size(200, 28);
             this.dateTimePickerJadwalkan.TabIndex = 2;
+            this.dateTimePickerJadwalkan.ValueChanged += new System.EventHandler(this.dateTimePickerJadwalkan_ValueChanged);
             // 
             // radioButtonJadwalkan
             // 
@@ -159,6 +160,7 @@
             this.radioButtonJadwalkan.TabStop = true;
             this.radioButtonJadwalkan.Text = "Jadwalkan";
             this.radioButtonJadwalkan.UseVisualStyleBackColor = true;
+            this.radioButtonJadwalkan.CheckedChanged += new System.EventHandler(this.radioButtonJadwalkan_CheckedChanged);
             // 
             // radioButtonSekarang
             // 
@@ -170,6 +172,7 @@
             this.radioButtonSekarang.TabStop = true;
             this.radioButtonSekarang.Text = "Sekarang";
             this.radioButtonSekarang.UseVisualStyleBackColor = true;
+            this.radioButtonSekarang.CheckedChanged += new System.EventHandler(this.radioButtonSekarang_CheckedChanged);
             // 
             // label1
             // 
@@ -186,7 +189,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label2.Location = new System.Drawing.Point(8, 391);
+            this.label2.Location = new System.Drawing.Point(8, 403);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(141, 22);
             this.label2.TabIndex = 23;
@@ -197,7 +200,7 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label3.Location = new System.Drawing.Point(8, 423);
+            this.label3.Location = new System.Drawing.Point(8, 435);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(71, 22);
             this.label3.TabIndex = 24;
@@ -208,7 +211,7 @@
             this.labelJarak.AutoSize = true;
             this.labelJarak.BackColor = System.Drawing.Color.Transparent;
             this.labelJarak.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelJarak.Location = new System.Drawing.Point(83, 423);
+            this.labelJarak.Location = new System.Drawing.Point(83, 435);
             this.labelJarak.Name = "labelJarak";
             this.labelJarak.Size = new System.Drawing.Size(17, 22);
             this.labelJarak.TabIndex = 25;
@@ -219,7 +222,7 @@
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label5.Location = new System.Drawing.Point(8, 455);
+            this.label5.Location = new System.Drawing.Point(8, 467);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(90, 22);
             this.label5.TabIndex = 26;
@@ -230,7 +233,7 @@
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label4.Location = new System.Drawing.Point(103, 455);
+            this.label4.Location = new System.Drawing.Point(103, 467);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(0, 22);
             this.label4.TabIndex = 27;
@@ -240,7 +243,7 @@
             this.labelOngkos.AutoSize = true;
             this.labelOngkos.BackColor = System.Drawing.Color.Transparent;
             this.labelOngkos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.labelOngkos.Location = new System.Drawing.Point(103, 455);
+            this.labelOngkos.Location = new System.Drawing.Point(103, 467);
             this.labelOngkos.Name = "labelOngkos";
             this.labelOngkos.Size = new System.Drawing.Size(46, 22);
             this.labelOngkos.TabIndex = 28;
@@ -250,12 +253,13 @@
             // 
             this.buttonBatal.BackColor = System.Drawing.Color.Transparent;
             this.buttonBatal.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonBatal.Location = new System.Drawing.Point(340, 490);
+            this.buttonBatal.Location = new System.Drawing.Point(340, 504);
             this.buttonBatal.Name = "buttonBatal";
             this.buttonBatal.Size = new System.Drawing.Size(132, 35);
             this.buttonBatal.TabIndex = 29;
             this.buttonBatal.Text = "Batal";
             this.buttonBatal.UseVisualStyleBackColor = false;
+            this.buttonBatal.Click += new System.EventHandler(this.buttonBatal_Click);
             // 
             // label6
             // 
@@ -272,23 +276,25 @@
             // 
             this.checkBoxDriverWanita.AutoSize = true;
             this.checkBoxDriverWanita.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxDriverWanita.Location = new System.Drawing.Point(14, 338);
+            this.checkBoxDriverWanita.Location = new System.Drawing.Point(10, 364);
             this.checkBoxDriverWanita.Name = "checkBoxDriverWanita";
             this.checkBoxDriverWanita.Size = new System.Drawing.Size(148, 24);
             this.checkBoxDriverWanita.TabIndex = 31;
             this.checkBoxDriverWanita.Text = "Driver Wanita";
             this.checkBoxDriverWanita.UseVisualStyleBackColor = true;
+            this.checkBoxDriverWanita.CheckedChanged += new System.EventHandler(this.checkBoxDriverWanita_CheckedChanged);
             // 
             // checkBoxMotorBaru
             // 
             this.checkBoxMotorBaru.AutoSize = true;
             this.checkBoxMotorBaru.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxMotorBaru.Location = new System.Drawing.Point(14, 368);
+            this.checkBoxMotorBaru.Location = new System.Drawing.Point(10, 327);
             this.checkBoxMotorBaru.Name = "checkBoxMotorBaru";
             this.checkBoxMotorBaru.Size = new System.Drawing.Size(125, 24);
             this.checkBoxMotorBaru.TabIndex = 32;
             this.checkBoxMotorBaru.Text = "Motor Baru";
             this.checkBoxMotorBaru.UseVisualStyleBackColor = true;
+            this.checkBoxMotorBaru.CheckedChanged += new System.EventHandler(this.checkBoxMotorBaru_CheckedChanged);
             // 
             // label7
             // 
@@ -299,7 +305,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(110, 22);
             this.label7.TabIndex = 33;
-            this.label7.Text = "Langitude :";
+            this.label7.Text = "Longitude :";
             // 
             // label8
             // 
@@ -310,21 +316,23 @@
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(110, 22);
             this.label8.TabIndex = 34;
-            this.label8.Text = "Langitude :";
+            this.label8.Text = "Longitude :";
             // 
-            // textBoxLangitudeJemput
+            // textBoxLongitudeJemput
             // 
-            this.textBoxLangitudeJemput.Location = new System.Drawing.Point(141, 77);
-            this.textBoxLangitudeJemput.Name = "textBoxLangitudeJemput";
-            this.textBoxLangitudeJemput.Size = new System.Drawing.Size(325, 22);
-            this.textBoxLangitudeJemput.TabIndex = 35;
+            this.textBoxLongitudeJemput.Location = new System.Drawing.Point(141, 77);
+            this.textBoxLongitudeJemput.Name = "textBoxLongitudeJemput";
+            this.textBoxLongitudeJemput.Size = new System.Drawing.Size(325, 22);
+            this.textBoxLongitudeJemput.TabIndex = 35;
+            this.textBoxLongitudeJemput.TextChanged += new System.EventHandler(this.textBoxLongitudeJemput_TextChanged);
             // 
-            // textBoxLangitudeTujuan
+            // textBoxLongitudeTujuan
             // 
-            this.textBoxLangitudeTujuan.Location = new System.Drawing.Point(141, 164);
-            this.textBoxLangitudeTujuan.Name = "textBoxLangitudeTujuan";
-            this.textBoxLangitudeTujuan.Size = new System.Drawing.Size(325, 22);
-            this.textBoxLangitudeTujuan.TabIndex = 36;
+            this.textBoxLongitudeTujuan.Location = new System.Drawing.Point(141, 164);
+            this.textBoxLongitudeTujuan.Name = "textBoxLongitudeTujuan";
+            this.textBoxLongitudeTujuan.Size = new System.Drawing.Size(325, 22);
+            this.textBoxLongitudeTujuan.TabIndex = 36;
+            this.textBoxLongitudeTujuan.TextChanged += new System.EventHandler(this.textBoxLongitudeTujuan_TextChanged);
             // 
             // label9
             // 
@@ -343,6 +351,7 @@
             this.textBoxLatitudeJemput.Name = "textBoxLatitudeJemput";
             this.textBoxLatitudeJemput.Size = new System.Drawing.Size(325, 22);
             this.textBoxLatitudeJemput.TabIndex = 38;
+            this.textBoxLatitudeJemput.TextChanged += new System.EventHandler(this.textBoxLatitudeJemput_TextChanged);
             // 
             // label10
             // 
@@ -361,6 +370,7 @@
             this.textBoxLatitudeTujuan.Name = "textBoxLatitudeTujuan";
             this.textBoxLatitudeTujuan.Size = new System.Drawing.Size(325, 22);
             this.textBoxLatitudeTujuan.TabIndex = 40;
+            this.textBoxLatitudeTujuan.TextChanged += new System.EventHandler(this.textBoxLatitudeTujuan_TextChanged);
             // 
             // label11
             // 
@@ -380,6 +390,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(237, 24);
             this.comboBox1.TabIndex = 42;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // FormRide
             // 
@@ -393,8 +404,8 @@
             this.Controls.Add(this.label10);
             this.Controls.Add(this.textBoxLatitudeJemput);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.textBoxLangitudeTujuan);
-            this.Controls.Add(this.textBoxLangitudeJemput);
+            this.Controls.Add(this.textBoxLongitudeTujuan);
+            this.Controls.Add(this.textBoxLongitudeJemput);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.checkBoxMotorBaru);
@@ -452,8 +463,8 @@
         private System.Windows.Forms.CheckBox checkBoxMotorBaru;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBoxLangitudeJemput;
-        private System.Windows.Forms.TextBox textBoxLangitudeTujuan;
+        private System.Windows.Forms.TextBox textBoxLongitudeJemput;
+        private System.Windows.Forms.TextBox textBoxLongitudeTujuan;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox textBoxLatitudeJemput;
         private System.Windows.Forms.Label label10;

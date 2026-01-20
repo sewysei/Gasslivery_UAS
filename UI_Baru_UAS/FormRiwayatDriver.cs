@@ -34,6 +34,7 @@ namespace UI_Baru_UAS
         {
             frm = (FormUtama)this.MdiParent;
 
+            comboBoxJenisOrder.SelectedIndex = 0;
             jenis = comboBoxJenisOrder.Text;
 
             if (dataGridViewDaftarOrder.Columns.Contains("btnDetail"))
@@ -74,6 +75,28 @@ namespace UI_Baru_UAS
                 }
             }
 
+                dataGridViewDaftarOrder.DataSource = Trip.BacaData("riwayat", "", frm.driverLogin.Id);
+                if (dataGridViewDaftarOrder.Columns["Consumer"] != null)
+                    dataGridViewDaftarOrder.Columns["Consumer"].HeaderText = "Consumer";
+                if (dataGridViewDaftarOrder.Columns["Pickup_point"] != null)
+                    dataGridViewDaftarOrder.Columns["Pickup_point"].HeaderText = "Titik Jemput";
+                if (dataGridViewDaftarOrder.Columns["Destination_point"] != null)
+                    dataGridViewDaftarOrder.Columns["Destination_point"].HeaderText = "Titik Tujuan";
+                if (dataGridViewDaftarOrder.Columns["Total_fee"] != null)
+                    dataGridViewDaftarOrder.Columns["Total_fee"].HeaderText = "Total Fee";
+                if (dataGridViewDaftarOrder.Columns["Id"] != null)
+                    dataGridViewDaftarOrder.Columns["Id"].Visible = false;
+            }
+
+            if (!dataGridViewDaftarOrder.Columns.Contains("btnDetail"))
+            {
+                DataGridViewButtonColumn detail = new DataGridViewButtonColumn();
+                detail.Text = "Detail";
+                detail.HeaderText = "Detail";
+                detail.UseColumnTextForButtonValue = true;
+                detail.Name = "btnDetail";
+                dataGridViewDaftarOrder.Columns.Add(detail);
+            }
         }
 
         private void dataGridViewDaftarOrder_CellContentClick(object sender, DataGridViewCellEventArgs e)

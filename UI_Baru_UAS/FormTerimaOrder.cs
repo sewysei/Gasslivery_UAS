@@ -34,6 +34,16 @@ namespace UI_Baru_UAS
             if (jenis == "Gass-ride")
             {
                 dataGridViewDaftarOrder.DataSource = Trip.BacaData();
+                if (dataGridViewDaftarOrder.Columns["Consumer"] != null)
+                    dataGridViewDaftarOrder.Columns["Consumer"].HeaderText = "Consumer";
+                if (dataGridViewDaftarOrder.Columns["Pickup_point"] != null)
+                    dataGridViewDaftarOrder.Columns["Pickup_point"].HeaderText = "Titik Jemput";
+                if (dataGridViewDaftarOrder.Columns["Destination_point"] != null)
+                    dataGridViewDaftarOrder.Columns["Destination_point"].HeaderText = "Titik Tujuan";
+                if (dataGridViewDaftarOrder.Columns["Total_fee"] != null)
+                    dataGridViewDaftarOrder.Columns["Total_fee"].HeaderText = "Total Fee";
+                if (dataGridViewDaftarOrder.Columns["Id"] != null)
+                    dataGridViewDaftarOrder.Columns["Id"].Visible = false;
             }
             else if (jenis == "Gass-kan")
             {
@@ -69,6 +79,16 @@ namespace UI_Baru_UAS
             if (jenis == "Gass-ride")
             {
                 dataGridViewDaftarOrder.DataSource = Trip.BacaData();
+                if (dataGridViewDaftarOrder.Columns["Consumer"] != null)
+                    dataGridViewDaftarOrder.Columns["Consumer"].HeaderText = "Consumer";
+                if (dataGridViewDaftarOrder.Columns["Pickup_point"] != null)
+                    dataGridViewDaftarOrder.Columns["Pickup_point"].HeaderText = "Titik Jemput";
+                if (dataGridViewDaftarOrder.Columns["Destination_point"] != null)
+                    dataGridViewDaftarOrder.Columns["Destination_point"].HeaderText = "Titik Tujuan";
+                if (dataGridViewDaftarOrder.Columns["Total_fee"] != null)
+                    dataGridViewDaftarOrder.Columns["Total_fee"].HeaderText = "Total Fee";
+                if (dataGridViewDaftarOrder.Columns["Id"] != null)
+                    dataGridViewDaftarOrder.Columns["Id"].Visible = false;
             }
             else if (jenis == "Gass-kan")
             {

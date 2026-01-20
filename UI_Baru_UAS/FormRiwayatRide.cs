@@ -9,8 +9,7 @@ namespace UI_Baru_UAS
 {
     public partial class FormRiwayatRide : Form
     {
-        public FormUtama frmUtama;
-        private Trip selectedTrip;
+        FormUtama frmUtama;
 
         public FormRiwayatRide(FormUtama frm)
         {
@@ -20,22 +19,10 @@ namespace UI_Baru_UAS
 
         private void FormRiwayatRide_Load(object sender, EventArgs e)
         {
+            frmUtama = (FormUtama)this.MdiParent;
             dateTimePickerDari.Value = DateTime.Now.AddMonths(-1);
             dateTimePickerSampai.Value = DateTime.Now;
             LoadData();
-            AttachEventHandlers();
-        }
-
-        private void AttachEventHandlers()
-        {
-            dateTimePickerDari.ValueChanged += (s, ev) => LoadData();
-            dateTimePickerSampai.ValueChanged += (s, ev) => LoadData();
-            dataGridViewRiwayatRide.SelectionChanged += DataGridViewRiwayatRide_SelectionChanged;
-            buttonRating.Click += ButtonRating_Click;
-            buttonCancel.Click += ButtonCancel_Click;
-            buttonReport.Click += ButtonReport_Click;
-            buttonLihatDetail.Click += ButtonLihatDetail_Click;
-            buttonTutup.Click += ButtonTutup_Click;
         }
 
         private void LoadData()
@@ -54,6 +41,14 @@ namespace UI_Baru_UAS
 
                 List<Trip> listTrip = Trip.BacaDataByConsumer(frmUtama.consumerLogin.Id, mulai, akhir);
                 
+                if (dataGridViewRiwayatRide.Columns.Contains("btnRating"))
+                {
+                    dataGridViewRiwayatRide.DataSource = null;
+                    dataGridViewRiwayatRide.Columns.Remove("btnRating");
+                    dataGridViewRiwayatRide.Columns.Remove("btnCancel");
+                    dataGridViewRiwayatRide.Columns.Remove("btnReport");
+                }
+
                 System.Data.DataTable dt = new System.Data.DataTable();
                 dt.Columns.Add("ID", typeof(string));
                 dt.Columns.Add("Tanggal", typeof(DateTime));
@@ -86,7 +81,37 @@ namespace UI_Baru_UAS
                 dataGridViewRiwayatRide.Columns["ID"].Visible = false;
                 dataGridViewRiwayatRide.Columns["Total Biaya"].DefaultCellStyle.Format = "N0";
                 dataGridViewRiwayatRide.Columns["Jarak (KM)"].DefaultCellStyle.Format = "0.00";
-                
+
+                if (dataGridViewRiwayatRide.Columns["btnRating"] == null)
+                {
+                    DataGridViewButtonColumn btnRating = new DataGridViewButtonColumn();
+                    btnRating.Text = "Rating";
+                    btnRating.HeaderText = "Rating";
+                    btnRating.UseColumnTextForButtonValue = true;
+                    btnRating.Name = "btnRating";
+                    dataGridViewRiwayatRide.Columns.Add(btnRating);
+                }
+
+                if (dataGridViewRiwayatRide.Columns["btnCancel"] == null)
+                {
+                    DataGridViewButtonColumn btnCancel = new DataGridViewButtonColumn();
+                    btnCancel.Text = "Cancel";
+                    btnCancel.HeaderText = "Cancel";
+                    btnCancel.UseColumnTextForButtonValue = true;
+                    btnCancel.Name = "btnCancel";
+                    dataGridViewRiwayatRide.Columns.Add(btnCancel);
+                }
+
+                if (dataGridViewRiwayatRide.Columns["btnReport"] == null)
+                {
+                    DataGridViewButtonColumn btnReport = new DataGridViewButtonColumn();
+                    btnReport.Text = "Report";
+                    btnReport.HeaderText = "Report";
+                    btnReport.UseColumnTextForButtonValue = true;
+                    btnReport.Name = "btnReport";
+                    dataGridViewRiwayatRide.Columns.Add(btnReport);
+                }
+
                 dataGridViewRiwayatRide.Tag = listTrip;
             }
             catch (Exception ex)
@@ -95,182 +120,154 @@ namespace UI_Baru_UAS
             }
         }
 
+        private void dateTimePickerDari_ValueChanged(object sender, EventArgs e)
+        {
+            LoadData();
+        }
 
-        private void DataGridViewRiwayatRide_SelectionChanged(object sender, EventArgs e)
+        private void dateTimePickerSampai_ValueChanged(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        private void buttonLihatDetail_Click(object sender, EventArgs e)
         {
             if (dataGridViewRiwayatRide.CurrentRow != null && dataGridViewRiwayatRide.Tag is List<Trip> tripList)
             {
                 int index = dataGridViewRiwayatRide.CurrentRow.Index;
                 if (index >= 0 && index < tripList.Count)
                 {
-                    selectedTrip = tripList[index];
-                    UpdateButtonStates();
+                    Trip trip = tripList[index];
+                    string detail = $"Detail Trip\n\n" +
+                        $"ID Trip: {trip.Id}\n" +
+                        $"Tanggal: {trip.Date:yyyy-MM-dd}\n" +
+                        $"Status: {trip.Status}\n" +
+                        $"Titik Jemput: {trip.Pickup_point}\n" +
+                        $"Titik Tujuan: {trip.Destination_point}\n" +
+                        $"Jarak: {trip.Distance:F2} KM\n" +
+                        $"Waktu Jemput: {trip.Pickup_time}\n" +
+                        $"Driver: {(trip.Driver != null ? trip.Driver.Full_name : "-")}\n" +
+                        $"Rating: {(trip.Rating > 0 ? trip.Rating.ToString() : "Belum ada rating")}\n" +
+                        $"Biaya Dasar: Rp {int.Parse(trip.Fee):N0}\n" +
+                        $"Biaya Tambahan: Rp {trip.Additional_fee:N0}\n" +
+                        $"Diskon: Rp {trip.Discount_value:N0}\n" +
+                        $"Total Biaya: Rp {trip.Total_fee:N0}";
+
+                    MessageBox.Show(detail, "Detail Trip", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-        }
-
-        private void UpdateButtonStates()
-        {
-            if (selectedTrip == null)
-            {
-                buttonRating.Enabled = false;
-                buttonCancel.Enabled = false;
-                buttonReport.Enabled = false;
-                return;
-            }
-
-            bool isCompleted = selectedTrip.Status == "completed";
-            bool isCanceled = selectedTrip.Status == "canceled";
-            bool isOngoing = selectedTrip.Status == "ongoing";
-            bool hasRating = selectedTrip.Rating > 0;
-            bool hasDriver = selectedTrip.Driver != null && !string.IsNullOrEmpty(selectedTrip.Driver.Id);
-
-            buttonRating.Enabled = (isCompleted || isOngoing) && !hasRating && hasDriver;
-
-            buttonCancel.Enabled = !isCompleted && !isCanceled;
-
-            buttonReport.Enabled = hasDriver;
-        }
-
-        private void ButtonRating_Click(object sender, EventArgs e)
-        {
-            if (selectedTrip == null)
+            else
             {
                 MessageBox.Show("Pilih trip terlebih dahulu!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (selectedTrip.Status != "completed" && selectedTrip.Status != "ongoing")
-            {
-                MessageBox.Show("Rating hanya bisa diberikan untuk trip yang sedang berlangsung atau sudah selesai!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (selectedTrip.Rating > 0)
-            {
-                MessageBox.Show("Trip ini sudah diberi rating!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            FormRating formRating = new FormRating(selectedTrip);
-            if (formRating.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    selectedTrip.Status = "completed";
-                    Trip.UpdateStatus(selectedTrip);
-                    Trip.UpdateRating(selectedTrip);
-                    MessageBox.Show("Rating berhasil diberikan dan transaksi telah diverifikasi selesai!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadData();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error memberikan rating: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
             }
         }
 
-        private void ButtonCancel_Click(object sender, EventArgs e)
-        {
-            if (selectedTrip == null)
-            {
-                MessageBox.Show("Pilih trip terlebih dahulu!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (selectedTrip.Status == "completed" || selectedTrip.Status == "canceled")
-            {
-                MessageBox.Show("Trip ini tidak bisa dibatalkan!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            FormCancelTrip formCancel = new FormCancelTrip(selectedTrip);
-            if (formCancel.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    Cancel cancel = new Cancel
-                    {
-                        Trip = selectedTrip,
-                        Reason = formCancel.AlasanCancel
-                    };
-                    Cancel.TambahCancel(cancel);
-                    MessageBox.Show("Trip berhasil dibatalkan!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadData();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error membatalkan trip: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        private void ButtonReport_Click(object sender, EventArgs e)
-        {
-            if (selectedTrip == null)
-            {
-                MessageBox.Show("Pilih trip terlebih dahulu!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            FormReportTrip formReport = new FormReportTrip(selectedTrip);
-            if (formReport.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    Report report = new Report
-                    {
-                        Trip = selectedTrip,
-                        Messages = formReport.PesanReport
-                    };
-                    Report.TambahReport(report);
-                    MessageBox.Show("Report berhasil dikirim! Admin akan memeriksa laporan Anda.", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error mengirim report: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        private void ButtonLihatDetail_Click(object sender, EventArgs e)
-        {
-            if (selectedTrip == null)
-            {
-                MessageBox.Show("Pilih trip terlebih dahulu!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            string detail = $"Detail Trip\n\n" +
-                $"ID Trip: {selectedTrip.Id}\n" +
-                $"Tanggal: {selectedTrip.Date:yyyy-MM-dd}\n" +
-                $"Status: {selectedTrip.Status}\n" +
-                $"Titik Jemput: {selectedTrip.Pickup_point}\n" +
-                $"Titik Tujuan: {selectedTrip.Destination_point}\n" +
-                $"Jarak: {selectedTrip.Distance:F2} KM\n" +
-                $"Waktu Jemput: {selectedTrip.Pickup_time}\n" +
-                $"Driver: {(selectedTrip.Driver != null ? selectedTrip.Driver.Full_name : "-")}\n" +
-                $"Rating: {(selectedTrip.Rating > 0 ? selectedTrip.Rating.ToString() : "Belum ada rating")}\n" +
-                $"Biaya Dasar: Rp {int.Parse(selectedTrip.Fee):N0}\n" +
-                $"Biaya Tambahan: Rp {selectedTrip.Additional_fee:N0}\n" +
-                $"Diskon: Rp {selectedTrip.Discount_value:N0}\n" +
-                $"Total Biaya: Rp {selectedTrip.Total_fee:N0}";
-
-            MessageBox.Show(detail, "Detail Trip", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void ButtonTutup_Click(object sender, EventArgs e)
+        private void buttonTutup_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-        }
-
         private void dataGridViewRiwayatRide_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0) return;
+            if (dataGridViewRiwayatRide.Tag is List<Trip> tripList)
+            {
+                if (e.RowIndex >= 0 && e.RowIndex < tripList.Count)
+                {
+                    Trip trip = tripList[e.RowIndex];
+                    
+                    if (e.ColumnIndex == dataGridViewRiwayatRide.Columns["btnRating"].Index)
+                    {
+                        if (trip.Status != "completed")
+                        {
+                            MessageBox.Show("Rating hanya bisa diberikan untuk trip yang sudah selesai!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
 
+                        if (trip.Rating > 0)
+                        {
+                            MessageBox.Show("Trip ini sudah diberi rating!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                        }
+
+                        bool hasDriver = trip.Driver != null && !string.IsNullOrEmpty(trip.Driver.Id);
+                        if (!hasDriver)
+                        {
+                            MessageBox.Show("Trip ini belum ada driver!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
+                        FormRating formRating = new FormRating(trip);
+                        if (formRating.ShowDialog() == DialogResult.OK)
+                        {
+                            try
+                            {
+                                trip.Status = "completed";
+                                Trip.UpdateStatus(trip);
+                                Trip.UpdateRating(trip);
+                                MessageBox.Show("Rating berhasil diberikan dan transaksi telah diverifikasi selesai!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                LoadData();
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Error memberikan rating: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
+                    else if (e.ColumnIndex == dataGridViewRiwayatRide.Columns["btnCancel"].Index)
+                    {
+                        if (trip.Status == "completed" || trip.Status == "canceled")
+                        {
+                            MessageBox.Show("Trip ini tidak bisa dibatalkan!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
+                        FormCancelTrip formCancel = new FormCancelTrip(trip);
+                        if (formCancel.ShowDialog() == DialogResult.OK)
+                        {
+                            try
+                            {
+                                Cancel cancel = new Cancel();
+                                cancel.Trip = trip;
+                                cancel.Reason = formCancel.AlasanCancel;
+                                Cancel.TambahCancel(cancel);
+                                MessageBox.Show("Trip berhasil dibatalkan!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                LoadData();
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Error membatalkan trip: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
+                    else if (e.ColumnIndex == dataGridViewRiwayatRide.Columns["btnReport"].Index)
+                    {
+                        bool hasDriver = trip.Driver != null && !string.IsNullOrEmpty(trip.Driver.Id);
+                        if (!hasDriver)
+                        {
+                            MessageBox.Show("Trip ini belum ada driver!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
+                        FormReportTrip formReport = new FormReportTrip(trip);
+                        if (formReport.ShowDialog() == DialogResult.OK)
+                        {
+                            try
+                            {
+                                Report report = new Report();
+                                report.Trip = trip;
+                                report.Messages = formReport.PesanReport;
+                                Report.TambahReport(report);
+                                MessageBox.Show("Report berhasil dikirim! Admin akan memeriksa laporan Anda.", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Error mengirim report: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

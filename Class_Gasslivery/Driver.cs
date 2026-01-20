@@ -106,7 +106,6 @@ namespace Class_Gasslivery
 
         public static void UpdateRating(string driverId, int newRating)
         {
-            // Hitung rata-rata rating baru berdasarkan semua trip driver
             string perintahHitung = $@"SELECT AVG(rating) FROM trips 
                 WHERE driver_id = {driverId} AND rating > 0";
             MySqlDataReader hasil = Koneksi.JalankanPerintahSelect(perintahHitung);

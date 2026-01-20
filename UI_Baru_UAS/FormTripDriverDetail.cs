@@ -89,6 +89,19 @@ namespace UI_Baru_UAS
                 Delivery.GantiDriver(driver.Id, orderInfo.Delivery.Id);
                 Order.GantiStatus(orderInfo);
             }
+            else if (tripInfo != null)
+            {
+                FormUtama frm = (FormUtama)this.MdiParent;
+                if (frm == null && this.Owner != null)
+                {
+                    frm = (FormUtama)this.Owner.MdiParent;
+                }
+                if (frm != null && frm.driverLogin != null)
+                {
+                    Trip.TerimaTrip(tripInfo, frm.driverLogin);
+                    MessageBox.Show("Trip berhasil diterima!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
             this.Close();
         }
 
@@ -100,6 +113,11 @@ namespace UI_Baru_UAS
                 int honor = (int)(orderInfo.Total_fee * 0.2);
                 Driver.UpdateSaldo(honor, driver.Id);
                 Order.GantiStatus(orderInfo);
+            }
+            else if (tripInfo != null)
+            {
+                Trip.SelesaiTrip(tripInfo);
+                MessageBox.Show("Trip berhasil diselesaikan!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             this.Close();
         }
