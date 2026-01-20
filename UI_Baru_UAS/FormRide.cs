@@ -253,7 +253,6 @@ namespace UI_Baru_UAS
         private void LoadVoucher()
         {
             comboBox1.Items.Clear();
-            comboBox1.Items.Add("Tidak menggunakan voucher");
             
             foreach (Voucher v in Voucher.BacaData())
             {

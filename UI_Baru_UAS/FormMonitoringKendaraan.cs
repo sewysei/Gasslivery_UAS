@@ -32,6 +32,16 @@ namespace UI_Baru_UAS
             dataGridViewMonitoringKendaraan.Columns["Buy_date"].HeaderText = "Buy Date";
             labelTotalKendaraan.Text = listAll.Count.ToString();
             dataGridViewMonitoringKendaraan.Columns["Id"].Visible = false;
+
+            if (!dataGridViewMonitoringKendaraan.Columns.Contains("btnNotif"))
+            {
+                DataGridViewButtonColumn hapus = new DataGridViewButtonColumn();
+                hapus.Text = "Beri Notif";
+                hapus.HeaderText = "Notifikasi";
+                hapus.UseColumnTextForButtonValue = true;
+                hapus.Name = "btnNotif";
+                dataGridViewMonitoringKendaraan.Columns.Add(hapus);
+            }
         }
 
         private void textBoxCari_TextChanged(object sender, EventArgs e)
@@ -42,6 +52,19 @@ namespace UI_Baru_UAS
         private void buttonPrint_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void dataGridViewMonitoringKendaraan_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dataGridViewMonitoringKendaraan.Columns["btnNotif"].Index)
+            {
+                //Ambil isi datagrid pada baris yang diklik user
+                Vehicle selectedVehicle = (Vehicle)dataGridViewMonitoringKendaraan.CurrentRow.DataBoundItem;
+                FormKirimNotifikasi frmNotif = new FormKirimNotifikasi();
+                frmNotif.selectedVehicle = selectedVehicle;
+                frmNotif.Owner = this;
+                frmNotif.ShowDialog();
+            }
         }
     }
 }

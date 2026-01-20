@@ -49,6 +49,9 @@ namespace UI_Baru_UAS
                     {
                         consumerLogin = Consumer.CekLogin(userLogin.Username, userLogin.Password);
                     }
+                    foodToolStripMenuItem.Visible = true;
+                    rideToolStripMenuItem.Visible = true;
+                    voucherToolStripMenuItem.Visible = true;
                     driverToolStripMenuItem.Visible = false;
                     tenanToolStripMenuItem.Visible = false;
                     adminToolStripMenuItem.Visible = false;
@@ -56,6 +59,8 @@ namespace UI_Baru_UAS
                 else if (userLogin.Role == "admin")
                 {
                     adminLogin = Admin.CekLogin(userLogin.Username, userLogin.Password);
+                    adminToolStripMenuItem.Visible = true;
+                    voucherToolStripMenuItem.Visible = true;
                     rideToolStripMenuItem.Visible = false;
                     foodToolStripMenuItem.Visible = false;
                     saldoToolStripMenuItem.Visible = false;
@@ -65,20 +70,42 @@ namespace UI_Baru_UAS
                 else if (userLogin.Role == "driver")
                 {
                     driverLogin = Driver.CekLogin(userLogin.Username, userLogin.Password);
+                    driverToolStripMenuItem.Visible = true;
                     rideToolStripMenuItem.Visible = false;
                     foodToolStripMenuItem.Visible = false;
                     saldoToolStripMenuItem.Visible = false;
                     adminToolStripMenuItem.Visible = false;
                     tenanToolStripMenuItem.Visible = false;
+                    voucherToolStripMenuItem.Visible = false;
+                    if(driverLogin.Status == "inactive")
+                    {
+                        MessageBox.Show("Ganti kendaraan untuk mengaktifkan akun kembali", "Akun dinonaktifkan Admin");
+                        terimaOrderToolStripMenuItem.Visible = false;
+                        riwayatTripToolStripMenuItem.Visible = false;
+                        riwayatFoodToolStripMenuItem.Visible = false;
+                        tarikDanaToolStripMenuItem.Visible = false;
+                        riwayatTarikDanaToolStripMenuItem.Visible = false;
+                        notifikasiToolStripMenuItem.Visible = false;
+                    }
+                    else if (driverLogin.Status == "active")
+                    {
+                        terimaOrderToolStripMenuItem.Visible = true;
+                        riwayatFoodToolStripMenuItem.Visible = true;
+                        tarikDanaToolStripMenuItem.Visible = true;
+                        riwayatTarikDanaToolStripMenuItem.Visible = true;
+                        notifikasiToolStripMenuItem.Visible = true;
+                    }
                 }
                 else if (userLogin.Role == "tenant")
                 {
                     tenantLogin = Tenant.CekLogin(userLogin.Username, userLogin.Password);
+                    tenanToolStripMenuItem.Visible = true;
                     rideToolStripMenuItem.Visible = false;
                     foodToolStripMenuItem.Visible = false;
                     saldoToolStripMenuItem.Visible = false;
                     adminToolStripMenuItem.Visible = false;
                     driverToolStripMenuItem.Visible = false;
+                    voucherToolStripMenuItem.Visible = false;
                 }
             }
         }
@@ -371,79 +398,15 @@ namespace UI_Baru_UAS
             }
         }
 
-        private void kirimNotifikasiToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Form frm = Application.OpenForms["FormKirimNotifikasi"];
-            if (frm == null)
-            {
-                FormKirimNotifikasi form = new FormKirimNotifikasi();
-                form.MdiParent = this;
-                form.Show();
-            }
-            else
-            {
-                frm.Show();
-                frm.BringToFront();
-            }
-        }
-
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            FormLogin formLogin = new FormLogin();
-            formLogin.Owner = this;
-            formLogin.ShowDialog();
+            userLogin = null;
+            consumerLogin = null;
+            tenantLogin = null;
+            adminLogin = null;
+            userLogin = null;
+            FormUtama_Load(this, e);
 
-            if (userLogin is null)
-            {
-                this.Close();
-            }
-            else
-            {
-                this.Show();
-                labelLoginSebagai.Text = $"{userLogin.Role}";
-
-                if (userLogin.Role == "consumer")
-                {
-                    // Gunakan ID dari users untuk mencari consumer (one-to-one relationship)
-                    consumerLogin = Consumer.CekLoginById(userLogin.Id);
-                    // Fallback: jika tidak ditemukan dengan ID, coba dengan username
-                    if (consumerLogin == null)
-                    {
-                        consumerLogin = Consumer.CekLogin(userLogin.Username, userLogin.Password);
-                    }
-                    driverToolStripMenuItem.Visible = false;
-                    tenanToolStripMenuItem.Visible = false;
-                    adminToolStripMenuItem.Visible = false;
-                }
-                else if (userLogin.Role == "admin")
-                {
-                    adminLogin = Admin.CekLogin(userLogin.Username, userLogin.Password);
-                    rideToolStripMenuItem.Visible = false;
-                    foodToolStripMenuItem.Visible = false;
-                    saldoToolStripMenuItem.Visible = false;
-                    driverToolStripMenuItem.Visible = false;
-                    tenanToolStripMenuItem.Visible = false;
-                }
-                else if (userLogin.Role == "driver")
-                {
-                    driverLogin = Driver.CekLogin(userLogin.Username, userLogin.Password);
-                    rideToolStripMenuItem.Visible = false;
-                    foodToolStripMenuItem.Visible = false;
-                    saldoToolStripMenuItem.Visible = false;
-                    adminToolStripMenuItem.Visible = false;
-                    tenanToolStripMenuItem.Visible = false;
-                }
-                else if (userLogin.Role == "tenant")
-                {
-                    tenantLogin = Tenant.CekLogin(userLogin.Username, userLogin.Password);
-                    rideToolStripMenuItem.Visible = false;
-                    foodToolStripMenuItem.Visible = false;
-                    saldoToolStripMenuItem.Visible = false;
-                    adminToolStripMenuItem.Visible = false;
-                    driverToolStripMenuItem.Visible = false;
-                }
-            }
         }
 
         private void voucherToolStripMenuItem_Click(object sender, EventArgs e)
@@ -468,6 +431,22 @@ namespace UI_Baru_UAS
             if (frm == null)
             {
                 FormNotifikasiDriver form = new FormNotifikasiDriver();
+                form.MdiParent = this;
+                form.Show();
+            }
+            else
+            {
+                frm.Show();
+                frm.BringToFront();
+            }
+        }
+
+        private void kendaraanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms["FormDataKendaraan"];
+            if (frm == null)
+            {
+                FormDataKendaraan form = new FormDataKendaraan();
                 form.MdiParent = this;
                 form.Show();
             }

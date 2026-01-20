@@ -1,9 +1,11 @@
 ﻿using MySql.Data.MySqlClient;
+using Mysqlx.Crud;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Class_Gasslivery
 {
@@ -47,6 +49,19 @@ namespace Class_Gasslivery
         public override string ToString()
         {
             return Name;
+        }
+        public static void Tambah(Voucher voucher)
+        {
+            string perintah = $"INSERT INTO vouchers (`name`, `conditions`, `value`) " +
+                $"VALUES ('{voucher.Name}', '{voucher.conditions}', '{voucher.Value}');";
+            Koneksi.JalankanPerintahDML(perintah);
+        }
+
+        public static void Hapus(Voucher voucher)
+        {
+            string perintah = $"DELETE FROM vouchers WHERE(`id` = {voucher.Id})";
+
+            Koneksi.JalankanPerintahDML(perintah);
         }
     }
 }
