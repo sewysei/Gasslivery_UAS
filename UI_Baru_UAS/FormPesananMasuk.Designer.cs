@@ -58,7 +58,6 @@
             this.dataGridViewPesananMasuk.Size = new System.Drawing.Size(769, 273);
             this.dataGridViewPesananMasuk.TabIndex = 31;
             this.dataGridViewPesananMasuk.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPesananMasuk_CellContentClick);
-            this.dataGridViewPesananMasuk.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewPesananMasuk_CellFormatting);
             // 
             // comboBoxStatus
             // 

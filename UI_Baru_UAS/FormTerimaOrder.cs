@@ -116,10 +116,5 @@ namespace UI_Baru_UAS
                 FormTerimaOrder_Load(this, e);
             }
         }
-
-        private void buttonTerimaOrder_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
