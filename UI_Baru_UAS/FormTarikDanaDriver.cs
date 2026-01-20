@@ -19,7 +19,7 @@ namespace UI_Baru_UAS
             InitializeComponent();
         }
 
-        private void FormTarikDanaDriver_Load(object sender, EventArgs eFormTarikDanaDriver_Load
+        private void FormTarikDanaDriver_Load(object sender, EventArgs e)
         {
             frm = (FormUtama)this.MdiParent;
             labelSaldoSaatIni.Text = ((int)frm.driverLogin.Balance).ToString();
