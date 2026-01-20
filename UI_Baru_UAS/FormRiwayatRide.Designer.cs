@@ -34,11 +34,8 @@
             this.dateTimePickerDari = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.dateTimePickerSampai = new System.Windows.Forms.DateTimePicker();
-            this.buttonRating = new System.Windows.Forms.Button();
-            this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonTutup = new System.Windows.Forms.Button();
             this.buttonLihatDetail = new System.Windows.Forms.Button();
-            this.buttonReport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRiwayatRide)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,6 +77,7 @@
             this.dateTimePickerDari.Name = "dateTimePickerDari";
             this.dateTimePickerDari.Size = new System.Drawing.Size(200, 22);
             this.dateTimePickerDari.TabIndex = 26;
+            this.dateTimePickerDari.ValueChanged += new System.EventHandler(this.dateTimePickerDari_ValueChanged);
             // 
             // label2
             // 
@@ -91,7 +89,6 @@
             this.label2.Size = new System.Drawing.Size(17, 22);
             this.label2.TabIndex = 27;
             this.label2.Text = "-";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // dateTimePickerSampai
             // 
@@ -99,26 +96,7 @@
             this.dateTimePickerSampai.Name = "dateTimePickerSampai";
             this.dateTimePickerSampai.Size = new System.Drawing.Size(200, 22);
             this.dateTimePickerSampai.TabIndex = 28;
-            // 
-            // buttonRating
-            // 
-            this.buttonRating.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonRating.Location = new System.Drawing.Point(746, 94);
-            this.buttonRating.Name = "buttonRating";
-            this.buttonRating.Size = new System.Drawing.Size(119, 43);
-            this.buttonRating.TabIndex = 32;
-            this.buttonRating.Text = "Rating";
-            this.buttonRating.UseVisualStyleBackColor = true;
-            // 
-            // buttonCancel
-            // 
-            this.buttonCancel.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCancel.Location = new System.Drawing.Point(746, 143);
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(119, 43);
-            this.buttonCancel.TabIndex = 33;
-            this.buttonCancel.Text = "Cancel";
-            this.buttonCancel.UseVisualStyleBackColor = true;
+            this.dateTimePickerSampai.ValueChanged += new System.EventHandler(this.dateTimePickerSampai_ValueChanged);
             // 
             // buttonTutup
             // 
@@ -130,6 +108,7 @@
             this.buttonTutup.TabIndex = 63;
             this.buttonTutup.Text = "Tutup";
             this.buttonTutup.UseVisualStyleBackColor = false;
+            this.buttonTutup.Click += new System.EventHandler(this.buttonTutup_Click);
             // 
             // buttonLihatDetail
             // 
@@ -141,16 +120,7 @@
             this.buttonLihatDetail.TabIndex = 61;
             this.buttonLihatDetail.Text = "Lihat Detail";
             this.buttonLihatDetail.UseVisualStyleBackColor = false;
-            // 
-            // buttonReport
-            // 
-            this.buttonReport.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonReport.Location = new System.Drawing.Point(746, 192);
-            this.buttonReport.Name = "buttonReport";
-            this.buttonReport.Size = new System.Drawing.Size(119, 43);
-            this.buttonReport.TabIndex = 64;
-            this.buttonReport.Text = "Report";
-            this.buttonReport.UseVisualStyleBackColor = true;
+            this.buttonLihatDetail.Click += new System.EventHandler(this.buttonLihatDetail_Click);
             // 
             // FormRiwayatRide
             // 
@@ -158,11 +128,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(892, 368);
-            this.Controls.Add(this.buttonReport);
             this.Controls.Add(this.buttonTutup);
             this.Controls.Add(this.buttonLihatDetail);
-            this.Controls.Add(this.buttonCancel);
-            this.Controls.Add(this.buttonRating);
             this.Controls.Add(this.dateTimePickerSampai);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dateTimePickerDari);
@@ -186,10 +153,7 @@
         private System.Windows.Forms.DateTimePicker dateTimePickerDari;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dateTimePickerSampai;
-        private System.Windows.Forms.Button buttonRating;
-        private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonTutup;
         private System.Windows.Forms.Button buttonLihatDetail;
-        private System.Windows.Forms.Button buttonReport;
     }
 }

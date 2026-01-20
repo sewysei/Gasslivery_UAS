@@ -61,7 +61,7 @@ namespace UI_Baru_UAS
                 }
                 string mulai = dateTimePickerDari.Value.Date.ToString("yyyy-MM-dd 00:00:00");
                 string akhir = dateTimePickerSampai.Value.Date.ToString("yyyy-MM-dd 23:59:59");
-                List<Trip> listHasil = Trip.BacaData(mulai,akhir);
+                List<Trip> listHasil = Trip.BacaData("", "", "", mulai, akhir);
                 dataGridViewLaporanTransaksi.DataSource = listHasil;
                 dataGridViewLaporanTransaksi.Columns["Longitude_pickup"].HeaderText = "Longitude Pickup";
                 dataGridViewLaporanTransaksi.Columns["Latitude_pickup"].HeaderText = "Latitude Pickup";

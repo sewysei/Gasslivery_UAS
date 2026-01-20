@@ -34,6 +34,7 @@ namespace UI_Baru_UAS
         {
             frm = (FormUtama)this.MdiParent;
 
+            comboBoxJenisOrder.SelectedIndex = 0;
             jenis = comboBoxJenisOrder.Text;
             
             if(jenis == "Gass-kan")
@@ -48,7 +49,17 @@ namespace UI_Baru_UAS
             }
             else if(jenis == "Gass-ride")
             {
-                dataGridViewDaftarOrder.DataSource = Trip.BacaData();
+                dataGridViewDaftarOrder.DataSource = Trip.BacaData("riwayat", "", frm.driverLogin.Id);
+                if (dataGridViewDaftarOrder.Columns["Consumer"] != null)
+                    dataGridViewDaftarOrder.Columns["Consumer"].HeaderText = "Consumer";
+                if (dataGridViewDaftarOrder.Columns["Pickup_point"] != null)
+                    dataGridViewDaftarOrder.Columns["Pickup_point"].HeaderText = "Titik Jemput";
+                if (dataGridViewDaftarOrder.Columns["Destination_point"] != null)
+                    dataGridViewDaftarOrder.Columns["Destination_point"].HeaderText = "Titik Tujuan";
+                if (dataGridViewDaftarOrder.Columns["Total_fee"] != null)
+                    dataGridViewDaftarOrder.Columns["Total_fee"].HeaderText = "Total Fee";
+                if (dataGridViewDaftarOrder.Columns["Id"] != null)
+                    dataGridViewDaftarOrder.Columns["Id"].Visible = false;
             }
 
             if (!dataGridViewDaftarOrder.Columns.Contains("btnDetail"))

@@ -90,26 +90,56 @@ namespace Class_Gasslivery
         public int Discount_value { get => discount_value; set => discount_value = value; }
         public int Total_fee { get => total_fee; set => total_fee = value; }
 
-        public static List<Trip> BacaData(string mulai = "", string akhir = "")
+        public static List<Trip> BacaData(string kolom = "", string nilai = "", string id = "", string mulai = "", string akhir = "")
         {
             List<Trip> listHasil = new List<Trip>();
-            string perintah;
-            if(mulai == "")
+            string perintah = "";
+            if(kolom == "")
             {
-                perintah = $"SELECT t.*, c.username, d.full_name, v.name " +
-                    $"FROM trips t INNER JOIN consumers c ON c.id = t.consumer_id " +
-                    $"INNER JOIN drivers d ON t.driver_id = d.id " +
-                    $"LEFT JOIN vouchers v ON v.id = t.voucher_id " +
-                    $"WHERE t.status = 'pending' " +
-                    $"ORDER BY t.date ASC";
+                if(mulai == "")
+                {
+                    perintah = $"SELECT t.*, c.username, c.telp, d.full_name, v.name " +
+                        $"FROM trips t INNER JOIN consumers c ON c.id = t.consumer_id " +
+                        $"LEFT JOIN drivers d ON t.driver_id = d.id " +
+                        $"LEFT JOIN vouchers v ON v.id = t.voucher_id " +
+                        $"WHERE t.status = 'pending' AND t.driver_id IS NULL " +
+                        $"ORDER BY t.date ASC";
+                }
+                else
+                {
+                    perintah = $"SELECT t.*, c.username, c.telp, d.full_name, v.name " +
+                        $"FROM trips t INNER JOIN consumers c ON c.id = t.consumer_id " +
+                        $"LEFT JOIN drivers d ON t.driver_id = d.id " +
+                        $"LEFT JOIN vouchers v ON v.id = t.voucher_id " +
+                        $"WHERE t.date BETWEEN '{mulai}' AND '{akhir}' " +
+                        $"ORDER BY t.date ASC";
+                }
             }
-            else
+            else if(kolom == "driver")
             {
-                perintah = $"SELECT t.*, c.username, d.full_name, v.name " +
+                perintah = $"SELECT t.*, c.username, c.telp, d.full_name, v.name " +
                     $"FROM trips t INNER JOIN consumers c ON c.id = t.consumer_id " +
-                    $"INNER JOIN drivers d ON t.driver_id = d.id " +
+                    $"LEFT JOIN drivers d ON t.driver_id = d.id " +
                     $"LEFT JOIN vouchers v ON v.id = t.voucher_id " +
-                    $"WHERE t.date BETWEEN '{mulai}' AND '{akhir}' " +
+                    $"WHERE t.status = 'pending' AND t.driver_id IS NULL " +
+                    $"ORDER BY t.date DESC";
+            }
+            else if(kolom == "riwayat")
+            {
+                perintah = $"SELECT t.*, c.username, c.telp, d.full_name, v.name " +
+                    $"FROM trips t INNER JOIN consumers c ON c.id = t.consumer_id " +
+                    $"LEFT JOIN drivers d ON t.driver_id = d.id " +
+                    $"LEFT JOIN vouchers v ON v.id = t.voucher_id " +
+                    $"WHERE t.driver_id = {id} " +
+                    $"ORDER BY t.date DESC";
+            }
+            else if(kolom == "consumer")
+            {
+                perintah = $"SELECT t.*, c.username, c.telp, d.full_name, v.name " +
+                    $"FROM trips t INNER JOIN consumers c ON c.id = t.consumer_id " +
+                    $"LEFT JOIN drivers d ON t.driver_id = d.id " +
+                    $"LEFT JOIN vouchers v ON v.id = t.voucher_id " +
+                    $"WHERE t.date BETWEEN '{mulai}' AND '{akhir}' AND t.consumer_id = {id} " +
                     $"ORDER BY t.date ASC";
             }
             MySqlDataReader hasil = Koneksi.JalankanPerintahSelect(perintah);
@@ -121,8 +151,8 @@ namespace Class_Gasslivery
                 Voucher voucher = new Voucher();
                 tampung.Id = hasil.GetValue(0).ToString();
                 consumer.Id = hasil.GetValue(1).ToString();
-                driver.Id = hasil.GetValue(2).ToString();
-                voucher.Id = hasil.GetValue(3).ToString();
+                if (!hasil.IsDBNull(2)) driver.Id = hasil.GetValue(2).ToString();
+                if (!hasil.IsDBNull(3)) voucher.Id = hasil.GetValue(3).ToString();
                 tampung.Longitude_pickup = hasil.GetValue(4).ToString();
                 tampung.Latitude_pickup = hasil.GetValue(5).ToString();
                 tampung.Pickup_point = hasil.GetValue(6).ToString();
@@ -139,8 +169,9 @@ namespace Class_Gasslivery
                 tampung.Discount_value = int.Parse(hasil.GetValue(17).ToString());
                 tampung.Total_fee = int.Parse(hasil.GetValue(18).ToString());
                 consumer.Username = hasil.GetValue(19).ToString();
-                driver.Full_name = hasil.GetValue(20).ToString();
-                voucher.Name = hasil.GetValue(21).ToString();
+                consumer.Telp = hasil.GetValue(20).ToString();
+                if (!hasil.IsDBNull(21)) driver.Full_name = hasil.GetValue(21).ToString();
+                if (!hasil.IsDBNull(22)) voucher.Name = hasil.GetValue(22).ToString();
                 tampung.Consumer = consumer;
                 tampung.Driver = driver;
                 tampung.Voucher = voucher;
@@ -280,6 +311,33 @@ namespace Class_Gasslivery
         {
             string perintah = $"UPDATE trips SET status = '{trip.Status}' WHERE id = {trip.Id}";
             Koneksi.JalankanPerintahDML(perintah);
+        }
+
+        public static void TerimaTrip(Trip trip, Driver driver)
+        {
+            string perintah = $"UPDATE trips SET driver_id = {driver.Id}, status = 'ongoing' WHERE id = {trip.Id}";
+            Koneksi.JalankanPerintahDML(perintah);
+        }
+
+        public static void SelesaiTrip(Trip trip)
+        {
+            string perintah = $"UPDATE trips SET status = 'completed' WHERE id = {trip.Id}";
+            Koneksi.JalankanPerintahDML(perintah);
+            
+            string perintahBaca = $"SELECT driver_id, total_fee FROM trips WHERE id = {trip.Id}";
+            MySqlDataReader hasil = Koneksi.JalankanPerintahSelect(perintahBaca);
+            
+            if (hasil.Read())
+            {
+                if (!hasil.IsDBNull(0) && !string.IsNullOrEmpty(hasil.GetValue(0).ToString()))
+                {
+                    string driverId = hasil.GetValue(0).ToString();
+                    int totalFee = int.Parse(hasil.GetValue(1).ToString());
+                    
+                    double driverFee = totalFee * 0.20;
+                    Driver.TambahBalance(driverId, driverFee);
+                }
+            }
         }
     }
 }
