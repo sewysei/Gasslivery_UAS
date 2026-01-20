@@ -30,9 +30,6 @@
         {
             this.dataGridViewDataKendaraan = new System.Windows.Forms.DataGridView();
             this.lblGASLIVERY = new System.Windows.Forms.Label();
-            this.buttonTambah = new System.Windows.Forms.Button();
-            this.buttonUbah = new System.Windows.Forms.Button();
-            this.buttonHapus = new System.Windows.Forms.Button();
             this.buttonTutup = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDataKendaraan)).BeginInit();
             this.SuspendLayout();
@@ -46,6 +43,7 @@
             this.dataGridViewDataKendaraan.RowTemplate.Height = 24;
             this.dataGridViewDataKendaraan.Size = new System.Drawing.Size(776, 301);
             this.dataGridViewDataKendaraan.TabIndex = 0;
+            this.dataGridViewDataKendaraan.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewDataKendaraan_CellContentClick);
             // 
             // lblGASLIVERY
             // 
@@ -57,39 +55,6 @@
             this.lblGASLIVERY.TabIndex = 9;
             this.lblGASLIVERY.Text = "Data Kendaraan";
             // 
-            // buttonTambah
-            // 
-            this.buttonTambah.BackColor = System.Drawing.Color.Transparent;
-            this.buttonTambah.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonTambah.Location = new System.Drawing.Point(12, 357);
-            this.buttonTambah.Name = "buttonTambah";
-            this.buttonTambah.Size = new System.Drawing.Size(115, 35);
-            this.buttonTambah.TabIndex = 23;
-            this.buttonTambah.Text = "Tambah";
-            this.buttonTambah.UseVisualStyleBackColor = false;
-            // 
-            // buttonUbah
-            // 
-            this.buttonUbah.BackColor = System.Drawing.Color.Transparent;
-            this.buttonUbah.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonUbah.Location = new System.Drawing.Point(133, 357);
-            this.buttonUbah.Name = "buttonUbah";
-            this.buttonUbah.Size = new System.Drawing.Size(115, 35);
-            this.buttonUbah.TabIndex = 24;
-            this.buttonUbah.Text = "Ubah";
-            this.buttonUbah.UseVisualStyleBackColor = false;
-            // 
-            // buttonHapus
-            // 
-            this.buttonHapus.BackColor = System.Drawing.Color.Transparent;
-            this.buttonHapus.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonHapus.Location = new System.Drawing.Point(254, 357);
-            this.buttonHapus.Name = "buttonHapus";
-            this.buttonHapus.Size = new System.Drawing.Size(115, 35);
-            this.buttonHapus.TabIndex = 25;
-            this.buttonHapus.Text = "Hapus";
-            this.buttonHapus.UseVisualStyleBackColor = false;
-            // 
             // buttonTutup
             // 
             this.buttonTutup.BackColor = System.Drawing.Color.Transparent;
@@ -100,6 +65,7 @@
             this.buttonTutup.TabIndex = 26;
             this.buttonTutup.Text = "Tutup";
             this.buttonTutup.UseVisualStyleBackColor = false;
+            this.buttonTutup.Click += new System.EventHandler(this.buttonTutup_Click);
             // 
             // FormDataKendaraan
             // 
@@ -108,13 +74,11 @@
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(800, 403);
             this.Controls.Add(this.buttonTutup);
-            this.Controls.Add(this.buttonHapus);
-            this.Controls.Add(this.buttonUbah);
-            this.Controls.Add(this.buttonTambah);
             this.Controls.Add(this.lblGASLIVERY);
             this.Controls.Add(this.dataGridViewDataKendaraan);
             this.Name = "FormDataKendaraan";
             this.Text = "FormDataKendaraan";
+            this.Load += new System.EventHandler(this.FormDataKendaraan_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDataKendaraan)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -125,9 +89,6 @@
 
         private System.Windows.Forms.DataGridView dataGridViewDataKendaraan;
         private System.Windows.Forms.Label lblGASLIVERY;
-        private System.Windows.Forms.Button buttonTambah;
-        private System.Windows.Forms.Button buttonUbah;
-        private System.Windows.Forms.Button buttonHapus;
         private System.Windows.Forms.Button buttonTutup;
     }
 }

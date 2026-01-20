@@ -53,7 +53,7 @@ namespace Class_Gasslivery
         }
         public static void TarikSaldo(Withdraw withdraw)
         {
-            string perintah = $"INSERT INTO withdraw (`amount`, `date`, `driver_id`) " +
+            string perintah = $"INSERT INTO withdraws (`amount`, `date`, `driver_id`) " +
                 $"VALUES ('{withdraw.Amount}', NOW(), '{withdraw.Driver.Id}');";
             Koneksi.JalankanPerintahDML(perintah);
         }

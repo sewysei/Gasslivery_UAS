@@ -121,5 +121,13 @@ namespace Class_Gasslivery
                 WHERE id = {driverId}";
             Koneksi.JalankanPerintahDML(perintah);
         }
+        public static void UpdateStatus(string status, string id)
+        {
+            string perintah = $"UPDATE drivers SET status = '{status}' " +
+                $"WHERE id = {id}";
+
+            Koneksi.JalankanPerintahDML(perintah);
+
+        }
     }
 }

@@ -25,8 +25,26 @@ namespace UI_Baru_UAS
             string status = comboBoxStatus.Text; 
             List<Order> listHasil = Order.BacaData("status",status,frmUtama.tenantLogin.Id);
 
+            if (dataGridViewPesananMasuk.Columns.Contains("btnTolak"))
+            {
+                dataGridViewPesananMasuk.DataSource = null;
+                dataGridViewPesananMasuk.Columns.Remove("btnTolak");
+            }
+
+            if (dataGridViewPesananMasuk.Columns.Contains("btnTerima"))
+            {
+                dataGridViewPesananMasuk.DataSource = null;
+                dataGridViewPesananMasuk.Columns.Remove("btnTerima");
+            }
+
+            if (dataGridViewPesananMasuk.Columns.Contains("btnDetail"))
+            {
+                dataGridViewPesananMasuk.DataSource = null;
+                dataGridViewPesananMasuk.Columns.Remove("btnDetail");
+            }
+
             dataGridViewPesananMasuk.DataSource = listHasil;
-            dataGridViewPesananMasuk.Columns["Id"].Visible = false; 
+            dataGridViewPesananMasuk.Columns["Id"].Visible = false;
 
             if (!dataGridViewPesananMasuk.Columns.Contains("btnDetail"))
             {
@@ -38,25 +56,29 @@ namespace UI_Baru_UAS
                 dataGridViewPesananMasuk.Columns.Add(detail);
             }
 
-            if (!dataGridViewPesananMasuk.Columns.Contains("btnTolak"))
+            if (status == "pending")
             {
-                DataGridViewButtonColumn detail = new DataGridViewButtonColumn();
-                detail.Text = "Tolak";
-                detail.HeaderText = "Tolak";
-                detail.UseColumnTextForButtonValue = true;
-                detail.Name = "btnTolak";
-                dataGridViewPesananMasuk.Columns.Add(detail);
-            }
+                if (!dataGridViewPesananMasuk.Columns.Contains("btnTolak"))
+                {
+                    DataGridViewButtonColumn detail = new DataGridViewButtonColumn();
+                    detail.Text = "Tolak";
+                    detail.HeaderText = "Tolak";
+                    detail.UseColumnTextForButtonValue = true;
+                    detail.Name = "btnTolak";
+                    dataGridViewPesananMasuk.Columns.Add(detail);
+                }
 
-            if (!dataGridViewPesananMasuk.Columns.Contains("btnTerima"))
-            {
-                DataGridViewButtonColumn detail = new DataGridViewButtonColumn();
-                detail.Text = "Terima";
-                detail.HeaderText = "Terima";
-                detail.UseColumnTextForButtonValue = true;
-                detail.Name = "btnTerima";
-                dataGridViewPesananMasuk.Columns.Add(detail);
+                if (!dataGridViewPesananMasuk.Columns.Contains("btnTerima"))
+                {
+                    DataGridViewButtonColumn detail = new DataGridViewButtonColumn();
+                    detail.Text = "Terima";
+                    detail.HeaderText = "Terima";
+                    detail.UseColumnTextForButtonValue = true;
+                    detail.Name = "btnTerima";
+                    dataGridViewPesananMasuk.Columns.Add(detail);
+                }
             }
+            
         }
 
         private void buttonTutup_Click(object sender, EventArgs e)
@@ -104,20 +126,5 @@ namespace UI_Baru_UAS
             FormPesananMasuk_Load(this, e);
         }
 
-        private void dataGridViewPesananMasuk_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            string colName = dataGridViewPesananMasuk.Columns[e.ColumnIndex].Name;
-
-            if (colName == "btnTerima" || colName == "btnTolak")
-            {
-                string status = dataGridViewPesananMasuk.Rows[e.RowIndex].Cells["Status"].Value.ToString();
-
-                if (status != "pending")
-                {
-                    e.Value = "";              // sembunyikan teks button
-                    e.FormattingApplied = true;
-                }
-            }
-        }
     }
 }

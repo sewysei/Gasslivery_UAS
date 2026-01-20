@@ -53,11 +53,32 @@ namespace UI_Baru_UAS
                 labelActive.Text = (listAll.Count - listHasil.Count).ToString();
                 dataGridViewMonitoringDriver.Columns["Id"].Visible = false;
             }
+
+            if (!dataGridViewMonitoringDriver.Columns.Contains("btnNonaktif"))
+            {
+                DataGridViewButtonColumn nonaktif = new DataGridViewButtonColumn();
+                nonaktif.Text = "NonAktif";
+                nonaktif.HeaderText = "NonAktif";
+                nonaktif.UseColumnTextForButtonValue = true;
+                nonaktif.Name = "btnNonaktif";
+                dataGridViewMonitoringDriver.Columns.Add(nonaktif);
+            }
         }
 
         private void comboBoxStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
             FormMonitoringDriver_Load(this, e);
+        }
+
+        private void dataGridViewMonitoringDriver_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.ColumnIndex == dataGridViewMonitoringDriver.Columns["btnNonaktif"].Index)
+            {
+                //Ambil isi datagrid pada baris yang diklik user
+                Driver selectedDriver = (Driver)dataGridViewMonitoringDriver.CurrentRow.DataBoundItem;
+                Driver.UpdateStatus("inactive", selectedDriver.Id);
+                MessageBox.Show("Akun Driver berhasil di nonaktifkan!");
+            }
         }
     }
 }

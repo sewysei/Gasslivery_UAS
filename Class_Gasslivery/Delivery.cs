@@ -54,5 +54,11 @@ namespace Class_Gasslivery
 
             return idBaru;
         }
+
+        public static void GantiDriver(Delivery delivery)
+        {
+            string perintah = $"UPDATE deliveries SET driver_id = '{delivery.driver.Id}' ";
+            Koneksi.JalankanPerintahDML(perintah);
+        }
     }
 }

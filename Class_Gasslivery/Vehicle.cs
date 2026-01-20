@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Mysqlx.Crud;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,20 +32,26 @@ namespace Class_Gasslivery
         public string Plate { get => plate; set => plate = value; }
         public DateTime Buy_date { get => buy_date; set => buy_date = value; }
 
-        public static List<Vehicle> BacaData(string nilai = "")
+        public static List<Vehicle> BacaData(string nilai = "", string role = "", string id = "")
         {
             List<Vehicle> listHasil = new List<Vehicle>();
-            string perintah;
-            if (nilai == "")
+            string perintah = "";
+            if (nilai == "" && role == "")
             {
                 perintah = $"SELECT v.*, d.full_name " +
                     $"FROM vehicles v INNER JOIN drivers d ON d.id = v.driver_id";
             }
-            else
+            else if(nilai != "")
             {
                 perintah = $"SELECT v.*, d.full_name " +
                     $"FROM vehicles v INNER JOIN drivers d ON d.id = v.driver_id " +
-                    $"WHERE plate = '{nilai}'";
+                    $"WHERE plate LIKE '%{nilai}%'";
+            }
+            else if(role == "driver")
+            {
+                perintah = $"SELECT v.*, d.full_name " +
+                    $"FROM vehicles v INNER JOIN drivers d ON d.id = v.driver_id " +
+                    $"WHERE d.id = {id}";
             }
             MySqlDataReader hasil = Koneksi.JalankanPerintahSelect(perintah);
             while (hasil.Read())
@@ -53,7 +60,7 @@ namespace Class_Gasslivery
                 tampung.Id = hasil.GetValue(0).ToString();
                 tampung.Name = hasil.GetValue(1).ToString();
                 tampung.Plate = hasil.GetValue(2).ToString();
-                tampung.Buy_date = DateTime.Parse(hasil.GetValue(3).ToString()).Date;
+                tampung.Buy_date = DateTime.Parse(hasil.GetValue(3).ToString());
                 Driver driver = new Driver();
                 driver.Id = hasil.GetValue(4).ToString();
                 driver.Full_name = hasil.GetValue(5).ToString();
@@ -61,6 +68,14 @@ namespace Class_Gasslivery
                 listHasil.Add(tampung);
             }
             return listHasil;
+        }
+        public static void Ubah(Vehicle vehicle)
+        {
+            string perintah = $"UPDATE vehicles SET " +
+                $"`name` = '{vehicle.Name}', `plate` = '{vehicle.Plate}', " +
+                $"`buy_date` = '{vehicle.Buy_date.ToString("yyyy-MM-dd")}' WHERE(`driver_id` = '{vehicle.Driver.Id}');";
+
+            Koneksi.JalankanPerintahDML(perintah);
         }
     }
 }

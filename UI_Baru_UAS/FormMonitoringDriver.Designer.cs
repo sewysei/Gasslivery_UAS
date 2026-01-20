@@ -65,6 +65,7 @@
             this.dataGridViewMonitoringDriver.RowTemplate.Height = 24;
             this.dataGridViewMonitoringDriver.Size = new System.Drawing.Size(769, 273);
             this.dataGridViewMonitoringDriver.TabIndex = 40;
+            this.dataGridViewMonitoringDriver.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewMonitoringDriver_CellContentClick);
             // 
             // comboBoxStatus
             // 

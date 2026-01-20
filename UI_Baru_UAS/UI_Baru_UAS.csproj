@@ -246,6 +246,12 @@
     <Compile Include="FormTambahMenu.Designer.cs">
       <DependentUpon>FormTambahMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormTambahVoucher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTambahVoucher.Designer.cs">
+      <DependentUpon>FormTambahVoucher.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormTarikDanaDriver.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -269,6 +275,12 @@
     </Compile>
     <Compile Include="FormTripDriverDetail.Designer.cs">
       <DependentUpon>FormTripDriverDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormUbahKendaraan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUbahKendaraan.Designer.cs">
+      <DependentUpon>FormUbahKendaraan.cs</DependentUpon>
     </Compile>
     <Compile Include="FormUtama.cs">
       <SubType>Form</SubType>
@@ -359,6 +371,9 @@
     <EmbeddedResource Include="FormTambahMenu.resx">
       <DependentUpon>FormTambahMenu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormTambahVoucher.resx">
+      <DependentUpon>FormTambahVoucher.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormTarikDanaDriver.resx">
       <DependentUpon>FormTarikDanaDriver.cs</DependentUpon>
     </EmbeddedResource>
@@ -370,6 +385,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormTripDriverDetail.resx">
       <DependentUpon>FormTripDriverDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUbahKendaraan.resx">
+      <DependentUpon>FormUbahKendaraan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUtama.resx">
       <DependentUpon>FormUtama.cs</DependentUpon>

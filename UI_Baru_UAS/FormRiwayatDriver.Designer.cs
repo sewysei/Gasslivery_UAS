@@ -65,7 +65,7 @@
             this.comboBoxJenisOrder.Items.AddRange(new object[] {
             "Gass-ride",
             "Gass-kan"});
-            this.comboBoxJenisOrder.Location = new System.Drawing.Point(143, 56);
+            this.comboBoxJenisOrder.Location = new System.Drawing.Point(150, 50);
             this.comboBoxJenisOrder.Name = "comboBoxJenisOrder";
             this.comboBoxJenisOrder.Size = new System.Drawing.Size(141, 24);
             this.comboBoxJenisOrder.TabIndex = 30;
@@ -88,9 +88,9 @@
             this.lblGASLIVERY.Font = new System.Drawing.Font("Yu Gothic UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGASLIVERY.Location = new System.Drawing.Point(298, 0);
             this.lblGASLIVERY.Name = "lblGASLIVERY";
-            this.lblGASLIVERY.Size = new System.Drawing.Size(197, 38);
+            this.lblGASLIVERY.Size = new System.Drawing.Size(200, 38);
             this.lblGASLIVERY.TabIndex = 28;
-            this.lblGASLIVERY.Text = "Riwayat Order";
+            this.lblGASLIVERY.Text = "Riwayat Driver";
             // 
             // FormRiwayatDriver
             // 

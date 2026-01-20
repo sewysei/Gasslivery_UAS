@@ -113,6 +113,7 @@
             this.dataGridViewMonitoringKendaraan.RowTemplate.Height = 24;
             this.dataGridViewMonitoringKendaraan.Size = new System.Drawing.Size(769, 273);
             this.dataGridViewMonitoringKendaraan.TabIndex = 58;
+            this.dataGridViewMonitoringKendaraan.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewMonitoringKendaraan_CellContentClick);
             // 
             // lblGASLIVERY
             // 
