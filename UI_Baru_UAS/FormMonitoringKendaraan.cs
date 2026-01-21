@@ -25,8 +25,9 @@ namespace UI_Baru_UAS
 
         private void FormMonitoringKendaraan_Load(object sender, EventArgs e)
         {
-            string nilai = textBoxCari.Text;
-            List<Vehicle> listHasil = Vehicle.BacaData(nilai);
+            numericUpDownTahun.Value = 2024;
+            string filter = numericUpDownTahun.Value.ToString();
+            List<Vehicle> listHasil = Vehicle.BacaData(filter);
             List<Vehicle> listAll = Vehicle.BacaData();
             dataGridViewMonitoringKendaraan.DataSource = listHasil;
             dataGridViewMonitoringKendaraan.Columns["Buy_date"].HeaderText = "Buy Date";
@@ -44,16 +45,6 @@ namespace UI_Baru_UAS
             }
         }
 
-        private void textBoxCari_TextChanged(object sender, EventArgs e)
-        {
-            FormMonitoringKendaraan_Load(this, e);
-        }
-
-        private void buttonPrint_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void dataGridViewMonitoringKendaraan_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == dataGridViewMonitoringKendaraan.Columns["btnNotif"].Index)
@@ -64,6 +55,27 @@ namespace UI_Baru_UAS
                 frmNotif.selectedVehicle = selectedVehicle;
                 frmNotif.Owner = this;
                 frmNotif.ShowDialog();
+            }
+        }
+
+        private void numericUpDownTahun_ValueChanged(object sender, EventArgs e)
+        {
+            string filter = numericUpDownTahun.Value.ToString();
+            List<Vehicle> listHasil = Vehicle.BacaData(filter);
+            List<Vehicle> listAll = Vehicle.BacaData();
+            dataGridViewMonitoringKendaraan.DataSource = listHasil;
+            dataGridViewMonitoringKendaraan.Columns["Buy_date"].HeaderText = "Buy Date";
+            labelTotalKendaraan.Text = listAll.Count.ToString();
+            dataGridViewMonitoringKendaraan.Columns["Id"].Visible = false;
+
+            if (!dataGridViewMonitoringKendaraan.Columns.Contains("btnNotif"))
+            {
+                DataGridViewButtonColumn hapus = new DataGridViewButtonColumn();
+                hapus.Text = "Beri Notif";
+                hapus.HeaderText = "Notifikasi";
+                hapus.UseColumnTextForButtonValue = true;
+                hapus.Name = "btnNotif";
+                dataGridViewMonitoringKendaraan.Columns.Add(hapus);
             }
         }
     }

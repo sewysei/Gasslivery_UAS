@@ -30,13 +30,14 @@
         {
             this.labelTotalKendaraan = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBoxCari = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.buttonPrint = new System.Windows.Forms.Button();
             this.buttonTutup = new System.Windows.Forms.Button();
             this.dataGridViewMonitoringKendaraan = new System.Windows.Forms.DataGridView();
             this.lblGASLIVERY = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.numericUpDownTahun = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMonitoringKendaraan)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTahun)).BeginInit();
             this.SuspendLayout();
             // 
             // labelTotalKendaraan
@@ -61,25 +62,6 @@
             this.label2.TabIndex = 64;
             this.label2.Text = "Total Kendaraan :";
             // 
-            // textBoxCari
-            // 
-            this.textBoxCari.Location = new System.Drawing.Point(233, 52);
-            this.textBoxCari.Name = "textBoxCari";
-            this.textBoxCari.Size = new System.Drawing.Size(167, 22);
-            this.textBoxCari.TabIndex = 63;
-            this.textBoxCari.TextChanged += new System.EventHandler(this.textBoxCari_TextChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label1.Location = new System.Drawing.Point(12, 50);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(203, 22);
-            this.label1.TabIndex = 62;
-            this.label1.Text = "Cari Plat Kendaraan :";
-            // 
             // buttonPrint
             // 
             this.buttonPrint.BackColor = System.Drawing.Color.Transparent;
@@ -90,7 +72,6 @@
             this.buttonPrint.TabIndex = 61;
             this.buttonPrint.Text = "Print";
             this.buttonPrint.UseVisualStyleBackColor = false;
-            this.buttonPrint.Click += new System.EventHandler(this.buttonPrint_Click);
             // 
             // buttonTutup
             // 
@@ -125,16 +106,50 @@
             this.lblGASLIVERY.TabIndex = 55;
             this.lblGASLIVERY.Text = "Monitoring Kendaraan";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label3.Location = new System.Drawing.Point(12, 51);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(131, 22);
+            this.label3.TabIndex = 70;
+            this.label3.Text = "Filter Tahun: ";
+            // 
+            // numericUpDownTahun
+            // 
+            this.numericUpDownTahun.Location = new System.Drawing.Point(140, 54);
+            this.numericUpDownTahun.Maximum = new decimal(new int[] {
+            2026,
+            0,
+            0,
+            0});
+            this.numericUpDownTahun.Minimum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.numericUpDownTahun.Name = "numericUpDownTahun";
+            this.numericUpDownTahun.Size = new System.Drawing.Size(140, 22);
+            this.numericUpDownTahun.TabIndex = 71;
+            this.numericUpDownTahun.Value = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.numericUpDownTahun.ValueChanged += new System.EventHandler(this.numericUpDownTahun_ValueChanged);
+            // 
             // FormMonitoringKendaraan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(811, 457);
+            this.Controls.Add(this.numericUpDownTahun);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.labelTotalKendaraan);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBoxCari);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonPrint);
             this.Controls.Add(this.buttonTutup);
             this.Controls.Add(this.dataGridViewMonitoringKendaraan);
@@ -143,6 +158,7 @@
             this.Text = "FormMonitoringKendaraan";
             this.Load += new System.EventHandler(this.FormMonitoringKendaraan_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMonitoringKendaraan)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTahun)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -151,11 +167,11 @@
         #endregion
         private System.Windows.Forms.Label labelTotalKendaraan;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBoxCari;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonPrint;
         private System.Windows.Forms.Button buttonTutup;
         private System.Windows.Forms.DataGridView dataGridViewMonitoringKendaraan;
         private System.Windows.Forms.Label lblGASLIVERY;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.NumericUpDown numericUpDownTahun;
     }
 }

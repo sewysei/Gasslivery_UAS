@@ -45,10 +45,10 @@ namespace Class_Gasslivery
             {
                 perintah = $"SELECT v.*, d.full_name " +
                     $"FROM vehicles v INNER JOIN drivers d ON d.id = v.driver_id " +
-                    $"WHERE plate LIKE '%{nilai}%'";
+                    $"WHERE YEAR(buy_date) = {nilai};";
             }
             else if(role == "driver")
-            {
+            { 
                 perintah = $"SELECT v.*, d.full_name " +
                     $"FROM vehicles v INNER JOIN drivers d ON d.id = v.driver_id " +
                     $"WHERE d.id = {id}";
