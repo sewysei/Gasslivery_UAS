@@ -36,7 +36,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblGASLIVERY = new System.Windows.Forms.Label();
             this.dataGridViewRiwayatPenjualan = new System.Windows.Forms.DataGridView();
-            this.buttonPrint = new System.Windows.Forms.Button();
             this.buttonTutup = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRiwayatPenjualan)).BeginInit();
             this.SuspendLayout();
@@ -122,17 +121,6 @@
             this.dataGridViewRiwayatPenjualan.TabIndex = 45;
             this.dataGridViewRiwayatPenjualan.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewRiwayatPenjualan_CellContentClick);
             // 
-            // buttonPrint
-            // 
-            this.buttonPrint.BackColor = System.Drawing.Color.Transparent;
-            this.buttonPrint.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPrint.Location = new System.Drawing.Point(6, 362);
-            this.buttonPrint.Name = "buttonPrint";
-            this.buttonPrint.Size = new System.Drawing.Size(163, 35);
-            this.buttonPrint.TabIndex = 57;
-            this.buttonPrint.Text = "Print";
-            this.buttonPrint.UseVisualStyleBackColor = false;
-            // 
             // buttonTutup
             // 
             this.buttonTutup.BackColor = System.Drawing.Color.Transparent;
@@ -150,9 +138,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.ClientSize = new System.Drawing.Size(880, 406);
+            this.ClientSize = new System.Drawing.Size(880, 368);
             this.Controls.Add(this.buttonTutup);
-            this.Controls.Add(this.buttonPrint);
             this.Controls.Add(this.labelTotalPenjualanPeriodeIni);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dateTimePickerSampai);
@@ -180,7 +167,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblGASLIVERY;
         private System.Windows.Forms.DataGridView dataGridViewRiwayatPenjualan;
-        private System.Windows.Forms.Button buttonPrint;
         private System.Windows.Forms.Button buttonTutup;
     }
 }

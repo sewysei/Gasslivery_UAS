@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.buttonTutup = new System.Windows.Forms.Button();
-            this.buttonPrint = new System.Windows.Forms.Button();
             this.labelJumlahCancel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.dateTimePickerSampai = new System.Windows.Forms.DateTimePicker();
@@ -52,18 +51,6 @@
             this.buttonTutup.Text = "Tutup";
             this.buttonTutup.UseVisualStyleBackColor = false;
             this.buttonTutup.Click += new System.EventHandler(this.buttonTutup_Click);
-            // 
-            // buttonPrint
-            // 
-            this.buttonPrint.BackColor = System.Drawing.Color.Transparent;
-            this.buttonPrint.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPrint.Location = new System.Drawing.Point(12, 353);
-            this.buttonPrint.Name = "buttonPrint";
-            this.buttonPrint.Size = new System.Drawing.Size(163, 35);
-            this.buttonPrint.TabIndex = 83;
-            this.buttonPrint.Text = "Print";
-            this.buttonPrint.UseVisualStyleBackColor = false;
-            this.buttonPrint.Click += new System.EventHandler(this.buttonPrint_Click);
             // 
             // labelJumlahCancel
             // 
@@ -150,9 +137,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.ClientSize = new System.Drawing.Size(886, 400);
+            this.ClientSize = new System.Drawing.Size(886, 357);
             this.Controls.Add(this.buttonTutup);
-            this.Controls.Add(this.buttonPrint);
             this.Controls.Add(this.labelJumlahCancel);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dateTimePickerSampai);
@@ -172,7 +158,6 @@
 
         #endregion
         private System.Windows.Forms.Button buttonTutup;
-        private System.Windows.Forms.Button buttonPrint;
         private System.Windows.Forms.Label labelJumlahCancel;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DateTimePicker dateTimePickerSampai;

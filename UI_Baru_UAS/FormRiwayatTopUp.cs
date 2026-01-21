@@ -52,5 +52,10 @@ namespace UI_Baru_UAS
             RefreshData();
 
         }
+
+        private void buttonLihatDetail_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

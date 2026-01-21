@@ -33,7 +33,6 @@
             this.comboBoxStatus = new System.Windows.Forms.ComboBox();
             this.labelUsername = new System.Windows.Forms.Label();
             this.lblGASLIVERY = new System.Windows.Forms.Label();
-            this.buttonPrint = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.labelActive = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -99,17 +98,6 @@
             this.lblGASLIVERY.Size = new System.Drawing.Size(244, 38);
             this.lblGASLIVERY.TabIndex = 37;
             this.lblGASLIVERY.Text = "Monitoring Driver";
-            // 
-            // buttonPrint
-            // 
-            this.buttonPrint.BackColor = System.Drawing.Color.Transparent;
-            this.buttonPrint.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPrint.Location = new System.Drawing.Point(12, 380);
-            this.buttonPrint.Name = "buttonPrint";
-            this.buttonPrint.Size = new System.Drawing.Size(163, 35);
-            this.buttonPrint.TabIndex = 45;
-            this.buttonPrint.Text = "Print";
-            this.buttonPrint.UseVisualStyleBackColor = false;
             // 
             // label2
             // 
@@ -193,7 +181,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.ClientSize = new System.Drawing.Size(792, 427);
+            this.ClientSize = new System.Drawing.Size(792, 396);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.labelTotalDriver);
             this.Controls.Add(this.label6);
@@ -201,7 +189,6 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.labelActive);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.buttonPrint);
             this.Controls.Add(this.buttonTutup);
             this.Controls.Add(this.dataGridViewMonitoringDriver);
             this.Controls.Add(this.comboBoxStatus);
@@ -222,7 +209,6 @@
         private System.Windows.Forms.ComboBox comboBoxStatus;
         private System.Windows.Forms.Label labelUsername;
         private System.Windows.Forms.Label lblGASLIVERY;
-        private System.Windows.Forms.Button buttonPrint;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label labelActive;
         private System.Windows.Forms.Label label4;

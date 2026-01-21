@@ -73,5 +73,10 @@ namespace UI_Baru_UAS
         {
             FormLaporanReport_Load(this, e);
         }
+
+        private void buttonPrint_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

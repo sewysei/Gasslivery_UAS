@@ -62,7 +62,7 @@ namespace Class_Gasslivery
             string perintah = "";
             if(kolom == "")
             {
-                perintah = $"SELECT o.*, c.username, c.telp, dr.full_name, v.name, t.name, t.address, d.destination_point, d.fee " +
+                perintah = $"SELECT o.*, c.username, c.telp, dr.full_name, v.name, t.name, t.address, d.destination_point, d.fee, c.balance " +
                     $"FROM orders o INNER JOIN consumers c ON c.id = o.consumer_id " +
                     $"INNER JOIN deliveries d ON d.id = o.delivery_id " +
                     $"INNER JOIN drivers dr ON dr.id = d.driver_id " +
@@ -73,7 +73,7 @@ namespace Class_Gasslivery
             }
             else if(kolom == "status")
             {
-                perintah = $"SELECT o.*, c.username, c.telp, dr.full_name, v.name, t.name, t.address, d.destination_point, d.fee " +
+                perintah = $"SELECT o.*, c.username, c.telp, dr.full_name, v.name, t.name, t.address, d.destination_point, d.fee, c.balance " +
                    $"FROM orders o INNER JOIN consumers c ON c.id = o.consumer_id " +
                    $"INNER JOIN deliveries d ON d.id = o.delivery_id " +
                    $"INNER JOIN drivers dr ON dr.id = d.driver_id " +
@@ -84,7 +84,7 @@ namespace Class_Gasslivery
             }
             else if (kolom == "date")
             {
-                perintah = $"SELECT o.*, c.username, c.telp, dr.full_name, v.name, t.name, t.address, d.destination_point, d.fee " +
+                perintah = $"SELECT o.*, c.username, c.telp, dr.full_name, v.name, t.name, t.address, d.destination_point, d.fee, c.balance " +
                    $"FROM orders o INNER JOIN consumers c ON c.id = o.consumer_id " +
                    $"INNER JOIN deliveries d ON d.id = o.delivery_id " +
                    $"INNER JOIN drivers dr ON dr.id = d.driver_id " +
@@ -95,7 +95,7 @@ namespace Class_Gasslivery
             }
             else if (kolom == "consumer")
             {
-                perintah = $"SELECT o.*, c.username, c.telp, dr.full_name, v.name, t.name, t.address, d.destination_point, d.fee " +
+                perintah = $"SELECT o.*, c.username, c.telp, dr.full_name, v.name, t.name, t.address, d.destination_point, d.fee, c.balance " +
                     $"FROM orders o INNER JOIN consumers c ON c.id = o.consumer_id " +
                     $"INNER JOIN deliveries d ON d.id = o.delivery_id " +
                     $"INNER JOIN drivers dr ON dr.id = d.driver_id " +
@@ -106,7 +106,7 @@ namespace Class_Gasslivery
             }
             else if (kolom == "driver")
             {
-                perintah = $"SELECT o.*, c.username, c.telp, dr.full_name, v.name, t.name, t.address, d.destination_point, d.fee " +
+                perintah = $"SELECT o.*, c.username, c.telp, dr.full_name, v.name, t.name, t.address, d.destination_point, d.fee, c.balance " +
                    $"FROM orders o INNER JOIN consumers c ON c.id = o.consumer_id " +
                    $"INNER JOIN deliveries d ON d.id = o.delivery_id " +
                    $"INNER JOIN drivers dr ON dr.id = d.driver_id " +
@@ -117,7 +117,7 @@ namespace Class_Gasslivery
             }
             else if (kolom == "riwayat")
             {
-                perintah = $"SELECT o.*, c.username, c.telp, dr.full_name, v.name, t.name, t.address, d.destination_point, d.fee " +
+                perintah = $"SELECT o.*, c.username, c.telp, dr.full_name, v.name, t.name, t.address, d.destination_point, d.fee, c.balance " +
                    $"FROM orders o INNER JOIN consumers c ON c.id = o.consumer_id " +
                    $"INNER JOIN deliveries d ON d.id = o.delivery_id " +
                    $"INNER JOIN drivers dr ON dr.id = d.driver_id " +
@@ -154,6 +154,7 @@ namespace Class_Gasslivery
                 tenant.Address = hasil.GetValue(16).ToString();
                 delivery.Destination_point = hasil.GetValue(17).ToString();
                 delivery.Fee = int.Parse(hasil.GetValue(18).ToString());
+                consumer.Balance = int.Parse(hasil.GetValue(19).ToString());
                 tampung.Consumer = consumer;
                 tampung.Delivery = delivery;
                 tampung.Tenant = tenant;

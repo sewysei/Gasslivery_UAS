@@ -45,11 +45,5 @@ namespace UI_Baru_UAS
             FormLaporanCancel_Load(this, e);
         }
 
-        private void buttonPrint_Click(object sender, EventArgs e)
-        {
-            string mulai = dateTimePickerDari.Value.ToString("yyyy-MM-dd 00:00:00");
-            string akhir = dateTimePickerSampai.Value.ToString("yyyy-MM-dd 23:59:59");
-            Cancel.CetakLaporan(mulai,akhir);
-        }
     }
 }

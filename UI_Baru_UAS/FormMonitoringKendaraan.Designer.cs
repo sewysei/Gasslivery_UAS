@@ -30,7 +30,6 @@
         {
             this.labelTotalKendaraan = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.buttonPrint = new System.Windows.Forms.Button();
             this.buttonTutup = new System.Windows.Forms.Button();
             this.dataGridViewMonitoringKendaraan = new System.Windows.Forms.DataGridView();
             this.lblGASLIVERY = new System.Windows.Forms.Label();
@@ -61,17 +60,6 @@
             this.label2.Size = new System.Drawing.Size(171, 22);
             this.label2.TabIndex = 64;
             this.label2.Text = "Total Kendaraan :";
-            // 
-            // buttonPrint
-            // 
-            this.buttonPrint.BackColor = System.Drawing.Color.Transparent;
-            this.buttonPrint.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPrint.Location = new System.Drawing.Point(12, 397);
-            this.buttonPrint.Name = "buttonPrint";
-            this.buttonPrint.Size = new System.Drawing.Size(163, 35);
-            this.buttonPrint.TabIndex = 61;
-            this.buttonPrint.Text = "Print";
-            this.buttonPrint.UseVisualStyleBackColor = false;
             // 
             // buttonTutup
             // 
@@ -145,12 +133,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.ClientSize = new System.Drawing.Size(811, 457);
+            this.ClientSize = new System.Drawing.Size(795, 421);
             this.Controls.Add(this.numericUpDownTahun);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.labelTotalKendaraan);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.buttonPrint);
             this.Controls.Add(this.buttonTutup);
             this.Controls.Add(this.dataGridViewMonitoringKendaraan);
             this.Controls.Add(this.lblGASLIVERY);
@@ -167,7 +154,6 @@
         #endregion
         private System.Windows.Forms.Label labelTotalKendaraan;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button buttonPrint;
         private System.Windows.Forms.Button buttonTutup;
         private System.Windows.Forms.DataGridView dataGridViewMonitoringKendaraan;
         private System.Windows.Forms.Label lblGASLIVERY;

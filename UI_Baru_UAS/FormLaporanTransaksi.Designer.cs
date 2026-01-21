@@ -49,7 +49,7 @@
             // 
             this.buttonTutup.BackColor = System.Drawing.Color.Transparent;
             this.buttonTutup.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonTutup.Location = new System.Drawing.Point(953, 547);
+            this.buttonTutup.Location = new System.Drawing.Point(953, 552);
             this.buttonTutup.Name = "buttonTutup";
             this.buttonTutup.Size = new System.Drawing.Size(115, 35);
             this.buttonTutup.TabIndex = 69;

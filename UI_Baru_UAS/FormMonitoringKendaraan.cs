@@ -78,5 +78,10 @@ namespace UI_Baru_UAS
                 dataGridViewMonitoringKendaraan.Columns.Add(hapus);
             }
         }
+
+        private void buttonPrint_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -44,5 +44,10 @@ namespace UI_Baru_UAS
         {
             FormRiwayatTarikDana_Load(this, e);
         }
+
+        private void buttonLihatDetail_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

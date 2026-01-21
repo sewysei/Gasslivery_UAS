@@ -66,5 +66,10 @@ namespace UI_Baru_UAS
                 frm.ShowDialog();
             }
         }
+
+        private void buttonPrint_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
