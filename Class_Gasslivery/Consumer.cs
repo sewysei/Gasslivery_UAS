@@ -74,9 +74,9 @@ namespace Class_Gasslivery
             Koneksi.JalankanPerintahDML(perintah);
         }
 
-        public static void UpdatePoint(Consumer consumer)
+        public static void UpdatePoint(int point, string id)
         {
-            string perintah = $"UPDATE consumers SET point = '{consumer.Point}' WHERE id = '{consumer.Id}'";
+            string perintah = $"UPDATE consumers SET point = point + {point} WHERE id = '{id}'";
             Koneksi.JalankanPerintahDML(perintah);
         }
 

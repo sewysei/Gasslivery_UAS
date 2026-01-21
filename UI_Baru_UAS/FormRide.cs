@@ -204,8 +204,7 @@ namespace UI_Baru_UAS
                 
                 if (poinDigunakan > 0)
                 {
-                    frmUtama.consumerLogin.Point -= poinDigunakan;
-                    Consumer.UpdatePoint(frmUtama.consumerLogin);
+                    Consumer.UpdatePoint(poinDigunakan * -1, frmUtama.consumerLogin.Id);
                 }
                 
                 MessageBox.Show("Pesanan ride berhasil dibuat", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);

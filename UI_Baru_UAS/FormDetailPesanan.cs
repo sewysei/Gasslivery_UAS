@@ -75,6 +75,8 @@ namespace UI_Baru_UAS
         {
             orderInfo.Status = "verified";
             Order.GantiStatus(orderInfo);
+            int poin = (orderInfo.Total_fee / 1000) * 10;
+            Consumer.UpdatePoint(poin, orderInfo.Consumer.Id);
             FormDetailPesanan_Load(this, e);
         }
     }
