@@ -70,7 +70,13 @@ namespace Class_Gasslivery
 
         public static void UpdateBalance(Consumer consumer)
         {
-            string perintah = $"UPDATE consumers SET balance = '{consumer.Balance}' ";
+            string perintah = $"UPDATE consumers SET balance = '{consumer.Balance}' WHERE id = '{consumer.Id}'";
+            Koneksi.JalankanPerintahDML(perintah);
+        }
+
+        public static void UpdatePoint(Consumer consumer)
+        {
+            string perintah = $"UPDATE consumers SET point = '{consumer.Point}' WHERE id = '{consumer.Id}'";
             Koneksi.JalankanPerintahDML(perintah);
         }
 

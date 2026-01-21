@@ -60,14 +60,18 @@
             this.textBoxLatitudeTujuan = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.numericUpDownPoin = new System.Windows.Forms.NumericUpDown();
+            this.labelPoinTersedia = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPoin)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonPesanRide
             // 
             this.buttonPesanRide.BackColor = System.Drawing.Color.Transparent;
             this.buttonPesanRide.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPesanRide.Location = new System.Drawing.Point(14, 502);
+            this.buttonPesanRide.Location = new System.Drawing.Point(14, 540);
             this.buttonPesanRide.Name = "buttonPesanRide";
             this.buttonPesanRide.Size = new System.Drawing.Size(132, 35);
             this.buttonPesanRide.TabIndex = 20;
@@ -253,7 +257,7 @@
             // 
             this.buttonBatal.BackColor = System.Drawing.Color.Transparent;
             this.buttonBatal.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonBatal.Location = new System.Drawing.Point(340, 504);
+            this.buttonBatal.Location = new System.Drawing.Point(340, 540);
             this.buttonBatal.Name = "buttonBatal";
             this.buttonBatal.Size = new System.Drawing.Size(132, 35);
             this.buttonBatal.TabIndex = 29;
@@ -392,12 +396,56 @@
             this.comboBox1.TabIndex = 42;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.Transparent;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label12.Location = new System.Drawing.Point(8, 499);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(62, 22);
+            this.label12.TabIndex = 43;
+            this.label12.Text = "Poin :";
+            // 
+            // numericUpDownPoin
+            // 
+            this.numericUpDownPoin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDownPoin.Increment = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.numericUpDownPoin.Location = new System.Drawing.Point(74, 499);
+            this.numericUpDownPoin.Maximum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.numericUpDownPoin.Name = "numericUpDownPoin";
+            this.numericUpDownPoin.Size = new System.Drawing.Size(120, 27);
+            this.numericUpDownPoin.TabIndex = 44;
+            this.numericUpDownPoin.ValueChanged += new System.EventHandler(this.numericUpDownPoin_ValueChanged);
+            // 
+            // labelPoinTersedia
+            // 
+            this.labelPoinTersedia.AutoSize = true;
+            this.labelPoinTersedia.BackColor = System.Drawing.Color.Transparent;
+            this.labelPoinTersedia.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPoinTersedia.Location = new System.Drawing.Point(200, 504);
+            this.labelPoinTersedia.Name = "labelPoinTersedia";
+            this.labelPoinTersedia.Size = new System.Drawing.Size(126, 20);
+            this.labelPoinTersedia.TabIndex = 45;
+            this.labelPoinTersedia.Text = "Poin tersedia: 0";
+            // 
             // FormRide
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.ClientSize = new System.Drawing.Size(484, 559);
+            this.ClientSize = new System.Drawing.Size(484, 590);
+            this.Controls.Add(this.labelPoinTersedia);
+            this.Controls.Add(this.numericUpDownPoin);
+            this.Controls.Add(this.label12);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.textBoxLatitudeTujuan);
@@ -432,6 +480,7 @@
             this.Load += new System.EventHandler(this.FormRide_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPoin)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -471,5 +520,8 @@
         private System.Windows.Forms.TextBox textBoxLatitudeTujuan;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.NumericUpDown numericUpDownPoin;
+        private System.Windows.Forms.Label labelPoinTersedia;
     }
 }
