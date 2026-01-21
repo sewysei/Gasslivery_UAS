@@ -110,8 +110,6 @@ namespace UI_Baru_UAS
             if (orderInfo != null)
             {
                 orderInfo.Status = "delivered";
-                int honor = (int)(orderInfo.Total_fee * 0.2);
-                Driver.UpdateSaldo(honor, driver.Id);
                 Order.GantiStatus(orderInfo);
             }
             else if (tripInfo != null)

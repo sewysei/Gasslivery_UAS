@@ -25,6 +25,7 @@ namespace UI_Baru_UAS
         int totalMakanan;
         int totalBayar;
         int ongkir;
+        int poinDigunakan;
         public FormFood()
         {
             InitializeComponent();
@@ -111,6 +112,17 @@ namespace UI_Baru_UAS
                 }
 
             }
+
+            if (frm.consumerLogin != null)
+            {
+                int maxPoin = frm.consumerLogin.Point;
+                numericUpDownPoin.Maximum = maxPoin;
+                numericUpDownPoin.Minimum = 0;
+                numericUpDownPoin.Increment = 5000;
+                numericUpDownPoin.Value = 0;
+                poinDigunakan = 0;
+                labelPoinTersedia.Text = $"Poin tersedia: {maxPoin:N0}";
+            }
             
         }
 
@@ -189,6 +201,8 @@ namespace UI_Baru_UAS
         private void comboBoxPilihTenan_SelectedIndexChanged(object sender, EventArgs e)
         {
             keranjang = new BindingList<OrderDetail>();
+            numericUpDownPoin.Value = 0;
+            poinDigunakan = 0;
             RefreshDGV();
         }
 
@@ -215,6 +229,21 @@ namespace UI_Baru_UAS
             pesananBaru.Driver_rating = 0;
             pesananBaru.Discount_value = int.Parse(selectedVoucher.Value);
             pesananBaru.Total_fee = totalBayar - pesananBaru.Discount_value;
+
+            if (poinDigunakan > 0)
+            {
+                int totalSebelumPoin = totalMakanan + ongkir - pesananBaru.Discount_value;
+                if (poinDigunakan > totalSebelumPoin)
+                {
+                    MessageBox.Show($"Poin yang digunakan tidak boleh melebihi total ongkos (Rp {totalSebelumPoin:N0})!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (poinDigunakan % 5000 != 0)
+                {
+                    MessageBox.Show("Poin yang digunakan harus kelipatan Rp 5.000!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
 
             if (pesananBaru.Total_fee > frm.consumerLogin.Balance)
             {
@@ -243,6 +272,12 @@ namespace UI_Baru_UAS
                         }
                         frm.consumerLogin.Balance -= total;
                         Consumer.UpdateBalance(frm.consumerLogin);
+                        
+                        if (poinDigunakan > 0)
+                        {
+                            Consumer.UpdatePoint(poinDigunakan * -1, frm.consumerLogin.Id);
+                        }
+                        
                         MessageBox.Show("Pesanan Berhasil dibuat, tunggu konfirmasi tenant.", "Berhasil");
                     }
                 }
@@ -298,7 +333,7 @@ namespace UI_Baru_UAS
                 }
 
                 totalMakanan = keranjang.Sum(x => x.Total_price);
-                totalBayar = totalMakanan + ongkir;
+                totalBayar = totalMakanan + ongkir - poinDigunakan;
                 labelTotalMakanan.Text = $"Rp. {totalMakanan}";
                 labelTotalBayar.Text = $"Rp. {totalBayar - int.Parse(selectedVoucher.Value)}";
                 dataGridViewKeranjang.Refresh();
@@ -367,7 +402,7 @@ namespace UI_Baru_UAS
                     totalMakanan += od.Total_price;
                 }
 
-                totalBayar = totalMakanan + ongkir;
+                totalBayar = totalMakanan + ongkir - poinDigunakan;
                 labelTotalMakanan.Text = $"Rp. {totalMakanan}";
                 labelTotalBayar.Text = $"Rp. {totalBayar - int.Parse(selectedVoucher.Value)}";
                 dataGridViewKeranjang.Refresh();
@@ -397,7 +432,7 @@ namespace UI_Baru_UAS
                     totalMakanan += od.Total_price;
                 }
 
-                totalBayar = totalMakanan + ongkir;
+                totalBayar = totalMakanan + ongkir - poinDigunakan;
                 labelTotalMakanan.Text = $"Rp. {totalMakanan}";
                 labelTotalBayar.Text = $"Rp. {totalBayar - int.Parse(selectedVoucher.Value)}";
                 dataGridViewKeranjang.Refresh();
@@ -419,7 +454,7 @@ namespace UI_Baru_UAS
                     totalMakanan += od.Total_price;
                 }
 
-                totalBayar = totalMakanan + ongkir;
+                totalBayar = totalMakanan + ongkir - poinDigunakan;
                 labelTotalMakanan.Text = $"Rp. {totalMakanan}";
                 labelTotalBayar.Text = $"Rp. {totalBayar - int.Parse(selectedVoucher.Value)}";
                 dataGridViewKeranjang.Refresh();
@@ -453,7 +488,7 @@ namespace UI_Baru_UAS
 
                 int hitungOngkir = (int)(jarak * rate);
                 ongkir = hitungOngkir;
-                totalBayar = ongkir + totalMakanan;
+                totalBayar = ongkir + totalMakanan - poinDigunakan;
                 labelOngkosAntar.Text = $"Rp. {ongkir}";
                 labelTotalBayar.Text = $"Rp. {totalBayar - int.Parse(selectedVoucher.Value)}";
             }
@@ -480,7 +515,7 @@ namespace UI_Baru_UAS
 
                 int hitungOngkir = (int)(jarak * rate);
                 ongkir = hitungOngkir;
-                totalBayar = ongkir + totalMakanan;
+                totalBayar = ongkir + totalMakanan - poinDigunakan;
                 labelOngkosAntar.Text = $"Rp. {ongkir}";
                 labelTotalBayar.Text = $"Rp. {totalBayar - int.Parse(selectedVoucher.Value)}";
             }
@@ -492,6 +527,7 @@ namespace UI_Baru_UAS
             selectedVoucher = comboBoxVocer.SelectedItem as Voucher;
             labelMinimal.Text = $"Rp. {selectedVoucher.Conditions}";
             labelDiskon.Text = $"Rp. {selectedVoucher.Value}";
+            totalBayar = totalMakanan + ongkir - poinDigunakan;
             if (totalBayar >= int.Parse(selectedVoucher.Conditions))
             {
                 labelTotalBayar.Text = $"Rp. {totalBayar - int.Parse(selectedVoucher.Value)}";
@@ -500,6 +536,43 @@ namespace UI_Baru_UAS
             {
                 MessageBox.Show("Voucher tidak memenuhi syarat", "Tidak memenuhi Syarat");
                 comboBoxVocer.SelectedIndex = 0;
+            }
+        }
+
+        private void numericUpDownPoin_ValueChanged(object sender, EventArgs e)
+        {
+            poinDigunakan = (int)numericUpDownPoin.Value;
+            if (poinDigunakan % 5000 != 0)
+            {
+                int rounded = (poinDigunakan / 5000) * 5000;
+                numericUpDownPoin.Value = rounded;
+                return;
+            }
+
+            if (frm?.consumerLogin != null)
+            {
+                labelPoinTersedia.Text = $"Poin tersedia: {frm.consumerLogin.Point:N0}";
+            }
+
+            int totalSebelumPoin = totalMakanan + ongkir;
+            if (totalSebelumPoin > 0)
+            {
+                int maxPoinBisaDigunakan = (totalSebelumPoin / 5000) * 5000;
+                if (poinDigunakan > maxPoinBisaDigunakan)
+                {
+                    numericUpDownPoin.Value = maxPoinBisaDigunakan;
+                    return;
+                }
+            }
+
+            totalBayar = totalMakanan + ongkir - poinDigunakan;
+            if (selectedVoucher != null && totalBayar >= int.Parse(selectedVoucher.Conditions))
+            {
+                labelTotalBayar.Text = $"Rp. {totalBayar - int.Parse(selectedVoucher.Value)}";
+            }
+            else if (selectedVoucher != null)
+            {
+                labelTotalBayar.Text = $"Rp. {totalBayar}";
             }
         }
     }

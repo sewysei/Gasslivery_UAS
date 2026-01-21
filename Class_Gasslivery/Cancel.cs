@@ -90,6 +90,45 @@ namespace Class_Gasslivery
             Trip trip = cancel.Trip;
             trip.Status = "canceled";
             Trip.UpdateStatus(trip);
+            
+            if (trip.Consumer != null && !string.IsNullOrEmpty(trip.Consumer.Id))
+            {
+                string perintahBaca = $"SELECT consumer_id, total_fee, additional_fee, discount_value, fee, distance FROM trips WHERE id = {trip.Id}";
+                MySqlDataReader hasil = Koneksi.JalankanPerintahSelect(perintahBaca);
+                
+                try
+                {
+                    if (hasil.Read())
+                    {
+                        string consumerId = hasil.GetValue(0).ToString();
+                        int totalFee = int.Parse(hasil.GetValue(1).ToString());
+                        int additionalFee = int.Parse(hasil.GetValue(2).ToString());
+                        int discountValue = int.Parse(hasil.GetValue(3).ToString());
+                        int feePerKm = int.Parse(hasil.GetValue(4).ToString());
+                        double distance = double.Parse(hasil.GetValue(5).ToString());
+                        
+                        int baseFee = (int)(distance * feePerKm);
+                        int totalNormal = baseFee + additionalFee - discountValue;
+                        
+                        int poinDigunakan = totalNormal - totalFee;
+                        
+                        if (totalFee > 0)
+                        {
+                            string perintahKembalikanSaldo = $"UPDATE consumers SET balance = balance + {totalFee} WHERE id = '{consumerId}'";
+                            Koneksi.JalankanPerintahDML(perintahKembalikanSaldo);
+                        }
+                        
+                        if (poinDigunakan > 0)
+                        {
+                            Consumer.UpdatePoint(poinDigunakan, consumerId);
+                        }
+                    }
+                }
+                finally
+                {
+                    hasil.Close();
+                }
+            }
         }
     }
 }

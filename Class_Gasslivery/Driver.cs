@@ -106,21 +106,33 @@ namespace Class_Gasslivery
 
         public static void UpdateRating(string driverId, int newRating)
         {
-            string perintahHitung = $@"SELECT AVG(rating) FROM trips 
-                WHERE driver_id = {driverId} AND rating > 0";
-            MySqlDataReader hasil = Koneksi.JalankanPerintahSelect(perintahHitung);
+            string perintahAmbil = $@"SELECT avg_rating, total_rating FROM drivers 
+                WHERE id = {driverId}";
+            MySqlDataReader hasil = Koneksi.JalankanPerintahSelect(perintahAmbil);
             
             double avgRating = 0;
-            if (hasil.Read() && !hasil.IsDBNull(0))
+            int totalRating = 0;
+            
+            if (hasil.Read())
             {
-                avgRating = double.Parse(hasil.GetValue(0).ToString());
+                if (!hasil.IsDBNull(0))
+                {
+                    avgRating = double.Parse(hasil.GetValue(0).ToString());
+                }
+                if (!hasil.IsDBNull(1))
+                {
+                    totalRating = int.Parse(hasil.GetValue(1).ToString());
+                }
             }
 
-            string perintah = $@"UPDATE drivers SET avg_rating = {avgRating} 
+            double avgRatingBaru = (avgRating * totalRating + newRating) / (totalRating + 1);
+            int totalRatingBaru = totalRating + 1;
+
+            string perintah = $@"UPDATE drivers SET avg_rating = {avgRatingBaru}, total_rating = {totalRatingBaru} 
                 WHERE id = {driverId}";
             Koneksi.JalankanPerintahDML(perintah);
         }
-
+        
         public static void UpdateStatus(string status, string id)
         {
             string perintah = $"UPDATE drivers SET status = '{status}' " +

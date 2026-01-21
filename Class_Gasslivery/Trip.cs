@@ -300,7 +300,6 @@ namespace Class_Gasslivery
             string perintah = $"UPDATE trips SET rating = {trip.Rating} WHERE id = {trip.Id}";
             Koneksi.JalankanPerintahDML(perintah);
             
-            // Update rating driver jika trip sudah completed dan ada driver
             if (trip.Status == "completed" && trip.Driver != null && !string.IsNullOrEmpty(trip.Driver.Id))
             {
                 Driver.UpdateRating(trip.Driver.Id, trip.Rating);
@@ -323,21 +322,6 @@ namespace Class_Gasslivery
         {
             string perintah = $"UPDATE trips SET status = 'completed' WHERE id = {trip.Id}";
             Koneksi.JalankanPerintahDML(perintah);
-            
-            string perintahBaca = $"SELECT driver_id, total_fee FROM trips WHERE id = {trip.Id}";
-            MySqlDataReader hasil = Koneksi.JalankanPerintahSelect(perintahBaca);
-            
-            if (hasil.Read())
-            {
-                if (!hasil.IsDBNull(0) && !string.IsNullOrEmpty(hasil.GetValue(0).ToString()))
-                {
-                    string driverId = hasil.GetValue(0).ToString();
-                    int totalFee = int.Parse(hasil.GetValue(1).ToString());
-                    
-                    int driverFee = (int)(totalFee * 0.20);
-                    Driver.UpdateSaldo(driverFee, driverId);
-                }
-            }
         }
     }
 }

@@ -77,6 +77,14 @@ namespace UI_Baru_UAS
             Order.GantiStatus(orderInfo);
             int poin = (orderInfo.Total_fee / 1000) * 10;
             Consumer.UpdatePoint(poin, orderInfo.Consumer.Id);
+            
+            if (orderInfo.Delivery != null && orderInfo.Delivery.Driver != null && 
+                !string.IsNullOrEmpty(orderInfo.Delivery.Driver.Id) && orderInfo.Total_fee > 0)
+            {
+                int driverFee = (int)(orderInfo.Total_fee * 0.20);
+                Driver.UpdateSaldo(driverFee, orderInfo.Delivery.Driver.Id);
+            }
+            
             FormDetailPesanan_Load(this, e);
         }
     }
