@@ -35,9 +35,6 @@
             this.lblGASLIVERY = new System.Windows.Forms.Label();
             this.dataGridViewRiwayatFood = new System.Windows.Forms.DataGridView();
             this.buttonTutup = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.buttonLihatDetail = new System.Windows.Forms.Button();
-            this.buttonRating = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRiwayatFood)).BeginInit();
             this.SuspendLayout();
             // 
@@ -98,6 +95,7 @@
             this.dataGridViewRiwayatFood.RowTemplate.Height = 24;
             this.dataGridViewRiwayatFood.Size = new System.Drawing.Size(868, 308);
             this.dataGridViewRiwayatFood.TabIndex = 34;
+            this.dataGridViewRiwayatFood.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewRiwayatFood_CellContentClick);
             // 
             // buttonTutup
             // 
@@ -111,49 +109,13 @@
             this.buttonTutup.UseVisualStyleBackColor = false;
             this.buttonTutup.Click += new System.EventHandler(this.buttonTutup_Click);
             // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.Transparent;
-            this.button2.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(181, 388);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(163, 35);
-            this.button2.TabIndex = 62;
-            this.button2.Text = "Print";
-            this.button2.UseVisualStyleBackColor = false;
-            // 
-            // buttonLihatDetail
-            // 
-            this.buttonLihatDetail.BackColor = System.Drawing.Color.Transparent;
-            this.buttonLihatDetail.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonLihatDetail.Location = new System.Drawing.Point(12, 388);
-            this.buttonLihatDetail.Name = "buttonLihatDetail";
-            this.buttonLihatDetail.Size = new System.Drawing.Size(163, 35);
-            this.buttonLihatDetail.TabIndex = 61;
-            this.buttonLihatDetail.Text = "Lihat Detail";
-            this.buttonLihatDetail.UseVisualStyleBackColor = false;
-            // 
-            // buttonRating
-            // 
-            this.buttonRating.BackColor = System.Drawing.Color.Transparent;
-            this.buttonRating.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonRating.Location = new System.Drawing.Point(350, 388);
-            this.buttonRating.Name = "buttonRating";
-            this.buttonRating.Size = new System.Drawing.Size(163, 35);
-            this.buttonRating.TabIndex = 64;
-            this.buttonRating.Text = "Rating";
-            this.buttonRating.UseVisualStyleBackColor = false;
-            // 
             // FormRiwayatFood
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(891, 436);
-            this.Controls.Add(this.buttonRating);
             this.Controls.Add(this.buttonTutup);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.buttonLihatDetail);
             this.Controls.Add(this.dateTimePickerSampai);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dateTimePickerDari);
@@ -177,8 +139,5 @@
         private System.Windows.Forms.Label lblGASLIVERY;
         private System.Windows.Forms.DataGridView dataGridViewRiwayatFood;
         private System.Windows.Forms.Button buttonTutup;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button buttonLihatDetail;
-        private System.Windows.Forms.Button buttonRating;
     }
 }

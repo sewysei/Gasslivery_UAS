@@ -35,11 +35,47 @@ namespace UI_Baru_UAS
             labelDiskon.Text = orderInfo.Discount_value.ToString();
             labelTotalBayar.Text = orderInfo.Total_fee.ToString();
             dataGridViewDetailPesanan.Columns["Total_price"].HeaderText = "Total Price";
+            if(orderInfo.Food_rating != 0 && orderInfo.Driver_rating != 0)
+            {
+                buttonRating.Enabled = false;
+            }
+            if(orderInfo.Status != "delivered")
+            {
+                buttonVerifikasi.Enabled = false;
+            }else
+            {
+                buttonRating.Enabled = true;
+            }
+
+            if (orderInfo.Status != "verified")
+            {
+                buttonRating.Enabled = false;
+            }
+            else
+            {
+                buttonRating.Enabled = true;
+            }
         }
 
         private void buttonTutup_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void buttonRating_Click(object sender, EventArgs e)
+        {
+            FormRating rating = new FormRating();
+            rating.order = orderInfo;
+            rating.Owner = this;
+            rating.ShowDialog();
+            FormDetailPesanan_Load(this, e);
+        }
+
+        private void buttonVerifikasi_Click(object sender, EventArgs e)
+        {
+            orderInfo.Status = "verified";
+            Order.GantiStatus(orderInfo);
+            FormDetailPesanan_Load(this, e);
         }
     }
 }

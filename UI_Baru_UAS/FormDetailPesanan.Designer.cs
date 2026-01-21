@@ -51,6 +51,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.buttonTutup = new System.Windows.Forms.Button();
+            this.buttonRating = new System.Windows.Forms.Button();
+            this.buttonVerifikasi = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDetailPesanan)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -203,7 +205,7 @@
             this.dataGridViewDetailPesanan.Name = "dataGridViewDetailPesanan";
             this.dataGridViewDetailPesanan.RowHeadersWidth = 51;
             this.dataGridViewDetailPesanan.RowTemplate.Height = 24;
-            this.dataGridViewDetailPesanan.Size = new System.Drawing.Size(427, 401);
+            this.dataGridViewDetailPesanan.Size = new System.Drawing.Size(427, 349);
             this.dataGridViewDetailPesanan.TabIndex = 23;
             // 
             // groupBox2
@@ -318,11 +320,35 @@
             this.buttonTutup.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonTutup.Location = new System.Drawing.Point(19, 414);
             this.buttonTutup.Name = "buttonTutup";
-            this.buttonTutup.Size = new System.Drawing.Size(336, 46);
+            this.buttonTutup.Size = new System.Drawing.Size(228, 46);
             this.buttonTutup.TabIndex = 28;
             this.buttonTutup.Text = "Tutup";
             this.buttonTutup.UseVisualStyleBackColor = false;
             this.buttonTutup.Click += new System.EventHandler(this.buttonTutup_Click);
+            // 
+            // buttonRating
+            // 
+            this.buttonRating.BackColor = System.Drawing.Color.Transparent;
+            this.buttonRating.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonRating.Location = new System.Drawing.Point(253, 414);
+            this.buttonRating.Name = "buttonRating";
+            this.buttonRating.Size = new System.Drawing.Size(260, 46);
+            this.buttonRating.TabIndex = 29;
+            this.buttonRating.Text = "Rating";
+            this.buttonRating.UseVisualStyleBackColor = false;
+            this.buttonRating.Click += new System.EventHandler(this.buttonRating_Click);
+            // 
+            // buttonVerifikasi
+            // 
+            this.buttonVerifikasi.BackColor = System.Drawing.Color.Transparent;
+            this.buttonVerifikasi.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonVerifikasi.Location = new System.Drawing.Point(525, 414);
+            this.buttonVerifikasi.Name = "buttonVerifikasi";
+            this.buttonVerifikasi.Size = new System.Drawing.Size(263, 46);
+            this.buttonVerifikasi.TabIndex = 30;
+            this.buttonVerifikasi.Text = "Verifikasi";
+            this.buttonVerifikasi.UseVisualStyleBackColor = false;
+            this.buttonVerifikasi.Click += new System.EventHandler(this.buttonVerifikasi_Click);
             // 
             // FormDetailPesanan
             // 
@@ -330,6 +356,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(797, 470);
+            this.Controls.Add(this.buttonVerifikasi);
+            this.Controls.Add(this.buttonRating);
             this.Controls.Add(this.buttonTutup);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.dataGridViewDetailPesanan);
@@ -373,5 +401,7 @@
         private System.Windows.Forms.Label labelTotalBayar;
         private System.Windows.Forms.Label labelDiskon;
         private System.Windows.Forms.Button buttonTutup;
+        private System.Windows.Forms.Button buttonRating;
+        private System.Windows.Forms.Button buttonVerifikasi;
     }
 }

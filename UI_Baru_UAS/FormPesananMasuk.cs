@@ -97,6 +97,7 @@ namespace UI_Baru_UAS
                 frm.orderInfo = selectedOrder;
                 frm.Owner = this;
                 frm.ShowDialog();
+                FormPesananMasuk_Load(this, e);
             }
             else if (dataGridViewPesananMasuk.Columns[e.ColumnIndex].Name == "btnTerima" 
                 || dataGridViewPesananMasuk.Columns[e.ColumnIndex].Name == "btnTolak")
@@ -108,6 +109,7 @@ namespace UI_Baru_UAS
                     selectedOrder.Status = "processing";
                     Order.GantiStatus(selectedOrder);
                     MessageBox.Show("Pesanan diterima");
+                    FormPesananMasuk_Load(this, e);
                 }
                 else
                 {
@@ -117,6 +119,7 @@ namespace UI_Baru_UAS
                     {
                         Order.GantiStatus(selectedOrder);
                     }
+                    FormPesananMasuk_Load(this, e);
                 }
             }
         }

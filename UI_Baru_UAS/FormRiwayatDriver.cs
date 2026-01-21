@@ -34,7 +34,6 @@ namespace UI_Baru_UAS
         {
             frm = (FormUtama)this.MdiParent;
 
-            comboBoxJenisOrder.SelectedIndex = 0;
             jenis = comboBoxJenisOrder.Text;
 
             if (dataGridViewDaftarOrder.Columns.Contains("btnDetail"))
@@ -63,17 +62,6 @@ namespace UI_Baru_UAS
             }
             else if(jenis == "Gass-ride")
             {
-                dataGridViewDaftarOrder.DataSource = Trip.BacaData();
-                if (!dataGridViewDaftarOrder.Columns.Contains("btnDetail"))
-                {
-                    DataGridViewButtonColumn detail = new DataGridViewButtonColumn();
-                    detail.Text = "Detail";
-                    detail.HeaderText = "Detail";
-                    detail.UseColumnTextForButtonValue = true;
-                    detail.Name = "btnDetail";
-                    dataGridViewDaftarOrder.Columns.Add(detail);
-                }
-
                 dataGridViewDaftarOrder.DataSource = Trip.BacaData("riwayat", "", frm.driverLogin.Id);
                 if (dataGridViewDaftarOrder.Columns["Consumer"] != null)
                     dataGridViewDaftarOrder.Columns["Consumer"].HeaderText = "Consumer";
@@ -85,17 +73,17 @@ namespace UI_Baru_UAS
                     dataGridViewDaftarOrder.Columns["Total_fee"].HeaderText = "Total Fee";
                 if (dataGridViewDaftarOrder.Columns["Id"] != null)
                     dataGridViewDaftarOrder.Columns["Id"].Visible = false;
+                if (!dataGridViewDaftarOrder.Columns.Contains("btnDetail"))
+                {
+                    DataGridViewButtonColumn detail = new DataGridViewButtonColumn();
+                    detail.Text = "Detail";
+                    detail.HeaderText = "Detail";
+                    detail.UseColumnTextForButtonValue = true;
+                    detail.Name = "btnDetail";
+                    dataGridViewDaftarOrder.Columns.Add(detail);
+                }
             }
 
-            if (!dataGridViewDaftarOrder.Columns.Contains("btnDetail"))
-            {
-                DataGridViewButtonColumn detail = new DataGridViewButtonColumn();
-                detail.Text = "Detail";
-                detail.HeaderText = "Detail";
-                detail.UseColumnTextForButtonValue = true;
-                detail.Name = "btnDetail";
-                dataGridViewDaftarOrder.Columns.Add(detail);
-            }
         }
 
         private void dataGridViewDaftarOrder_CellContentClick(object sender, DataGridViewCellEventArgs e)

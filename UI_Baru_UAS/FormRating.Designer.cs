@@ -37,8 +37,6 @@
             this.comboBoxRatingDriver = new System.Windows.Forms.ComboBox();
             this.comboBoxRatingTenan = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.buttonKirim = new System.Windows.Forms.Button();
             this.buttonBatal = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -57,10 +55,10 @@
             // 
             this.labelUsername.AutoSize = true;
             this.labelUsername.BackColor = System.Drawing.Color.Transparent;
-            this.labelUsername.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.labelUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.labelUsername.Location = new System.Drawing.Point(13, 62);
             this.labelUsername.Name = "labelUsername";
-            this.labelUsername.Size = new System.Drawing.Size(126, 32);
+            this.labelUsername.Size = new System.Drawing.Size(135, 22);
             this.labelUsername.TabIndex = 16;
             this.labelUsername.Text = "ID Transaksi :";
             // 
@@ -68,10 +66,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label1.Location = new System.Drawing.Point(13, 94);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 32);
+            this.label1.Size = new System.Drawing.Size(75, 22);
             this.label1.TabIndex = 17;
             this.label1.Text = "Jenis : ";
             // 
@@ -79,10 +77,10 @@
             // 
             this.labelJenis.AutoSize = true;
             this.labelJenis.BackColor = System.Drawing.Color.Transparent;
-            this.labelJenis.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.labelJenis.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.labelJenis.Location = new System.Drawing.Point(90, 94);
             this.labelJenis.Name = "labelJenis";
-            this.labelJenis.Size = new System.Drawing.Size(113, 32);
+            this.labelJenis.Size = new System.Drawing.Size(116, 22);
             this.labelJenis.TabIndex = 18;
             this.labelJenis.Text = "(Ride/Food)";
             // 
@@ -90,10 +88,10 @@
             // 
             this.labelIDTransaksi.AutoSize = true;
             this.labelIDTransaksi.BackColor = System.Drawing.Color.Transparent;
-            this.labelIDTransaksi.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.labelIDTransaksi.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.labelIDTransaksi.Location = new System.Drawing.Point(145, 62);
             this.labelIDTransaksi.Name = "labelIDTransaksi";
-            this.labelIDTransaksi.Size = new System.Drawing.Size(42, 32);
+            this.labelIDTransaksi.Size = new System.Drawing.Size(40, 22);
             this.labelIDTransaksi.TabIndex = 19;
             this.labelIDTransaksi.Text = "(id)";
             // 
@@ -101,10 +99,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label2.Location = new System.Drawing.Point(13, 126);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(136, 32);
+            this.label2.Size = new System.Drawing.Size(140, 22);
             this.label2.TabIndex = 20;
             this.label2.Text = "Rating Driver :";
             // 
@@ -128,36 +126,18 @@
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label3.Location = new System.Drawing.Point(13, 158);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(135, 32);
+            this.label3.Size = new System.Drawing.Size(143, 22);
             this.label3.TabIndex = 22;
             this.label3.Text = "Rating Tenan :";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Kozuka Gothic Pr6N M", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label4.Location = new System.Drawing.Point(10, 190);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(226, 32);
-            this.label4.TabIndex = 24;
-            this.label4.Text = "Berikan Komentar Anda :\r\n";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(16, 225);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(271, 22);
-            this.textBox1.TabIndex = 25;
             // 
             // buttonKirim
             // 
             this.buttonKirim.BackColor = System.Drawing.Color.Transparent;
             this.buttonKirim.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonKirim.Location = new System.Drawing.Point(16, 253);
+            this.buttonKirim.Location = new System.Drawing.Point(16, 209);
             this.buttonKirim.Name = "buttonKirim";
             this.buttonKirim.Size = new System.Drawing.Size(132, 35);
             this.buttonKirim.TabIndex = 26;
@@ -169,7 +149,7 @@
             // 
             this.buttonBatal.BackColor = System.Drawing.Color.Transparent;
             this.buttonBatal.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonBatal.Location = new System.Drawing.Point(151, 253);
+            this.buttonBatal.Location = new System.Drawing.Point(151, 209);
             this.buttonBatal.Name = "buttonBatal";
             this.buttonBatal.Size = new System.Drawing.Size(132, 35);
             this.buttonBatal.TabIndex = 30;
@@ -182,11 +162,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.ClientSize = new System.Drawing.Size(299, 304);
+            this.ClientSize = new System.Drawing.Size(299, 254);
             this.Controls.Add(this.buttonBatal);
             this.Controls.Add(this.buttonKirim);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.comboBoxRatingTenan);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.comboBoxRatingDriver);
@@ -198,6 +176,7 @@
             this.Controls.Add(this.lblGASLIVERY);
             this.Name = "FormRating";
             this.Text = "FormRating";
+            this.Load += new System.EventHandler(this.FormRating_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -214,8 +193,6 @@
         private System.Windows.Forms.ComboBox comboBoxRatingDriver;
         private System.Windows.Forms.ComboBox comboBoxRatingTenan;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button buttonKirim;
         private System.Windows.Forms.Button buttonBatal;
     }

@@ -197,7 +197,8 @@ namespace UI_Baru_UAS
                             return;
                         }
 
-                        FormRating formRating = new FormRating(trip);
+                        FormRating formRating = new FormRating();
+                        formRating.trip = trip;
                         if (formRating.ShowDialog() == DialogResult.OK)
                         {
                             try

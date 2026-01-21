@@ -22,7 +22,7 @@ namespace Class_Gasslivery
         private Tenant tenant;
         private Voucher voucher;
         private DateTime date;
-        private string status; // ENUM('pending', 'processing', 'delivered', 'cancelled')
+        private string status; //ENUM('pending', 'processing', 'delivering', 'delivered', 'verified', 'cancelled')
         private int food_rating;
         private int driver_rating;
         private int discount_value;
@@ -195,6 +195,14 @@ namespace Class_Gasslivery
         public static void GantiStatus(Order order)
         {
             string perintah = $"UPDATE orders SET status = '{order.Status}' WHERE id = {order.Id} ";
+            Koneksi.JalankanPerintahDML(perintah);
+        }
+
+        public static void GantiRating(Order order)
+        {
+            string perintah = $"UPDATE orders SET food_rating = '{order.Food_rating}', " +
+                $"driver_rating = '{order.Driver_rating}' " +
+                $"WHERE id = {order.Id} ";
             Koneksi.JalankanPerintahDML(perintah);
         }
 
