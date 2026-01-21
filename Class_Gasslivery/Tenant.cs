@@ -72,6 +72,35 @@ namespace Class_Gasslivery
             return Name;
         }
 
+        public static void UpdateRating(string tenantId, int newRating)
+        {
+            string perintahAmbil = $@"SELECT avg_rating, total_rating FROM tenants 
+                WHERE id = {tenantId}";
+            MySqlDataReader hasil = Koneksi.JalankanPerintahSelect(perintahAmbil);
+            
+            double avgRating = 0;
+            int totalRating = 0;
+            
+            if (hasil.Read())
+            {
+                if (!hasil.IsDBNull(0))
+                {
+                    avgRating = double.Parse(hasil.GetValue(0).ToString());
+                }
+                if (!hasil.IsDBNull(1))
+                {
+                    totalRating = int.Parse(hasil.GetValue(1).ToString());
+                }
+            }
+
+            double avgRatingBaru = (avgRating * totalRating + newRating) / (totalRating + 1);
+            int totalRatingBaru = totalRating + 1;
+
+            string perintah = $@"UPDATE tenants SET avg_rating = {avgRatingBaru}, total_rating = {totalRatingBaru} 
+                WHERE id = {tenantId}";
+            Koneksi.JalankanPerintahDML(perintah);
+        }
+
         public static List<Tenant> BacaData()
         {
             List<Tenant> listHasil = new List<Tenant>();

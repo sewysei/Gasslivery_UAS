@@ -35,7 +35,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.dateTimePickerSampai = new System.Windows.Forms.DateTimePicker();
             this.buttonTutup = new System.Windows.Forms.Button();
-            this.buttonLihatDetail = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRiwayatRide)).BeginInit();
             this.SuspendLayout();
             // 
@@ -110,18 +109,6 @@
             this.buttonTutup.UseVisualStyleBackColor = false;
             this.buttonTutup.Click += new System.EventHandler(this.buttonTutup_Click);
             // 
-            // buttonLihatDetail
-            // 
-            this.buttonLihatDetail.BackColor = System.Drawing.Color.Transparent;
-            this.buttonLihatDetail.Font = new System.Drawing.Font("Verdana", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonLihatDetail.Location = new System.Drawing.Point(12, 328);
-            this.buttonLihatDetail.Name = "buttonLihatDetail";
-            this.buttonLihatDetail.Size = new System.Drawing.Size(163, 35);
-            this.buttonLihatDetail.TabIndex = 61;
-            this.buttonLihatDetail.Text = "Lihat Detail";
-            this.buttonLihatDetail.UseVisualStyleBackColor = false;
-            this.buttonLihatDetail.Click += new System.EventHandler(this.buttonLihatDetail_Click);
-            // 
             // FormRiwayatRide
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -129,7 +116,6 @@
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(892, 368);
             this.Controls.Add(this.buttonTutup);
-            this.Controls.Add(this.buttonLihatDetail);
             this.Controls.Add(this.dateTimePickerSampai);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dateTimePickerDari);
@@ -154,6 +140,5 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dateTimePickerSampai;
         private System.Windows.Forms.Button buttonTutup;
-        private System.Windows.Forms.Button buttonLihatDetail;
     }
 }

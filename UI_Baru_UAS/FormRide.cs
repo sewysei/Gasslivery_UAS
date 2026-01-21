@@ -182,6 +182,14 @@ namespace UI_Baru_UAS
                 
                 int total = Math.Max(0, totalSebelumPoin - poinDigunakan);
 
+                if (total > 0 && frmUtama.consumerLogin.Balance < total)
+                {
+                    MessageBox.Show("Saldo Gass-mon Anda tidak mencukupi, mohon topup terlebih dahulu \n " +
+                        $"Saldo Anda: Rp. {frmUtama.consumerLogin.Balance:N0} \n " +
+                        $"Total Transaksi: Rp. {total:N0} ", "Saldo Tidak Mencukupi");
+                    return;
+                }
+
                 Trip trip = new Trip();
                 trip.Consumer = frmUtama.consumerLogin;
                 trip.Pickup_point = textBoxTitikJemput.Text;
@@ -202,6 +210,12 @@ namespace UI_Baru_UAS
 
                 Trip.TambahTrip(trip);
                 
+                if (total > 0)
+                {
+                    frmUtama.consumerLogin.Balance -= total;
+                    Consumer.UpdateBalance(frmUtama.consumerLogin);
+                }
+                        
                 if (poinDigunakan > 0)
                 {
                     Consumer.UpdatePoint(poinDigunakan * -1, frmUtama.consumerLogin.Id);

@@ -59,10 +59,14 @@
             this.label12 = new System.Windows.Forms.Label();
             this.labelDiskon = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.numericUpDownPoin = new System.Windows.Forms.NumericUpDown();
+            this.labelPoinTersedia = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDaftarMenu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewKeranjang)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownLongitude)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownLatitude)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPoin)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonPesanFood
@@ -405,12 +409,60 @@
             this.label13.TabIndex = 55;
             this.label13.Text = "Diskon:";
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(887, 415);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(62, 22);
+            this.label14.TabIndex = 57;
+            this.label14.Text = "Poin :";
+            // 
+            // numericUpDownPoin
+            // 
+            this.numericUpDownPoin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDownPoin.Increment = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.numericUpDownPoin.Location = new System.Drawing.Point(955, 415);
+            this.numericUpDownPoin.Maximum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.numericUpDownPoin.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.numericUpDownPoin.Name = "numericUpDownPoin";
+            this.numericUpDownPoin.Size = new System.Drawing.Size(120, 27);
+            this.numericUpDownPoin.TabIndex = 58;
+            this.numericUpDownPoin.ValueChanged += new System.EventHandler(this.numericUpDownPoin_ValueChanged);
+            // 
+            // labelPoinTersedia
+            // 
+            this.labelPoinTersedia.AutoSize = true;
+            this.labelPoinTersedia.BackColor = System.Drawing.Color.Transparent;
+            this.labelPoinTersedia.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPoinTersedia.Location = new System.Drawing.Point(1081, 418);
+            this.labelPoinTersedia.Name = "labelPoinTersedia";
+            this.labelPoinTersedia.Size = new System.Drawing.Size(126, 20);
+            this.labelPoinTersedia.TabIndex = 59;
+            this.labelPoinTersedia.Text = "Poin tersedia: 0";
+            // 
             // FormFood
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(1219, 527);
+            this.Controls.Add(this.labelPoinTersedia);
+            this.Controls.Add(this.numericUpDownPoin);
+            this.Controls.Add(this.label14);
             this.Controls.Add(this.labelDiskon);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.labelMinimal);
@@ -449,6 +501,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewKeranjang)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownLongitude)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownLatitude)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPoin)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -487,5 +540,8 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label labelDiskon;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.NumericUpDown numericUpDownPoin;
+        private System.Windows.Forms.Label labelPoinTersedia;
     }
 }

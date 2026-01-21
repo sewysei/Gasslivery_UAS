@@ -10,6 +10,7 @@ namespace UI_Baru_UAS
     public partial class FormRiwayatRide : Form
     {
         FormUtama frmUtama;
+        private bool cellFormattingHandlerAdded = false;
 
         public FormRiwayatRide(FormUtama frm)
         {
@@ -47,6 +48,8 @@ namespace UI_Baru_UAS
                     dataGridViewRiwayatRide.Columns.Remove("btnRating");
                     dataGridViewRiwayatRide.Columns.Remove("btnCancel");
                     dataGridViewRiwayatRide.Columns.Remove("btnReport");
+                    dataGridViewRiwayatRide.Columns.Remove("btnVerifikasi");
+                    dataGridViewRiwayatRide.Columns.Remove("btnDetail");
                 }
 
                 System.Data.DataTable dt = new System.Data.DataTable();
@@ -82,6 +85,16 @@ namespace UI_Baru_UAS
                 dataGridViewRiwayatRide.Columns["Total Biaya"].DefaultCellStyle.Format = "N0";
                 dataGridViewRiwayatRide.Columns["Jarak (KM)"].DefaultCellStyle.Format = "0.00";
 
+                if (dataGridViewRiwayatRide.Columns["btnDetail"] == null)
+                {
+                    DataGridViewButtonColumn btnDetail = new DataGridViewButtonColumn();
+                    btnDetail.Text = "Detail";
+                    btnDetail.HeaderText = "Detail";
+                    btnDetail.UseColumnTextForButtonValue = true;
+                    btnDetail.Name = "btnDetail";
+                    dataGridViewRiwayatRide.Columns.Add(btnDetail);
+                }
+
                 if (dataGridViewRiwayatRide.Columns["btnRating"] == null)
                 {
                     DataGridViewButtonColumn btnRating = new DataGridViewButtonColumn();
@@ -90,6 +103,16 @@ namespace UI_Baru_UAS
                     btnRating.UseColumnTextForButtonValue = true;
                     btnRating.Name = "btnRating";
                     dataGridViewRiwayatRide.Columns.Add(btnRating);
+                }
+
+                if (dataGridViewRiwayatRide.Columns["btnVerifikasi"] == null)
+                {
+                    DataGridViewButtonColumn btnVerifikasi = new DataGridViewButtonColumn();
+                    btnVerifikasi.Text = "Verifikasi";
+                    btnVerifikasi.HeaderText = "Verifikasi";
+                    btnVerifikasi.UseColumnTextForButtonValue = true;
+                    btnVerifikasi.Name = "btnVerifikasi";
+                    dataGridViewRiwayatRide.Columns.Add(btnVerifikasi);
                 }
 
                 if (dataGridViewRiwayatRide.Columns["btnCancel"] == null)
@@ -113,10 +136,37 @@ namespace UI_Baru_UAS
                 }
 
                 dataGridViewRiwayatRide.Tag = listTrip;
+
+                if (!cellFormattingHandlerAdded)
+                {
+                    dataGridViewRiwayatRide.CellFormatting += DataGridViewRiwayatRide_CellFormatting;
+                    cellFormattingHandlerAdded = true;
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error memuat data: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void DataGridViewRiwayatRide_CellFormatting(object sender, DataGridViewCellFormattingEventArgs args)
+        {
+            if (args.RowIndex >= 0 && dataGridViewRiwayatRide.Columns["btnVerifikasi"] != null && args.ColumnIndex == dataGridViewRiwayatRide.Columns["btnVerifikasi"].Index)
+            {
+                if (dataGridViewRiwayatRide.Tag is List<Trip> listTrip && args.RowIndex < listTrip.Count)
+                {
+                    Trip trip = listTrip[args.RowIndex];
+                    if (trip.Status != "completed")
+                    {
+                        dataGridViewRiwayatRide.Rows[args.RowIndex].Cells[args.ColumnIndex].Style.ForeColor = System.Drawing.Color.Gray;
+                        dataGridViewRiwayatRide.Rows[args.RowIndex].Cells[args.ColumnIndex].Style.SelectionForeColor = System.Drawing.Color.Gray;
+                    }
+                    else
+                    {
+                        dataGridViewRiwayatRide.Rows[args.RowIndex].Cells[args.ColumnIndex].Style.ForeColor = System.Drawing.Color.Black;
+                        dataGridViewRiwayatRide.Rows[args.RowIndex].Cells[args.ColumnIndex].Style.SelectionForeColor = System.Drawing.Color.Black;
+                    }
+                }
             }
         }
 
@@ -130,37 +180,6 @@ namespace UI_Baru_UAS
             LoadData();
         }
 
-        private void buttonLihatDetail_Click(object sender, EventArgs e)
-        {
-            if (dataGridViewRiwayatRide.CurrentRow != null && dataGridViewRiwayatRide.Tag is List<Trip> tripList)
-            {
-                int index = dataGridViewRiwayatRide.CurrentRow.Index;
-                if (index >= 0 && index < tripList.Count)
-                {
-                    Trip trip = tripList[index];
-                    string detail = $"Detail Trip\n\n" +
-                        $"ID Trip: {trip.Id}\n" +
-                        $"Tanggal: {trip.Date:yyyy-MM-dd}\n" +
-                        $"Status: {trip.Status}\n" +
-                        $"Titik Jemput: {trip.Pickup_point}\n" +
-                        $"Titik Tujuan: {trip.Destination_point}\n" +
-                        $"Jarak: {trip.Distance:F2} KM\n" +
-                        $"Waktu Jemput: {trip.Pickup_time}\n" +
-                        $"Driver: {(trip.Driver != null ? trip.Driver.Full_name : "-")}\n" +
-                        $"Rating: {(trip.Rating > 0 ? trip.Rating.ToString() : "Belum ada rating")}\n" +
-                        $"Biaya Dasar: Rp {int.Parse(trip.Fee):N0}\n" +
-                        $"Biaya Tambahan: Rp {trip.Additional_fee:N0}\n" +
-                        $"Diskon: Rp {trip.Discount_value:N0}\n" +
-                        $"Total Biaya: Rp {trip.Total_fee:N0}";
-
-                    MessageBox.Show(detail, "Detail Trip", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Pilih trip terlebih dahulu!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
 
         private void buttonTutup_Click(object sender, EventArgs e)
         {
@@ -232,6 +251,12 @@ namespace UI_Baru_UAS
                                 cancel.Trip = trip;
                                 cancel.Reason = formCancel.AlasanCancel;
                                 Cancel.TambahCancel(cancel);
+                                
+                                if (frmUtama?.consumerLogin != null && !string.IsNullOrEmpty(frmUtama.consumerLogin.Id))
+                                {
+                                    frmUtama.consumerLogin = Consumer.CekLoginById(frmUtama.consumerLogin.Id);
+                                }
+                                
                                 MessageBox.Show("Trip berhasil dibatalkan!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 LoadData();
                             }
@@ -266,6 +291,89 @@ namespace UI_Baru_UAS
                                 MessageBox.Show("Error mengirim report: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
+                    }
+                    else if (e.ColumnIndex == dataGridViewRiwayatRide.Columns["btnVerifikasi"].Index)
+                    {
+                        if (trip.Status != "completed")
+                        {
+                            MessageBox.Show("Verifikasi hanya bisa dilakukan untuk trip yang sudah selesai!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
+                        if (trip.Status == "verified")
+                        {
+                            MessageBox.Show("Trip ini sudah diverifikasi!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                        }
+
+                        DialogResult dialog = MessageBox.Show("Apakah Anda yakin ingin memverifikasi transaksi ini?", "Konfirmasi Verifikasi", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (dialog == DialogResult.Yes)
+                        {
+                            try
+                            {
+                                trip.Status = "verified";
+                                Trip.UpdateStatus(trip);
+                                
+                                if (trip.Consumer != null && !string.IsNullOrEmpty(trip.Consumer.Id) && trip.Total_fee > 0)
+                                {
+                                    int poin = (trip.Total_fee / 1000) * 10;
+                                    Consumer.UpdatePoint(poin, trip.Consumer.Id);
+                                    
+                                    if (frmUtama?.consumerLogin != null && frmUtama.consumerLogin.Id == trip.Consumer.Id)
+                                    {
+                                        frmUtama.consumerLogin = Consumer.CekLoginById(frmUtama.consumerLogin.Id);
+                                    }
+                                }
+                                
+                                if (trip.Driver != null && !string.IsNullOrEmpty(trip.Driver.Id) && trip.Total_fee > 0)
+                                {
+                                    int driverFee = (int)(trip.Total_fee * 0.20);
+                                    Driver.UpdateSaldo(driverFee, trip.Driver.Id);
+                                }
+                                
+                                if (dataGridViewRiwayatRide.Tag is List<Trip> listTrip)
+                                {
+                                    Trip tripToUpdate = listTrip.FirstOrDefault(t => t.Id == trip.Id);
+                                    if (tripToUpdate != null)
+                                    {
+                                        tripToUpdate.Status = "verified";
+                                    }
+                                }
+                                
+                                if (e.RowIndex >= 0 && e.RowIndex < dataGridViewRiwayatRide.Rows.Count)
+                                {
+                                    dataGridViewRiwayatRide.Rows[e.RowIndex].Cells["Status"].Value = "verified";
+                                    dataGridViewRiwayatRide.Rows[e.RowIndex].Cells[dataGridViewRiwayatRide.Columns["btnVerifikasi"].Index].Style.ForeColor = System.Drawing.Color.Gray;
+                                    dataGridViewRiwayatRide.Rows[e.RowIndex].Cells[dataGridViewRiwayatRide.Columns["btnVerifikasi"].Index].Style.SelectionForeColor = System.Drawing.Color.Gray;
+                                    dataGridViewRiwayatRide.InvalidateRow(e.RowIndex);
+                                }
+                                
+                                MessageBox.Show("Transaksi berhasil diverifikasi!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Error memverifikasi transaksi: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
+                    else if (e.ColumnIndex == dataGridViewRiwayatRide.Columns["btnDetail"].Index)
+                    {
+                        string detail = $"Detail Trip\n\n" +
+                            $"ID Trip: {trip.Id}\n" +
+                            $"Tanggal: {trip.Date:yyyy-MM-dd}\n" +
+                            $"Status: {trip.Status}\n" +
+                            $"Titik Jemput: {trip.Pickup_point}\n" +
+                            $"Titik Tujuan: {trip.Destination_point}\n" +
+                            $"Jarak: {trip.Distance:F2} KM\n" +
+                            $"Waktu Jemput: {trip.Pickup_time}\n" +
+                            $"Driver: {(trip.Driver != null ? trip.Driver.Full_name : "-")}\n" +
+                            $"Rating: {(trip.Rating > 0 ? trip.Rating.ToString() : "Belum ada rating")}\n" +
+                            $"Biaya Dasar: Rp {int.Parse(trip.Fee):N0}\n" +
+                            $"Biaya Tambahan: Rp {trip.Additional_fee:N0}\n" +
+                            $"Diskon: Rp {trip.Discount_value:N0}\n" +
+                            $"Total Biaya: Rp {trip.Total_fee:N0}";
+
+                        MessageBox.Show(detail, "Detail Trip", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
             }

@@ -196,6 +196,21 @@ namespace Class_Gasslivery
         {
             string perintah = $"UPDATE orders SET status = '{order.Status}' WHERE id = {order.Id} ";
             Koneksi.JalankanPerintahDML(perintah);
+            
+            if (order.Status == "cancelled" || order.Status == "canceled")
+            {
+                string perintahBaca = $"SELECT consumer_id, total_fee FROM orders WHERE id = {order.Id}";
+                MySqlDataReader hasil = Koneksi.JalankanPerintahSelect(perintahBaca);
+                
+                if (hasil.Read())
+                {
+                    string consumerId = hasil.GetValue(0).ToString();
+                    int totalFee = int.Parse(hasil.GetValue(1).ToString());
+                    
+                    string perintahKembalikan = $"UPDATE consumers SET balance = balance + {totalFee} WHERE id = '{consumerId}'";
+                    Koneksi.JalankanPerintahDML(perintahKembalikan);
+                }
+            }
         }
 
         public static void GantiRating(Order order)
