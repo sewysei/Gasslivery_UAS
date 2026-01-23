@@ -221,12 +221,12 @@ namespace Class_Gasslivery
                  distance, pickup_time, fee, rating, status, date, 
                  additional_fee, discount_value, total_fee) 
                 VALUES 
-                ({trip.Consumer.Id}, NULL, {voucherId}, 
+                ('{trip.Consumer.Id}', NULL, '{voucherId}', 
                  '{trip.Longitude_pickup}', '{trip.Latitude_pickup}', '{pickupPoint}', 
                  '{trip.Longitude_dest}', '{trip.Latitude_dest}', '{destinationPoint}', 
-                 {trip.Distance}, '{trip.Pickup_time}', '{trip.Fee}', {trip.Rating}, 
-                 '{trip.Status}', NOW(), {trip.Additional_fee}, 
-                 {trip.Discount_value}, {trip.Total_fee})";
+                 '{trip.Distance}', '{trip.Pickup_time}', '{trip.Fee}', '{trip.Rating}', 
+                 '{trip.Status}', NOW(), '{trip.Additional_fee}', 
+                 '{trip.Discount_value}', '{trip.Total_fee}')";
 
             Koneksi.JalankanPerintahDML(perintah);
         }

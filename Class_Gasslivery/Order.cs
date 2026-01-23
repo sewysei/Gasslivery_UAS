@@ -69,7 +69,7 @@ namespace Class_Gasslivery
                     $"INNER JOIN tenants t ON t.id = o.tenant_id " +
                     $"INNER JOIN vouchers v ON v.id = o.voucher_id " +
                     $"WHERE o.date BETWEEN '{mulai}' AND '{akhir}' " +
-                    $"ORDER BY o.date ASC";
+                    $"ORDER BY o.date DESC";
             }
             else if(kolom == "status")
             {
@@ -80,7 +80,7 @@ namespace Class_Gasslivery
                    $"INNER JOIN tenants t ON t.id = o.tenant_id " +
                    $"INNER JOIN vouchers v ON v.id = o.voucher_id " +
                    $"WHERE o.status = '{nilai}' AND o.tenant_id = '{id}' " +
-                   $"ORDER BY o.date ASC";
+                   $"ORDER BY o.date DESC";
             }
             else if (kolom == "date")
             {
@@ -91,7 +91,7 @@ namespace Class_Gasslivery
                    $"INNER JOIN tenants t ON t.id = o.tenant_id " +
                    $"INNER JOIN vouchers v ON v.id = o.voucher_id " +
                    $"WHERE o.date BETWEEN '{mulai}' AND '{akhir}' AND o.tenant_id = '{id}' AND o.status = 'delivered' " +
-                   $"ORDER BY o.date ASC";
+                   $"ORDER BY o.date DESC";
             }
             else if (kolom == "consumer")
             {
@@ -102,7 +102,7 @@ namespace Class_Gasslivery
                     $"INNER JOIN tenants t ON t.id = o.tenant_id " +
                     $"INNER JOIN vouchers v ON v.id = o.voucher_id " +
                     $"WHERE o.date BETWEEN '{mulai}' AND '{akhir}' AND o.consumer_id = {id} " +
-                    $"ORDER BY o.date ASC;";
+                    $"ORDER BY o.date DESC;";
             }
             else if (kolom == "driver")
             {
